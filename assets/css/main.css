@@ -120,6 +120,9 @@ a {
     a:hover strong {
       color: inherit; }
 
+a.anchor {
+visibility: hidden; }
+
 strong, b {
   color: #3d4449;
   font-weight: 600; }
