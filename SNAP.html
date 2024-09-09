@@ -1,0 +1,554 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>SNAP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="#.html" class="logo"><strong>S.N.A.P.</strong> The Scrip and Note Automation Process</a>
+								</header>
+								<br />
+
+							<!-- Content -->
+							<form method="post" action="#">
+							<div class="row gtr-uniform">
+								<!-- Instrument Information -->
+								<div class="col-6 col-12-xsmall">
+									<select name="instrument-model" id="instrument-model">
+										<option value="">- Instrument -</option>
+										<option value="Cirrus OCT">Cirrus OCT 400/4000/500/5000/6000</option>
+										<option value="Cirrus Photo">Cirrus Photo</option>
+										<option value="Clarus">Clarus</option>
+										<option value="HFA3">HFA3</option>
+										<option value="IOLMaster">IOLMaster - 500/700</option>
+										<option value="Visucam 224/524">Visucam 224/524</option>
+										<option value="Visucam Pro/NM/NMFA">Visucam Pro/NM/NMFA</option>
+										<option value="Atlas 500">Atlas 500</option>
+										<option value="Atlas 9000">Atlas 9000</option>
+										<option value="Stratus 3000/Visante 1000 (old)">Stratus 3000/Visante 1000 (old)</option>
+										<option value="FORUM">FORUM</option>
+									</select>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="serial" id="serial" placeholder="Serial Number" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="account" id="account" placeholder="Account Name" />
+								</div>
+								<div class="col-6 col-12-xsmall tooltip">
+									<input type="text" name="instrument-address" id="instrument-address" placeholder="Shipping Address" />
+									<span class="tooltiptext">If address shows CZMI, <br />ask Customer where and <br /> when they purchased instrument</span>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Contact Person" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="phone" id="phone" placeholder="Phone Number" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="email" id="email" placeholder="Email" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="cct" id="cct" placeholder="Customer Care Ticket#" />
+								</div>
+								<div class="col-12">
+									<textarea name="description" id="description" placeholder="Problem Description" rows="6"></textarea>
+								</div>
+								
+								<!-- Warranty and Service Contracts -->
+								<div class="col-6 col-12-xsmall">
+									<select name="warranty-contract" id="warranty-contract">
+										<option value="">- Warranty Contract -</option>
+										<option value="W">W: Warranty Diagnostic Dublin (WRTYCA-P000-38)</option>
+										<option value="CO">CO: OPTIME Complete Cirrus 5000)</option>
+										<option value="B">B: No Current Service Contracts</option>
+										<option value="XC">XC: No Current Service Contracts</option>
+									</select>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<select name="service-contract" id="service-contract">
+										<option value="">- Service Contract -</option>
+										<option value="BPA">BPA: All service covered and all parts*</option>
+										<option value="PRT">PRT: All service is covered with the billing of a Call Out fee**</option>
+										<option value="PRM">PRM: All service is covered along with an uptime guarantee</option>
+										<option value="CO">CO: All service covered</option>
+										<option value="AD">AD: All labor/travel covered; all parts are billable</option>
+										<option value="PR">PR: One PM is covered; all other services are billable</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<p>***Note: Use XC, <u>ONLY IF</u> Remote Fixed & Billable!***</p>
+									<hr />
+								</div>
+								
+								
+								<!-- TeamViewer Information -->
+								<div class="col-12">
+									<h4>TeamViewer</h4>
+									<p>Is TeamViewer Downloaded on the Instrument or Review Station?</p>
+									<ul>
+										<li>Open an internet browser (Preferably Firefox or Google Chrome)</li>
+										<li>Type this in the browser tiny.cc/zeissqs (TeamViewer Quick Service)</li>
+									</ul>
+									<table>
+										<tr>
+											<td>
+												<h5>Instrument:</h5>
+												<input type="text" name="teamviewer-username1" id="teamviewer-username1" placeholder="TeamViewer ID" />
+												<input type="text" name="teamviewer-password1" id="teamviewer-password1" placeholder="Password" />
+											</td>
+											<td>
+												<h5>Review W/S:</h5>
+												<input type="text" name="teamviewer-username2" id="teamviewer-username2" placeholder="TeamViewer ID" />
+												<input type="text" name="teamviewer-password2" id="teamviewer-password2" placeholder="Password" />
+											</td>
+											<td>
+												<h5>Forum:</h5>
+												<input type="text" name="teamviewer-username3" id="teamviewer-username3" placeholder="TeamViewer ID" />
+												<input type="text" name="teamviewer-password3" id="teamviewer-password3" placeholder="Password" />
+											</td>
+										</tr>
+									</table>
+									<div class="col-12">
+										<h5>Remote Session Stopwatch:</h5>
+										<p name="RemoteTime" id="timeDisplay">0 seconds</p>
+										<button id="startButton">Start</button>
+										<button id="stopButton" disabled>Stop</button>
+									</div>
+									<div>
+										<p>Thank you for providing access to your instrument. Let me look into what is going on with your instrument.</p>
+										<ul>
+											<li>May I call you back later while I research?</li>
+											<li>If you're still having issues with your OCT, feel free to call us back at 1-800-341-6968. Then option 1 and 1 again.</li>
+										</ul>
+									</div>
+								</div>
+
+								<!-- Internal Notes -->
+								<div class="col-12">
+									<hr />
+									<h4>Internal Notes:</h4>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<select name="request-came-from" id="request-came-from">
+										<option value="">- Request Came From -</option>
+										<option value="Email">Email</option>
+										<option value="Call">Call</option>
+									</select>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<select name="source" id="source">
+										<option value="">- Source -</option>
+										<option value="Email">Email</option>
+										<option value="Service Request Form">Service Request Form</option>
+										<option value="Voicemail">Voicemail</option>
+										<option value="N/A">N/A</option>
+									</select>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="local-contact-person1" id="local-contact-person1" placeholder="Local Contact Person" disabled />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="phone1" id="phone1" placeholder="Phone" disabled />
+								</div>
+								<div class="col-12">
+									<input type="email" name="email1" id="email1" placeholder="Email Address" disabled/>
+								</div>
+								<div class="col-12">
+									<h5>FSE Search</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="instrument-code" id="instrument-code" placeholder="Instrument Code (IC)" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="zip-code" id="zip-code" placeholder="Zip Code" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="city" id="city" placeholder="City" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="state" id="state" placeholder="State" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="primary-fse" id="primary-fse" placeholder="Primary FSE" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="field-service-supervisor" id="field-service-supervisor" placeholder="Field Service Supervisor" />
+								</div>
+
+								<!-- Remote Support -->
+								<div class="col-12">
+									<h5>Remote Support</h5>
+								</div>
+								<div class="col-6 col-12-small">
+									<input type="checkbox" id="remote-support" name="remote-support">
+									<label for="remote-support">Was Remote Support Provided?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="remote-time" id="remote-time" placeholder="Time Spent" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="device-module" id="device-module" placeholder="Device Module" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="sub-module" id="sub-module" placeholder="Sub Module" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="error-code" id="error-code" placeholder="Error Code" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="error-group" id="error-group" placeholder="Error Group Code" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="action-code" id="action-code" placeholder="Action Code" />
+								</div>
+								<div class="col-12">
+									<select name="work-station-status" id="work-station-status">
+										<option value="">- Cirrus HD-OCT/Review Workstation Status: -</option>
+										<option value="Status ok (Color:green)">Status ok (Color:green)</option>
+										<option value="Archive Volume has not yet been created (color:yellow)">Archive Volume has not yet been created (color:yellow)</option>
+										<option value="Archive Volume is not available (Color: Yellow)">Archive Volume is not available (Color: Yellow)</option>
+										<option value="Archive Volume Storage Space is Low (Color: Yellow)">Archive Volume Storage Space is Low (Color: Yellow)</option>
+										<option value="Current Archive Volume unselected(Color: Yellow)">Current Archive Volume unselected(Color: Yellow)</option>
+										<option value="DICOM Server Status: Connected">DICOM Server Status: Connected</option>
+										<option value="DICOM networking error, please check configuration(Color: Red)">DICOM networking error, please check configuration(Color: Red)</option>
+										<option value="Failed to connect to DICOM Gateway(Color: Yellow)">Failed to connect to DICOM Gateway(Color: Yellow)</option>
+										<option value="Failed to send the report to DICOM Server(Color: Red)">Failed to send the report to DICOM Server(Color: Red)</option>
+										<option value="Firmware Initialization failed(Color: Yellow)">Firmware Initialization failed(Color: Yellow)</option>
+										<option value="Instrument Self Test failed(Color: Yellow)">Instrument Self Test failed(Color: Yellow)</option>
+										<option value="Storage space is critical(Color: RED)">Storage space is critical(Color: RED)</option>
+										<option value="Successfully sent the EPDF report to DICOM Archive(Color: Green)">Successfully sent the EPDF report to DICOM Archive(Color: Green)</option>
+										<option value="Background Diagnostics check failed(Color: Yellow)">Background Diagnostics check failed(Color: Yellow)</option>
+										<option value="OCT SLD Power(too low) out of range(1 < 500)">OCT SLD Power(too low) out of range(1 < 500)</option>
+										<option value="OCT SLD is not in Safe State">OCT SLD is not in Safe State</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="c-drive" id="c-drive" placeholder="OS (C:) Free Space:" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="e-drive" id="e-drive" placeholder="Data (E:) Free Space:" />
+								</div>
+								<div class="col-12">
+										<textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<a href="#" id="printintnotes" class="button primary small">Print Internal Notes</a>
+									
+								</div>
+									
+								<!-- Requested Notes -->
+								<div class="col-12">
+									<hr />
+									<h4>Requested Notes (RAFTA)</h4>
+								</div>
+								<div class="col-12">
+									<input type="checkbox" id="service-order-created" name="service-order-created">
+									<label for="service-order-created">Was Service Order Created?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="service-order-title" id="service-order-title" placeholder="Service Order #" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="created-date" id="created-date" placeholder="Created Date" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="created-time" id="created-time" placeholder="Created Time" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="created-timezone" id="created-timezone" placeholder="Created Time Zone" />
+								</div>
+								<div class="col-12">
+									<h5>Reported Incident</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="device-serial-number" id="device-serial-number" placeholder="Device Serial Number" disabled />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="device-software-version" id="device-software-version" placeholder="Device Software Version" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="archive-mode" id="archive-mode" placeholder="Archive Mode" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="windows-version" id="windows-version" placeholder="Windows Version" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="review-station-software-version" id="review-station-software-version" placeholder="Review Station Software Version" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="review-station-archive-mode" id="review-station-archive-mode" placeholder="Review Station Archive Mode" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="review-station-windows-version" id="review-station-windows-version" placeholder="Review Station Windows Version" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<textarea name="problem-description" id="problem-description" placeholder="Problem Description" rows="3" disabled></textarea>
+								</div>
+								<div class="col-12">
+									<textarea name="error-message-details" id="error-message-details" placeholder="Specific error message? If Yes, what is the Error Message?" rows="3"></textarea>
+								</div>
+								<div class="col-12">
+									<h5>Actual Problem if Different from Reported Problem</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="same-as-reported" name="same-as-reported">
+								</div>
+								<div class="col-12">
+									<textarea name="actual-problem-description" id="actual-problem-description" placeholder="Problem description if different than stated above:" rows="3"></textarea>
+								</div>
+								<div class="col-12">
+									<h5>Frequency of the Problem</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<textarea name="frequency-problem" id="frequency-problem" placeholder="Frequency of Problem?" rows="3"></textarea>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<textarea name="problem-started" id="problem-started" placeholder="When problem Started" rows="3"></textarea>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<textarea name="problem-changed" id="problem-changed" placeholder="What changed" rows="3"></textarea>
+								</div>
+								<div class="col-12">
+									<h5>Troubleshooting performed/Actions Performed</h5>
+									<textarea name="troubleshooting-performed" id="troubleshooting-performed" placeholder="Troubleshooting performed" rows="6"></textarea>
+								</div>
+								<div class="col-12">
+									<h5>Additional information collection</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="device-exchanged" name="device-exchanged">
+									<label for="device-exchanged">Has the device recently been exchanged or repaired?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="exchange-date" id="exchange-date" placeholder="If yes, when?" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="logs-attached" name="logs-attached">
+									<label for="logs-attached">Logs attached to CCT?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="logs-not-attached-reason" id="logs-not-attached-reason" placeholder="If not, why?" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="screenshots-attached" name="screenshots-attached">
+									<label for="screenshots-attached">Screenshots Attached to CCT?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="screenshots-attached-reason" id="screenshots-attached-reason" placeholder="If not, why?" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="extended-inoperability-check" name="extended-inoperability-check">
+									<label for="extended-inoperability-check">Extended period of inoperability (>1 day)?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="inoperability-duration" id="inoperability-duration" placeholder="If yes, how long?" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="power-cycle-resolve" name="power-cycle-resolve">
+									<label for="power-cycle-resolve">Power cycle resolve?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="remote-resolution" name="remote-resolution">
+									<label for="remote-resolution">Remote resolution?</label>
+								</div>
+								<div class="col-12">
+									<a href="#" id="printrafta" class="button primary small">Print Request Notes</a>
+									<hr />
+								</div>
+
+								<!-- Technical Support Call Checklist -->
+								<div class="col-12">
+									<h5>Technical Support Call Checklist</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="current-software-version" name="current-software-version">
+									<label for="current-software-version">Device running current Software Version?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-software-reason" id="current-software-reason" placeholder="If no, why?" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="verified-normal-functionality" name="verified-normal-functionality">
+									<label for="verified-normal-functionality">Verified normal device functionality (if phone fixed)?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="verified-network-connectivity" name="verified-network-connectivity">
+									<label for="verified-network-connectivity">Verified connectivity to office network/shares (if applicable)?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="device-hostname" id="device-hostname" placeholder="Device Hostname" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="device-ip" id="device-ip" placeholder="Device’s DHCP or Static IP" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="review-station-hostname" id="review-station-hostname" placeholder="Review Station’s Hostname" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="review-station-ip" id="review-station-ip" placeholder="Review Station’s DHCP or Static IP" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-archive-label" id="current-archive-label" placeholder="Current Archive Label" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-archive-description" id="current-archive-description" placeholder="Current Archive Description" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-archive-path" id="current-archive-path" placeholder="Current Archive Path" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-archive-mapping" id="current-archive-mapping" placeholder="Current Archive Drive Mapping" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-archive-server-hostname" id="current-archive-server-hostname" placeholder="Current Archive Server’s Hostname" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="current-archive-server-ip" id="current-archive-server-ip" placeholder="Current Archive Server’s IP Address" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="old-archive-label" id="old-archive-label" placeholder="Old Archive Label" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="old-archive-description" id="old-archive-description" placeholder="Old Archive Description" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="old-archive-path" id="old-archive-path" placeholder="Old Archive Path" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="old-archive-mapping" id="old-archive-mapping" placeholder="Old Archive Drive Mapping" />
+								</div>
+								<div class="col-12">
+									<h5>FORUM Settings (if applicable) verified and recorded (screenshots preferred)</h5>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="forum-software-version" id="forum-software-version" placeholder="Forum Server’s Software Version" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="forum-windows-version" id="forum-windows-version" placeholder="Windows Version" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="forum-server-hostname" id="forum-server-hostname" placeholder="Forum Server’s Hostname" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="forum-server-ip" id="forum-server-ip" placeholder="Forum Server’s IP Address" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="server-settings" id="server-settings" placeholder="Server Settings" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="dicom-tests-pass" name="dicom-tests-pass">
+									<label for="dicom-tests-pass">DICOM Tests pass?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="number-of-stations" id="number-of-stations" placeholder="Number of stations" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="checkbox" id="changes-to-environment" name="changes-to-environment">
+									<label for="changes-to-environment">Any changes to environment?</label>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="affected-devices" id="affected-devices" placeholder="Affected Devices/Workstations/Server (FORUM)" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="architecture" id="architecture" placeholder="Architecture (FORUM)" />
+								</div>
+								
+								<!-- Export Button -->
+								<div class="col-12">
+									<a href="#" id="exportall" class="button primary small">Export Interaction</a>
+									<input Type="reset" class="button primary small">
+								</div>
+							</div>
+						</form>
+
+							
+							
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Processes</h2>
+									</header>
+									<ul>
+										<li><a href="#.html">SNAP</a></li>
+										<li>
+											<span class="opener">Recertification</span>
+											<ul>
+												<li><a href="#" id="recertemailtempLink">Recertification Email</a></li>
+												<li><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">FORM</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">PROAIM</span>
+											<ul>
+												<li><a href="#" id="proaimserviceemailLink">Service Call</a></li>
+												<li><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
+											</ul>
+										</li>
+										<li><a href="#" id="prevmaintemailLink">Preventative Maintenance</a></li>
+										<li>
+											<span class="opener">Billing</span>
+											<ul>
+												<li><a href="#" id="#">PO Request</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">End of Support</span>
+											<ul>
+												<li><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SNAP v2.3 2024.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/proaimpmemailgen.js"></script>
+			<script src="assets/js/proaimserviceemail.js"></script>
+			<script src="assets/js/exportAll.js"></script>
+			<script src="assets/js/recertemailtemp.js"></script>
+			<script src="assets/js/prevmaintemail.js"></script>
+			<script src="assets/js/stopwatch.js"></script>
+			<script src="assets/js/syncFields.js"></script>
+			<script src="assets/js/endofsupportoct4000.js"></script>
+			<script src="assets/js/printrafta.js"></script>
+			<script src="assets/js/printintnotes.js"></script>
+
+	</body>
+</html>
