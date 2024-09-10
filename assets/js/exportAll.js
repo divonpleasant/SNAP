@@ -117,6 +117,28 @@ Instrument: Username: ${document.getElementById('teamviewer-username1').value} P
 Review Station: Username: ${document.getElementById('teamviewer-username2').value} Password: ${document.getElementById('teamviewer-password2').value}
 Forum: Username: ${document.getElementById('teamviewer-username3').value} Password: ${document.getElementById('teamviewer-password3').value}
 
+REQUEST NOTES......................................................................:
+Was service order created: ${document.getElementById('service-order-created').checked ? "Yes" : "No"}
+Service Order Number: ${document.getElementById('service-order-title').value}, ${document.getElementById('created-date').value}, ${document.getElementById('created-time').value}, ${document.getElementById('created-timezone').value}
+
+Reported Incident:
+  Device Serial Number: ${document.getElementById('device-serial-number').value}
+  Device Software Version: ${document.getElementById('device-software-version').value}
+  Archive Mode: ${document.getElementById('archive-mode').value}
+  Windows Version: ${document.getElementById('windows-version').value}
+  Review Station Software Version: ${document.getElementById('review-station-software-version').value}
+  Review Station Archive Mode: ${document.getElementById('review-station-archive-mode').value}
+  Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
+  Problem Description: ${document.getElementById('problem-description').value}
+  Specific Error Message: ${document.getElementById('error-message-details').value}
+Actual Problem (if different than Reported Problem): 
+  ${document.getElementById('actual-problem-description').value}
+Frequency of Problem: ${document.getElementById('frequency-problem').value}
+  The problem first started: ${document.getElementById('problem-started').value}
+  What Changed? ${document.getElementById('problem-changed').value}
+Troubleshooting Performed:
+  ${document.getElementById('troubleshooting-performed').value}
+
 INTERNAL NOTES.....................................................................:
 Time Spent: ${document.getElementById('remote-time').value}
 Device Module: ${document.getElementById('device-module').value}
@@ -139,29 +161,6 @@ Was Remote Support Provided? ${document.getElementById('remote-support').checked
 Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
 OS (C:): ${document.getElementById('c-drive').value}
 Data (E:): ${document.getElementById('e-drive').value}
-
-
-REQUEST NOTES......................................................................:
-Was service order created: ${document.getElementById('service-order-created').checked ? "Yes" : "No"}
-Service Order Number: ${document.getElementById('service-order-title').value}, ${document.getElementById('created-date').value}, ${document.getElementById('created-time').value}, ${document.getElementById('created-timezone').value}
-
-Reported Incident:
-Device Serial Number: ${document.getElementById('device-serial-number').value}
-Device Software Version: ${document.getElementById('device-software-version').value}
-Archive Mode: ${document.getElementById('archive-mode').value}
-Windows Version: ${document.getElementById('windows-version').value}
-Review Station Software Version: ${document.getElementById('review-station-software-version').value}
-Review Station Archive Mode: ${document.getElementById('review-station-archive-mode').value}
-Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
-Problem Description: ${document.getElementById('problem-description').value}
-Specific Error Message: ${document.getElementById('error-message-details').value}
-Actual Problem if different than Reported Problem: 
-${document.getElementById('actual-problem-description').value}
-Frequency of Problem: ${document.getElementById('frequency-problem').value}
-The problem first started: ${document.getElementById('problem-started').value}
-What Changed? ${document.getElementById('problem-changed').value}
-Troubleshooting Performed:
-${document.getElementById('troubleshooting-performed').value}
 
 ADDITIONAL INFORMATION COLLECTION:
 Has the device recently been exchanged or repaired? ${document.getElementById('device-exchanged').checked ? "Yes" : "No"}
