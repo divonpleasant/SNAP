@@ -1,9 +1,12 @@
 let startTime;
 let interval;
+let calculatedTime;
 let elapsedTimeRecorded = 0;
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
+const calculateButton = document.getElementById('calculateButton');
 const timeDisplay = document.getElementById('timeDisplay');
+const timeSpent = document.getElementById('remote-time');
 
 function updateDisplay() {
     const currentTime = new Date();
@@ -22,6 +25,7 @@ startButton.addEventListener('click', () => {
     startTime = new Date();
     startButton.disabled = true;
     stopButton.disabled = false;
+	calculateButton.disabled = true;
     interval = setInterval(updateDisplay, 100); // Update every 100 milliseconds
 });
 
@@ -31,7 +35,18 @@ stopButton.addEventListener('click', () => {
     elapsedTimeRecorded = (endTime - startTime) / 1000;
     startButton.disabled = false;
     stopButton.disabled = true;
+	calculateButton.disabled = false;
 
     // Log the recorded time to the console for testing purposes
     console.log(`Recorded time: ${elapsedTimeRecorded} seconds`);
+});
+
+calculateButton.addEventListener('click', () => {
+	console.log(`Recorded time: ${elapsedTimeRecorded} seconds`);
+	calculatedTime = (elapsedTimeRecorded / 60).toFixed(2);
+	console.log(`Calculated time: ${calculatedTime}`);
+	timeSpent.value = calculatedTime + " hours";
+	startButton.disabled = false;
+	stopButton.disabled = true;
+	calculateButton.disabled = true;
 });
