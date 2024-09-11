@@ -7,6 +7,7 @@ const stopButton = document.getElementById('stopButton');
 const calculateButton = document.getElementById('calculateButton');
 const timeDisplay = document.getElementById('timeDisplay');
 const timeSpent = document.getElementById('remote-time');
+const resetButton = document.getElementById('resetButton');
 
 function updateDisplay() {
     const currentTime = new Date();
@@ -50,3 +51,13 @@ calculateButton.addEventListener('click', () => {
 	stopButton.disabled = true;
 	calculateButton.disabled = true;
 });
+
+// To reset the clock when the reset button is pressed.
+resetButton.addEventListener('click', () => {
+    clearInterval(interval);
+    startTime = null;
+    elapsedTimeRecorded = 0;
+    timeDisplay.textContent = "0 seconds";
+    startButton.disabled = false;
+    stopButton.disabled = true;
+})
