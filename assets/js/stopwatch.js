@@ -4,6 +4,7 @@ let elapsedTimeRecorded = 0;
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
 const timeDisplay = document.getElementById('timeDisplay');
+const resetButton = document.getElementById('resetButton');
 
 function updateDisplay() {
     const currentTime = new Date();
@@ -35,3 +36,13 @@ stopButton.addEventListener('click', () => {
     // Log the recorded time to the console for testing purposes
     console.log(`Recorded time: ${elapsedTimeRecorded} seconds`);
 });
+
+// To reset the clock when the reset button is pressed.
+resetButton.addEventListener('click', () => {
+    clearInterval(interval);
+    startTime = null;
+    elapsedTimeRecorded = 0;
+    timeDisplay.textContent = "0 seconds";
+    startButton.disabled = false;
+    stopButton.disabled = true;
+})
