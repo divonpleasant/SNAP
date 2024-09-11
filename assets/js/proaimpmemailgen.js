@@ -13,7 +13,7 @@ function proaimpmemailgen(event) {
     var email = document.getElementById('email').value;
     
     // Construct the mailto link
-    var mailtoLink = "mailto:serviceoperationsadmin.med.us@zeiss.com?cc=jackie.brown@proaim-medical.com" +
+    var mailtoLink = "mailto:serviceoperationsadmin.med.us@zeiss.com" +
         "&subject=" + encodeURIComponent("PROAIM Preventative Maintenance (PM) Quote") +
         "&body=" + encodeURIComponent(
             "Customer needs quote for dispatching Field Service Engineer (FSE) onsite service. The Customer prefers email contact.\n\n" +
