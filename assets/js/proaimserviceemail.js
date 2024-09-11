@@ -11,7 +11,7 @@ function proaimserviceemail(event) {
     var phone = document.getElementById('phone').value;
     var email = document.getElementById('email').value;
     
-    var mailtoLink = "mailto:serviceoperationsadmin.med.us@zeiss.com?cc=Jackie.brown@proaim-medical.com" +
+    var mailtoLink = "mailto:serviceoperationsadmin.med.us@zeiss.com" +
         "&subject=" + encodeURIComponent("PROAIM Service") +
         "&body=" + encodeURIComponent(
             "Customer needs quote for dispatching Field Service Engineer (FSE) onsite service. The Customer prefers email contact.\n\n" +
