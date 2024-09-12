@@ -70,12 +70,12 @@
 								
 								<!-- Warranty and Service Contracts -->
 								<div class="col-6 col-12-xsmall">
-									<select name="warranty-contract" id="warranty-contract">
-										<option value="">-- Billing Type --</option>
-										<option value="W">W: Warranty Diagnostic Dublin (WRTYCA-P000-38)</option>
-										<option value="CO">CO: OPTIME Complete (Cirrus 5000)</option>
-										<option value="B">B: No Current Service Contracts</option>
-										<option value="XC">XC: No Current Service Contracts</option>
+									<select name="warranty-contract" id="warranty-contract" onchange="selectChangeAlert(this, 'XC', 'Note: Use XC code ONLY IF Remote Fixed AND Billable!');">
+										<option value="">- Billing Type -</option>
+										<option value="W" name="w">W: Warranty Diagnostic Dublin (WRTYCA-P000-38)</option>
+										<option value="CO" name="co">CO: OPTIME Complete (Cirrus 5000)</option>
+										<option value="B" name="b">B: No Current Service Contracts</option>
+										<option value="XC" name="xc">XC: No Current Service Contracts</option>
 									</select>
 								</div>
 								<div class="col-6 col-12-xsmall">
@@ -88,9 +88,8 @@
 										<option value="AD">AD: All labor/travel covered; all parts are billable</option>
 										<option value="PR">PR: One PM is covered; all other services are billable</option>
 									</select>
-								</div>
+								</div>	
 								<div class="col-12">
-									<p>***Note: Use XC, <u>ONLY IF</u> Remote Fixed & Billable!***</p>
 									<hr />
 								</div>
 								
@@ -579,6 +578,7 @@
 			<script src="assets/js/canadacust.js"></script>
 			<script src="assets/js/tvrequest.js"></script>
 			<script src="assets/js/fseupdate.js"></script>
+			<script src="assets/js/formsupport.js"></script>
 
 	</body>
 </html>
