@@ -112,16 +112,18 @@ ${document.getElementById('description').value}
 Warranty Contract: ${document.getElementById('warranty-contract').value}
 Service Contract: ${document.getElementById('service-contract').value}
 
-TEAMVIEWER.......................................................................:
+TEAMVIEWER............................................................:
 Instrument: Username: ${document.getElementById('teamviewer-username1').value} Password: ${document.getElementById('teamviewer-password1').value}
 Review Station: Username: ${document.getElementById('teamviewer-username2').value} Password: ${document.getElementById('teamviewer-password2').value}
 Forum: Username: ${document.getElementById('teamviewer-username3').value} Password: ${document.getElementById('teamviewer-password3').value}
 
-REQUEST NOTES......................................................................:
+CCT Description: ${document.getElementById('serial').value} ${document.getElementById('warranty-contract').value}
+
+REQUEST NOTES.........................................................:
 Was service order created: ${document.getElementById('service-order-created').checked ? "Yes" : "No"}
 Service Order Number: ${document.getElementById('service-order-title').value}, ${document.getElementById('created-date').value}, ${document.getElementById('created-time').value}, ${document.getElementById('created-timezone').value}
 
-Reported Incident:
+REPORTED INCIDENT:
   Device Serial Number: ${document.getElementById('device-serial-number').value}
   Device Software Version: ${document.getElementById('device-software-version').value}
   Archive Mode: ${document.getElementById('archive-mode').value}
@@ -131,15 +133,24 @@ Reported Incident:
   Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
   Problem Description: ${document.getElementById('problem-description').value}
   Specific Error Message: ${document.getElementById('error-message-details').value}
-Actual Problem (if different than Reported Problem): 
+ACTUAL PROBLEM (if different than Reported Problem): 
   ${document.getElementById('actual-problem-description').value}
-Frequency of Problem: ${document.getElementById('frequency-problem').value}
+FREQUENCY OF PROBLEM: ${document.getElementById('frequency-problem').value}
   The problem first started: ${document.getElementById('problem-started').value}
   What Changed? ${document.getElementById('problem-changed').value}
-Troubleshooting Performed:
+TROUBLESHOOTING PERFORMED:
   ${document.getElementById('troubleshooting-performed').value}
+ADDITIONAL INFORMATION:
+  Has the device recently been exchanged or repaired? ${document.getElementById('device-exchanged').checked ? "Yes" : "No"}
+  Exhanged Date: ${document.getElementById('exchange-date').value}
+  Are logs attached? ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
+  Screenshots Attached? ${document.getElementById('screenshots-attached').checked ? "Yes" : "No"}
+  Extended period of inoperability (>1 day)? ${document.getElementById('extended-inoperability-check').checked ? "Yes" : "No"}
+  If yes, how long? ${document.getElementById('inoperability-duration').value}
+  Power Cycle Resolve: ${document.getElementById('power-cycle-resolve').checked ? "Yes" : "No"}
+  Remote Resolution? ${document.getElementById('remote-resolution').checked ? "Yes" : "No"}
 
-INTERNAL NOTES.....................................................................:
+INTERNAL NOTES........................................................:
 Time Spent: ${document.getElementById('remote-time').value}
 Device Module: ${document.getElementById('device-module').value}
 Sub Module: ${document.getElementById('sub-module').value}
@@ -161,16 +172,6 @@ Was Remote Support Provided? ${document.getElementById('remote-support').checked
 Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
 OS (C:): ${document.getElementById('c-drive').value}
 Data (E:): ${document.getElementById('e-drive').value}
-
-ADDITIONAL INFORMATION COLLECTION:
-Has the device recently been exchanged or repaired? ${document.getElementById('device-exchanged').checked ? "Yes" : "No"}
-Exhanged Date: ${document.getElementById('exchange-date').value}
-Are logs attached? ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
-Screenshots Attached? ${document.getElementById('screenshots-attached').checked ? "Yes" : "No"}
-Extended period of inoperability (>1 day)? ${document.getElementById('extended-inoperability-check').checked ? "Yes" : "No"}
-If yes, how long? ${document.getElementById('inoperability-duration').value}
-Power Cycle Resolve: ${document.getElementById('power-cycle-resolve').checked ? "Yes" : "No"}
-Remote Resolution? ${document.getElementById('remote-resolution').checked ? "Yes" : "No"}
 
 TECHNICAL SUPPORT CALL CHECKLIST:
 Device running the current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
