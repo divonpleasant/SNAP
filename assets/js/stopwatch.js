@@ -44,7 +44,7 @@ stopButton.addEventListener('click', () => {
 
 calculateButton.addEventListener('click', () => {
 	console.log(`Recorded time: ${elapsedTimeRecorded} seconds`);
-	calculatedTime = (elapsedTimeRecorded / 60).toFixed(2);
+	calculatedTime = (elapsedTimeRecorded / 3600).toFixed(2);
 	console.log(`Calculated time: ${calculatedTime}`);
 	timeSpent.value = calculatedTime + " hours";
 	startButton.disabled = false;
