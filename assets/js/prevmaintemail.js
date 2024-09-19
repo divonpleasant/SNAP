@@ -14,12 +14,12 @@ function prevmaintemail(event) {
                "In order to proceed with this service request, we will need your approval of the Payment Method… \n\n" +
                "         A.  Payment with a Credit Card  or  \n" +
                "         B.  Payment with a Hard Copy Purchase Order(PO) \n\n" +
-               "… in the minimum amount of $1,600.00.( Preventive Maintenance ).  /  $3,500.00.( Dispatch a Field Service Engineer( FSE )).\n\n" +
-               "If payment is by Credit Card, you will be invoiced after services are performed and/or parts are replaced by a Zeiss Technician. \n\n" +
+               "… in the minimum amount of $1,600.00 per instrument. \n\n" +
+               "If payment is by Credit Card, you will be billed after services are performed and/or parts are replaced by a Zeiss Technician. \n\n" +
                "If payment is by PO, email the hard copy of the Purchase Order to ZEISS MED Service Operations Admin US \n" +
-               "serviceoperationsadmin.med.us@zeiss.com \n\n" +
+               "billableservicerequest@zeiss.com \n\n" +
                "The Zeiss Technician will contact the office within four business hours to schedule the visit. \n" +
-               "At which time, they will answer all questions regarding specific prices, hourly rates, travel time or you may cancel the service request.\n";
+               "At which time, they will answer all questions regarding specific prices, hourly rates, travel time or you may cancel the service request.\n" +
                "Regards, \n";
 
     // Encode the subject and body
