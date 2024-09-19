@@ -73,9 +73,8 @@
 									<select name="warranty-contract" id="warranty-contract" onchange="selectChangeAlert(this, 'XC', 'Note: Use XC code ONLY IF Remote Fixed AND Billable!');">
 										<option value="">- Billing Type -</option>
 										<option value="W" name="w">W: Warranty Diagnostic Dublin (WRTYCA-P000-38)</option>
-										<option value="CO" name="co">CO: OPTIME Complete (Cirrus 5000)</option>
 										<option value="B" name="b">B: No Current Service Contracts</option>
-										<option value="XC" name="xc">XC: No Current Service Contracts</option>
+										<option value="XC" name="xc">XC: Zeiss Internal Billing</option>
 									</select>
 								</div>
 								<div class="col-6 col-12-xsmall">
@@ -258,22 +257,6 @@
 									<p><a href="#top">Top</a> | <a href="#checklist">Back to Technical Support Checklist</a> | <a href="#internal-notes">Skip to Internal Notes</a> | <a href="#export">Down to Export</a></p>
 								</div>
 								<div class="col-12">
-									<input type="checkbox" id="service-order-created" name="service-order-created">
-									<label for="service-order-created">Was Service Order Created?</label>
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="service-order-title" id="service-order-title" placeholder="Service Order #" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="created-date" id="created-date" placeholder="Created Date" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="created-time" id="created-time" placeholder="Created Time" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="created-timezone" id="created-timezone" placeholder="Created Time Zone" />
-								</div>
-								<div class="col-12">
 									<h5>Reported Incident</h5>
 								</div>
 								<div class="col-6 col-12-xsmall">
@@ -403,28 +386,7 @@
 								<div class="col-12">
 									<input type="email" name="email1" id="email1" placeholder="Email Address" disabled/>
 								</div>
-								<div class="col-12">
-									<h5>FSE Search</h5>
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="instrument-code" id="instrument-code" placeholder="Instrument Code (IC)" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="zip-code" id="zip-code" placeholder="Zip Code" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="city" id="city" placeholder="City" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="state" id="state" placeholder="State" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="primary-fse" id="primary-fse" placeholder="Primary FSE" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="field-service-supervisor" id="field-service-supervisor" placeholder="Field Service Supervisor" />
-								</div>
-								
+
 								<!-- Remote Support -->
 								<a class="anchor" name="remote-support"></a>
 								<div class="col-12">
@@ -439,12 +401,6 @@
 									<input type="text" name="remote-time" id="remote-time" placeholder="Time Spent" />
 								</div>
 								<div class="col-6 col-12-xsmall">
-									<input type="text" name="device-module" id="device-module" placeholder="Device Module" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="sub-module" id="sub-module" placeholder="Sub Module" />
-								</div>
-								<div class="col-6 col-12-xsmall">
 									<input type="text" name="error-code" id="error-code" placeholder="Error Code" />
 								</div>
 								<div class="col-6 col-12-xsmall">
@@ -452,34 +408,6 @@
 								</div>
 								<div class="col-6 col-12-xsmall">
 									<input type="text" name="action-code" id="action-code" placeholder="Action Code" />
-								</div>
-								<div class="col-12">
-									<select name="work-station-status" id="work-station-status">
-										<option value="">- Cirrus HD-OCT/Review Workstation Status: -</option>
-										<option value="Status ok (Color:green)">Status ok (Color:green)</option>
-										<option value="Archive Volume has not yet been created (color:yellow)">Archive Volume has not yet been created (color:yellow)</option>
-										<option value="Archive Volume is not available (Color: Yellow)">Archive Volume is not available (Color: Yellow)</option>
-										<option value="Archive Volume Storage Space is Low (Color: Yellow)">Archive Volume Storage Space is Low (Color: Yellow)</option>
-										<option value="Current Archive Volume unselected(Color: Yellow)">Current Archive Volume unselected(Color: Yellow)</option>
-										<option value="DICOM Server Status: Connected">DICOM Server Status: Connected</option>
-										<option value="DICOM networking error, please check configuration(Color: Red)">DICOM networking error, please check configuration(Color: Red)</option>
-										<option value="Failed to connect to DICOM Gateway(Color: Yellow)">Failed to connect to DICOM Gateway(Color: Yellow)</option>
-										<option value="Failed to send the report to DICOM Server(Color: Red)">Failed to send the report to DICOM Server(Color: Red)</option>
-										<option value="Firmware Initialization failed(Color: Yellow)">Firmware Initialization failed(Color: Yellow)</option>
-										<option value="Instrument Self Test failed(Color: Yellow)">Instrument Self Test failed(Color: Yellow)</option>
-										<option value="Storage space is critical(Color: RED)">Storage space is critical(Color: RED)</option>
-										<option value="Successfully sent the EPDF report to DICOM Archive(Color: Green)">Successfully sent the EPDF report to DICOM Archive(Color: Green)</option>
-										<option value="Background Diagnostics check failed(Color: Yellow)">Background Diagnostics check failed(Color: Yellow)</option>
-										<option value="OCT SLD Power(too low) out of range(1 < 500)">OCT SLD Power(too low) out of range(1 < 500)</option>
-										<option value="OCT SLD is not in Safe State">OCT SLD is not in Safe State</option>
-										<option value="Other">Other</option>
-									</select>
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="c-drive" id="c-drive" placeholder="OS (C:) Free Space:" />
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<input type="text" name="e-drive" id="e-drive" placeholder="Data (E:) Free Space:" />
 								</div>
 								<div class="col-12">
 										<textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
