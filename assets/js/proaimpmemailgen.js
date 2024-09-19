@@ -14,8 +14,9 @@ function proaimpmemailgen(event) {
     var soa_email = "serviceoperationsadmin.med.us@zeiss.com";
 	
 	// Construct the subject line and body of the email
-	var subject = "PROAIM Preventative Maintenance (PM) Quote";
-	var body = "Customer needs quote for dispatching Field Service Engineer (FSE) onsite service. The Customer prefers email contact.\n\n" +
+	var subject = "PROAIM Preventative Maintenance (PM) Request";
+	var body = "Dear Team, \n\n" +
+            "Please send to PROAIM to proceed with on-site service \n\n" +
             "Zeiss Ticket Number (CCT #): " + cct + "\n" +
             "Problem Description: " + description + "\n" +
             "Ticket Creation Date: " + date + "\n" +
@@ -24,7 +25,7 @@ function proaimpmemailgen(event) {
             "Contact Person: " + localContactPerson + "\n" +
             "Phone Number: " + phone + "\n" +
             "Email Address: " + email + "\n" +
-            "Type of Request: Phone request for PM Quote.\n\n"
+            "Type of Request: Phone request for PM.\n\n"
     
     // Encode the subject and body
     subject = encodeURIComponent(subject);
