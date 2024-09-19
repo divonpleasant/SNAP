@@ -106,9 +106,11 @@
 										<li>Type this in the browser tiny.cc/zeissqs (TeamViewer Quick Service)</li>
 									</ul>
 									//-->
-									<div class="col-6 col-12-xsmall">
+									<div class="col-12">
 										<input type="checkbox" id="smart-service" name="smart-service">
 										<label for="smart-service">Zeiss Smart Services?</label>
+										<input type="checkbox" id="teleservice" name="teleservice">
+										<label for="teleservice">Teleservice?</label>
 									</div>
 									
 									<table>
@@ -486,7 +488,17 @@
 									<a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
 									
 								</div>
-								
+								<!-- Overlay for entering SVO Ticket and Date -->
+								<div id="overlay" style="display: none;">
+									<div id="overlay-content">
+										<span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+										<h3>Enter SVO Information</h3>
+										<input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
+										<input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
+										<button id="proceed-button">Continue</button>
+									</div>
+								</div>
+																
 								<!-- Export Button -->
 								<a class="anchor" name="export"></a>
 								<div class="col-6 col-12-xsmall">
@@ -604,6 +616,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
 			<script src="assets/js/tvrequest.js"></script>
 			<script src="assets/js/fseupdate.js"></script>
 			<script src="assets/js/formsupport.js"></script>
+			<script src="assets/js/overlay.js"></script>
 
 	</body>
 </html>
