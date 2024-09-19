@@ -1,4 +1,5 @@
-document.getElementById('exportall').addEventListener('click', function() {
+document.getElementById('exportall').addEventListener('click', function(event) {
+    event.preventDefault();
     var date = new Date().toLocaleDateString();
 
     var fields = [
@@ -13,7 +14,7 @@ document.getElementById('exportall').addEventListener('click', function() {
         { label: "Email Address", value: document.getElementById('email').value },
         { label: "What are the issues? List below", value: document.getElementById('description').value },
         { label: "Warranty Contract", value: document.getElementById('warranty-contract').value },
-		{ label: "Service Contract", value: document.getElementById('service-contract').value },
+		    { label: "Service Contract", value: document.getElementById('service-contract').value },
         { label: "Instrument: Username", value: document.getElementById('teamviewer-username1').value },
         { label: "Instrument: Password", value: document.getElementById('teamviewer-password1').value },
         { label: "Review Station: Username", value: document.getElementById('teamviewer-username2').value },
@@ -25,24 +26,12 @@ document.getElementById('exportall').addEventListener('click', function() {
         { label: "Call Request came from", value: document.getElementById('local-contact-person1').value },
         { label: "Mobile/Office Phone Number", value: document.getElementById('phone1').value },
         { label: "Email Address", value: document.getElementById('email1').value },
-        { label: "Primary FSE", value: document.getElementById('primary-fse').value },
-        { label: "Field Service Supervisor", value: document.getElementById('field-service-supervisor').value },
         { label: "Was Remote Support Provided?", value: document.getElementById('remote-support').checked ? "Yes" : "No" },
         { label: "Time Spent", value: document.getElementById('remote-time').value },
-		{ label: "Device Module", value: document.getElementById('device-module').value },
-		{ label: "Sub-Module", value: document.getElementById('sub-module').value },
         { label: "Error Code Group", value: document.getElementById('error-group').value },
         { label: "Error Code", value: document.getElementById('error-code').value },
         { label: "Action Code", value: document.getElementById('action-code').value },
-        { label: "Cirrus HD-OCT/Review Workstation Status", value: document.getElementById('work-station-status').value },
-        { label: "OS (C:)", value: document.getElementById('c-drive').value },
-        { label: "Data (E:)", value: document.getElementById('e-drive').value },
         { label: "Other Internal Notes", value: document.getElementById('other-internal-notes').value },
-        { label: "Was service order created", value: document.getElementById('service-order-created').checked ? "Yes" : "No" },
-        { label: "Service Order Number", value: document.getElementById('service-order-title').value },
-        { label: "Created Date", value: document.getElementById('created-date').value },
-        { label: "Created Time", value: document.getElementById('created-time').value },
-        { label: "Created Time Zone", value: document.getElementById('created-timezone').value },
         { label: "Device Serial Number", value: document.getElementById('device-serial-number').value },
         { label: "Device Software Version", value: document.getElementById('device-software-version').value },
         { label: "Archive Mode", value: document.getElementById('archive-mode').value },
@@ -120,8 +109,6 @@ Forum: Username: ${document.getElementById('teamviewer-username3').value} Passwo
 CCT Description: ${document.getElementById('serial').value} ${document.getElementById('warranty-contract').value}
 
 REQUEST NOTES.........................................................:
-Was service order created: ${document.getElementById('service-order-created').checked ? "Yes" : "No"}
-Service Order Number: ${document.getElementById('service-order-title').value}, ${document.getElementById('created-date').value}, ${document.getElementById('created-time').value}, ${document.getElementById('created-timezone').value}
 
 REPORTED INCIDENT:
   Device Serial Number: ${document.getElementById('device-serial-number').value}
@@ -152,8 +139,8 @@ ADDITIONAL INFORMATION:
 
 INTERNAL NOTES........................................................:
 Time Spent: ${document.getElementById('remote-time').value}
-Device Module: ${document.getElementById('device-module').value}
-Sub Module: ${document.getElementById('sub-module').value}
+Device Module: Network Connectivity
+Sub Module: N/A*
 Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
@@ -165,13 +152,7 @@ Mobile/Office Phone Number: ${document.getElementById('phone1').value}
 Email Address: ${document.getElementById('email1').value}
 ${document.getElementById('other-internal-notes').value}
 
-FSE Search: 
-Primary FSE: ${document.getElementById('primary-fse').value}
-Field Service Supervisor: ${document.getElementById('field-service-supervisor').value}
 Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
-Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
-OS (C:): ${document.getElementById('c-drive').value}
-Data (E:): ${document.getElementById('e-drive').value}
 
 TECHNICAL SUPPORT CALL CHECKLIST:
 Device running the current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
