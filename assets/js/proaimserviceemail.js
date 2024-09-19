@@ -14,8 +14,9 @@ function proaimserviceemail(event) {
     var soa_email = "serviceoperationsadmin.med.us@zeiss.com";
 	
 	// Construct the subject line and body of the email
-	var subject = "PROAIM Service";
-	var body = "Customer needs quote for dispatching Field Service Engineer (FSE) onsite service. The Customer prefers email contact.\n\n" +
+	var subject = "PROAIM Field Service Request";
+	var body = "Dear Team, \n\n" +
+            "Please send to PROAIM to proceed with on-site service \n\n" +
             "Zeiss Ticket Number (CCT #): " + cct + "\n" +
             "Problem Description: " + description + "\n" +
             "Ticket Creation Date: " + date + "\n" +
