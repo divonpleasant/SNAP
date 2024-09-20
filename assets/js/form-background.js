@@ -2,7 +2,7 @@ document.querySelectorAll('input[type="text"], textarea').forEach(function (inpu
     if (input.id !== "problem-description") {
         input.addEventListener('input', function () {
             if (this.value) {
-                this.style.backgroundColor = '#e6e6ff';
+                this.style.backgroundColor = '#8f8f8f';
             } else {
                 this.style.backgroundColor = ''; // Reset background color
             }
