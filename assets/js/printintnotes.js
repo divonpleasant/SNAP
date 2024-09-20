@@ -19,10 +19,10 @@ Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
 
-Request came from ${document.getElementById('local-contact-person1').value}, the customer.
-Local Contact Person: ${document.getElementById('local-contact-person1').value}
-Mobile/Office Phone Number: ${document.getElementById('phone1').value}
-Email Address: ${document.getElementById('email1').value}
+Request came from ${document.getElementById('local-contact-person').value}, the customer.
+Local Contact Person: ${document.getElementById('local-contact-person').value}
+Mobile/Office Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
 ${document.getElementById('other-internal-notes').value}
 
 Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
