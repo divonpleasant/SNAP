@@ -23,16 +23,15 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Forum: Password", value: document.getElementById('teamviewer-password3').value },
         { label: "Email Request came from", value: document.getElementById('request-came-from').value },
         { label: "Source", value: document.getElementById('source').value },
-        { label: "Call Request came from", value: document.getElementById('local-contact-person1').value },
-        { label: "Mobile/Office Phone Number", value: document.getElementById('phone1').value },
-        { label: "Email Address", value: document.getElementById('email1').value },
+        { label: "Call Request came from", value: document.getElementById('local-contact-person').value },
+        { label: "Mobile/Office Phone Number", value: document.getElementById('phone').value },
+        { label: "Email Address", value: document.getElementById('email').value },
         { label: "Was Remote Support Provided?", value: document.getElementById('remote-support').checked ? "Yes" : "No" },
         { label: "Time Spent", value: document.getElementById('remote-time').value },
         { label: "Error Code Group", value: document.getElementById('error-group').value },
         { label: "Error Code", value: document.getElementById('error-code').value },
         { label: "Action Code", value: document.getElementById('action-code').value },
         { label: "Other Internal Notes", value: document.getElementById('other-internal-notes').value },
-        { label: "Device Serial Number", value: document.getElementById('device-serial-number').value },
         { label: "Device Software Version", value: document.getElementById('device-software-version').value },
         { label: "Archive Mode", value: document.getElementById('archive-mode').value },
         { label: "Windows Version", value: document.getElementById('windows-version').value },
@@ -111,7 +110,7 @@ CCT Description: ${document.getElementById('serial').value} ${document.getElemen
 REQUEST NOTES.........................................................:
 
 REPORTED INCIDENT:
-  Device Serial Number: ${document.getElementById('device-serial-number').value}
+  Device Serial Number: ${document.getElementById('serial').value}
   Device Software Version: ${document.getElementById('device-software-version').value}
   Archive Mode: ${document.getElementById('archive-mode').value}
   Windows Version: ${document.getElementById('windows-version').value}
@@ -146,10 +145,10 @@ Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
 
 Email Request came from ${document.getElementById('request-came-from').value}, ${document.getElementById('source').value} is attached to CCT.
-Call Request came from ${document.getElementById('local-contact-person1').value}, the customer.
-Local Contact Person: ${document.getElementById('local-contact-person1').value}
-Mobile/Office Phone Number: ${document.getElementById('phone1').value}
-Email Address: ${document.getElementById('email1').value}
+Call Request came from ${document.getElementById('local-contact-person').value}, the customer.
+Local Contact Person: ${document.getElementById('local-contact-person').value}
+Mobile/Office Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
 ${document.getElementById('other-internal-notes').value}
 
 Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
