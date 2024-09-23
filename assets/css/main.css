@@ -230,6 +230,23 @@ hr {
 .align-right {
   text-align: right; }
 
+/* Labels */
+.label-right {
+	font-size: 8pt;
+	width: 100%;
+	text-align: right;
+	color: light-gray;
+	align-items: stretch;
+	/* border: 1px solid black; */
+}
+
+.label-left {
+	font-size: 8pt;
+	width: 100%;
+	color: light-gray;
+	align-items: stretch;
+	/* border: 1px solid black; */
+}
 /* Row */
 .row {
   display: flex;
@@ -987,6 +1004,11 @@ hr {
           .row.gtr-200.gtr-uniform > * {
             padding-top: 3em; } }
 
+/* Dynamic Instrument Fields */
+#cirrus_oct_form, #cirrus_photo_form, #clarus_forms, #hfa3_form, #iolmaster_form, #visucam_form, #visucam_pro_form, #atlas_500_form, #atlas_9000_form, #stratus_form, #forum_form {
+	display: none;
+	width: 100%;
+}
 /* Section/Article */
 section.special, article.special {
   text-align: center; }

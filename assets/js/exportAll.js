@@ -10,11 +10,11 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Account Name", value: document.getElementById('account').value },
         { label: "Shipping Address", value: document.getElementById('instrument-address').value },
         { label: "Local Contact Person", value: document.getElementById('local-contact-person').value },
-        { label: "Mobile/Office Phone Number", value: document.getElementById('phone').value },
+        { label: "Phone Number", value: document.getElementById('phone').value },
         { label: "Email Address", value: document.getElementById('email').value },
         { label: "What are the issues? List below", value: document.getElementById('description').value },
-        { label: "Warranty Contract", value: document.getElementById('warranty-contract').value },
-		    { label: "Service Contract", value: document.getElementById('service-contract').value },
+        { label: "Billing Type", value: document.getElementById('billing-type').value },
+		{ label: "Service Contract", value: document.getElementById('service-contract').value },
         { label: "Instrument: Username", value: document.getElementById('teamviewer-username1').value },
         { label: "Instrument: Password", value: document.getElementById('teamviewer-password1').value },
         { label: "Review Station: Username", value: document.getElementById('teamviewer-username2').value },
@@ -22,15 +22,38 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Forum: Username", value: document.getElementById('teamviewer-username3').value },
         { label: "Forum: Password", value: document.getElementById('teamviewer-password3').value },
         { label: "Email Request came from", value: document.getElementById('request-came-from').value },
-        { label: "Source", value: document.getElementById('source').value },
-        { label: "Call Request came from", value: document.getElementById('local-contact-person').value },
-        { label: "Mobile/Office Phone Number", value: document.getElementById('phone').value },
-        { label: "Email Address", value: document.getElementById('email').value },
+        { label: "Source", value: document.getElementById('request-source').value },
+        { label: "Call Request came from", value: document.getElementById('local-contact-person1').value },
+        { label: "Mobile/Office Phone Number", value: document.getElementById('phone1').value },
+        { label: "Email Address", value: document.getElementById('email1').value },
         { label: "Was Remote Support Provided?", value: document.getElementById('remote-support').checked ? "Yes" : "No" },
+		{ label: "Zeiss Smart Services?", value: document.getElementById('smart-service').checked ? "Yes" : "No" },
+		{ label: "Teleservice?", value: document.getElementById('teleservice').checked ? "Yes" : "No" }, 
         { label: "Time Spent", value: document.getElementById('remote-time').value },
         { label: "Error Code Group", value: document.getElementById('error-group').value },
         { label: "Error Code", value: document.getElementById('error-code').value },
         { label: "Action Code", value: document.getElementById('action-code').value },
+		/* Cirrus HD-OCT Fields */
+        { label: "Cirrus HD-OCT/Review Workstation Status", value: document.getElementById('work-station-status').value },
+        { label: "OS (C:) Free", value: document.getElementById('c-drive-free').value },
+		{ label: "OS (C:) Free Size", value: document.getElementById('c-drive-free-size').value },
+		{ label: "OS (C:) Total", value: document.getElementById('c-drive-total').value },
+		{ label: "OS (C:) Total Size", value: document.getElementById('c-drive-total-size').value },
+        { label: "Data (E:) Free", value: document.getElementById('e-drive-free').value },
+		{ label: "Data (E:) Free Size", value: document.getElementById('e-drive-free-size').value },
+		{ label: "Data (E:) Total", value: document.getElementById('e-drive-total').value },
+		{ label: "Data (E:) Total Size", value: document.getElementById('e-drive-total-size').value },
+		{ label: "Current Archive Label", value: document.getElementById('current-archive-label').value },
+		{ label: "Current Archive Description", value: document.getElementById('current-archive-description').value },
+        { label: "Current Archive Path", value: document.getElementById('current-archive-path').value },
+        { label: "Current Archive Mapping", value: document.getElementById('current-archive-mapping').value },
+        { label: "Current Archive Server Hostname", value: document.getElementById('current-archive-server-hostname').value },
+        { label: "Current Archive Server IP", value: document.getElementById('current-archive-server-ip').value },
+        { label: "Old Archive Label", value: document.getElementById('old-archive-label').value },
+        { label: "Old Archive Description", value: document.getElementById('old-archive-description').value },
+        { label: "Old Archive Path", value: document.getElementById('old-archive-path').value },
+        { label: "Old Archive Mapping", value: document.getElementById('old-archive-mapping').value },
+		/* END OCT Fields */
         { label: "Other Internal Notes", value: document.getElementById('other-internal-notes').value },
         { label: "Device Software Version", value: document.getElementById('device-software-version').value },
         { label: "Archive Mode", value: document.getElementById('archive-mode').value },
@@ -45,7 +68,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "The problem first started", value: document.getElementById('problem-started').value },
         { label: "What Changed?", value: document.getElementById('problem-changed').value },
         { label: "Troubleshooting Performed", value: document.getElementById('troubleshooting-performed').value },
-        { label: "Device Exchanged?", value: document.getElementById('device-exchanged').checked ? "Yes" : "No" },
+        { label: "Device Repaired?", value: document.getElementById('device-repaired').checked ? "Yes" : "No" },
         { label: "Has the device recently been exchanged or repaired?", value: document.getElementById('exchange-date').value },
         { label: "Are logs attached?", value: document.getElementById('logs-attached').checked ? "Yes" : "No" },
         { label: "If not why?", value: document.getElementById('logs-not-attached-reason').value },
@@ -63,16 +86,6 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Devices DHCP or Static IP", value: document.getElementById('device-ip').value },
         { label: "Review Station Hostname", value: document.getElementById('review-station-hostname').value },
         { label: "Review Station DHCP or Static IP", value: document.getElementById('review-station-ip').value },
-        { label: "Current Archive Label", value: document.getElementById('current-archive-label').value },
-        { label: "Current Archive Description", value: document.getElementById('current-archive-description').value },
-        { label: "Current Archive Path", value: document.getElementById('current-archive-path').value },
-        { label: "Current Archive Mapping", value: document.getElementById('current-archive-mapping').value },
-        { label: "Current Archive Server Hostname", value: document.getElementById('current-archive-server-hostname').value },
-        { label: "Current Archive Server IP", value: document.getElementById('current-archive-server-ip').value },
-        { label: "Old Archive Label", value: document.getElementById('old-archive-label').value },
-        { label: "Old Archive Description", value: document.getElementById('old-archive-description').value },
-        { label: "Old Archive Path", value: document.getElementById('old-archive-path').value },
-        { label: "Old Archive Mapping", value: document.getElementById('old-archive-mapping').value },
         { label: "Forum Software Version", value: document.getElementById('forum-software-version').value },
         { label: "Forum Windows Version", value: document.getElementById('forum-windows-version').value },
         { label: "Forum Server Hostname", value: document.getElementById('forum-server-hostname').value },
@@ -85,6 +98,47 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Architecture", value: document.getElementById('architecture').value }
     ];
 
+	/* Process CCT Description */
+	if (document.getElementById('billing-type').value == "CNTRCT") {
+		bt = document.getElementById('service-contract').value;
+	} else {
+		bt = document.getElementById('billing-type').value;
+	}
+	var serialnum = document.getElementById('serial').value;
+	var raw_description = document.getElementById('description').value;
+	var desc_arr = raw_description.split(".");
+	var description = desc_arr[0].substring(0, 20);
+	var cct_description = serialnum + " " + bt + " " + description;
+	console.log("Summary: " + cct_description);
+	
+	/* Process OCT Disk Space */
+	function process_disk_space(test_field) {
+		console.log('test_field: ' + test_field);
+		var test_value = document.getElementById(test_field).value;
+		var base_drive = test_field.substr(0,1);
+		console.log('base_drive: ' + base_drive);
+		var drive = base_drive.toUpperCase();
+		var disk_string;
+		if (test_value != '') {
+			console.log('test_value (' + test_value + ') is not empty; processing string');
+			console.log('Drive: ' + drive + ":\ ");
+			var free_value = document.getElementById(base_drive + '-drive-free').value;
+			console.log('free_value: ' + free_value);
+			var free_units = document.getElementById(base_drive + '-drive-free-size').value;
+			console.log('free_units: ' + free_units);
+			var total_value = document.getElementById(base_drive + '-drive-total').value;
+			console.log('total_value: ' + total_value);
+			var total_units = document.getElementById(base_drive + '-drive-total-size').value;
+			console.log('total_units: ' + total_units);
+			disk_string = free_value + ' ' + free_units.toUpperCase() + ' of ' + total_value + ' ' + total_units.toUpperCase();
+			console.log(disk_string);
+			return disk_string;
+		} else {
+			console.log('test_field: ' + test_field + ' is empty; exiting');
+		}
+	}
+	var c_space = process_disk_space('c-drive-free');
+	var e_space = process_disk_space('e-drive-free');
     var data = `
 Date: ${date}
 Instrument: ${document.getElementById('instrument-model').value}
@@ -97,20 +151,24 @@ Mobile/Office Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
 What are the issues? List below:
 ${document.getElementById('description').value}
-Warranty Contract: ${document.getElementById('warranty-contract').value}
+Billing Type: ${document.getElementById('billing-type').value}
 Service Contract: ${document.getElementById('service-contract').value}
 
+CCT DESCRIPTION.......................................................:
+${cct_description}
+
+REMOTE CONNECTION.....................................................:
+Zeiss Smart Services: ${document.getElementById('smart-service').checked ? "Yes" : "No"}
+Teleservice: ${document.getElementById('teleservice').checked ? "Yes" : "No"}
 TEAMVIEWER............................................................:
 Instrument: Username: ${document.getElementById('teamviewer-username1').value} Password: ${document.getElementById('teamviewer-password1').value}
 Review Station: Username: ${document.getElementById('teamviewer-username2').value} Password: ${document.getElementById('teamviewer-password2').value}
 Forum: Username: ${document.getElementById('teamviewer-username3').value} Password: ${document.getElementById('teamviewer-password3').value}
 
-CCT Description: ${document.getElementById('serial').value} ${document.getElementById('warranty-contract').value}
-
 REQUEST NOTES.........................................................:
 
 REPORTED INCIDENT:
-  Device Serial Number: ${document.getElementById('serial').value}
+  Device Serial Number: ${document.getElementById('device-serial-number').value}
   Device Software Version: ${document.getElementById('device-software-version').value}
   Archive Mode: ${document.getElementById('archive-mode').value}
   Windows Version: ${document.getElementById('windows-version').value}
@@ -127,7 +185,7 @@ FREQUENCY OF PROBLEM: ${document.getElementById('frequency-problem').value}
 TROUBLESHOOTING PERFORMED:
   ${document.getElementById('troubleshooting-performed').value}
 ADDITIONAL INFORMATION:
-  Has the device recently been exchanged or repaired? ${document.getElementById('device-exchanged').checked ? "Yes" : "No"}
+  Has the device recently been repaired? ${document.getElementById('device-repaired').checked ? "Yes" : "No"}
   Exhanged Date: ${document.getElementById('exchange-date').value}
   Are logs attached? ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
   Screenshots Attached? ${document.getElementById('screenshots-attached').checked ? "Yes" : "No"}
@@ -144,11 +202,11 @@ Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
 
-Email Request came from ${document.getElementById('request-came-from').value}, ${document.getElementById('source').value} is attached to CCT.
-Call Request came from ${document.getElementById('local-contact-person').value}, the customer.
-Local Contact Person: ${document.getElementById('local-contact-person').value}
-Mobile/Office Phone Number: ${document.getElementById('phone').value}
-Email Address: ${document.getElementById('email').value}
+Contact made by ${document.getElementById('request-came-from').value} via ${document.getElementById('request-source').value}
+Call Request came from ${document.getElementById('local-contact-person1').value}, the customer.
+Local Contact Person: ${document.getElementById('local-contact-person1').value}
+Mobile/Office Phone Number: ${document.getElementById('phone1').value}
+Email Address: ${document.getElementById('email1').value}
 ${document.getElementById('other-internal-notes').value}
 
 Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
@@ -162,6 +220,9 @@ Device Hostname: ${document.getElementById('device-hostname').value}
 Devices DHCP or Static IP: ${document.getElementById('device-ip').value}
 Review Station Hostname: ${document.getElementById('review-station-hostname').value}
 Review Station DHCP or Static IP: ${document.getElementById('review-station-ip').value}
+Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
+OS (C:): ${c_space}
+Data (E:): ${e_space}
 Current Archive Label: ${document.getElementById('current-archive-label').value}
 Current Archive Description: ${document.getElementById('current-archive-description').value}
 Current Archive Path: ${document.getElementById('current-archive-path').value}
