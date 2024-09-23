@@ -58,8 +58,8 @@ Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
 
 Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
-OS (C Drive): ${document.getElementById('c-drive').value}
-Data (E Drive): ${document.getElementById('e-drive').value}
+OS (C Drive): ${c_space}
+Data (E Drive): ${e_space}
 
 ${document.getElementById('other-internal-notes').value}`;
 
