@@ -139,6 +139,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	}
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
+
     var data = `
 Date: ${date}
 Instrument: ${document.getElementById('instrument-model').value}
