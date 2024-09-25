@@ -9,7 +9,7 @@ document.getElementById('printrafta').addEventListener('click', function(event) 
         { label: "The problem first started", value: document.getElementById('problem-started').value },
         { label: "What Changed?", value: document.getElementById('problem-changed').value },
         { label: "Troubleshooting Performed", value: document.getElementById('troubleshooting-performed').value },
-        { label: "Device Exchanged?", value: document.getElementById('device-exchanged').checked ? "Yes" : "No" },
+        { label: "Device Exchanged?", value: document.getElementById('device-repaired').checked ? "Yes" : "No" },
         { label: "Has the device recently been exchanged or repaired?", value: document.getElementById('exchange-date').value },
         { label: "Are logs attached?", value: document.getElementById('logs-attached').checked ? "Yes" : "No" },
         { label: "If not why?", value: document.getElementById('logs-not-attached-reason').value },
@@ -25,15 +25,14 @@ document.getElementById('printrafta').addEventListener('click', function(event) 
         { label: "Verified connectivity to office network/shares (if applicable)?", value: document.getElementById('verified-network-connectivity').checked ? "Yes" : "No" }
     ];
 
-    var data = `
-R - ${document.getElementById('problem-description').value}
+    var data = `R - ${document.getElementById('problem-description').value}
     Specific Error Message: ${document.getElementById('error-message-details').value}
 A - ${document.getElementById('actual-problem-description').value}
 F - ${document.getElementById('frequency-problem').value}
     Problem Started: ${document.getElementById('problem-started').value}
     What Changed?: ${document.getElementById('problem-changed').value}
 T - ${document.getElementById('troubleshooting-performed').value}
-A - Device Exchanged: ${document.getElementById('device-exchanged').checked ? "Yes" : "No"}
+A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes" : "No"}
     Exhanged Date: ${document.getElementById('exchange-date').value}
     Logs Attached: ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
     If not why: ${document.getElementById('logs-not-attached-reason').value}
@@ -46,8 +45,7 @@ A - Device Exchanged: ${document.getElementById('device-exchanged').checked ? "Y
     Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
     If not why: ${document.getElementById('current-software-reason').value}
     Verified normal device functionality (if phone fixed): ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
-    Verified connectivity to office network/shares (if applicable): ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}
-`;
+    Verified connectivity to office network/shares (if applicable): ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}`;
 
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
