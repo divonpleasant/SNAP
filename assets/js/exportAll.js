@@ -1,6 +1,18 @@
 document.getElementById('exportall').addEventListener('click', function(event) {
     event.preventDefault();
     var date = new Date().toLocaleDateString();
+	
+	/* Process Actual Problem */
+	function use_actual_description() {
+		console.log('same-as-reported: ' + document.getElementById('same-as-reported'));
+		if (document.getElementById('same-as-reported').checked) {
+			return "N/A, same as reported";
+		} else {
+			return document.getElementById('actual-problem-description').value;
+		}
+	}
+	var actual_problem = use_actual_description();
+	console.log("actual_problem: " + actual_problem);
 
     var fields = [
         { label: "Date", value: date },
@@ -140,8 +152,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
 
-    var data = `
-Date: ${date}
+    var data = `Date: ${date}
 Instrument: ${document.getElementById('instrument-model').value}
 Serial Number: ${document.getElementById('serial').value}
 Customer Care Ticket#: ${document.getElementById('cct').value}
@@ -150,7 +161,7 @@ Shipping Address: ${document.getElementById('instrument-address').value}
 Local Contact Person: ${document.getElementById('local-contact-person').value}
 Mobile/Office Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
-What are the issues? List below:
+Issue Description:
 ${document.getElementById('description').value}
 Billing Type: ${document.getElementById('billing-type').value}
 Service Contract: ${document.getElementById('service-contract').value}
@@ -161,6 +172,7 @@ ${cct_description}
 REMOTE CONNECTION.....................................................:
 Zeiss Smart Services: ${document.getElementById('smart-service').checked ? "Yes" : "No"}
 Teleservice: ${document.getElementById('teleservice').checked ? "Yes" : "No"}
+
 TEAMVIEWER............................................................:
 Instrument: Username: ${document.getElementById('teamviewer-username1').value} Password: ${document.getElementById('teamviewer-password1').value}
 Review Station: Username: ${document.getElementById('teamviewer-username2').value} Password: ${document.getElementById('teamviewer-password2').value}
@@ -178,11 +190,13 @@ REPORTED INCIDENT:
   Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
   Problem Description: ${document.getElementById('problem-description').value}
   Specific Error Message: ${document.getElementById('error-message-details').value}
-ACTUAL PROBLEM (if different than Reported Problem): 
-  ${document.getElementById('actual-problem-description').value}
-FREQUENCY OF PROBLEM: ${document.getElementById('frequency-problem').value}
-  The problem first started: ${document.getElementById('problem-started').value}
-  What Changed? ${document.getElementById('problem-changed').value}
+ACTUAL PROBLEM:
+  Description: ${actual_problem}
+FREQUENCY OF PROBLEM:
+  Frequency: ${document.getElementById('frequency-selector').value}
+  Details: ${document.getElementById('frequency-problem').value}
+  Problem First Started: ${document.getElementById('problem-started').value}
+  What Changed: ${document.getElementById('problem-changed').value}
 TROUBLESHOOTING PERFORMED:
   ${document.getElementById('troubleshooting-performed').value}
 ADDITIONAL INFORMATION:
@@ -203,20 +217,22 @@ Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
 
-Contact made by ${document.getElementById('request-came-from').value} via ${document.getElementById('request-source').value}
-Call Request came from ${document.getElementById('local-contact-person1').value}, the customer.
-Local Contact Person: ${document.getElementById('local-contact-person1').value}
-Mobile/Office Phone Number: ${document.getElementById('phone1').value}
-Email Address: ${document.getElementById('email1').value}
+Contact Made By: ${document.getElementById('request-came-from').value}
+Contact Method: ${document.getElementById('request-source').value}
+
+Point of Contact: ${document.getElementById('local-contact-person').value}
+Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
+
 ${document.getElementById('other-internal-notes').value}
 
-Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
+Remote Support Provided: ${document.getElementById('remote-support').checked ? "Yes" : "No"}
 
 TECHNICAL SUPPORT CALL CHECKLIST:
-Device running the current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
-If not, why? ${document.getElementById('current-software-reason').value}
-Verified normal device functionality (if phone fixed): ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
-Verified connectivity to office network/shares (if applicable)? ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}
+Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
+Reason Not Running Current Version: ${document.getElementById('current-software-reason').value}
+Verified Normal Device Functionality (if phone fixed): ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
+Verified Connectivity to Office Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}
 Device Hostname: ${document.getElementById('device-hostname').value}
 Devices DHCP or Static IP: ${document.getElementById('device-ip').value}
 Review Station Hostname: ${document.getElementById('review-station-hostname').value}
@@ -242,14 +258,16 @@ Forum Server Hostname: ${document.getElementById('forum-server-hostname').value}
 Forum Server IP: ${document.getElementById('forum-server-ip').value}
 Forum Server Settings: ${document.getElementById('server-settings').value}
 Number of Stations: ${document.getElementById('number-of-stations').value}
-Dicom Test Pass? ${document.getElementById('dicom-tests-pass').checked ? "Yes" : "No"}
-Any Changes to Environment? ${document.getElementById('changes-to-environment').checked ? "Yes" : "No"}
+Dicom Test Pass: ${document.getElementById('dicom-tests-pass').checked ? "Yes" : "No"}
+Changes to Environment: ${document.getElementById('changes-to-environment').checked ? "Yes" : "No"}
 Affected Devices: ${document.getElementById('affected-devices').value}
 Architecture: ${document.getElementById('architecture').value}
 `;
+	console.log("DATA\n====\n" + data);
 
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
+	console.log("PROCESSED DATA\n==============\n" + nonEmptyData);
 
     var blob = new Blob([nonEmptyData], { type: 'text/plain' });
     var link = document.createElement('a');
