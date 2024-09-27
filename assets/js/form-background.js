@@ -9,3 +9,12 @@ document.querySelectorAll('input[type="text"], textarea').forEach(function (inpu
         });
     }
 });
+
+// To clear the background color
+document.getElementById('resetButton').addEventListener('click', function () {
+    document.querySelectorAll('input[type="text"], textarea').forEach(function (input) {
+        input.style.backgroundColor = '';
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
