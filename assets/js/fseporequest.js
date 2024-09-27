@@ -48,8 +48,7 @@ function fsepoauth(event) {
 			instrument_str = "device" + serial_str;
 			break;
 		default:
-			console.error("Invalid instrument selected from 'instrument-model' field");
-			alert("Could not find selected instrument (" + document.getElementById('instrument-model').value + ") or the selected prodcut is not servicible onsite. Please verify your instrument selection.");
+			instrument_str = "instrument" + serial_str;
 			break;
 	}
 	console.log("instrument_str: " + instrument_str);
