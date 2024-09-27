@@ -79,7 +79,7 @@
 								
 								<!-- Warranty and Service Contracts -->
 								<div class="col-6 col-12-xsmall">
-									<select name="billing-type" id="billing-type" onchange="selectChangeAlert(this, 'XC', 'Note: Use XC code ONLY IF Remote Fixed AND Billable!');">
+									<select name="billing-type" id="billing-type" onchange="selectChangeAlert(this, 'XC', 'Note: Use XC code ONLY IF Remote Fixed AND Billable!', false);">
 										<option value="">- Billing Type -</option>
 										<option value="B" name="b">B: No Current Service Contracts</option>
 										<option value="W" name="w">W: Warranty</option>
@@ -524,7 +524,7 @@
 								<div class="col-6 col-12-xsmall">
 									<hr />
 									<a href="#" id="exportall" class="button primary small">Export Interaction</a>
-									<input id="resetButton" Type="reset" class="button primary small">
+									<input id="resetButton" type="reset" class="button primary small">
 								</div>
 							</div>
 						</form>
