@@ -1,3 +1,19 @@
+/*
+// <select name="instrument-model" id="instrument-model" onchange="show_instrument_fields('oct');">
+function show_instrument_fields(inst) {
+	console.log('show_instrument_fields');
+	switch (inst) {
+		case 'oct':
+			console.log('Activating OCT Fields');
+			document.getElementsByClassName('oct_instrument_fields').style.display = 'block';
+			break;
+		default:
+			break;
+	}
+	return true;
+}
+*/
+
 var instrument_select = document.getElementById("instrument-model");
 console.log('instrument_select: ' + instrument_select);
 instrument_select.addEventListener("change", function() {
