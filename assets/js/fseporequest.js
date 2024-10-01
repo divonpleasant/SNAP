@@ -6,6 +6,52 @@ function fsepoauth(event) {
     var serial = document.getElementById('serial').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
     var email= document.getElementById('email').value;
+	
+	  // Process instrument/serial number strings
+	  if (serial != "") {
+		  serial_str = " with serial number " + serial;
+		  subj_serial = " S/N: " + serial;
+	  } else {
+		  serial_str = "";
+		  subj_serial = "";
+	  }
+	  var instrument_str;
+	  switch (document.getElementById('instrument-model').value) {
+		  case "Cirrus OCT": 
+			  instrument_str = "Cirrus OCT" + serial_str;
+			  break;
+		  case "Cirrus Photo": 
+			  instrument_str = "Cirrus Photo" + serial_str;
+			  break;
+		  case "Clarus": 
+			  instrument_str = "Clarus" + serial_str;
+			  break;
+		  case "HFA3": 
+			  instrument_str = "HFA" + serial_str;
+			  break;
+		  case "IOLMaster": 
+			  instrument_str = "IOLMaster" + serial_str;
+			  break;
+		  case "Visucam 224/524": 
+			  instrument_str = "Visucam" + serial_str;
+			  break;
+		case "Visucam Pro/NM/NMFA": 
+			instrument_str = "Visucam" + serial_str;
+			break;
+		case "Atlas 500": 
+			instrument_str = "Atlas" + serial_str;
+			break;
+		case "Atlas 9000": 
+			instrument_str = "Atlas" + serial_str;
+			break;
+		case "Stratus 3000/Visante 1000 (old)": 
+			instrument_str = "device" + serial_str;
+			break;
+		default:
+			instrument_str = "instrument" + serial_str;
+			break;
+	  }
+	  console.log("instrument_str: " + instrument_str);
 
     // Construct the subject line and body of the email
     var subject = "ZEISS Field Service Request S/N: " + serial;
@@ -26,8 +72,8 @@ function fsepoauth(event) {
 
     // Construct the mailto link
     var mailtoLink = "mailto:" + encodeURIComponent(email) +
-        "?subject=" + subject +
-        "&body=" + body;
+                     "?subject=" + subject +
+                     "&body=" + body;
 
     // Open the mailto link
     window.location.href = mailtoLink;
