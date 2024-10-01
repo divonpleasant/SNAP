@@ -45,6 +45,8 @@ document.getElementById('printintnotes').addEventListener('click', function(even
 
     var data = `Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
 Time Spent: ${document.getElementById('remote-time').value}
+Device Module: Network/Connectivity
+Sub Module: N/A*
 
 Contact Made By: ${document.getElementById('request-came-from').value}
 Contact Method: ${document.getElementById('request-source').value}
@@ -53,8 +55,7 @@ Point of Contact: ${document.getElementById('local-contact-person').value}
 Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
 
-Device Module: Network/Connectivity
-Sub Module: N/A*
+
 Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
