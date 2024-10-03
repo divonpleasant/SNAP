@@ -1,6 +1,6 @@
 # SNAP
 
-## Script and Note Automation Process v3.0.25
+## Script and Note Automation Process v3.0.26
 
 [SNAP](https://github.com/divonpleasant/SNAP) is intended to aid Zeiss Technical Support Engineers in managing data gathered during interactions, and helps guide TSEs through their calls.
 
@@ -32,13 +32,20 @@ SNAP uses a variant of semantic versioning (see [semver.org](https://semver.org/
 3. PATCH versions are small, incremental change indicators primarily meant to orient code contributors and project maintainers. These can reach arbitrarily high revision numbers or include alphanumeric riders for release, revision, or deployment clarity (4.1.154rc9 for release candidate 9 on the 154 patch, as an example). Any number of PATCH versions may be released simultaneously and users should be largely indifferent to their current PATCH level unless reporting bugs or making feature requests.
 
 #### Version History and Roadmap
-MAJOR Version 1.X.X - Initial development version.
-MAJOR Version 2.X.X - Alpha version following presentation to stakeholders.
-MAJOR Version 3.X.X - Code opened for collaboration.
-MINOR Version 3.0.X - Beta release version. Initial deployment.
-MINOR Version 3.1.X - Development milestone for post-release enhancements.
-MINOR Version 3.2.X - Development milestone integrating wider user feedback.
-MAJOR Version 4.0.X - Stable release.
+
+##### Current & In-Development
+- MINOR Version 3.1.X - Development milestone for post-release enhancements.
+- MINOR Version 3.0.X - Beta release version. Initial deployment.
+
+##### Roadmap
+- MAJOR Version 4.0.X - Stable release.
+- MINOR Version 3.2.X - Development milestone integrating wider user feedback.
+
+##### History
+- MAJOR Version 3.X.X - Code opened for collaboration.
+- MAJOR Version 2.X.X - Alpha version following presentation to stakeholders.
+- MAJOR Version 1.X.X - Initial development version.
+
 
 ## Contacts and Contributors
 Author: Divon Pleasant (divon.pleasant@zeiss.com)
