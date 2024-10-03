@@ -5,7 +5,9 @@ function showOverlay(event) {
 }
 
 // Function to send an email after "Proceed" is clicked
-function proceedToSendEmail() {
+function proceedToSendEmail(event) {
+    event.preventDefault();
+    
     // Retrieve form values
     var serial = document.getElementById('serial').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
