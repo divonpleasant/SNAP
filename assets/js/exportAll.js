@@ -1,6 +1,6 @@
 document.getElementById('exportall').addEventListener('click', function(event) {
     event.preventDefault();
-    var date = new Date().toLocaleDateString();
+    var date = curr_date.toLocaleDateString();
 	
 	/* Process Actual Problem */
 	function use_actual_description() {
@@ -149,7 +149,8 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
 
-    var data = `Date: ${date}
+    var data = `
+Date: ${date}
 Instrument: ${document.getElementById('instrument-model').value}
 Serial Number: ${document.getElementById('serial').value}
 Customer Care Ticket#: ${document.getElementById('cct').value}
