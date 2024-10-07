@@ -1,6 +1,6 @@
 document.getElementById('exportall').addEventListener('click', function(event) {
     event.preventDefault();
-    var date = new Date().toLocaleDateString();
+    var date = curr_date.toLocaleDateString();
 	
 	/* Process Actual Problem */
 	function use_actual_description() {
@@ -35,9 +35,6 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Forum: Password", value: document.getElementById('teamviewer-password3').value },
         { label: "Email Request came from", value: document.getElementById('request-came-from').value },
         { label: "Source", value: document.getElementById('request-source').value },
-        { label: "Call Request came from", value: document.getElementById('local-contact-person1').value },
-        { label: "Mobile/Office Phone Number", value: document.getElementById('phone1').value },
-        { label: "Email Address", value: document.getElementById('email1').value },
         { label: "Was Remote Support Provided?", value: document.getElementById('remote-support').checked ? "Yes" : "No" },
 		{ label: "Zeiss Smart Services?", value: document.getElementById('smart-service').checked ? "Yes" : "No" },
 		{ label: "Teleservice?", value: document.getElementById('teleservice').checked ? "Yes" : "No" }, 
@@ -152,7 +149,8 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
 
-    var data = `Date: ${date}
+    var data = `
+Date: ${date}
 Instrument: ${document.getElementById('instrument-model').value}
 Serial Number: ${document.getElementById('serial').value}
 Customer Care Ticket#: ${document.getElementById('cct').value}
