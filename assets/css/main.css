@@ -1005,10 +1005,14 @@ hr {
             padding-top: 3em; } }
 
 /* Dynamic Instrument Fields */
-#cirrus_oct_form, #cirrus_photo_form, #clarus_forms, #hfa3_form, #iolmaster_form, #visucam_form, #visucam_pro_form, #atlas_500_form, #atlas_9000_form, #stratus_form, #forum_form {
+#cirrus_oct_form, #cirrus_photo_form, #clarus_form, #hfa3_form, #iolmaster_form, #visucam_form, #visucam_pro_form, #atlas_500_form, #atlas_9000_form, #stratus_form, #forum_form {
 	display: none;
+    flex-wrap: flex;
+    box-sizing: border-box;
+    align-items: stretch;
 	width: 100%;
 }
+
 /* Section/Article */
 section.special, article.special {
   text-align: center; }
