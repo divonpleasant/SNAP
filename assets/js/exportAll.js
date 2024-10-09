@@ -179,7 +179,7 @@ Forum: Username: ${document.getElementById('teamviewer-username3').value} Passwo
 REQUEST NOTES.........................................................:
 
 REPORTED INCIDENT:
-  Device Serial Number: ${document.getElementById('device-serial-number').value}
+  Device Serial Number: ${document.getElementById('serial').value}
   Device Software Version: ${document.getElementById('device-software-version').value}
   Archive Mode: ${document.getElementById('archive-mode').value}
   Windows Version: ${document.getElementById('windows-version').value}
