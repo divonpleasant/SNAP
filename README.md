@@ -1,6 +1,6 @@
 # SNAP
 
-## Script and Note Automation Process v3.0.26
+## Script and Note Automation Process v3.0.28
 
 [SNAP](https://github.com/divonpleasant/SNAP) is intended to aid Zeiss Technical Support Engineers in managing data gathered during interactions, and helps guide TSEs through their calls.
 

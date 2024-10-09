@@ -7,18 +7,21 @@ function tvrequest(event) {
     var email = document.getElementById('email').value;
 
     // Construct the subject line and body of the email
-    var subject = "Zeiss TeamViewer Request ";
-    var body = "Hi " + localContactPerson + ", \n\n" +
-               "What specific issues are you encountering? \n\n" +
-               "Please give us access to your Instrument, via the TeamViewer App, so, we can investigate your issue(s). \n\n" +
-               "Just in case if the TeamViewer App isn't available on the instrument: \n\n" +
-               "        1. Open a browser (Google Chrome) on your Instrument, then type this in the URL: \n\n" +
-               "            tiny.cc/zeissqs \n\n" +
-               "        2. It will automatically initiate a download \n\n" +
-               "        3. A small pop-up windosw will show on the right-hand corner: TeamViewerQS.exe \n\n" +
-               "        4. Double Click on the TeamViewerQS.exe application. \n\n" +
-               "You can give us the TeamViewer's Partner ID, Password, and Date/Time. \n" +
-               "Just make sure no one is using the Zeiss instrument when we login. \n\n" +
+    var subject = "Zeiss TeamViewer Request";
+    var body = "Hi " + localContactPerson + ",\n\n" +
+               "To best help you, we'd like to request access to your instrument via the TeamViewer app so we can investigate your issue.\n\n" +
+               "In case the TeamViewer app isn't already available on your instrument:\n\n" +
+               "        1. Open a browser (Google Chrome or Firefox work best) on your instrument\n" +
+               "        2. Copy and paste (or enter) the following into the browser's address bar:\n\n" +
+               "                https://tiny.cc/zeissqs\n\n" +
+               "        3. A download should automatically begin (although the screen won't necessarily change)\n" +
+               "        4. When the file has finished downloading, you should see an indication of the new file, named TeamViewerQS.exe\n" +
+               "        5. Double-click on the TeamViewerQS.exe file to run it\n" +
+               "        6. Accept any license agreements\n\n" +
+               "We will need the TeamViewer's Partner ID (a series of numbers), and password (an alphanumeric string) in order to make the connection. " +
+               "Please also provide us with a convenient date and time window for us to remotely access the device. " +
+               "Make sure no one is using the Zeiss instrument when we login.\n\n" +
+               "If you have any problems getting TeamViewer installed, don't hesitate to reach out for help.\n\n" +
                "Regards,";
 
     // Encode the subject and body
