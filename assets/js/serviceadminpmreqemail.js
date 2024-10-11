@@ -18,7 +18,7 @@ function serviceadminpmreqemail(event) {
 			   "Contact Name/Phone Number: " + localContactPerson + " / " + localContactPhone + "\n\n" +
 			   "Serial Number: " + serial + "\n\n" +
 			   "Contract #: \n\n" +
-			   "Date PM Only Requested: \n\n";
+			   "Date PM Requested: \n\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);

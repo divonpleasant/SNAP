@@ -14,20 +14,30 @@ function canadacustomer(event) {
     var email = document.getElementById('email').value;
     var description = document.getElementById('description').value;
     var troubleshooting = document.getElementById('troubleshooting-performed').value;
+    
+    var can_subj_str = "Service Request - Calgary, AB";
+    (debug_mode) ? console.log("[DEBUG] cct: " + cct) : '';
+    if (cct != '') {
+        can_subj_str = can_subj_str + " CCT #" + cct;
+    }
+    (debug_mode) ? console.log("[DEBUG] serial: " + serial) : '';
+    if (serial != '') {
+        can_subj_str = can_subj_str + " S/N " + serial;
+    }
 
     // Construct the subject line and body of the email
-    var subject = "Service Request - Calgary, AB CCT# " + cct + " SN: " + serial;
-    var body = "Hi Zeiss Canada Technical Support Team, \n\n" +
-               "This Canadian Customer needs a Service Request \n\n" +
-               "Business Location Details \n\n" +
+    var subject = can_subj_str;
+    var body = "Hi Zeiss Canada Technical Support Team,\n\n" +
+               "The following Canadian customer needs a Service Request, please.\n\n" +
+               "Business Location Details\n\n" +
                "        Account Name: " + account + "\n" +
                "        Address: " + address + "\n" +
                "        Serial Number: " + serial + "\n" +
-               "        Instrument Description: " + model+ "\n" +
+               "        Instrument Description: " + model + "\n" +
                "        Windows Version: " + winver + "\n\n" +
-               "Contact Details  \n\n" +
+               "Contact Details\n\n" +
                "        Contact Name: " + localContactPerson + "\n" +
-               "        Office Phone Number: " + phone + "\n" +
+               "        Phone Number: " + phone + "\n" +
                "        Email Address: " + email + "\n" +
                "        Problem Description: " + description + "\n" +
                "        Troubleshooting Performed: " + troubleshooting + "\n\n" +
