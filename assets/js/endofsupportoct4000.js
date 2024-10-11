@@ -20,7 +20,7 @@ function endofsupportoct4000(event) {
                "possible to extend, renew, or create new service agreements for these systems.\n\n" +
                "All existing service agreements for the CIRRUS® 400 and 4000 systems were terminated as of April 30, 2022. If you had a prepaid service " +
                "agreement extending beyond this date, ZEISS has already issued credits accordingly.\n\n" +
-               "If you need guidance on how to manage your CIRRUS devices or are exploring alternative solutions, our sales team, including [****ENTERSALESREP***], " +
+               "If you need guidance on how to manage your CIRRUS devices or are exploring alternative solutions, our sales team, sales.support@zeiss.com, " +
                "are here to assist you. They can provide detailed information on your options and help you find the best path forward for your needs.\n\n" +
                "For more detailed information, please visit this page:\n\n" +
                "https://www.zeiss.com/content/dam/med-hcp/usa/customer-care/end-of-lifecycle-info/opt/final_eos_cirrus_400_4000.pdf/_jcr_content/renditions/original.media_file.download_attachment.file/final_eos_cirrus_400_4000.pdf\n\n" +
