@@ -1,4 +1,4 @@
-const version = "3.0.29";
+const version = "3.0.30";
 const curr_date = new Date();
 const utc_year = curr_date.getUTCFullYear();
 const project_home = "https://github.com/divonpleasant/SNAP"

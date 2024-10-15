@@ -8,6 +8,9 @@ instrument_select.addEventListener("change", function() {
 		instrument_elements[i].style.display = 'none';
 	}
 	(debug_mode) ? console.log('this.selectedIndex: ' + this.selectedIndex) : '';
+    // reset checkboxes before contextual changes
+    document.querySelector('#forum_checkbox').style.display = 'block';
+    // change form field visibility based on selection
 	switch (this.selectedIndex) {
         case 0:
             break;
@@ -55,9 +58,24 @@ instrument_select.addEventListener("change", function() {
 		case 11:
             (debug_mode) ? console.log('[DEBUG] setting #forum_form to display = block') : '';
 			document.querySelector('#forum_form').style.display = 'block';
+            (debug_mode) ? console.log('[DEBUG] setting #forum_checkbox to display = none') : '';
+            document.querySelector('#forum_checkbox').style.display = 'none';
 			break;
 		default:
 			console.error('[ERROR] Got to default in ' + this + '; something went wrong');
 			break;
 	}
+}, false);
+
+var forum_toggle = document.getElementById("add_forum");
+(debug_mode) ? console.log('[DEBUG] forum_toggle: ' + forum_toggle) : '';
+forum_toggle.addEventListener("change", function() {
+    (debug_mode) ? console.log('[DEBUG] forum_toggle.checked: ' + forum_toggle.checked) : '';
+    if (forum_toggle.checked) {
+        document.querySelector('#forum_form').style.display = 'block';
+        (debug_mode) ? console.log('[DEBUG] setting #forum_checkbox to display = block (from checkbox)') : '';
+    } else {
+        document.querySelector('#forum_form').style.display = 'none';
+        (debug_mode) ? console.log('[DEBUG] setting #forum_checkbox to display = none (from checkbox)') : '';
+    }
 }, false);
