@@ -55,7 +55,6 @@ Point of Contact: ${document.getElementById('local-contact-person').value}
 Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
 
-
 Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
@@ -70,11 +69,14 @@ ${document.getElementById('other-internal-notes').value}`;
 
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
-	console.log("PROCESSED DATA\n==============\n" + nonEmptyData);
+    (debug_mode) ? console.log("[DEBUG] NON-EMPTY DATA\n=======================\n" + nonEmptyData) : '';
+    var lineClearData = nonEmptyData.replace(/\n{3,}/g, '\n\n');
+    var processedData = lineClearData.replace(/\n{1,}$/, '\n');
+	(debug_mode) ? console.log("[DEBUG] PROCESSED DATA\n======================\n" + processedData) : '';
 
     // Copy data to clipboard
-    navigator.clipboard.writeText(nonEmptyData).then(function() {
-        alert('Internal Notes copied to clipboard!');
+    navigator.clipboard.writeText(processedData).then(function() {
+        (copy_alert) ? alert('Internal Notes copied to clipboard!') : '';
     }).catch(function(err) {
         alert('Failed to copy data to clipboard: ', err);
     });

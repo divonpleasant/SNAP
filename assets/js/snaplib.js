@@ -1,8 +1,10 @@
-const version = "3.0.31";
+const version = "3.0.32";
 const curr_date = new Date();
 const utc_year = curr_date.getUTCFullYear();
 const project_home = "https://github.com/divonpleasant/SNAP"
 const debug_mode = true;
+const copy_alert = true;
+const xc_alert = true;
 
 // Message formatting
 underline = "=".repeat(version.length + 5);
@@ -21,6 +23,8 @@ Please see ${project_home} for complete documentation, bug reporting, and code c
 Settings
 --------
 DEBUG_MODE: ${debug_mode}
+COPY_ALERT: ${copy_alert}
+XC_ALERT: ${xc_alert}
 `;
 console.log(startup_message);
 
