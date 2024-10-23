@@ -60,17 +60,17 @@ A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes
     Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
     Reason Why Not: ${document.getElementById('current-software-reason').value}
     Verified Normal Device Functionality: ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
-    Verified Connectivity to Office Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}`;
+    Verified Connectivity to Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}`;
 
 	console.log("DATA\n====\n" + data);
 	
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
-	console.log("PROCESSED DATA\n==============\n" + nonEmptyData);
+	(debug_mode) ? console.log("[DEBUG] PROCESSED DATA\n======================\n" + nonEmptyData) : '';
 
     // Copy data to clipboard
     navigator.clipboard.writeText(nonEmptyData).then(function() {
-        alert('RAFTA copied to clipboard!');
+        (copy_alert) ? alert('RAFTA copied to clipboard!') : '';
     }).catch(function(err) {
         alert('Failed to copy data to clipboard: ', err);
     });

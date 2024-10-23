@@ -149,8 +149,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
 
-    var data = `
-Date: ${date}
+    var data = `Date: ${date}
 Instrument: ${document.getElementById('instrument-model').value}
 Serial Number: ${document.getElementById('serial').value}
 Customer Care Ticket#: ${document.getElementById('cct').value}
@@ -211,6 +210,7 @@ INTERNAL NOTES........................................................:
 Time Spent: ${document.getElementById('remote-time').value}
 Device Module: Network Connectivity
 Sub Module: N/A*
+
 Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
@@ -226,7 +226,7 @@ ${document.getElementById('other-internal-notes').value}
 
 Remote Support Provided: ${document.getElementById('remote-support').checked ? "Yes" : "No"}
 
-TECHNICAL SUPPORT CALL CHECKLIST:
+TECHNICAL SUPPORT CALL CHECKLIST......................................:
 Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
 Reason Not Running Current Version: ${document.getElementById('current-software-reason').value}
 Verified Normal Device Functionality (if phone fixed): ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
@@ -249,7 +249,7 @@ Old Archive Description: ${document.getElementById('old-archive-description').va
 Old Archive Path: ${document.getElementById('old-archive-path').value}
 Old Archive Mapping: ${document.getElementById('old-archive-mapping').value}
 
-FORUM SETTINGS (IF APPLICABLE) VERIFIED AND RECORDED (SCREENSHOTS PREFERRED):
+FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:
 Forum Software Version: ${document.getElementById('forum-software-version').value}
 Forum Windows Version: ${document.getElementById('forum-windows-version').value}
 Forum Server Hostname: ${document.getElementById('forum-server-hostname').value}
@@ -265,9 +265,12 @@ Architecture: ${document.getElementById('architecture').value}
 
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
-	console.log("PROCESSED DATA\n==============\n" + nonEmptyData);
+    (debug_mode) ? console.log("[DEBUG] NON-EMPTY DATA\n=======================\n" + nonEmptyData) : '';
+    var lineClearData = nonEmptyData.replace(/\n{3,}/g, '\n\n');
+    var processedData = lineClearData.replace(/\n{1,}$/, '\n');
+	(debug_mode) ? console.log("[DEBUG] PROCESSED DATA\n======================\n" + processedData) : '';
 
-    var blob = new Blob([nonEmptyData], { type: 'text/plain' });
+    var blob = new Blob([processedData], { type: 'text/plain' });
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = `${document.getElementById('serial').value || 'export'}.txt`;
