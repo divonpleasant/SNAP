@@ -570,7 +570,8 @@
                                 <div class="col-6 col-12-xsmall">
                                     <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
                                 </div>
-                                <!-- Overlay for entering SVO Ticket and Date -->
+                                <!-- Overlays -->
+                                <!-- FSE Update Request Overlay -->
                                 <div id="overlay" style="display: none;">
                                     <div id="overlay-content">
                                         <span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
@@ -578,6 +579,23 @@
                                         <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
                                         <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
                                         <button id="proceed-button">Continue</button>
+                                    </div>
+                                </div>
+                                <!-- Parts Order Overlay -->
+                                <div id="parts-overlay" style="display: none;">
+                                    <div id="parts-overlay-content">
+                                        <span id="parts-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                        <h3> Enter Parts Order Information</h3>
+                                        <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
+                                        <textarea rows="3" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID"></textarea><br />
+                                        <input type="checkbox" id="foc" name="foc">
+                                        <label for="foc">Free of Charge?</label><br />
+                                        <select name="delivery-type" id="delivery-type">
+                                            <option value="">&mdash; Delivery Type &mdash;</option>
+                                            <option value="Overnight">Overnight</option>
+                                            <option value="Ground">Ground</option>
+                                        </select><br />
+                                        <button id="parts-proceed">Continue</button>
                                     </div>
                                 </div>
 
@@ -648,6 +666,7 @@
                                                 <li><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
                                                 <li><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
                                                 <li><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                                <li><a href="#" id="partsorderLink">Parts Order</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -714,10 +733,10 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/fseupdate.js"></script>
             <script src="assets/js/formsupport.js"></script>
             <script src="assets/js/dynamicfields.js"></script>
-            <script src="assets/js/overlay.js"></script>
             <script src="assets/js/fseporequest.js"></script>
             <script src="assets/js/form-background.js"></script>
             <script src="assets/js/syncFields.js"></script>
+            <script src="assets/js/partsrequest.js"></script>
 
     </body>
 </html>

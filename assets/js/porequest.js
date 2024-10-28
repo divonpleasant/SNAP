@@ -8,7 +8,7 @@ function prevmaintemail(event) {
     var email= document.getElementById('email').value;
 
     const po_serial_num_strings = proc_template_serial(serial);
-    (debug_mode) ? console.log("[DEBUG] fsepo_serial_num_strings: " + po_serial_num_strings) : '';
+    (debug_mode) ? console.log("[DEBUG] po_serial_num_strings: " + po_serial_num_strings) : '';
     var subj_serial = po_serial_num_strings[0];
     var instrument_str = po_serial_num_strings[1];
     (debug_mode) ? console.log("[DEBUG] subj_serial: " + subj_serial) : '';

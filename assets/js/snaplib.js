@@ -1,9 +1,9 @@
-const version = "3.0.32";
+const version = "3.0.33";
 const curr_date = new Date();
 const utc_year = curr_date.getUTCFullYear();
 const project_home = "https://github.com/divonpleasant/SNAP"
 const debug_mode = true;
-const copy_alert = true;
+const copy_alert = false;
 const xc_alert = true;
 
 // Message formatting
@@ -84,3 +84,4 @@ function proc_template_serial (sn) {
     (debug_mode) ? console.log("[DEBUG] serials_data[1]: " + serials_data[1]) : '';
     return serials_data;
 }
+
