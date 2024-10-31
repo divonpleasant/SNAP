@@ -16,11 +16,11 @@ function canadacustomer(event) {
     var troubleshooting = document.getElementById('troubleshooting-performed').value;
     
     var can_subj_str = "Service Request - Calgary, AB";
-    (debug_mode) ? console.log("[DEBUG] cct: " + cct) : '';
+    debugmsg(4, 'cct: ' + cct);
     if (cct != '') {
         can_subj_str = can_subj_str + " CCT #" + cct;
     }
-    (debug_mode) ? console.log("[DEBUG] serial: " + serial) : '';
+    debugmsg(4, 'serial: ' + serial);
     if (serial != '') {
         can_subj_str = can_subj_str + " S/N " + serial;
     }

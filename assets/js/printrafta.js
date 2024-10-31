@@ -3,7 +3,7 @@ document.getElementById('printrafta').addEventListener('click', function(event) 
 
 	/* Process Actual Problem */
 	function use_actual_description() {
-		console.log('same-as-reported: ' + document.getElementById('same-as-reported'));
+		debugmsg(5, 'same-as-reported: ' + document.getElementById('same-as-reported'));
 		if (document.getElementById('same-as-reported').checked) {
 			return "N/A";
 		} else {
@@ -11,7 +11,7 @@ document.getElementById('printrafta').addEventListener('click', function(event) 
 		}
 	}
 	var actual_problem = use_actual_description();
-	console.log("actual_problem: " + actual_problem);
+	debugmsg(5, 'actual_problem: ' + actual_problem);
 
     var fields = [
         { label: "Problem Description", value: document.getElementById('problem-description').value },
@@ -66,7 +66,7 @@ A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes
 	
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
-	(debug_mode) ? console.log("[DEBUG] PROCESSED DATA\n======================\n" + nonEmptyData) : '';
+	debugmsg(3, "PROCESSED DATA\n========================\n" + nonEmptyData);
 
     // Copy data to clipboard
     navigator.clipboard.writeText(nonEmptyData).then(function() {
