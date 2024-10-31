@@ -37,6 +37,23 @@ document.getElementById("project-link").href = project_home;
 
 // LIB FUNCTIONS
 // Output debugging messages based on debug_mode and debug_level settings
+/* Usage:
+    Levels are intended to help define various developer-specific
+    logging.
+        0 : Any non-positive integer will result in an error
+            message; debugmsg level should never be set to a value less
+            than 1.
+        1 : Overview. These are a step away from default console logs 
+            (i.e. things every developer will want to see, always)
+        2 : Top-level troubleshooting. Error messages, fatal
+            conditions, etc.
+        3 : Deep troubleshooting. Warnings, API messages, etc.
+        4 : Developer mode. Default level for any descriptions of code
+            activity.
+        5 : Coding mode. Should only be used for messages intended to
+            aid initial development or bug resolution. Any messaging
+            generated from within a control loop, e.g.
+*/
 function debugmsg(level, output) {
     if (level <= 0) {
         console.log('[ERROR] Function debugmsg should never use message level 0 ... reserved for disabling messaging');
