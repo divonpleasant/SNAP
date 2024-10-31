@@ -1,18 +1,20 @@
 const version = "3.0.34";
-const curr_date = new Date();
-const utc_year = curr_date.getUTCFullYear();
 const project_home = "https://github.com/divonpleasant/SNAP"
-const debug_mode = true;
-const debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
-const copy_alert = true;
-const xc_alert = true;
 
-// Message formatting
-underline = "=".repeat(version.length + 7);
+// Startup routine
+var curr_date = new Date();
+var utc_year = curr_date.getUTCFullYear();
+var debug_mode = true;
+var debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
+var copy_alert = true;
+var xc_alert = true;
 
-// Startup Message
-startup_message = `
- SNAP ${version}
+function startUp() {
+    // Message formatting
+    underline = "=".repeat(version.length + 5);
+
+    // Startup Message
+    startup_message = `SNAP ${version}
 ${underline}
 Script and Note Automation Process
 Copyright (c) Zeiss Meditec ${utc_year}
@@ -21,14 +23,25 @@ Originally developed by Divon Pleasant (divon.pleasant@zeiss.com)
 Please see ${project_home} for complete documentation, bug reporting, and code contributions.
 
 
- Settings
-----------
+Settings
+--------
 DEBUG_MODE: ${debug_mode}
 DEBUG_LEVEL: ${debug_level}
 COPY_ALERT: ${copy_alert}
 XC_ALERT: ${xc_alert}
+
+    `;
+
+    export_date = curr_date.toUTCString();
+    debug_message = `Debugging
+---------
+date = ${curr_date}
+export_date = ${export_date}
 `;
-console.log(startup_message);
+    console.log(startup_message);
+    (debug_mode) ? console.log(debug_message) : '';
+}
+startUp();
 
 // Page outputs
 document.getElementById("current-version").innerHTML = version;
@@ -116,3 +129,10 @@ function proc_template_serial (sn) {
     debugmsg(5, 'serials_data[1]: ' + serials_data[1]);
     return serials_data;
 }
+
+const resetFunc = document.getElementById('resetButton');
+resetFunc.addEventListener('click', () => {
+    curr_date = new Date();
+    console.clear();
+    startUp();
+})
