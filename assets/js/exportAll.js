@@ -1,6 +1,5 @@
 document.getElementById('exportall').addEventListener('click', function(event) {
     event.preventDefault();
-    var date = curr_date.toLocaleDateString();
 	
 	/* Process Actual Problem */
 	function use_actual_description() {
@@ -15,7 +14,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	debugmsg(5, 'actual_problem: ' + actual_problem);
 
     var fields = [
-        { label: "Date", value: date },
+        { label: "Date", value: export_date },
         { label: "Instrument", value: document.getElementById('instrument-model').value },
         { label: "Serial Number", value: document.getElementById('serial').value },
         { label: "Customer Care Ticket#", value: document.getElementById('cct').value },
@@ -149,7 +148,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
 
-    var data = `Date: ${date}
+    var data = `Date: ${export_date}
 Instrument: ${document.getElementById('instrument-model').value}
 Serial Number: ${document.getElementById('serial').value}
 Customer Care Ticket#: ${document.getElementById('cct').value}
