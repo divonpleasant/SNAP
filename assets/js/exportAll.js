@@ -4,7 +4,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	
 	/* Process Actual Problem */
 	function use_actual_description() {
-		console.log('same-as-reported: ' + document.getElementById('same-as-reported'));
+		debugmsg(4, 'same-as-reported: ' + document.getElementById('same-as-reported'));
 		if (document.getElementById('same-as-reported').checked) {
 			return "N/A, same as reported";
 		} else {
@@ -12,7 +12,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 		}
 	}
 	var actual_problem = use_actual_description();
-	console.log("actual_problem: " + actual_problem);
+	debugmsg(5, 'actual_problem: ' + actual_problem);
 
     var fields = [
         { label: "Date", value: date },
@@ -122,28 +122,28 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	
 	/* Process OCT Disk Space */
 	function process_disk_space(test_field) {
-		console.log('test_field: ' + test_field);
+		debugmsg(5, 'test_field: ' + test_field);
 		var test_value = document.getElementById(test_field).value;
 		var base_drive = test_field.substr(0,1);
-		console.log('base_drive: ' + base_drive);
+		debugmsg(5, 'base_drive: ' + base_drive);
 		var drive = base_drive.toUpperCase();
 		var disk_string;
 		if (test_value != '') {
-			console.log('test_value (' + test_value + ') is not empty; processing string');
-			console.log('Drive: ' + drive + ":\ ");
+			debugmsg(5, 'test_value (' + test_value + ') is not empty; processing string');
+			debugmsg(5, 'Drive: ' + drive + ':\ ');
 			var free_value = document.getElementById(base_drive + '-drive-free').value;
-			console.log('free_value: ' + free_value);
+			debugmsg(5, 'free_value: ' + free_value);
 			var free_units = document.getElementById(base_drive + '-drive-free-size').value;
-			console.log('free_units: ' + free_units);
+			debugmsg(5, 'free_units: ' + free_units);
 			var total_value = document.getElementById(base_drive + '-drive-total').value;
-			console.log('total_value: ' + total_value);
+			debugmsg(5, 'total_value: ' + total_value);
 			var total_units = document.getElementById(base_drive + '-drive-total-size').value;
-			console.log('total_units: ' + total_units);
+			debugmsg(5, 'total_units: ' + total_units);
 			disk_string = free_value + ' ' + free_units.toUpperCase() + ' of ' + total_value + ' ' + total_units.toUpperCase();
-			console.log(disk_string);
+			debugmsg(5, disk_string);
 			return disk_string;
 		} else {
-			console.log('test_field: ' + test_field + ' is empty; exiting');
+			debugmsg(5, 'test_field: ' + test_field + ' is empty; exiting');
 		}
 	}
 	var c_space = process_disk_space('c-drive-free');
@@ -261,14 +261,14 @@ Changes to Environment: ${document.getElementById('changes-to-environment').chec
 Affected Devices: ${document.getElementById('affected-devices').value}
 Architecture: ${document.getElementById('architecture').value}
 `;
-	console.log("DATA\n====\n" + data);
+    console.log("DATA\n====\n" + data);
 
     // Remove empty lines
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
-    (debug_mode) ? console.log("[DEBUG] NON-EMPTY DATA\n=======================\n" + nonEmptyData) : '';
+    debugmsg(4, "NON-EMPTY DATA\n=========================\n" + nonEmptyData);
     var lineClearData = nonEmptyData.replace(/\n{3,}/g, '\n\n');
     var processedData = lineClearData.replace(/\n{1,}$/, '\n');
-	(debug_mode) ? console.log("[DEBUG] PROCESSED DATA\n======================\n" + processedData) : '';
+	debugmsg(3, "PROCESSED DATA\n========================\n" + processedData);
 
     var blob = new Blob([processedData], { type: 'text/plain' });
     var link = document.createElement('a');

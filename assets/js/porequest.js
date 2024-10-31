@@ -8,11 +8,11 @@ function prevmaintemail(event) {
     var email= document.getElementById('email').value;
 
     const po_serial_num_strings = proc_template_serial(serial);
-    (debug_mode) ? console.log("[DEBUG] po_serial_num_strings: " + po_serial_num_strings) : '';
+    debugmsg(4, 'po_serial_num_strings: ' + po_serial_num_strings);
     var subj_serial = po_serial_num_strings[0];
     var instrument_str = po_serial_num_strings[1];
-    (debug_mode) ? console.log("[DEBUG] subj_serial: " + subj_serial) : '';
-    (debug_mode) ? console.log("[DEBUG] instrument_str: " + instrument_str) : '';
+    debugmsg(4, 'subj_serial: ' + subj_serial);
+    debugmsg(4, 'instrument_str: ' + instrument_str);
 
     // Construct the subject line and body of the email
     var subject = "ZEISS Preventative Maintenance" + subj_serial;

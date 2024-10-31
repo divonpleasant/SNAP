@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <link rel="stylesheet" href="assets/css/main.css" />
+        <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
     </head>
     <body class="is-preload">
 
@@ -79,9 +80,9 @@
                                 
                                 <!-- Warranty and Service Contracts -->
                                 <div class="col-6 col-12-xsmall">
-                                    <select name="billing-type" id="billing-type" onchange="selectChangeAlert(this, 'XC', 'Note: Use XC code ONLY IF Remote Fixed AND Billable!', false);">
+                                    <select name="billing-type" id="billing-type">
                                         <option value="">&mdash; Billing Type &mdash;</option>
-                                        <option value="B" name="b">B: No Current Service Contracts</option>
+                                        <option value="B" name="b">B: Billable (No Warranty or Contract)</option>
                                         <option value="W" name="w">W: Warranty</option>
                                         <option value="XC" name="xc">XC: Zeiss Internal Billing</option>
                                         <option value="CNTRCT" name="contract">Contract: Use Service Contract</option>
@@ -89,7 +90,7 @@
                                     <div class="label-left">Billing Type</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <select name="service-contract" id="service-contract">
+                                    <select name="service-contract" id="service-contract" disabled>
                                         <option value="">&mdash; Service Contract &mdash;</option>
                                         <option value="AD">AD: All labor/travel covered; all parts are billable</option>
                                         <option value="BPA">BPA: All service covered and all parts*</option>
@@ -531,18 +532,20 @@
                                 <div class="col-6 col-12-xsmall">
                                     <select name="request-came-from" id="request-came-from">
                                         <option value="">&mdash; Request Came From &mdash;</option>
-                                        <option value="Email">Email</option>
                                         <option value="Call">Call</option>
+                                        <option value="Email">Email</option>
                                     </select>
                                     <div class="label-left">Request Came From</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <select name="request-source" id="request-source">
                                         <option value="">&mdash; Source &mdash;</option>
+                                        <!--
                                         <option value="Queue">Queue</option>
                                         <option value="Email">Email</option>
                                         <option value="Service Request Form">Service Request Form</option>
                                         <option value="Voicemail">Voicemail</option>
+                                        -->
                                         <option value="Other Means">Other</option>
                                     </select>
                                     <div class="label-right">Request Source</div>
@@ -552,15 +555,65 @@
                                     <div class="label-left">Time Spent (decimal hours)</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="error-code" id="error-code" placeholder="Error Code" />
-                                    <div class="label-right">Error Code</div>
+                                    <select name="error-group" id="error-group">
+                                        <option value="">&mdash; Error Group &mdash;</option>
+                                        <option value="Cloud Services">Cloud Services</option>
+                                        <option value="Computer">Computer</option>
+                                        <option value="Computer / Video Accessory">Computer / Video Accessory</option>
+                                        <option value="Consumables">Consumables</option>
+                                        <option value="Customer Sales">Customer Sales</option>
+                                        <option value="Device Accessory">Device Accessory</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="End of Support">End of Support</option>
+                                        <option value="Mechanics">Mechanics</option>
+                                        <option value="Network / Connectivity">Network / Connectivity</option>
+                                        <option value="Optics / Light">Optics / Light</option>
+                                        <option value="Pneumatics">Pneumatics</option>
+                                        <option value="Radiation">Radiation</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Software General">Software General</option>
+                                        <option value="Software Products">Software Products</option>
+                                        <option value="Video / Photo">Video / Photo</option>
+                                    </select>
+                                    <div class="label-right">Error Group</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="error-group" id="error-group" placeholder="Error Group Code" />
-                                    <div class="label-left">Error Group</div>
+                                    <select name="error-code" id="error-code" disabled>
+                                        <option value="">&mdash; Error Code &mdash;</option>
+                                    </select>
+                                    <div class="label-left">Error Code</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="action-code" id="action-code" placeholder="Action Code" />
+                                    <select name="action-code" id="action-code">
+                                        <option value="">&mdash; Action Code &mdash;</option>
+                                        <option value="(De-)Installation / Relocation / Move">(De-)Installation / Relocation / Move</option>
+                                        <option value="Adjust / Align">Adjust / Align</option>
+                                        <option value="Another Job Necessary">Another Job Necessary</option>
+                                        <option value="Backup / Restore">Backup / Restore</option>
+                                        <option value="Calibrate">Calibrate</option>
+                                        <option value="Cleaning">Cleaning</option>
+                                        <option value="Configuration">Configuration</option>
+                                        <option value="Data Import / Export / Migrate">Data Import / Export / Migrate</option>
+                                        <option value="Database Cleanup">Database Cleanup</option>
+                                        <option value="End of Support">End of Support</option>
+                                        <option value="Firm-/Software (Re-)Installation">Firm-/Software (Re-)Installation</option>
+                                        <option value="Firm-/Software Update">Firm-/Software Update</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="No Defect">No Defect</option>
+                                        <option value="No Repair / Action">No Repair / Action</option>
+                                        <option value="Reboot">Reboot</option>
+                                        <option value="Repair">Repair</option>
+                                        <option value="Replace">Replace</option>
+                                        <option value="Reseat">Reseat</option>
+                                        <option value="Rework">Rework</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Swap System / Device">Swap System / Device</option>
+                                        <option value="Tighten">Tighten</option>
+                                        <option value="Training">Training</option>
+                                        <option value="Troubleshooting">Troubleshooting</option>
+                                        <option value="Upgrade Hardware">Upgrade Hardware</option>
+                                        <option value="Wrong Part">Wrong Part</option>
+                                    </select>
                                     <div class="label-right">Action Code</div>
                                 </div>
                                 <div class="col-12">
@@ -570,7 +623,8 @@
                                 <div class="col-6 col-12-xsmall">
                                     <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
                                 </div>
-                                <!-- Overlay for entering SVO Ticket and Date -->
+                                <!-- Overlays -->
+                                <!-- FSE Update Request Overlay -->
                                 <div id="overlay" style="display: none;">
                                     <div id="overlay-content">
                                         <span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
@@ -578,6 +632,23 @@
                                         <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
                                         <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
                                         <button id="proceed-button">Continue</button>
+                                    </div>
+                                </div>
+                                <!-- Parts Order Overlay -->
+                                <div id="parts-overlay" style="display: none;">
+                                    <div id="parts-overlay-content">
+                                        <span id="parts-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                        <h3> Enter Parts Order Information</h3>
+                                        <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
+                                        <textarea rows="3" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID"></textarea><br />
+                                        <input type="checkbox" id="foc" name="foc">
+                                        <label for="foc">Free of Charge?</label><br />
+                                        <select name="delivery-type" id="delivery-type">
+                                            <option value="">&mdash; Delivery Type &mdash;</option>
+                                            <option value="Overnight">Overnight</option>
+                                            <option value="Ground">Ground</option>
+                                        </select><br />
+                                        <button id="parts-proceed">Continue</button>
                                     </div>
                                 </div>
 
@@ -610,44 +681,46 @@
                                         <li><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SitePages/Zeiss-Technical-Support-Processes.aspx" target="_blank">Technical Support Process Docs</a></li>
                                         <li>
                                             <span class="opener">Recertification</span>
-                                            <ul>
-                                                <li><a href="#" id="recertemailtempLink">Recertification Email</a></li>
-                                                <li><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">FORM</a></li>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-file" style="color: #9fa3a6;"></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">PROAIM</span>
-                                            <ul>
-                                                <li><a href="#" id="proaimserviceemailLink">Service Call</a></li>
-                                                <li><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Preventative Maintenance</span>
-                                            <ul>
-                                                <li><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
-                                                <li><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="proaimpmemailgenLink">PROAIM PM Request</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <span class="opener">Field Service Request</span>
-                                            <ul>
-                                                <li><a href="#" id="fsepoauthLink">PO Authorization</a></li>
+                                            <span class="opener">Field Service Interactions</span>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">End of Support</span>
-                                            <ul>
-                                                <li><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
-                                                <li><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #9fa3a6;"></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <span class="opener">Miscellaneous</span>
-                                            <ul>
-                                                <li><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
-                                                <li><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
-                                                <li><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                            <span class="opener">Misc. Email Templates</span>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -669,9 +742,9 @@
                                         </li>
                                         <li>
                                             <span class="opener">Licensing</span>
-                                            <ul>
-                                                <li><a href="https://activation.zeiss.com/med/Instruments" target="_blank">Licensing Portal</a></li>
-                                                <li><a href="https://swl.zeiss.com/" target="_blank">License Management</a></li>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #9fa3a6;"></span></i><a href="https://activation.zeiss.com/med/Instruments" target="_blank">Licensing Portal</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #9fa3a6;"></span></i><a href="https://swl.zeiss.com/" target="_blank">License Management</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="https://mira.med.zeiss.com/" target="_blank">MIRA Reference Portal</a></li>
@@ -714,10 +787,10 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/fseupdate.js"></script>
             <script src="assets/js/formsupport.js"></script>
             <script src="assets/js/dynamicfields.js"></script>
-            <script src="assets/js/overlay.js"></script>
             <script src="assets/js/fseporequest.js"></script>
             <script src="assets/js/form-background.js"></script>
             <script src="assets/js/syncFields.js"></script>
+            <script src="assets/js/partsrequest.js"></script>
 
     </body>
 </html>

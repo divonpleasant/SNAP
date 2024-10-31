@@ -38,14 +38,13 @@ stopButton.addEventListener('click', () => {
     stopButton.disabled = true;
 	calculateButton.disabled = false;
 
-    // Log the recorded time to the console for testing purposes
-    console.log(`Recorded time: ${elapsedTimeRecorded} seconds`);
+    debugmsg(1, 'Recorded time: ' + elapsedTimeRecorded + 'seconds');
 });
 
 calculateButton.addEventListener('click', () => {
-	console.log(`Recorded time: ${elapsedTimeRecorded} seconds`);
+	debugmsg(2, 'Recorded time: ' + elapsedTimeRecorded + 'seconds')
 	calculatedTime = (elapsedTimeRecorded / 3600).toFixed(2);
-	console.log(`Calculated time: ${calculatedTime}`);
+	debugmsg(2, 'Calculated time: ' + calculatedTime);
 	timeSpent.value = calculatedTime + " hours";
 	startButton.disabled = false;
 	stopButton.disabled = true;

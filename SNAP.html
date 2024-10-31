@@ -80,9 +80,9 @@
                                 
                                 <!-- Warranty and Service Contracts -->
                                 <div class="col-6 col-12-xsmall">
-                                    <select name="billing-type" id="billing-type" onchange="selectChangeAlert(this, 'XC', 'Note: Use XC code ONLY IF Remote Fixed AND Billable!', false);">
+                                    <select name="billing-type" id="billing-type">
                                         <option value="">&mdash; Billing Type &mdash;</option>
-                                        <option value="B" name="b">B: No Current Service Contracts</option>
+                                        <option value="B" name="b">B: Billable (No Warranty or Contract)</option>
                                         <option value="W" name="w">W: Warranty</option>
                                         <option value="XC" name="xc">XC: Zeiss Internal Billing</option>
                                         <option value="CNTRCT" name="contract">Contract: Use Service Contract</option>
@@ -90,7 +90,7 @@
                                     <div class="label-left">Billing Type</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <select name="service-contract" id="service-contract">
+                                    <select name="service-contract" id="service-contract" disabled>
                                         <option value="">&mdash; Service Contract &mdash;</option>
                                         <option value="AD">AD: All labor/travel covered; all parts are billable</option>
                                         <option value="BPA">BPA: All service covered and all parts*</option>
@@ -532,18 +532,20 @@
                                 <div class="col-6 col-12-xsmall">
                                     <select name="request-came-from" id="request-came-from">
                                         <option value="">&mdash; Request Came From &mdash;</option>
-                                        <option value="Email">Email</option>
                                         <option value="Call">Call</option>
+                                        <option value="Email">Email</option>
                                     </select>
                                     <div class="label-left">Request Came From</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <select name="request-source" id="request-source">
                                         <option value="">&mdash; Source &mdash;</option>
+                                        <!--
                                         <option value="Queue">Queue</option>
                                         <option value="Email">Email</option>
                                         <option value="Service Request Form">Service Request Form</option>
                                         <option value="Voicemail">Voicemail</option>
+                                        -->
                                         <option value="Other Means">Other</option>
                                     </select>
                                     <div class="label-right">Request Source</div>
@@ -553,15 +555,65 @@
                                     <div class="label-left">Time Spent (decimal hours)</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="error-code" id="error-code" placeholder="Error Code" />
-                                    <div class="label-right">Error Code</div>
+                                    <select name="error-group" id="error-group">
+                                        <option value="">&mdash; Error Group &mdash;</option>
+                                        <option value="Cloud Services">Cloud Services</option>
+                                        <option value="Computer">Computer</option>
+                                        <option value="Computer / Video Accessory">Computer / Video Accessory</option>
+                                        <option value="Consumables">Consumables</option>
+                                        <option value="Customer Sales">Customer Sales</option>
+                                        <option value="Device Accessory">Device Accessory</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="End of Support">End of Support</option>
+                                        <option value="Mechanics">Mechanics</option>
+                                        <option value="Network / Connectivity">Network / Connectivity</option>
+                                        <option value="Optics / Light">Optics / Light</option>
+                                        <option value="Pneumatics">Pneumatics</option>
+                                        <option value="Radiation">Radiation</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Software General">Software General</option>
+                                        <option value="Software Products">Software Products</option>
+                                        <option value="Video / Photo">Video / Photo</option>
+                                    </select>
+                                    <div class="label-right">Error Group</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="error-group" id="error-group" placeholder="Error Group Code" />
-                                    <div class="label-left">Error Group</div>
+                                    <select name="error-code" id="error-code" disabled>
+                                        <option value="">&mdash; Error Code &mdash;</option>
+                                    </select>
+                                    <div class="label-left">Error Code</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="action-code" id="action-code" placeholder="Action Code" />
+                                    <select name="action-code" id="action-code">
+                                        <option value="">&mdash; Action Code &mdash;</option>
+                                        <option value="(De-)Installation / Relocation / Move">(De-)Installation / Relocation / Move</option>
+                                        <option value="Adjust / Align">Adjust / Align</option>
+                                        <option value="Another Job Necessary">Another Job Necessary</option>
+                                        <option value="Backup / Restore">Backup / Restore</option>
+                                        <option value="Calibrate">Calibrate</option>
+                                        <option value="Cleaning">Cleaning</option>
+                                        <option value="Configuration">Configuration</option>
+                                        <option value="Data Import / Export / Migrate">Data Import / Export / Migrate</option>
+                                        <option value="Database Cleanup">Database Cleanup</option>
+                                        <option value="End of Support">End of Support</option>
+                                        <option value="Firm-/Software (Re-)Installation">Firm-/Software (Re-)Installation</option>
+                                        <option value="Firm-/Software Update">Firm-/Software Update</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="No Defect">No Defect</option>
+                                        <option value="No Repair / Action">No Repair / Action</option>
+                                        <option value="Reboot">Reboot</option>
+                                        <option value="Repair">Repair</option>
+                                        <option value="Replace">Replace</option>
+                                        <option value="Reseat">Reseat</option>
+                                        <option value="Rework">Rework</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Swap System / Device">Swap System / Device</option>
+                                        <option value="Tighten">Tighten</option>
+                                        <option value="Training">Training</option>
+                                        <option value="Troubleshooting">Troubleshooting</option>
+                                        <option value="Upgrade Hardware">Upgrade Hardware</option>
+                                        <option value="Wrong Part">Wrong Part</option>
+                                    </select>
                                     <div class="label-right">Action Code</div>
                                 </div>
                                 <div class="col-12">

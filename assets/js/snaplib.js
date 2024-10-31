@@ -1,17 +1,18 @@
-const version = "3.0.33";
+const version = "3.0.34";
 const curr_date = new Date();
 const utc_year = curr_date.getUTCFullYear();
 const project_home = "https://github.com/divonpleasant/SNAP"
 const debug_mode = true;
-const copy_alert = false;
+const debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
+const copy_alert = true;
 const xc_alert = true;
 
 // Message formatting
-underline = "=".repeat(version.length + 5);
+underline = "=".repeat(version.length + 7);
 
 // Startup Message
 startup_message = `
-SNAP ${version}
+ SNAP ${version}
 ${underline}
 Script and Note Automation Process
 Copyright (c) Zeiss Meditec ${utc_year}
@@ -20,9 +21,10 @@ Originally developed by Divon Pleasant (divon.pleasant@zeiss.com)
 Please see ${project_home} for complete documentation, bug reporting, and code contributions.
 
 
-Settings
---------
+ Settings
+----------
 DEBUG_MODE: ${debug_mode}
+DEBUG_LEVEL: ${debug_level}
 COPY_ALERT: ${copy_alert}
 XC_ALERT: ${xc_alert}
 `;
@@ -34,6 +36,36 @@ document.getElementById("copyright-year").innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
 
 // LIB FUNCTIONS
+// Output debugging messages based on debug_mode and debug_level settings
+/* Usage:
+    Levels are intended to help define various developer-specific
+    logging.
+        0 : Any non-positive integer will result in an error
+            message; debugmsg level should never be set to a value less
+            than 1.
+        1 : Overview. These are a step away from default console logs 
+            (i.e. things every developer will want to see, always)
+        2 : Top-level troubleshooting. Error messages, fatal
+            conditions, etc.
+        3 : Deep troubleshooting. Warnings, API messages, etc.
+        4 : Developer mode. Default level for any descriptions of code
+            activity.
+        5 : Coding mode. Should only be used for messages intended to
+            aid initial development or bug resolution. Any messaging
+            generated from within a control loop, e.g.
+*/
+function debugmsg(level, output) {
+    if (level <= 0) {
+        console.log('[ERROR] Function debugmsg should never use message level 0 ... reserved for disabling messaging');
+        return;
+    }
+    if (debug_mode) {
+        if (debug_level >= level) {
+            console.log("[DEBUG-" + level + "] " + output);
+        }
+    }
+}
+
 // Process instrument/serial number strings
 function proc_template_serial (sn) {
     if (sn != "") {
@@ -80,8 +112,7 @@ function proc_template_serial (sn) {
             break;
     }
     var serials_data = [subj_serial, instrument_str];
-    (debug_mode) ? console.log("[DEBUG] serials_data[0]: " + serials_data[0]) : '';
-    (debug_mode) ? console.log("[DEBUG] serials_data[1]: " + serials_data[1]) : '';
+    debugmsg(5, 'serials_data[0]: ' + serials_data[0]);
+    debugmsg(5, 'serials_data[1]: ' + serials_data[1]);
     return serials_data;
 }
-
