@@ -1098,6 +1098,17 @@ select {
   select option {
     color: #3d4449;
     background: #ffffff; }
+  select option.green-status {
+      font-weight: bold;
+      color: #fff;
+      background: darkgreen; }
+  select option.red-status {
+      font-weight: bold;
+      color: #fff;
+      background: red; }
+  select option.yellow-status {
+      font-weight: bold;
+      background: yellow; }
   select:focus::-ms-value {
     background-color: transparent; }
   select::-ms-expand {
@@ -2349,8 +2360,64 @@ button,
       margin-bottom: 10px;
   }
 
-  /* Overlay*/
+  /* Overlays*/
   #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  #overlay-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  #close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+  }
+  
+  #parts-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  #parts-overlay-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  #parts-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+  }
+
+#overlay-pmreq {
     position: fixed;
     top: 0;
     left: 0;
@@ -2363,7 +2430,7 @@ button,
     z-index: 1000;
 }
 
-#overlay-content {
+#overlay-content-pmreq {
     background-color: white;
     padding: 50px;
     border-radius: 10px;
@@ -2371,7 +2438,7 @@ button,
     position: relative;
 }
 
-#close-overlay {
+#close-overlay-pmreq {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -2380,4 +2447,37 @@ button,
 
 #problem-description {
   background-color: #d3d3d3;
+}
+
+#settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#settings-overlay-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+}
+
+#setting-save-button-align {
+    align-items: center;
+    text-align: center;
+}
+
+#settings-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
 }

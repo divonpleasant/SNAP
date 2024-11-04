@@ -1098,6 +1098,17 @@ select {
   select option {
     color: #3d4449;
     background: #ffffff; }
+  select option.green-status {
+      font-weight: bold;
+      color: #fff;
+      background: darkgreen; }
+  select option.red-status {
+      font-weight: bold;
+      color: #fff;
+      background: red; }
+  select option.yellow-status {
+      font-weight: bold;
+      background: yellow; }
   select:focus::-ms-value {
     background-color: transparent; }
   select::-ms-expand {

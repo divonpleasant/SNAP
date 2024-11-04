@@ -5,7 +5,6 @@ function proaimpmemailgen(event) {
     // Retrieve form values
     var cct = document.getElementById('cct').value;
     var description = document.getElementById('description').value;
-    var date = new Date().toLocaleDateString(); // This gets the current date
     var serial = document.getElementById('serial').value;
     var instrumentAddress = document.getElementById('instrument-address').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
@@ -19,7 +18,7 @@ function proaimpmemailgen(event) {
             "Please send to PROAIM to proceed with on-site service \n\n" +
             "Zeiss Ticket Number (CCT #): " + cct + "\n" +
             "Problem Description: " + description + "\n" +
-            "Ticket Creation Date: " + date + "\n" +
+            "Ticket Creation Date: " + simple_date + "\n" +
             "Serial Number: " + serial + "\n" +
             "Customer Site: " + instrumentAddress + "\n" +
             "Contact Person: " + localContactPerson + "\n" +

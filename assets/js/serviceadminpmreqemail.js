@@ -13,7 +13,6 @@ function proceedToSendEmail(event) {
     var localContactPerson = document.getElementById('local-contact-person').value;
     var localContactPhone = document.getElementById('phone').value;
     var contract = document.getElementById('contract-number').value.trim();
-    var currentDate = new Date().toDateString();
 
     // Construct the subject line and body of the email
     var subject = "Preventative Maintenance Request S/N: " + serial;
@@ -24,7 +23,7 @@ function proceedToSendEmail(event) {
 			   "Contact Name/Phone Number: " + localContactPerson + " / " + localContactPhone + "\n\n" +
                "Serial Number: " + serial + "\n\n" +
                "Contract #: " + contract + "\n\n" +
-               "Date PM Requested: " + currentDate + "\n\n" +
+               "Date PM Requested: " + simple_date + "\n\n" +
                "Regards,";
 
     // Encode the subject and body
