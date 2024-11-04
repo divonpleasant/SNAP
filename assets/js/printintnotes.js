@@ -1,8 +1,6 @@
 document.getElementById('printintnotes').addEventListener('click', function(event) {
     event.preventDefault();
 
-    var date = new Date().toLocaleDateString();
-	
 	/* Process OCT Disk Space */
 	function process_disk_space(test_field) {
 		debugmsg(5, 'test_field: ' + test_field);

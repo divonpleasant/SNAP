@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/sandbox.css" />
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
     </head>
     <body class="is-preload">
@@ -25,641 +25,676 @@
 
                             <!-- Content -->
                             <form method="post" action="#">
-                            <div class="row gtr-uniform">
-                                <!-- Instrument Information -->
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="instrument-model" id="instrument-model">
-                                        <option value="">&mdash; Instrument &mdash;</option>
-                                        <option value="Cirrus OCT" id="cirrus_oct">Cirrus OCT 400/4000/500/5000/6000</option>
-                                        <option value="Cirrus Photo" id="cirrus_photo">Cirrus Photo</option>
-                                        <option value="Clarus" id="clarus">Clarus</option>
-                                        <option value="HFA3" id="hfa3">HFA3</option>
-                                        <option value="IOLMaster" id="iolmaster">IOLMaster 500/700</option>
-                                        <option value="Visucam 224/524" id="visucam">Visucam 224/524</option>
-                                        <option value="Visucam Pro/NM/NMFA" id="visucam_pro">Visucam Pro/NM/NMFA</option>
-                                        <option value="Atlas 500" id="atlas_500">Atlas 500</option>
-                                        <option value="Atlas 9000" id="atlas_9000">Atlas 9000</option>
-                                        <option value="Stratus 3000/Visante 1000 (old)" id="stratus">Stratus 3000/Visante 1000 (old)</option>
-                                        <option value="FORUM" id="forum">FORUM</option>
-                                    </select>
-                                    <div class="label-left">Instrument</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="serial" id="serial" placeholder="Serial Number" />
-                                    <div class="label-right">Serial Number</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Contact Person (Point of Contact) Name" />
-                                    <div class="label-left">Point of Contact (POC) Name</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="phone" id="phone" placeholder="Phone Number" />
-                                    <div class="label-right">POC Phone Number</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="email" id="email" placeholder="Email" />
-                                    <div class="label-left">POC Email</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="account" id="account" placeholder="Account Name" />
-                                    <div class="label-right">Account Name</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall tooltip">
-                                    <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
-                                    <span class="tooltiptext">If address shows CZMI, <br />ask Customer where and <br />when they purchased the instrument</span>
-                                    <div class="label-left">Instrument/Shipping Address</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
-                                    <div class="label-right">CCT Number</div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
-                                    <div class="label-right">Problem/Issue Description</div>
-                                </div>
-                                
-                                <!-- Warranty and Service Contracts -->
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="billing-type" id="billing-type">
-                                        <option value="">&mdash; Billing Type &mdash;</option>
-                                        <option value="B" name="b">B: Billable (No Warranty or Contract)</option>
-                                        <option value="W" name="w">W: Warranty</option>
-                                        <option value="XC" name="xc">XC: Zeiss Internal Billing</option>
-                                        <option value="CNTRCT" name="contract">Contract: Use Service Contract</option>
-                                    </select>
-                                    <div class="label-left">Billing Type</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="service-contract" id="service-contract" disabled>
-                                        <option value="">&mdash; Service Contract &mdash;</option>
-                                        <option value="AD">AD: All labor/travel covered; all parts are billable</option>
-                                        <option value="BPA">BPA: All service covered and all parts*</option>
-                                        <option value="CO">CO: All service covered</option>
-                                        <option value="PR">PR: One PM is covered; all other services are billable</option>
-                                        <option value="PRM">PRM: All service is covered along with an uptime guarantee</option>
-                                        <option value="PRT">PRT: All service is covered with the billing of a Call Out fee**</option>
-                                    </select>
-                                    <div class="label-right">Service Contract</div>
-                                </div>  
-                                <div class="col-12">
-                                    <hr />
-                                </div>
-                                
-                                
-                                <!-- Remote Support Information -->
-                                <a class="anchor" name="remotesupport"></a>
-                                <div class="col-12">
-                                    <h4>Remote Support</h4>
-                                    <p><a href="#top">Top</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="remote-support" name="remote-support">
-                                    <label for="remote-support">Was Remote Support Provided?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="smart-service" name="smart-service">
-                                    <label for="smart-service">Zeiss Smart Services?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="teleservice" name="teleservice">
-                                    <label for="teleservice">Teleservice?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall" id="forum_checkbox">
-                                    <input type="checkbox" id="add_forum" name="add_forum">
-                                    <label for="add_forum">Include FORUM?</label>
-                                </div>
-                                <div class="col-12">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <h5>Instrument:</h5>
-                                                <input type="text" name="teamviewer-username1" id="teamviewer-username1" placeholder="TeamViewer ID" />
-                                                <input type="text" name="teamviewer-password1" id="teamviewer-password1" placeholder="Password" />
-                                            </td>
-                                            <td>
-                                                <h5>Review W/S:</h5>
-                                                <input type="text" name="teamviewer-username2" id="teamviewer-username2" placeholder="TeamViewer ID" />
-                                                <input type="text" name="teamviewer-password2" id="teamviewer-password2" placeholder="Password" />
-                                            </td>
-                                            <td>
-                                                <h5>Forum:</h5>
-                                                <input type="text" name="teamviewer-username3" id="teamviewer-username3" placeholder="TeamViewer ID" />
-                                                <input type="text" name="teamviewer-password3" id="teamviewer-password3" placeholder="Password" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <div class="col-12">
-                                        <h5>Remote Session Stopwatch:</h5>
-                                        <p name="RemoteTime" id="timeDisplay">0 seconds</p>
-                                        <button id="startButton">Start</button>
-                                        <button id="stopButton" disabled>Stop</button>
-                                        <button id="calculateButton" disabled>Calculate</button>
-                                    </div>
-                                    <hr />
-                                </div>
-
-                                <!-- Technical Support Call Checklist -->
-                                <a class="anchor" name="checklist"></a>
-                                <div class="col-12">
-                                    <h5>Technical Support Call Checklist</h5>
-                                    <p><a href="#top">Top</a> | <a href="#remotesupport">Remote Support</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="current-software-version" name="current-software-version">
-                                    <label for="current-software-version">Device running current Software Version?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="current-software-reason" id="current-software-reason" placeholder="If no, why?" />
-                                    <div class="label-right">Outdated Software Reason</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="verified-normal-functionality" name="verified-normal-functionality">
-                                    <label for="verified-normal-functionality">Verified normal device functionality (if phone fixed)?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="verified-network-connectivity" name="verified-network-connectivity">
-                                    <label for="verified-network-connectivity">Verified connectivity to office network/shares (if applicable)?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="device-hostname" id="device-hostname" placeholder="Device Hostname" />
-                                    <div class="label-left">Device Hostname</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="device-ip" id="device-ip" placeholder="Device’s DHCP or Static IP" />
-                                    <div class="label-right">Device IP Address</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="review-station-hostname" id="review-station-hostname" placeholder="Review Station Hostname" />
-                                    <div class="label-left">Review Station Hostname</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="review-station-ip" id="review-station-ip" placeholder="Review Station DHCP or Static IP" />
-                                    <div class="label-right">Review Station IP Address</div>
-                                </div>
-                                <!-- INSTRUMENT FORMS -->
-                                <!-- OCT Instrument-Specific -->
-                                <div id="cirrus_oct_form">
-                                    <div class="col-12">
-                                        <h5>Cirrus HD-OCT Checklist</h5>
-                                    </div>
-                                    <div class="col-12">
-                                        <select class="instrument_fields" name="work-station-status" id="work-station-status">
-                                            <option value="">&mdash; Cirrus HD-OCT/Review Workstation Status &mdash;</option>
-                                            <option value="Status OK (Color: Green)">Status OK (Color: Green)</option>
-                                            <option value="DICOM Server Status: Connected (Color: Green)">DICOM Server Status: Connected (Color: Green)</option>
-                                            <option value="Successfully Sent the EPDF Report to DICOM Archive (Color: Green)">Successfully Sent the EPDF Report to DICOM Archive (Color: Green)</option>
-                                            <option value="Archive Volume Has Not Yet Been Created (color:yellow)">Archive Volume Has Not Yet Been Created (Color: Yellow)</option>
-                                            <option value="Archive Volume is Not Available (Color: Yellow)">Archive Volume is Not Available (Color: Yellow)</option>
-                                            <option value="Archive Volume Storage Space is Low (Color: Yellow)">Archive Volume Storage Space is Low (Color: Yellow)</option>
-                                            <option value="Current Archive Volume Unselected (Color: Yellow)">Current Archive Volume Unselected (Color: Yellow)</option>
-                                            <option value="Failed to Connect to DICOM Gateway (Color: Yellow)">Failed to Connect to DICOM Gateway (Color: Yellow)</option>
-                                            <option value="Firmware Initialization failed (Color: Yellow)">Firmware Initialization Failed (Color: Yellow)</option>
-                                            <option value="Instrument Self-Test Failed (Color: Yellow)">Instrument Self Test failed (Color: Yellow)</option>
-                                            <option value="Background Diagnostics Check Failed (Color: Yellow)">Background Diagnostics Check Failed (Color: Yellow)</option>
-                                            <option value="DICOM Networking Error, Please Check Configuration (Color: Red)">DICOM Networking Error, Please Check Configuration (Color: Red)</option>
-                                            <option value="Failed to Send the Report to DICOM Server (Color: Red)">Failed to Send the Report to DICOM Server (Color: Red)</option>
-                                            <option value="Storage Space is Critical (Color: Red)">Storage Space is Critical (Color: Red)</option>
-                                            
-                                            <option value="OCT SLD Power (too low) Out of Range (1 < 500)">OCT SLD Power (too low) Out of Range (1 < 500)</option>
-                                            <option value="OCT SLD is Not in Safe State">OCT SLD is Not in Safe State</option>
-                                            <option value="[Other] (Color: Green)">[Other] (Color: Green)</option>
-                                            <option value="[Other] (Color: Yellow)">[Other] (Color: Yellow)</option>
-                                            <option value="[Other] (Color: Red)">[Other] (Color: Red)</option>
+                                <div class="row gtr-uniform">
+                                    <!-- Instrument Information -->
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="instrument-model" id="instrument-model">
+                                            <option value="">&mdash; Instrument &mdash;</option>
+                                            <option value="Cirrus OCT" id="cirrus_oct">Cirrus OCT 400/4000/500/5000/6000</option>
+                                            <option value="Cirrus Photo" id="cirrus_photo">Cirrus Photo</option>
+                                            <option value="Clarus" id="clarus">Clarus</option>
+                                            <option value="HFA3" id="hfa3">HFA3</option>
+                                            <option value="IOLMaster" id="iolmaster">IOLMaster 500/700</option>
+                                            <option value="Visucam 224/524" id="visucam">Visucam 224/524</option>
+                                            <option value="Visucam Pro/NM/NMFA" id="visucam_pro">Visucam Pro/NM/NMFA</option>
+                                            <option value="Atlas 500" id="atlas_500">Atlas 500</option>
+                                            <option value="Atlas 9000" id="atlas_9000">Atlas 9000</option>
+                                            <option value="Stratus 3000/Visante 1000 (old)" id="stratus">Stratus 3000/Visante 1000 (old)</option>
+                                            <option value="FORUM" id="forum">FORUM</option>
                                         </select>
-                                        <div class="label-right">OCT/Review Station Status</div>
+                                        <div class="label-left">Instrument</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input style="float: left; width: 30%;" type="text" name="c-drive-free" id="c-drive-free" placeholder="OS (C:) Free" /> <select style="float: left; width: 20%;" name="c-drive-free-size" id="c-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="c-drive-total" id="c-drive-total" placeholder="OS (C:) Total" /> <select style="float: left; width: 20%;" name="c-drive-total-size" id="c-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
-                                        <div class="label-left">OS (C:) Disk Space</div>
+                                        <input type="text" name="serial" id="serial" placeholder="Serial Number" />
+                                        <div class="label-right">Serial Number</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input style="float: left; width: 30%;" type="text" name="e-drive-free" id="e-drive-free" placeholder="Data (E:) Free" /> <select style="float: left; width: 20%;" name="e-drive-free-size" id="e-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="e-drive-total" id="e-drive-total" placeholder="Data (E:) Total" /> <select style="float: left; width: 20%;" name="e-drive-total-size" id="e-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
-                                        <div class="label-left">Data (E:) Disk Space</div>
+                                        <input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Contact Person (Point of Contact) Name" />
+                                        <div class="label-left">Point of Contact (POC) Name</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="current-archive-label" id="current-archive-label" placeholder="Current Archive Label" />
-                                        <div class="label-left">Current Archive Label</div>
+                                        <input type="text" name="phone" id="phone" placeholder="Phone Number" />
+                                        <div class="label-right">POC Phone Number</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input class="" type="text" name="current-archive-description" id="current-archive-description" placeholder="Current Archive Description" />
-                                        <div class="label-left">Current Archive Description</div>
+                                        <input type="text" name="email" id="email" placeholder="Email" />
+                                        <div class="label-left">POC Email</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="current-archive-path" id="current-archive-path" placeholder="Current Archive Path" />
-                                        <div class="label-left">Current Archive Path</div>
+                                        <input type="text" name="account" id="account" placeholder="Account Name" />
+                                        <div class="label-right">Account Name</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall tooltip">
+                                        <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
+                                        <span class="tooltiptext">If address shows CZMI, <br />ask Customer where and <br />when they purchased the instrument</span>
+                                        <div class="label-left">Instrument/Shipping Address</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="current-archive-mapping" id="current-archive-mapping" placeholder="Current Archive Drive Mapping" />
-                                        <div class="label-left">Current Archive Drive Mapping</div>
+                                        <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
+                                        <div class="label-right">CCT Number</div>
                                     </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="current-archive-server-hostname" id="current-archive-server-hostname" placeholder="Current Archive Server Hostname" />
-                                        <div class="label-left">Current Archive Server Hostname</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="current-archive-server-ip" id="current-archive-server-ip" placeholder="Current Archive Server IP Address" />
-                                        <div class="label-left">Current Archive Server IP Address</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="old-archive-label" id="old-archive-label" placeholder="Old Archive Label" />
-                                        <div class="label-left">Old Archive Label</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="old-archive-description" id="old-archive-description" placeholder="Old Archive Description" />
-                                        <div class="label-left">Old Archive Description</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="old-archive-path" id="old-archive-path" placeholder="Old Archive Path" />
-                                        <div class="label-left">Old Archive Path</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="old-archive-mapping" id="old-archive-mapping" placeholder="Old Archive Drive Mapping" />
-                                        <div class="label-left">Old Archive Drive Mapping</div>
-                                    </div>
-                                </div>
-                                <!-- Cirrus Photo Instrument-Specific -->
-                                <div id="cirrus_photo_form">
                                     <div class="col-12">
-                                        <h5>Cirrus Photo Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
+                                        <div class="label-right">Problem/Issue Description</div>
                                     </div>
-                                </div>
-                                <!-- Clarus Instrument-Specific -->
-                                <div id="clarus_form">
+
+                                    <!-- Warranty and Service Contracts -->
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="billing-type" id="billing-type">
+                                            <option value="">&mdash; Billing Type &mdash;</option>
+                                            <option value="B" name="b">B: Billable (No Warranty or Contract)</option>
+                                            <option value="W" name="w">W: Warranty</option>
+                                            <option value="XC" name="xc">XC: Zeiss Internal Billing</option>
+                                            <option value="CNTRCT" name="contract">Contract: Use Service Contract</option>
+                                        </select>
+                                        <div class="label-left">Billing Type</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="service-contract" id="service-contract" disabled>
+                                            <option value="">&mdash; Service Contract &mdash;</option>
+                                            <option value="AD">AD: All labor/travel covered; all parts are billable</option>
+                                            <option value="BPA">BPA: All service covered and all parts*</option>
+                                            <option value="CO">CO: All service covered</option>
+                                            <option value="PR">PR: One PM is covered; all other services are billable</option>
+                                            <option value="PRM">PRM: All service is covered along with an uptime guarantee</option>
+                                            <option value="PRT">PRT: All service is covered with the billing of a Call Out fee**</option>
+                                        </select>
+                                        <div class="label-right">Service Contract</div>
+                                    </div>
                                     <div class="col-12">
-                                        <h5>Clarus Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <hr />
                                     </div>
-                                </div>
-                                <!-- HFA3 Instrument-Specific -->
-                                <div id="hfa3_form">
+
+
+                                    <!-- Remote Support Information -->
+                                    <a class="anchor" name="remotesupport"></a>
                                     <div class="col-12">
-                                        <h5>HFA3 Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <h4>Remote Support</h4>
+                                        <p><a href="#top">Top</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p>
                                     </div>
-                                </div>
-                                <!-- IOL Master Instrument-Specific -->
-                                <div id="iolmaster_form">
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="remote-support" name="remote-support">
+                                        <label for="remote-support">Was Remote Support Provided?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="smart-service" name="smart-service">
+                                        <label for="smart-service">Zeiss Smart Services?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="teleservice" name="teleservice">
+                                        <label for="teleservice">Teleservice?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall" id="forum_checkbox">
+                                        <input type="checkbox" id="add_forum" name="add_forum">
+                                        <label for="add_forum">Include FORUM?</label>
+                                    </div>
                                     <div class="col-12">
-                                        <h5>IOLMaster Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <h5>Instrument:</h5>
+                                                    <input type="text" name="teamviewer-username1" id="teamviewer-username1" placeholder="TeamViewer ID" />
+                                                    <input type="text" name="teamviewer-password1" id="teamviewer-password1" placeholder="Password" />
+                                                </td>
+                                                <td>
+                                                    <h5>Review W/S:</h5>
+                                                    <input type="text" name="teamviewer-username2" id="teamviewer-username2" placeholder="TeamViewer ID" />
+                                                    <input type="text" name="teamviewer-password2" id="teamviewer-password2" placeholder="Password" />
+                                                </td>
+                                                <td>
+                                                    <h5>Forum:</h5>
+                                                    <input type="text" name="teamviewer-username3" id="teamviewer-username3" placeholder="TeamViewer ID" />
+                                                    <input type="text" name="teamviewer-password3" id="teamviewer-password3" placeholder="Password" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="col-12">
+                                            <h5>Remote Session Stopwatch:</h5>
+                                            <p name="RemoteTime" id="timeDisplay">0 seconds</p>
+                                            <button id="startButton">Start</button>
+                                            <button id="stopButton" disabled>Stop</button>
+                                            <button id="calculateButton" disabled>Calculate</button>
+                                        </div>
+                                        <hr />
                                     </div>
-                                </div>
-                                <!-- Visucam Instrument-Specific -->
-                                <div id="visucam_form">
+
+                                    <!-- Technical Support Call Checklist -->
+                                    <a class="anchor" name="checklist"></a>
                                     <div class="col-12">
-                                        <h5>Visucam Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <h5>Technical Support Call Checklist</h5>
+                                        <p><a href="#top">Top</a> | <a href="#remotesupport">Remote Support</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p>
                                     </div>
-                                </div>
-                                <!-- Visucam Pro Instrument-Specific -->
-                                <div id="visucam_pro_form">
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="current-software-version" name="current-software-version">
+                                        <label for="current-software-version">Device running current Software Version?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="current-software-reason" id="current-software-reason" placeholder="If no, why?" />
+                                        <div class="label-right">Outdated Software Reason</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="verified-normal-functionality" name="verified-normal-functionality">
+                                        <label for="verified-normal-functionality">Verified normal device functionality (if phone fixed)?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="verified-network-connectivity" name="verified-network-connectivity">
+                                        <label for="verified-network-connectivity">Verified connectivity to office network/shares (if applicable)?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="device-hostname" id="device-hostname" placeholder="Device Hostname" />
+                                        <div class="label-left">Device Hostname</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="device-ip" id="device-ip" placeholder="Device’s DHCP or Static IP" />
+                                        <div class="label-right">Device IP Address</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="review-station-hostname" id="review-station-hostname" placeholder="Review Station Hostname" />
+                                        <div class="label-left">Review Station Hostname</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="review-station-ip" id="review-station-ip" placeholder="Review Station DHCP or Static IP" />
+                                        <div class="label-right">Review Station IP Address</div>
+                                    </div>
+                                    <!-- INSTRUMENT FORMS -->
+                                    <!-- OCT Instrument-Specific -->
+                                    <div id="cirrus_oct_form">
+                                        <div class="col-12">
+                                            <h5>Cirrus HD-OCT Checklist</h5>
+                                        </div>
+                                        <div class="col-12">
+                                            <select class="instrument_fields" name="work-station-status" id="work-station-status">
+                                                <option value="">&mdash; Cirrus HD-OCT/Review Workstation Status &mdash;</option>
+                                                <option class="green-status" value="Status OK (Color: Green)">Status OK (Color: Green)</option>
+                                                <option class="green-status" value="DICOM Server Status: Connected (Color: Green)">DICOM Server Status: Connected (Color: Green)</option>
+                                                <option class="green-status" value="Successfully Sent the EPDF Report to DICOM Archive (Color: Green)">Successfully Sent the EPDF Report to DICOM Archive (Color: Green)</option>
+                                                <option class="yellow-status" value="Archive Volume Has Not Yet Been Created (color:yellow)">Archive Volume Has Not Yet Been Created (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Archive Volume is Not Available (Color: Yellow)">Archive Volume is Not Available (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Archive Volume Storage Space is Low (Color: Yellow)">Archive Volume Storage Space is Low (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Current Archive Volume Unselected (Color: Yellow)">Current Archive Volume Unselected (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Failed to Connect to DICOM Gateway (Color: Yellow)">Failed to Connect to DICOM Gateway (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Firmware Initialization failed (Color: Yellow)">Firmware Initialization Failed (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Instrument Self-Test Failed (Color: Yellow)">Instrument Self Test failed (Color: Yellow)</option>
+                                                <option class="yellow-status" value="Background Diagnostics Check Failed (Color: Yellow)">Background Diagnostics Check Failed (Color: Yellow)</option>
+                                                <option class="red-status" value="DICOM Networking Error, Please Check Configuration (Color: Red)">DICOM Networking Error, Please Check Configuration (Color: Red)</option>
+                                                <option class="red-status" value="Failed to Send the Report to DICOM Server (Color: Red)">Failed to Send the Report to DICOM Server (Color: Red)</option>
+                                                <option class="red-status" value="Storage Space is Critical (Color: Red)">Storage Space is Critical (Color: Red)</option>
+
+                                                <option value="OCT SLD Power (too low) Out of Range (1 < 500)">OCT SLD Power (too low) Out of Range (1 < 500)</option>
+                                                <option value="OCT SLD is Not in Safe State">OCT SLD is Not in Safe State</option>
+                                                <option class="green-status" value="[Other] (Color: Green)">[Other] (Color: Green)</option>
+                                                <option class="yellow-status" value="[Other] (Color: Yellow)">[Other] (Color: Yellow)</option>
+                                                <option class="red-status" value="[Other] (Color: Red)">[Other] (Color: Red)</option>
+                                            </select>
+                                            <div class="label-right">OCT/Review Station Status</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input style="float: left; width: 30%;" type="text" name="c-drive-free" id="c-drive-free" placeholder="OS (C:) Free" /> <select style="float: left; width: 20%;" name="c-drive-free-size" id="c-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="c-drive-total" id="c-drive-total" placeholder="OS (C:) Total" /> <select style="float: left; width: 20%;" name="c-drive-total-size" id="c-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
+                                            <div class="label-left">OS (C:) Disk Space</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input style="float: left; width: 30%;" type="text" name="e-drive-free" id="e-drive-free" placeholder="Data (E:) Free" /> <select style="float: left; width: 20%;" name="e-drive-free-size" id="e-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="e-drive-total" id="e-drive-total" placeholder="Data (E:) Total" /> <select style="float: left; width: 20%;" name="e-drive-total-size" id="e-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
+                                            <div class="label-left">Data (E:) Disk Space</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="current-archive-label" id="current-archive-label" placeholder="Current Archive Label" />
+                                            <div class="label-left">Current Archive Label</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input class="" type="text" name="current-archive-description" id="current-archive-description" placeholder="Current Archive Description" />
+                                            <div class="label-left">Current Archive Description</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="current-archive-path" id="current-archive-path" placeholder="Current Archive Path" />
+                                            <div class="label-left">Current Archive Path</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="current-archive-mapping" id="current-archive-mapping" placeholder="Current Archive Drive Mapping" />
+                                            <div class="label-left">Current Archive Drive Mapping</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="current-archive-server-hostname" id="current-archive-server-hostname" placeholder="Current Archive Server Hostname" />
+                                            <div class="label-left">Current Archive Server Hostname</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="current-archive-server-ip" id="current-archive-server-ip" placeholder="Current Archive Server IP Address" />
+                                            <div class="label-left">Current Archive Server IP Address</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="old-archive-label" id="old-archive-label" placeholder="Old Archive Label" />
+                                            <div class="label-left">Old Archive Label</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="old-archive-description" id="old-archive-description" placeholder="Old Archive Description" />
+                                            <div class="label-left">Old Archive Description</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="old-archive-path" id="old-archive-path" placeholder="Old Archive Path" />
+                                            <div class="label-left">Old Archive Path</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="old-archive-mapping" id="old-archive-mapping" placeholder="Old Archive Drive Mapping" />
+                                            <div class="label-left">Old Archive Drive Mapping</div>
+                                        </div>
+                                    </div>
+                                    <!-- Cirrus Photo Instrument-Specific -->
+                                    <div id="cirrus_photo_form">
+                                        <div class="col-12">
+                                            <h5>Cirrus Photo Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Clarus Instrument-Specific -->
+                                    <div id="clarus_form">
+                                        <div class="col-12">
+                                            <h5>Clarus Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- HFA3 Instrument-Specific -->
+                                    <div id="hfa3_form">
+                                        <div class="col-12">
+                                            <h5>HFA3 Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- IOL Master Instrument-Specific -->
+                                    <div id="iolmaster_form">
+                                        <div class="col-12">
+                                            <h5>IOLMaster Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Visucam Instrument-Specific -->
+                                    <div id="visucam_form">
+                                        <div class="col-12">
+                                            <h5>Visucam Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Visucam Pro Instrument-Specific -->
+                                    <div id="visucam_pro_form">
+                                        <div class="col-12">
+                                            <h5>Visucam Pro Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Atlas 500 Instrument-Specific -->
+                                    <div id="atlas_500_form">
+                                        <div class="col-12">
+                                            <h5>Atlas 500 Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Atlas 9000 Instrument-Specific -->
+                                    <div id="atlas_9000_form">
+                                        <div class="col-12">
+                                            <h5>Atlas 9000 Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Stratus Instrument-Specific -->
+                                    <div id="stratus_form">
+                                        <div class="col-12">
+                                            <h5>Stratus Checklist</h5>
+                                            <p><em>Instrument checklist is not yet available.</em></p>
+                                        </div>
+                                    </div>
+                                    <!-- Forum Specific -->
+                                    <div id="forum_form">
+                                        <div class="col-12">
+                                            <h5>FORUM Checklist</h5>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="forum-software-version" id="forum-software-version" placeholder="FORUM Server Software Version" />
+                                            <div class="label-left">FORUM Server Software Version</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="forum-windows-version" id="forum-windows-version" placeholder="FORUM Server Windows Version" />
+                                            <div class="label-left">FORUM Server Windows Version</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="forum-server-hostname" id="forum-server-hostname" placeholder="FORUM Server Hostname" />
+                                            <div class="label-left">FORUM Server Hostname</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="forum-server-ip" id="forum-server-ip" placeholder="FORUM Server IP Address" />
+                                            <div class="label-left">FORUM Server IP Address</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="server-settings" id="server-settings" placeholder="FORUM Server Settings" />
+                                            <div class="label-left">FORUM Server Settings</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="checkbox" id="dicom-tests-pass" name="dicom-tests-pass">
+                                            <label for="dicom-tests-pass">DICOM Tests pass?</label>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="number-of-stations" id="number-of-stations" placeholder="Number of FORUM Stations" />
+                                            <div class="label-left">Number of FORUM Stations</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="checkbox" id="changes-to-environment" name="changes-to-environment">
+                                            <label for="changes-to-environment">Any changes to environment?</label>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="affected-devices" id="affected-devices" placeholder="Affected Devices/Workstations/Servers" />
+                                            <div class="label-left">Affected Devices</div>
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <textarea rows="3" name="architecture" id="architecture" placeholder="Architecture"></textarea>
+                                            <div class="label-left">Architecture</div>
+                                        </div>
+                                    </div>
+                                    <!-- END INSTRUMENT FORMS -->
+                                    <!-- Requested Notes (RAFTA) -->
+                                    <a class="anchor" name="rafta"></a>
                                     <div class="col-12">
-                                        <h5>Visucam Pro Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <hr />
+                                        <h4>Requested Notes (RAFTA)</h4>
+                                        <p><a href="#top">Top</a> | <a href="#remotesupport">Remote Support</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p>
                                     </div>
-                                </div>
-                                <!-- Atlas 500 Instrument-Specific -->
-                                <div id="atlas_500_form">
                                     <div class="col-12">
-                                        <h5>Atlas 500 Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <h5>Reported Incident</h5>
                                     </div>
-                                </div>
-                                <!-- Atlas 9000 Instrument-Specific -->
-                                <div id="atlas_9000_form">
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="device-software-version" id="device-software-version" placeholder="Device Software Version" />
+                                        <div class="label-left">Device Software Version</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="archive-mode" id="archive-mode">
+                                            <option value="">&mdash; Device Archive Mode &mdash;</option>
+                                            <option value="Native">Native/Archive</option>
+                                            <option value="DICOM">DICOM</option>
+                                        </select>
+                                        <div class="label-right">Archive Mode</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="windows-version" id="windows-version" placeholder="Device Windows Version" />
+                                        <div class="label-left">Device Windows Version</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="review-station-software-version" id="review-station-software-version" placeholder="Review Station Software Version" />
+                                        <div class="label-right">Review Station Version</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="review-station-archive-mode" id="review-station-archive-mode">
+                                            <option value="">&mdash; Review Station Archive Mode &mdash;</option>
+                                            <option value="Native">Native/Archive</option>
+                                            <option value="DICOM">DICOM</option>
+                                        </select>
+                                        <div class="label-left">Review Station Archive Mode</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="review-station-windows-version" id="review-station-windows-version" placeholder="Review Station Windows Version" />
+                                        <div class="label-right">Review Station Windows Version</div>
+                                    </div>
                                     <div class="col-12">
-                                        <h5>Atlas 9000 Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <textarea name="problem-description" id="problem-description" placeholder="Problem Description (Mirrored From Above)" rows="3" disabled></textarea>
+                                        <div class="label-right">Problem Description</div>
                                     </div>
-                                </div>
-                                <!-- Stratus Instrument-Specific -->
-                                <div id="stratus_form">
                                     <div class="col-12">
-                                        <h5>Stratus Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                        <textarea name="error-message-details" id="error-message-details" placeholder="Specific Error Message(s)" rows="3"></textarea>
+                                        <div class="label-right">Specific Error Message(s)</div>
                                     </div>
-                                </div>
-                                <!-- Forum Specific -->
-                                <div id="forum_form">
                                     <div class="col-12">
-                                        <h5>FORUM Checklist</h5>
+                                        <h5>Actual Problem</h5>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="checkbox" id="same-as-reported" name="same-as-reported" />
+                                        <label for="same-as-reported">Same as Reported Problem?</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea name="actual-problem-description" id="actual-problem-description" placeholder="Problem Description (if different than stated above)" rows="3"></textarea>
+                                        <div class="label-right">Actual Problem Description (if different)</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5>Frequency of the Problem</h5>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="forum-software-version" id="forum-software-version" placeholder="FORUM Server Software Version" />
-                                        <div class="label-left">FORUM Server Software Version</div>
+                                        <select name="frequency-selector" id="frequency-selector">
+                                            <option value="">&mdash; Frequency of Problem? &mdash;</option>
+                                            <option value="Infrequent">Infrequent</option>
+                                            <option value="Intermittent">Intermittent</option>
+                                            <option value="Reproducible">Reproducible</option>
+                                            <option value="Persistent">Persistent</option>
+                                            <option value="Other">Other (Use Details)</option>
+                                        </select>
+                                        <div class="label-left">Frequency</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="forum-windows-version" id="forum-windows-version" placeholder="FORUM Server Windows Version" />
-                                        <div class="label-left">FORUM Server Windows Version</div>
+                                        <input type="text" name="frequency-problem" id="frequency-problem" placeholder="Frequency Details" />
+                                        <div class="label-right">Frequency Details</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="forum-server-hostname" id="forum-server-hostname" placeholder="FORUM Server Hostname" />
-                                        <div class="label-left">FORUM Server Hostname</div>
+                                        <textarea name="problem-started" id="problem-started" placeholder="When Problem Started" rows="3"></textarea>
+                                        <div class="label-left">When Problem Started</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="forum-server-ip" id="forum-server-ip" placeholder="FORUM Server IP Address" />
-                                        <div class="label-left">FORUM Server IP Address</div>
+                                        <textarea name="problem-changed" id="problem-changed" placeholder="What Changed?" rows="3"></textarea>
+                                        <div class="label-right">What Changed?</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5>Troubleshooting/Actions Performed</h5>
+                                        <textarea name="troubleshooting-performed" id="troubleshooting-performed" placeholder="Troubleshooting/Actions Performed" rows="6"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5>Additional Information</h5>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="server-settings" id="server-settings" placeholder="FORUM Server Settings" />
-                                        <div class="label-left">FORUM Server Settings</div>
+                                        <input type="checkbox" id="device-repaired" name="device-repaired">
+                                        <label for="device-repaired">Has the device recently been repaired?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="checkbox" id="dicom-tests-pass" name="dicom-tests-pass">
-                                        <label for="dicom-tests-pass">DICOM Tests pass?</label>
+                                        <input type="text" name="exchange-date" id="exchange-date" placeholder="If yes, when?" />
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="number-of-stations" id="number-of-stations" placeholder="Number of FORUM Stations" />
-                                        <div class="label-left">Number of FORUM Stations</div>
+                                        <input type="checkbox" id="logs-attached" name="logs-attached">
+                                        <label for="logs-attached">Logs attached to CCT?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="checkbox" id="changes-to-environment" name="changes-to-environment">
-                                        <label for="changes-to-environment">Any changes to environment?</label>
+                                        <input type="text" name="logs-not-attached-reason" id="logs-not-attached-reason" placeholder="If not, why?" />
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="affected-devices" id="affected-devices" placeholder="Affected Devices/Workstations/Servers" />
-                                        <div class="label-left">Affected Devices</div>
+                                        <input type="checkbox" id="screenshots-attached" name="screenshots-attached">
+                                        <label for="screenshots-attached">Screenshots attached to CCT?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <textarea rows="3" name="architecture" id="architecture" placeholder="Architecture"></textarea>
-                                        <div class="label-left">Architecture</div>
+                                        <input type="text" name="screenshots-attached-reason" id="screenshots-attached-reason" placeholder="If not, why?" />
                                     </div>
-                                </div>
-                                <!-- END INSTRUMENT FORMS -->
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="extended-inoperability-check" name="extended-inoperability-check">
+                                        <label for="extended-inoperability-check">Extended period of inoperability (>1 day)?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="inoperability-duration" id="inoperability-duration" placeholder="If yes, how long?" />
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="power-cycle-resolve" name="power-cycle-resolve">
+                                        <label for="power-cycle-resolve">Power cycle resolve?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="remote-resolution" name="remote-resolution">
+                                        <label for="remote-resolution">Remote resolution?</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#" id="printrafta" class="button primary small">Copy Request Notes</a>
+                                        <hr />
+                                    </div>
+
+                                    <!-- Internal Notes -->
+                                    <a class="anchor" name="internal"></a>
+                                    <div class="col-12">
+                                        <h4>Internal Notes:</h4>
+                                        <p><a href="#top">Top</a> | <a href="#remotesupport">Remote Support</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#export">Export</a></p>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="request-came-from" id="request-came-from">
+                                            <option value="">&mdash; Request Came From &mdash;</option>
+                                            <option value="Call">Call</option>
+                                            <option value="Email">Email</option>
+                                        </select>
+                                        <div class="label-left">Request Came From</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="request-source" id="request-source">
+                                            <option value="">&mdash; Source &mdash;</option>
+                                            <!--
+            <option value="Queue">Queue</option>
+            <option value="Email">Email</option>
+            <option value="Service Request Form">Service Request Form</option>
+            <option value="Voicemail">Voicemail</option>
+            -->
+                                            <option value="Other Means">Other</option>
+                                        </select>
+                                        <div class="label-right">Request Source</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="remote-time" id="remote-time" placeholder="Time Spent" />
+                                        <div class="label-left">Time Spent (decimal hours)</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="error-group" id="error-group">
+                                            <option value="">&mdash; Error Group &mdash;</option>
+                                            <option value="Cloud Services">Cloud Services</option>
+                                            <option value="Computer">Computer</option>
+                                            <option value="Computer / Video Accessory">Computer / Video Accessory</option>
+                                            <option value="Consumables">Consumables</option>
+                                            <option value="Customer Sales">Customer Sales</option>
+                                            <option value="Device Accessory">Device Accessory</option>
+                                            <option value="Electronics">Electronics</option>
+                                            <option value="End of Support">End of Support</option>
+                                            <option value="Mechanics">Mechanics</option>
+                                            <option value="Network / Connectivity">Network / Connectivity</option>
+                                            <option value="Optics / Light">Optics / Light</option>
+                                            <option value="Pneumatics">Pneumatics</option>
+                                            <option value="Radiation">Radiation</option>
+                                            <option value="Service">Service</option>
+                                            <option value="Software General">Software General</option>
+                                            <option value="Software Products">Software Products</option>
+                                            <option value="Video / Photo">Video / Photo</option>
+                                        </select>
+                                        <div class="label-right">Error Group</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="error-code" id="error-code" disabled>
+                                            <option value="">&mdash; Error Code &mdash;</option>
+                                        </select>
+                                        <div class="label-left">Error Code</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="action-code" id="action-code">
+                                            <option value="">&mdash; Action Code &mdash;</option>
+                                            <option value="(De-)Installation / Relocation / Move">(De-)Installation / Relocation / Move</option>
+                                            <option value="Adjust / Align">Adjust / Align</option>
+                                            <option value="Another Job Necessary">Another Job Necessary</option>
+                                            <option value="Backup / Restore">Backup / Restore</option>
+                                            <option value="Calibrate">Calibrate</option>
+                                            <option value="Cleaning">Cleaning</option>
+                                            <option value="Configuration">Configuration</option>
+                                            <option value="Data Import / Export / Migrate">Data Import / Export / Migrate</option>
+                                            <option value="Database Cleanup">Database Cleanup</option>
+                                            <option value="End of Support">End of Support</option>
+                                            <option value="Firm-/Software (Re-)Installation">Firm-/Software (Re-)Installation</option>
+                                            <option value="Firm-/Software Update">Firm-/Software Update</option>
+                                            <option value="Maintenance">Maintenance</option>
+                                            <option value="No Defect">No Defect</option>
+                                            <option value="No Repair / Action">No Repair / Action</option>
+                                            <option value="Reboot">Reboot</option>
+                                            <option value="Repair">Repair</option>
+                                            <option value="Replace">Replace</option>
+                                            <option value="Reseat">Reseat</option>
+                                            <option value="Rework">Rework</option>
+                                            <option value="Service">Service</option>
+                                            <option value="Swap System / Device">Swap System / Device</option>
+                                            <option value="Tighten">Tighten</option>
+                                            <option value="Training">Training</option>
+                                            <option value="Troubleshooting">Troubleshooting</option>
+                                            <option value="Upgrade Hardware">Upgrade Hardware</option>
+                                            <option value="Wrong Part">Wrong Part</option>
+                                        </select>
+                                        <div class="label-right">Action Code</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
+                                        <div class="label-right">Other Internal Notes</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
+                                    </div>
+                                    <!-- Overlays -->
+                                    <!-- FSE Update Request Overlay -->
+                                    <div id="overlay" style="display: none;">
+                                        <div id="overlay-content">
+                                            <span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                            <h3>Enter SVO Information</h3>
+                                            <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
+                                            <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
+                                            <button id="proceed-button">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- PM Service Ops (Contract) Overlay -->
+                                    <div id="overlay-pmreq" style="display: none;">
+                                        <div id="overlay-content-pmreq">
+                                            <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                            <h3>Enter Contract Number</h3>
+                                            <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
+                                            <button id="pm-proceed-button">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Parts Order Overlay -->
+                                    <div id="parts-overlay" style="display: none;">
+                                        <div id="parts-overlay-content">
+                                            <span id="parts-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                            <h3>Enter Parts Order Information</h3>
+                                            <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
+                                            <textarea rows="3" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID"></textarea><br />
+                                            <input type="checkbox" id="foc" name="foc">
+                                            <label for="foc">Free of Charge?</label><br />
+                                            <select name="delivery-type" id="delivery-type">
+                                                <option value="">&mdash; Delivery Type &mdash;</option>
+                                                <option value="Overnight">Overnight</option>
+                                                <option value="Ground">Ground</option>
+                                            </select><br />
+                                            <button id="parts-proceed">Continue</button>
+                                        </div>
+                                    </div>
                                     
-                                <!-- Requested Notes (RAFTA) -->
-                                <a class="anchor" name="rafta"></a>
-                                <div class="col-12">
-                                    <hr />
-                                    <h4>Requested Notes (RAFTA)</h4>
-                                    <p><a href="#top">Top</a> | <a href="#remotesupport">Remote Support</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Reported Incident</h5>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="device-software-version" id="device-software-version" placeholder="Device Software Version" />
-                                    <div class="label-left">Device Software Version</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="archive-mode" id="archive-mode">
-                                        <option value="">&mdash; Device Archive Mode &mdash;</option>
-                                        <option value="Native">Native/Archive</option>
-                                        <option value="DICOM">DICOM</option>
-                                    </select>
-                                    <div class="label-right">Archive Mode</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="windows-version" id="windows-version" placeholder="Device Windows Version" />
-                                    <div class="label-left">Device Windows Version</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="review-station-software-version" id="review-station-software-version" placeholder="Review Station Software Version" />
-                                    <div class="label-right">Review Station Version</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="review-station-archive-mode" id="review-station-archive-mode">
-                                        <option value="">&mdash; Review Station Archive Mode &mdash;</option>
-                                        <option value="Native">Native/Archive</option>
-                                        <option value="DICOM">DICOM</option>
-                                    </select>
-                                    <div class="label-left">Review Station Archive Mode</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="review-station-windows-version" id="review-station-windows-version" placeholder="Review Station Windows Version" />
-                                    <div class="label-right">Review Station Windows Version</div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="problem-description" id="problem-description" placeholder="Problem Description (Mirrored From Above)" rows="3" disabled></textarea>
-                                    <div class="label-right">Problem Description</div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="error-message-details" id="error-message-details" placeholder="Specific Error Message(s)" rows="3"></textarea>
-                                    <div class="label-right">Specific Error Message(s)</div>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Actual Problem</h5>
-                                </div>
-                                <div class="col-12">
-                                    <input type="checkbox" id="same-as-reported" name="same-as-reported" />
-                                    <label for="same-as-reported">Same as Reported Problem?</label>
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="actual-problem-description" id="actual-problem-description" placeholder="Problem Description (if different than stated above)" rows="3"></textarea>
-                                    <div class="label-right">Actual Problem Description (if different)</div>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Frequency of the Problem</h5>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="frequency-selector" id="frequency-selector">
-                                        <option value="">&mdash; Frequency of Problem? &mdash;</option>
-                                        <option value="Infrequent">Infrequent</option>
-                                        <option value="Intermittent">Intermittent</option>
-                                        <option value="Reproducible">Reproducible</option>
-                                        <option value="Persistent">Persistent</option>
-                                        <option value="Other">Other (Use Details)</option>
-                                    </select>
-                                    <div class="label-left">Frequency</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="frequency-problem" id="frequency-problem" placeholder="Frequency Details" />
-                                    <div class="label-right">Frequency Details</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <textarea name="problem-started" id="problem-started" placeholder="When Problem Started" rows="3"></textarea>
-                                    <div class="label-left">When Problem Started</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <textarea name="problem-changed" id="problem-changed" placeholder="What Changed?" rows="3"></textarea>
-                                    <div class="label-right">What Changed?</div>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Troubleshooting/Actions Performed</h5>
-                                    <textarea name="troubleshooting-performed" id="troubleshooting-performed" placeholder="Troubleshooting/Actions Performed" rows="6"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Additional Information</h5>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="device-repaired" name="device-repaired">
-                                    <label for="device-repaired">Has the device recently been repaired?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="exchange-date" id="exchange-date" placeholder="If yes, when?" />
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="logs-attached" name="logs-attached">
-                                    <label for="logs-attached">Logs attached to CCT?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="logs-not-attached-reason" id="logs-not-attached-reason" placeholder="If not, why?" />
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="screenshots-attached" name="screenshots-attached">
-                                    <label for="screenshots-attached">Screenshots attached to CCT?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="screenshots-attached-reason" id="screenshots-attached-reason" placeholder="If not, why?" />
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="extended-inoperability-check" name="extended-inoperability-check">
-                                    <label for="extended-inoperability-check">Extended period of inoperability (>1 day)?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="inoperability-duration" id="inoperability-duration" placeholder="If yes, how long?" />
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="power-cycle-resolve" name="power-cycle-resolve">
-                                    <label for="power-cycle-resolve">Power cycle resolve?</label>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="checkbox" id="remote-resolution" name="remote-resolution">
-                                    <label for="remote-resolution">Remote resolution?</label>
-                                </div>
-                                <div class="col-12">
-                                    <a href="#" id="printrafta" class="button primary small">Copy Request Notes</a>
-                                    <hr />
-                                </div>
+                                    <!-- Settings Overlay -->
+                                    <div id="settings-overlay" style="display: none;">
+                                        <div id="settings-overlay-content">
+                                            <span id="settings-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                            <h3 style="text-align: center">User Settings</h3>
+                                            <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
+                                            <label for="alert-on-copy">Alert on Copy?</label><br />
+                                            <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
+                                            <label for="alert-for-xc">Alert for XC?</label><br />
+                                            <input type="checkbox" id="debug-toggle" name="debug-toggle">
+                                            <label for="debug_toggle">Use Debug Mode?</label><br />
+                                            <select name="debug-level" id="debug-level">
+                                                <option value="">&mdash; Debug Level &mdash;</option>
+                                                <option value="1">Level 1 (Overview)</option>
+                                                <option value="2">Level 2 (Troubleshooting)</option>
+                                                <option value="3">Level 3 (Errors)</option>
+                                                <option value="4">Level 4 (Debugging)</option>
+                                                <option value="5">Level 5 (Developer)</option>
+                                            </select><br />
+                                            <div id="setting-save-button-align">
+                                                <button id="settings-save">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <!-- Internal Notes -->
-                                <a class="anchor" name="internal"></a>
-                                <div class="col-12">
-                                    <h4>Internal Notes:</h4>
-                                    <p><a href="#top">Top</a> | <a href="#remotesupport">Remote Support</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#export">Export</a></p>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="request-came-from" id="request-came-from">
-                                        <option value="">&mdash; Request Came From &mdash;</option>
-                                        <option value="Call">Call</option>
-                                        <option value="Email">Email</option>
-                                    </select>
-                                    <div class="label-left">Request Came From</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="request-source" id="request-source">
-                                        <option value="">&mdash; Source &mdash;</option>
-                                        <!--
-                                        <option value="Queue">Queue</option>
-                                        <option value="Email">Email</option>
-                                        <option value="Service Request Form">Service Request Form</option>
-                                        <option value="Voicemail">Voicemail</option>
-                                        -->
-                                        <option value="Other Means">Other</option>
-                                    </select>
-                                    <div class="label-right">Request Source</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="remote-time" id="remote-time" placeholder="Time Spent" />
-                                    <div class="label-left">Time Spent (decimal hours)</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="error-group" id="error-group">
-                                        <option value="">&mdash; Error Group &mdash;</option>
-                                        <option value="Cloud Services">Cloud Services</option>
-                                        <option value="Computer">Computer</option>
-                                        <option value="Computer / Video Accessory">Computer / Video Accessory</option>
-                                        <option value="Consumables">Consumables</option>
-                                        <option value="Customer Sales">Customer Sales</option>
-                                        <option value="Device Accessory">Device Accessory</option>
-                                        <option value="Electronics">Electronics</option>
-                                        <option value="End of Support">End of Support</option>
-                                        <option value="Mechanics">Mechanics</option>
-                                        <option value="Network / Connectivity">Network / Connectivity</option>
-                                        <option value="Optics / Light">Optics / Light</option>
-                                        <option value="Pneumatics">Pneumatics</option>
-                                        <option value="Radiation">Radiation</option>
-                                        <option value="Service">Service</option>
-                                        <option value="Software General">Software General</option>
-                                        <option value="Software Products">Software Products</option>
-                                        <option value="Video / Photo">Video / Photo</option>
-                                    </select>
-                                    <div class="label-right">Error Group</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="error-code" id="error-code" disabled>
-                                        <option value="">&mdash; Error Code &mdash;</option>
-                                    </select>
-                                    <div class="label-left">Error Code</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <select name="action-code" id="action-code">
-                                        <option value="">&mdash; Action Code &mdash;</option>
-                                        <option value="(De-)Installation / Relocation / Move">(De-)Installation / Relocation / Move</option>
-                                        <option value="Adjust / Align">Adjust / Align</option>
-                                        <option value="Another Job Necessary">Another Job Necessary</option>
-                                        <option value="Backup / Restore">Backup / Restore</option>
-                                        <option value="Calibrate">Calibrate</option>
-                                        <option value="Cleaning">Cleaning</option>
-                                        <option value="Configuration">Configuration</option>
-                                        <option value="Data Import / Export / Migrate">Data Import / Export / Migrate</option>
-                                        <option value="Database Cleanup">Database Cleanup</option>
-                                        <option value="End of Support">End of Support</option>
-                                        <option value="Firm-/Software (Re-)Installation">Firm-/Software (Re-)Installation</option>
-                                        <option value="Firm-/Software Update">Firm-/Software Update</option>
-                                        <option value="Maintenance">Maintenance</option>
-                                        <option value="No Defect">No Defect</option>
-                                        <option value="No Repair / Action">No Repair / Action</option>
-                                        <option value="Reboot">Reboot</option>
-                                        <option value="Repair">Repair</option>
-                                        <option value="Replace">Replace</option>
-                                        <option value="Reseat">Reseat</option>
-                                        <option value="Rework">Rework</option>
-                                        <option value="Service">Service</option>
-                                        <option value="Swap System / Device">Swap System / Device</option>
-                                        <option value="Tighten">Tighten</option>
-                                        <option value="Training">Training</option>
-                                        <option value="Troubleshooting">Troubleshooting</option>
-                                        <option value="Upgrade Hardware">Upgrade Hardware</option>
-                                        <option value="Wrong Part">Wrong Part</option>
-                                    </select>
-                                    <div class="label-right">Action Code</div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
-                                    <div class="label-right">Other Internal Notes</div>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
-                                </div>
-                                <!-- Overlays -->
-                                <!-- FSE Update Request Overlay -->
-                                <div id="overlay" style="display: none;">
-                                    <div id="overlay-content">
-                                        <span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                        <h3>Enter SVO Information</h3>
-                                        <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
-                                        <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
-                                        <button id="proceed-button">Continue</button>
+                                    <!-- Export Button -->
+                                    <a class="anchor" name="export"></a>
+                                    <div class="col-12">
+                                        <hr />
+                                        <a href="#" id="exportall" class="button primary small">Export Interaction</a>
+                                        <input id="resetButton" type="reset" class="button primary small">
                                     </div>
                                 </div>
-                                <!-- Parts Order Overlay -->
-                                <div id="parts-overlay" style="display: none;">
-                                    <div id="parts-overlay-content">
-                                        <span id="parts-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                        <h3> Enter Parts Order Information</h3>
-                                        <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
-                                        <textarea rows="3" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID"></textarea><br />
-                                        <input type="checkbox" id="foc" name="foc">
-                                        <label for="foc">Free of Charge?</label><br />
-                                        <select name="delivery-type" id="delivery-type">
-                                            <option value="">&mdash; Delivery Type &mdash;</option>
-                                            <option value="Overnight">Overnight</option>
-                                            <option value="Ground">Ground</option>
-                                        </select><br />
-                                        <button id="parts-proceed">Continue</button>
-                                    </div>
-                                </div>
-
-                                <!-- Export Button -->
-                                <a class="anchor" name="export"></a>
-                                <div class="col-12">
-                                    <hr />
-                                    <a href="#" id="exportall" class="button primary small">Export Interaction</a>
-                                    <input id="resetButton" type="reset" class="button primary small">
-                                </div>
-                            </div>
                         </form>
 
                             
@@ -757,6 +792,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
 
                             <!-- Footer -->
                                 <footer id="footer">
+                                    <p class="settings"><a id="settings" href="#">Settings</a><br />
                                     <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>-sandbox) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
                                 </footer>
 
@@ -791,6 +827,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/form-background.js"></script>
             <script src="assets/js/syncFields.js"></script>
             <script src="assets/js/partsrequest.js"></script>
+            <script src="assets/js/settings.js"></script>
 
     </body>
 </html>

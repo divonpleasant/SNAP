@@ -1,9 +1,10 @@
-const version = "3.0.34";
+const version = "3.0.36";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
 var curr_date = new Date();
 var utc_year = curr_date.getUTCFullYear();
+// Setting Defaults
 var debug_mode = true;
 var debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
 var copy_alert = true;
@@ -33,10 +34,12 @@ XC_ALERT: ${xc_alert}
     `;
 
     export_date = curr_date.toUTCString();
+    simple_date = curr_date.toDateString();
     debug_message = `Debugging
 ---------
 date = ${curr_date}
 export_date = ${export_date}
+simple_date = ${simple_date}
 `;
     console.log(startup_message);
     (debug_mode) ? console.log(debug_message) : '';
@@ -133,6 +136,46 @@ function proc_template_serial (sn) {
 const resetFunc = document.getElementById('resetButton');
 resetFunc.addEventListener('click', () => {
     curr_date = new Date();
-    console.clear();
+    // clear console if using 'coding mode'
+    (debug_mode && debug_level > 4) ? console.clear() : '';
     startUp();
 })
+
+// Cookie Functions
+function setCookie(cName, cVal, exp_days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exp_days * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    var cookie_str = cName + "=" + cVal + ";" + expires + ";path=/";
+    debugmsg(5, 'cookie_str: ' + cookie_str);
+    document.cookie = cookie_str;
+}
+
+function getCookie(cName) {
+    debugmsg(5, 'Checking cookie for ' + cName);
+    let name = cName + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            debugmsg(5, 'c.indexOf(' + name + '): ' + c.indexOf(name));
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+/* function checkCookie() {
+    let user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+} */

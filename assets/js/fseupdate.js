@@ -24,8 +24,8 @@ function proceedToSendEmail(event) {
                "    Local Contact Person: " + localContactPerson + "\n" +
                "    Contact Phone Number: " + phone + "\n" +
                "    Email Address: " + email + "\n" +
-               "    Created On: " + svoDate + "\n" +
                "    SVO #: " + svoTicket + "\n\n" +
+               "    Created On: " + svoDate + "\n" +
                "Thank you for your prompt attention to this matter.\n\n" +
                "Regards,";
 
