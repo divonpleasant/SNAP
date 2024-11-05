@@ -66,9 +66,11 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Device Software Version", value: document.getElementById('device-software-version').value },
         { label: "Archive Mode", value: document.getElementById('archive-mode').value },
         { label: "Windows Version", value: document.getElementById('windows-version').value },
+        /* Review Station Fields */
         { label: "Review Station Software Version", value: document.getElementById('review-station-software-version').value },
         { label: "Review Station Archive Mode", value: document.getElementById('review-station-archive-mode').value },
         { label: "Review Station Windows Version", value: document.getElementById('review-station-windows-version').value },
+        /* End Review Station Fields */
         { label: "Problem Description", value: document.getElementById('problem-description').value },
         { label: "Specific Error Message", value: document.getElementById('error-message-details').value },
         { label: "Actual Problem if different than Reported Problem", value: document.getElementById('actual-problem-description').value },
@@ -94,6 +96,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Devices DHCP or Static IP", value: document.getElementById('device-ip').value },
         { label: "Review Station Hostname", value: document.getElementById('review-station-hostname').value },
         { label: "Review Station DHCP or Static IP", value: document.getElementById('review-station-ip').value },
+        /* FORUM Fields */
         { label: "Forum Software Version", value: document.getElementById('forum-software-version').value },
         { label: "Forum Windows Version", value: document.getElementById('forum-windows-version').value },
         { label: "Forum Server Hostname", value: document.getElementById('forum-server-hostname').value },
@@ -103,7 +106,9 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Dicom Test Pass?", value: document.getElementById('dicom-tests-pass').checked ? "Yes" : "No" },
         { label: "Any Changes to Environment?", value: document.getElementById('changes-to-environment').checked ? "Yes" : "No" },
         { label: "Affected Devices", value: document.getElementById('affected-devices').value },
-        { label: "Architecture", value: document.getElementById('architecture').value }
+        { label: "Architecture", value: document.getElementById('architecture').value },
+        /* End FORUM Fields */
+        { label: "Network Configuration", value: document.getElementById('network-configuration').value }
     ];
 
 	/* Process CCT Description */
@@ -247,6 +252,7 @@ Old Archive Label: ${document.getElementById('old-archive-label').value}
 Old Archive Description: ${document.getElementById('old-archive-description').value}
 Old Archive Path: ${document.getElementById('old-archive-path').value}
 Old Archive Mapping: ${document.getElementById('old-archive-mapping').value}
+Network Configuration: ${document.getElementById('network-configuration').value}
 
 FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:
 Forum Software Version: ${document.getElementById('forum-software-version').value}

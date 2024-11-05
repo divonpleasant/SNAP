@@ -1,4 +1,4 @@
-const version = "3.0.36";
+const version = "3.0.37";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -136,7 +136,8 @@ function proc_template_serial (sn) {
 const resetFunc = document.getElementById('resetButton');
 resetFunc.addEventListener('click', () => {
     curr_date = new Date();
-    // clear console if using 'coding mode'
+    hideAllDynamicFields();
+    // clear console if using 'Developer' debug level
     (debug_mode && debug_level > 4) ? console.clear() : '';
     startUp();
 })
