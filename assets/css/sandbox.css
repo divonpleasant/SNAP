@@ -2481,3 +2481,54 @@ button,
     right: 15px;
     font-size: 34px;
 }
+
+/* Remove from main.css */
+.test-hidden {
+    display: none;
+}
+
+.test-show {
+    display: flex;
+}
+
+/* Dynamic Fields Classes */
+.dynamic-hidden {
+    display: none;
+}
+.oct-field {
+}
+.cirrus-photo-field {
+}
+.clarus-field {
+}
+.hfa3-field {
+}
+.iolmaster-field {
+}
+.visucam-field {
+}
+.visucam-pro-field {
+}
+.atlas-500-field {
+}
+.atlas-9000-field {
+}
+.stratus-field {
+}
+.forum-field {
+}
+.review-station-field {
+}
+.remote-support-field {
+}
+.archive-field {
+}
+
+#topnav {
+    padding: 15px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background: #f5f6f7;
+    z-index: 9999;
+}

@@ -1,4 +1,4 @@
-const version = "3.0.36";
+const version = "3.0.37";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -6,8 +6,8 @@ var curr_date = new Date();
 var utc_year = curr_date.getUTCFullYear();
 // Setting Defaults
 var debug_mode = true;
-var debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
-var copy_alert = true;
+var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
+var copy_alert = false;
 var xc_alert = true;
 
 function startUp() {
@@ -136,7 +136,8 @@ function proc_template_serial (sn) {
 const resetFunc = document.getElementById('resetButton');
 resetFunc.addEventListener('click', () => {
     curr_date = new Date();
-    // clear console if using 'coding mode'
+    hideAllDynamicFields();
+    // clear console if using 'Developer' debug level
     (debug_mode && debug_level > 4) ? console.clear() : '';
     startUp();
 })
