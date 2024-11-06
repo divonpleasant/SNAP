@@ -19,10 +19,10 @@
                         <a name="top"></a>
                         <div class="inner">
                             <!-- Header -->
-                                <header id="header">
-                                    <a href="#.html" class="logo"><strong>S.N.A.P.</strong> The Script and Note Automation Process</a> [Sandbox]
-                                </header>
-                                <br />
+                            <header id="header">
+                                <a href="#.html" class="logo"><strong>S.N.A.P.</strong> The Script and Note Automation Process</a> [Sandbox]
+                            </header>
+                            <br />
 
                             <!-- Content -->
                             <form method="post" action="#">
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-6 col-12-xsmall tooltip">
                                         <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
-                                        <span class="tooltiptext">If address shows CZMI, <br />ask Customer where and <br />when they purchased the instrument</span>
+                                        <span class="tooltiptext">If address shows CZMI, <br />ask customer where and <br />when they purchased the instrument</span>
                                         <div class="label-left">Instrument/Shipping Address</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
@@ -167,7 +167,6 @@
                                     <a class="anchor" name="checklist"></a>
                                     <div class="col-12">
                                         <h5>Technical Support Call Checklist</h5>
-                                        <!-- <p><a href="#top">Top</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p> -->
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="current-software-version" name="current-software-version">
@@ -205,9 +204,9 @@
                                         <input type="text" name="review-station-ip" id="review-station-ip" placeholder="Review Station DHCP or Static IP" />
                                         <div class="label-right">Review Station IP Address</div>
                                     </div>
+
                                     <!-- INSTRUMENT FORMS -->
                                     <!-- OCT Instrument-Specific -->
-
                                     <div class="col-12 oct-field">
                                         <h5>Cirrus HD-OCT Checklist</h5>
                                     </div>
@@ -395,12 +394,12 @@
                                         <div class="label-right">Architecture</div>
                                     </div>
                                     <!-- END INSTRUMENT FORMS -->
+
                                     <!-- Requested Notes (RAFTA) -->
                                     <a class="anchor" name="rafta"></a>
                                     <div class="col-12">
                                         <hr />
                                         <h4>Requested Notes (RAFTA)</h4>
-                                        <!-- <p><a href="#top">Top</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p> -->
                                     </div>
                                     <div class="col-12">
                                         <h5>Reported Incident</h5>
@@ -528,7 +527,6 @@
                                     <a class="anchor" name="internal"></a>
                                     <div class="col-12">
                                         <h4>Internal Notes:</h4>
-                                        <!-- <p><a href="#top">Top</a> | <a href="#checklist">Technical Support Checklist</a> | <a href="#rafta">Request Notes</a> | <a href="#internal">Internal Notes</a> | <a href="#export">Export</a></p> -->
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <select name="request-came-from" id="request-came-from">
@@ -541,12 +539,6 @@
                                     <div class="col-6 col-12-xsmall">
                                         <select name="request-source" id="request-source">
                                             <option value="">&mdash; Source &mdash;</option>
-                                            <!--
-            <option value="Queue">Queue</option>
-            <option value="Email">Email</option>
-            <option value="Service Request Form">Service Request Form</option>
-            <option value="Voicemail">Voicemail</option>
-            -->
                                             <option value="Other Means">Other</option>
                                         </select>
                                         <div class="label-right">Request Source</div>
@@ -624,6 +616,7 @@
                                     <div class="col-6 col-12-xsmall">
                                         <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
                                     </div>
+
                                     <!-- Overlays -->
                                     <!-- FSE Update Request Overlay -->
                                     <div id="overlay" style="display: none;">
@@ -699,13 +692,10 @@
                                 </div>
                         </form>
 
-                            
-                            
-
                         </div>
                     </div>
 
-                <!-- Sidebar -->
+                    <!-- Sidebar -->
                     <div id="sidebar">
                         <div class="inner">
 
@@ -794,8 +784,9 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
 
                             <!-- Footer -->
                                 <footer id="footer">
-                                    <p class="settings"><a id="settings" href="#">Settings</a><br />
+                                    <p class="settings"><i class="fa-solid fa-gear"></i> <a id="settings" href="#">Settings</a><br />
                                     <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>-sandbox) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
+                                    <div id="zeiss-logo"><img src="images/zeiss-logo-rgb.png" /></div>
                                 </footer>
 
                         </div>

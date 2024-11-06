@@ -1,4 +1,4 @@
-const version = "3.0.37";
+const version = "3.0.38";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -9,6 +9,7 @@ var debug_mode = true;
 var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
 var copy_alert = false;
 var xc_alert = true;
+var con_clear = true;
 
 function startUp() {
     // Message formatting
@@ -26,10 +27,11 @@ Please see ${project_home} for complete documentation, bug reporting, and code c
 
 Settings
 --------
-DEBUG_MODE: ${debug_mode}
-DEBUG_LEVEL: ${debug_level}
-COPY_ALERT: ${copy_alert}
-XC_ALERT: ${xc_alert}
+Debug Mode: ${debug_mode}
+Debug Level: ${debug_level}
+Alert on Copy: ${copy_alert}
+Alert for Cross-Charge (XC): ${xc_alert}
+Clear Console on Reset: ${con_clear}
 
     `;
 
@@ -138,7 +140,7 @@ resetFunc.addEventListener('click', () => {
     curr_date = new Date();
     hideAllDynamicFields();
     // clear console if using 'Developer' debug level
-    (debug_mode && debug_level > 4) ? console.clear() : '';
+    (con_clear) ? console.clear() : '';
     startUp();
 })
 
