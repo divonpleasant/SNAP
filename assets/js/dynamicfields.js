@@ -30,6 +30,17 @@ function fetchAndHideDynamicFields (field_class) {
     });
 }
 
+function fetchAndAdjustSerialTooltip (sample_text) {
+    debugmsg(4, 'sample_text: ' + sample_text);
+    var tooltip_field = document.getElementById('serial-tooltip');
+    console.log(tooltip_field);
+    tooltip_field.innerHTML = sample_text;
+}
+
+function clearSerialTooltip () {
+    fetchAndAdjustSerialTooltip('');
+}
+
 function hideAllDynamicFields () {
     var instrument_elements = ['oct', 'cirrus-photo', 'clarus', 'hfa3', 'iolmaster', 'visucam', 'visucam-pro', 'atlas-500', 'atlas-9000', 'stratus', 'forum', 'review-station', 'remote-support'];
     for (var i = 0; i < instrument_elements.length; i++) {
@@ -56,6 +67,7 @@ var instrument_select = document.getElementById("instrument-model");
 debugmsg(5, 'Starting selected element: ' + instrument_select.selectedIndex);
 instrument_select.addEventListener("change", function() {
     hideAllDynamicFields();
+    clearSerialTooltip();
     // reset checkboxes before contextual changes
     document.querySelector('#forum_checkbox').style.display = 'block';
     // change form field visibility based on selection
@@ -66,6 +78,14 @@ instrument_select.addEventListener("change", function() {
             // Cirrus HD-OCT
             fetchAndRevealDynamicFields('oct');
             fetchAndHideDynamicFields('archive');
+            var tt_text = "Format: &lt;Model&gt;-&lt;Sequence Number&gt;<br />" +
+                          "Models: 400|4000|500|5000|6000<br />" +
+                          "Sequence Number: 4+ Digits<br />" +
+                          "Example: 5000-12345<br />" +
+                          "In Software: Help > About<br />" +
+                          "On Device: Behind connector panel on baseplate";
+            fetchAndAdjustSerialTooltip(tt_text);
+            
 			break;
 		case 2:
             // Cirrus photo
