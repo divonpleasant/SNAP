@@ -1032,6 +1032,9 @@ header.major > :last-child {
 header.main > :last-child {
   margin: 0 0 1em 0; }
 
+header #header-tag {
+  text-align: right; }
+
 /* Form */
 form {
   margin: 0 0 2em 0; }

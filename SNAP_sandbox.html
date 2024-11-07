@@ -1,12 +1,15 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <!-- DO NOT CHANGE THIS SECTION OR COPY TO/FROM SNAP.html -->
         <title>SNAP [Sandbox]</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <link rel="stylesheet" href="assets/css/sandbox.css" />
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
+        <script src="assets/js/sandbox.js"></script>
+        <!-- Everything below can be copied back and forth with SNAP.html -->
     </head>
     <body class="is-preload">
         <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#export">Export</a></span></div>
@@ -20,7 +23,7 @@
                         <div class="inner">
                             <!-- Header -->
                             <header id="header">
-                                <a href="#.html" class="logo"><strong>S.N.A.P.</strong> The Script and Note Automation Process</a> [Sandbox]
+                                <a href="#.html" class="logo"><strong>S.N.A.P.</strong> The Script and Note Automation Process</a><span id="header-tag"></span>
                             </header>
                             <br />
 
@@ -709,45 +712,45 @@
                                         <li>
                                             <span class="opener">Recertification</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-file" style="color: #9fa3a6;"></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-file" style="color: #778592;"></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">PROAIM</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Preventative Maintenance</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="proaimpmemailgenLink">PROAIM PM Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink">PROAIM PM Request</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Field Service Interactions</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #9fa3a6;"></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #9fa3a6;"></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -770,8 +773,8 @@
                                         <li>
                                             <span class="opener">Licensing</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #9fa3a6;"></span></i><a href="https://activation.zeiss.com/med/Instruments" target="_blank">Licensing Portal</a></li>
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #9fa3a6;"></span></i><a href="https://swl.zeiss.com/" target="_blank">License Management</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://activation.zeiss.com/med/Instruments" target="_blank">Licensing Portal</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://swl.zeiss.com/" target="_blank">License Management</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="https://mira.med.zeiss.com/" target="_blank">MIRA Reference Portal</a></li>
@@ -784,8 +787,8 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
 
                             <!-- Footer -->
                                 <footer id="footer">
-                                    <p class="settings"><i class="fa-solid fa-gear"></i> <a id="settings" href="#">Settings</a><br />
-                                    <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>-sandbox) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
+                                    <p class="settings"><i class="fa-solid fa-gear" style="color: #778592"></i> <a id="settings" href="#">Settings</a><br />
+                                    <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
                                     <div id="zeiss-logo"><img src="images/zeiss-logo-rgb.png" /></div>
                                 </footer>
 

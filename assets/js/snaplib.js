@@ -10,13 +10,21 @@ var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug 
 var copy_alert = false;
 var xc_alert = true;
 var con_clear = true;
+var tag = '';
+// sb (sandbox) constant should only be defined by the sandbox index file
+if (typeof sb !== 'undefined') {
+    var sandbox = sb;
+    var tag = ' - Sandbox';
+} else {
+    var sandbox = false;
+}
 
 function startUp() {
     // Message formatting
-    underline = "=".repeat(version.length + 5);
+    underline = "=".repeat(version.length + tag.length + 5);
 
     // Startup Message
-    startup_message = `SNAP ${version}
+    startup_message = `SNAP ${version}${tag}
 ${underline}
 Script and Note Automation Process
 Copyright (c) Zeiss Meditec ${utc_year}
@@ -52,6 +60,10 @@ startUp();
 document.getElementById("current-version").innerHTML = version;
 document.getElementById("copyright-year").innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
+if (sandbox) {
+    document.getElementById('header-tag').innerHTML = '[Sandbox]';
+    document.getElementById("current-version").innerHTML = version + '-sandbox';
+}
 
 // LIB FUNCTIONS
 // Output debugging messages based on debug_mode and debug_level settings
