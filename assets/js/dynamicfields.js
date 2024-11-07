@@ -67,7 +67,7 @@ var instrument_select = document.getElementById("instrument-model");
 debugmsg(5, 'Starting selected element: ' + instrument_select.selectedIndex);
 instrument_select.addEventListener("change", function() {
     hideAllDynamicFields();
-    clearSerialTooltip();
+    (sandbox) ? clearSerialTooltip() : '';
     // reset checkboxes before contextual changes
     document.querySelector('#forum_checkbox').style.display = 'block';
     // change form field visibility based on selection
@@ -78,13 +78,13 @@ instrument_select.addEventListener("change", function() {
             // Cirrus HD-OCT
             fetchAndRevealDynamicFields('oct');
             fetchAndHideDynamicFields('archive');
-            var tt_text = "Format: &lt;Model&gt;-&lt;Sequence Number&gt;<br />" +
+            var tt_text = "Format: &lt;Model&gt;&ndash;&lt;Sequence Number&gt;<br />" +
                           "Models: 400|4000|500|5000|6000<br />" +
                           "Sequence Number: 4+ Digits<br />" +
-                          "Example: 5000-12345<br />" +
+                          "<ul><li>Example: 5000&dash;12345</li></ul>" +
                           "In Software: Help > About<br />" +
                           "On Device: Behind connector panel on baseplate";
-            fetchAndAdjustSerialTooltip(tt_text);
+            (sandbox) ? fetchAndAdjustSerialTooltip(tt_text) : '';
             
 			break;
 		case 2:
