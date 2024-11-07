@@ -2358,7 +2358,30 @@ button,
   transition-delay: 0s;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .sn-tooltiptext {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+.tooltip .sn-tooltiptext {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: #0f2db3;
+  color: #ffffff;
+  text-align: left;
+  border-radius: 0.25em;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+.tooltip:hover .sn-tooltiptext {
   visibility: visible;
   transition-delay: 0.3s;
 }
@@ -2539,6 +2562,7 @@ button,
 }
 
 #topnav {
+    font-size: 0.8em;
     padding: 15px;
     position: fixed;
     top: 0px;
