@@ -30,6 +30,11 @@ document.getElementById('printintnotes').addEventListener('click', function(even
 	}
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
+    
+    /* Process comm preferences */
+    var comm_preference = outputCommunicationPref();
+    /* Process billing POC */
+    var billing_str = generateBillingContact();
 
     var fields = [
         { label: "Time Spent", value: document.getElementById('remote-time').value },
@@ -52,6 +57,9 @@ Contact Method: ${document.getElementById('request-source').value}
 Point of Contact: ${document.getElementById('local-contact-person').value}
 Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
+${comm_preference}
+
+${billing_str}
 
 Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
@@ -69,7 +77,8 @@ ${document.getElementById('other-internal-notes').value}`;
     var nonEmptyData = data.split('\n').filter(line => !line.match(/: $/)).join('\n');
     debugmsg(4, "NON-EMPTY DATA\n=========================\n" + nonEmptyData);
     var lineClearData = nonEmptyData.replace(/\n{3,}/g, '\n\n');
-    var processedData = lineClearData.replace(/\n{1,}$/, '\n');
+    var singleLineData = lineClearData.replace(/\n{1,}$/, '\n');
+    var processedData = singleLineData.replace(/\n$/, '');
 	debugmsg(5, "PROCESSED DATA\n========================\n" + processedData);
 
     // Copy data to clipboard

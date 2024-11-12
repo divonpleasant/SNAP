@@ -152,6 +152,11 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	}
 	var c_space = process_disk_space('c-drive-free');
 	var e_space = process_disk_space('e-drive-free');
+    
+    /* Process comm preferences */
+    var comm_preference = outputCommunicationPref();
+    /* Process billing POC */
+    var billing_str = generateBillingContact();
 
     var data = `Date: ${export_date}
 Instrument: ${document.getElementById('instrument-model').value}
@@ -225,6 +230,9 @@ Contact Method: ${document.getElementById('request-source').value}
 Point of Contact: ${document.getElementById('local-contact-person').value}
 Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
+${comm_preference}
+
+${billing_str}
 
 ${document.getElementById('other-internal-notes').value}
 

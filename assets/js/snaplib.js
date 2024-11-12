@@ -1,4 +1,4 @@
-const version = "3.0.39";
+const version = "3.0.40";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -66,6 +66,7 @@ if (sandbox) {
 }
 
 // LIB FUNCTIONS
+
 // Output debugging messages based on debug_mode and debug_level settings
 /* Usage:
     Levels are intended to help define various developer-specific
@@ -147,6 +148,7 @@ function proc_template_serial (sn) {
     return serials_data;
 }
 
+// Handle Reset button
 const resetFunc = document.getElementById('resetButton');
 resetFunc.addEventListener('click', () => {
     curr_date = new Date();
@@ -155,6 +157,79 @@ resetFunc.addEventListener('click', () => {
     (con_clear) ? console.clear() : '';
     startUp();
 })
+
+// Determine POC communication preferences
+function outputCommunicationPref() {
+    // Sandbox only for 3.0.40
+    if (!sandbox) {
+        return '';
+    } else {
+        var phone_num = document.getElementById('phone');
+        debugmsg(5, 'phone_num.value: ' + phone_num.value);
+        var ph_exist = (phone_num.value != '') ? true : false;
+        var email_adr = document.getElementById('email');
+        debugmsg(5, 'email_adr.value: ' + email_adr.value);
+        var em_exist = (email_adr.value != '') ? true : false;
+        debugmsg(5, 'ph_exist: ' + ph_exist);
+        debugmsg(5, 'em_exist: ' + em_exist);
+        var phone_pref = document.getElementById('prefer-phone').checked;
+        var email_pref = document.getElementById('prefer-email').checked;
+        debugmsg(5, 'phone_pref: ' + phone_pref);
+        debugmsg(5, 'email_pref: ' + email_pref);
+        if (ph_exist && em_exist) {
+            var cust_pref_str = 'Customer has no communication preference';
+            if (phone_pref && !email_pref) {
+                cust_pref_str = 'Customer prefers phone communication';
+            } else if (!phone_pref && email_pref) {
+                cust_pref_str = 'Customer prefers email communication';
+            }
+            debugmsg(5, 'cust_pref_str: ' + cust_pref_str);
+            return cust_pref_str;
+        } else {
+            return '';
+        }
+    }
+}
+
+// Process Billing Contact
+function createBillingString(bName, bPhone, bEmail) {
+    bill_str = "-- Billing Contact --\n" +
+               'Name: ' + bName + "\n" +
+               'Phone: ' + bPhone + "\n" +
+               'Email: ' + bEmail + "\n";
+    return bill_str;
+}
+function generateBillingContact() {
+    var billing_poc_name = document.getElementById('local-contact-person').value;
+    var billing_phone = document.getElementById('phone').value;
+    var billing_email = document.getElementById('email').value;
+    if (document.getElementById('billing-contact').checked) {
+        billing_poc_name = document.getElementById('billing-contact-person').value;
+        billing_phone = document.getElementById('billing-phone').value;
+        billing_email = document.getElementById('billing-email').value;
+    }
+    var bill_type = document.getElementById('billing-type');
+    var output = '';
+    debugmsg(5, 'bill_type.options[bill_type.selectedIndex].value: ' + bill_type.options[bill_type.selectedIndex].value);
+    switch (bill_type.options[bill_type.selectedIndex].value) {
+        case 'W':
+            debugmsg(4, "Billing type is 'Warranty'; no billing info output");
+            break;
+        case 'CNTRCT':
+            if (document.getElementById('billing-contact').checked) {
+                debugmsg(4, "Billing type is 'Contract' and billing contact is specified; including billing info in Internal Notes");
+                output = createBillingString(billing_poc_name, billing_phone, billing_email);
+            } else {
+                debugmsg(4, "Billing type is 'Contract' but no billing contact is specified; no billing info output");
+            }
+            break;
+        default:
+            debugmsg(4, "Billing type is either 'Billable' or 'Cross-Charge'; including billing info in Internal Notes");
+            output = createBillingString(billing_poc_name, billing_phone, billing_email);
+            break;
+    }
+    return output;
+}
 
 // Cookie Functions
 function setCookie(cName, cVal, exp_days) {
