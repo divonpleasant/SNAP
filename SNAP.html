@@ -9,7 +9,7 @@
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
     </head>
     <body class="is-preload">
-        <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#export">Export</a></span></div>
+        <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#export">Export/Reset</a></span></div>
 
         <!-- Wrapper -->
             <div id="wrapper">
@@ -45,25 +45,30 @@
                                         </select>
                                         <div class="label-left">Instrument</div>
                                     </div>
-                                    <div class="col-6 col-12-xsmall">
+                                    <div class="col-6 col-12-xsmall tooltip">
                                         <input type="text" name="serial" id="serial" placeholder="Serial Number" />
+                                        <span id="serial-tooltip" class="sn-tooltiptext">Select an Instrument to see serial number tips</span>
                                         <div class="label-right">Serial Number</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Contact Person (Point of Contact) Name" />
+                                        <input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Point of Contact Name" />
                                         <div class="label-left">Point of Contact (POC) Name</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="phone" id="phone" placeholder="Phone Number" />
-                                        <div class="label-right">POC Phone Number</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="email" id="email" placeholder="Email" />
-                                        <div class="label-left">POC Email</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="account" id="account" placeholder="Account Name" />
                                         <div class="label-right">Account Name</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="phone" id="phone" placeholder="Phone Number" style="float: left; width: 70%; margin-right: 20px;" />
+                                        <input type="checkbox" name="prefer-phone" id="prefer-phone" style="float: left; width: 30%; align: right;" />
+                                        <label for="prefer-phone" style="font-size: 0.8em;">Preferred</label>
+                                        <div class="label-left">POC Phone Number</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="email" id="email" placeholder="Email" style="float: left; width: 70%; margin-right: 20px;" />
+                                        <input type="checkbox" name="prefer-email" id="prefer-email" style="float: left; width: 30%; align: right;" />
+                                        <label for="prefer-email" style="font-size: 0.8em;">Preferred</label>
+                                        <div class="label-right">POC Email</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall tooltip">
                                         <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
@@ -112,8 +117,26 @@
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="remote-support" name="remote-support">
-                                        <label for="remote-support">Was Remote Support Provided?</label>
+                                        <label for="remote-support">Remote Support?</label>
                                     </div>
+                                    <div class="col-6 col-12-xsmall billing-field">
+                                        <input type="checkbox" id="billing-contact" name="billing-contact">
+                                        <label for="billing-contact">Include Billing Contact?</label>
+                                        <a class="anchor" name="billingcontactinfo"></a>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall billing-contact-field">
+                                        <input type="text" name="billing-contact-person" id="billing-contact-person" placeholder="Billing Contact Name" />
+                                        <div class="label-left">Billing Contact Name</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall billing-contact-field">
+                                        <input type="text" name="billing-phone" id="billing-phone" placeholder="Billing Contact Phone Number" />
+                                        <div class="label-right">Billing Contact Phone Number</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall billing-contact-field">
+                                        <input type="text" name="billing-email" id="billing-email" placeholder="Billing Contact Email" />
+                                        <div class="label-left">Billing Contact Email</div>
+                                    </div>
+
                                     <div class="col-12">
                                         <hr />
                                     </div>
@@ -177,14 +200,6 @@
                                         <div class="label-right">Outdated Software Reason</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <input type="checkbox" id="verified-normal-functionality" name="verified-normal-functionality">
-                                        <label for="verified-normal-functionality">Verified normal device functionality (if phone fixed)?</label>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="checkbox" id="verified-network-connectivity" name="verified-network-connectivity">
-                                        <label for="verified-network-connectivity">Verified connectivity to office network/shares (if applicable)?</label>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
                                         <input type="text" name="device-hostname" id="device-hostname" placeholder="Device Hostname" />
                                         <div class="label-left">Device Hostname</div>
                                     </div>
@@ -239,8 +254,8 @@
                                     <div class="col-6 col-12-xsmall oct-field">
                                         <select name="archive-mode" id="archive-mode">
                                             <option value="">&mdash; Device Archive Mode &mdash;</option>
-                                            <option value="Native">Native/Archive</option>
-                                            <option value="DICOM">DICOM</option>
+                                            <option value="Native">Archive / Instrument</option>
+                                            <option value="DICOM">DICOM / Native</option>
                                         </select>
                                         <div class="label-left">Archive Mode</div>
                                     </div>
@@ -394,12 +409,20 @@
                                         <div class="label-right">Architecture</div>
                                     </div>
                                     <!-- END INSTRUMENT FORMS -->
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="verified-normal-functionality" name="verified-normal-functionality">
+                                        <label for="verified-normal-functionality">Verified normal device functionality (if phone fixed)?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="checkbox" id="verified-network-connectivity" name="verified-network-connectivity">
+                                        <label for="verified-network-connectivity">Verified connectivity to office network/shares (if applicable)?</label>
+                                    </div>
 
-                                    <!-- Requested Notes (RAFTA) -->
+                                    <!-- Request Notes (RAFTA) -->
                                     <a class="anchor" name="rafta"></a>
                                     <div class="col-12">
                                         <hr />
-                                        <h4>Requested Notes (RAFTA)</h4>
+                                        <h4>Request Notes (RAFTA)</h4>
                                     </div>
                                     <div class="col-12">
                                         <h5>Reported Incident</h5>
@@ -421,8 +444,8 @@
                                     <div class="col-6 col-12-xsmall review-station-field">
                                         <select name="review-station-archive-mode" id="review-station-archive-mode">
                                             <option value="">&mdash; Review Station Archive Mode &mdash;</option>
-                                            <option value="Native">Native/Archive</option>
-                                            <option value="DICOM">DICOM</option>
+                                            <option value="Native">Archive / Instrument</option>
+                                            <option value="DICOM">DICOM / Native</option>
                                         </select>
                                         <div class="label-right">Review Station Archive Mode</div>
                                     </div>
@@ -667,7 +690,7 @@
                                             <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
                                             <label for="alert-for-xc">Alert for XC?</label><br />
                                             <input type="checkbox" id="debug-toggle" name="debug-toggle">
-                                            <label for="debug_toggle">Use Debug Mode?</label><br />
+                                            <label for="debug-toggle">Use Debug Mode?</label><br />
                                             <select name="debug-level" id="debug-level">
                                                 <option value="">&mdash; Debug Level &mdash;</option>
                                                 <option value="1">Level 1 (Overview)</option>
@@ -784,7 +807,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
 
                             <!-- Footer -->
                                 <footer id="footer">
-                                    <!-- <p class="settings"><i class="fa-solid fa-gear"></i> <a id="settings" href="#">Settings</a><br /> -->
+                                    <!-- <p class="settings"><i class="fa-solid fa-gear" style="color: #778592"></i> <a id="settings" href="#">Settings</a><br /> -->
                                     <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
                                     <div id="zeiss-logo"><img src="images/zeiss-logo-rgb.png" /></div>
                                 </footer>

@@ -1,21 +1,4 @@
-function handleBilling() {
-    debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
-    switch (this.options[this.selectedIndex].value) {
-        case 'XC':
-            var consoleAlertText = (xc_alert) ? "Sending " : "Not sending (due to settings) ";
-            var alertText = 'Note: Use XC code ONLY IF Remote Fixed AND Billable!';
-            console.log(consoleAlertText + 'alert: `' + alertText + '`');
-            (xc_alert) ? alert(alertText) : '';
-            document.getElementById('service-contract').setAttribute('disabled', true);
-            break;
-        case 'CNTRCT':
-            document.getElementById('service-contract').removeAttribute('disabled');
-            break;
-        default:
-            document.getElementById('service-contract').setAttribute('disabled', true);
-            break;
-    }
-}
+
 
 function handleErrorGroup() {
     var ec_list = document.getElementById('error-code');
@@ -408,6 +391,5 @@ function handleRequestOrigin() {
     }
 }
 
-document.getElementById('billing-type').addEventListener('change', handleBilling);
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
