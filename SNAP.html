@@ -226,7 +226,7 @@
                                         <h5>Cirrus HD-OCT Checklist</h5>
                                     </div>
                                     <div class="col-12 oct-field">
-                                        <select class="instrument_fields" name="work-station-status" id="work-station-status">
+                                        <select class="instrument_fields" name="oct-work-station-status" id="oct-work-station-status">
                                             <option value="">&mdash; Cirrus HD-OCT/Review Workstation Status &mdash;</option>
                                             <option class="green-status" value="Status OK (Color: Green)">Status OK (Color: Green)</option>
                                             <option class="green-status" value="DICOM Server Status: Connected (Color: Green)">DICOM Server Status: Connected (Color: Green)</option>
@@ -252,7 +252,7 @@
                                         <div class="label-right">OCT/Review Station Status</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field">
-                                        <select name="archive-mode" id="archive-mode">
+                                        <select name="oct-archive-mode" id="oct-archive-mode">
                                             <option value="">&mdash; Device Archive Mode &mdash;</option>
                                             <option value="Native">Archive / Instrument / Native</option>
                                             <option value="DICOM">DICOM / Local</option>
@@ -262,51 +262,51 @@
                                     <div class="col-6 col-12-xsmall oct-field">
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field">
-                                        <input style="float: left; width: 30%;" type="text" name="c-drive-free" id="c-drive-free" placeholder="OS (C:) Free" /> <select style="float: left; width: 20%;" name="c-drive-free-size" id="c-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="c-drive-total" id="c-drive-total" placeholder="OS (C:) Total" /> <select style="float: left; width: 20%;" name="c-drive-total-size" id="c-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
+                                        <input style="float: left; width: 30%;" type="text" name="oct-c-drive-free" id="oct-c-drive-free" placeholder="OS (C:) Free" /> <select style="float: left; width: 20%;" name="oct-c-drive-free-size" id="oct-c-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="oct-c-drive-total" id="oct-c-drive-total" placeholder="OS (C:) Total" /> <select style="float: left; width: 20%;" name="oct-c-drive-total-size" id="oct-c-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
                                         <div class="label-left">OS (C:) Disk Space</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field">
-                                        <input style="float: left; width: 30%;" type="text" name="e-drive-free" id="e-drive-free" placeholder="Data (E:) Free" /> <select style="float: left; width: 20%;" name="e-drive-free-size" id="e-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="e-drive-total" id="e-drive-total" placeholder="Data (E:) Total" /> <select style="float: left; width: 20%;" name="e-drive-total-size" id="e-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
+                                        <input style="float: left; width: 30%;" type="text" name="oct-e-drive-free" id="oct-e-drive-free" placeholder="Data (E:) Free" /> <select style="float: left; width: 20%;" name="oct-e-drive-free-size" id="oct-e-drive-free-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select><input style="float: left; width: 30%;" type="text" name="oct-e-drive-total" id="oct-e-drive-total" placeholder="Data (E:) Total" /> <select style="float: left; width: 20%;" name="oct-e-drive-total-size" id="oct-e-drive-total-size"><option value="">----</option><option value="mb">MB</option><option value="gb">GB</option><option value="tb">TB</option><option value="pb">PB</option></select>
                                         <div class="label-right">Data (E:) Disk Space</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="current-archive-label" id="current-archive-label" placeholder="Current Archive Label" />
+                                        <input type="text" name="oct-current-archive-label" id="oct-current-archive-label" placeholder="Current Archive Label" />
                                         <div class="label-left">Current Archive Label</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input class="" type="text" name="current-archive-description" id="current-archive-description" placeholder="Current Archive Description" />
+                                        <input class="" type="text" name="oct-current-archive-description" id="oct-current-archive-description" placeholder="Current Archive Description" />
                                         <div class="label-right">Current Archive Description</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="current-archive-path" id="current-archive-path" placeholder="Current Archive Path" />
+                                        <input type="text" name="oct-current-archive-path" id="oct-current-archive-path" placeholder="Current Archive Path" />
                                         <div class="label-left">Current Archive Path</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="current-archive-mapping" id="current-archive-mapping" placeholder="Current Archive Drive Mapping" />
+                                        <input type="text" name="oct-current-archive-mapping" id="oct-current-archive-mapping" placeholder="Current Archive Drive Mapping" />
                                         <div class="label-right">Current Archive Drive Mapping</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="current-archive-server-hostname" id="current-archive-server-hostname" placeholder="Current Archive Server Hostname" />
+                                        <input type="text" name="oct-current-archive-server-hostname" id="oct-current-archive-server-hostname" placeholder="Current Archive Server Hostname" />
                                         <div class="label-left">Current Archive Server Hostname</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="current-archive-server-ip" id="current-archive-server-ip" placeholder="Current Archive Server IP Address" />
+                                        <input type="text" name="oct-current-archive-server-ip" id="oct-current-archive-server-ip" placeholder="Current Archive Server IP Address" />
                                         <div class="label-right">Current Archive Server IP Address</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="old-archive-label" id="old-archive-label" placeholder="Old Archive Label" />
+                                        <input type="text" name="oct-old-archive-label" id="oct-old-archive-label" placeholder="Old Archive Label" />
                                         <div class="label-left">Old Archive Label</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="old-archive-description" id="old-archive-description" placeholder="Old Archive Description" />
+                                        <input type="text" name="oct-old-archive-description" id="oct-old-archive-description" placeholder="Old Archive Description" />
                                         <div class="label-right">Old Archive Description</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="old-archive-path" id="old-archive-path" placeholder="Old Archive Path" />
+                                        <input type="text" name="oct-old-archive-path" id="oct-old-archive-path" placeholder="Old Archive Path" />
                                         <div class="label-left">Old Archive Path</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall oct-field archive-field">
-                                        <input type="text" name="old-archive-mapping" id="old-archive-mapping" placeholder="Old Archive Drive Mapping" />
+                                        <input type="text" name="oct-old-archive-mapping" id="oct-old-archive-mapping" placeholder="Old Archive Drive Mapping" />
                                         <div class="label-right">Old Archive Drive Mapping</div>
                                     </div>
 
@@ -385,27 +385,27 @@
                                         <div class="label-right">FORUM Server IP Address</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
-                                        <input type="text" name="server-settings" id="server-settings" placeholder="FORUM Server Settings" />
+                                        <input type="text" name="forum-server-settings" id="forum-server-settings" placeholder="FORUM Server Settings" />
                                         <div class="label-left">FORUM Server Settings</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
-                                        <input type="checkbox" id="dicom-tests-pass" name="dicom-tests-pass">
-                                        <label for="dicom-tests-pass">DICOM Tests pass?</label>
+                                        <input type="checkbox" id="forum-dicom-tests-pass" name="forum-dicom-tests-pass">
+                                        <label for="forum-dicom-tests-pass">DICOM Tests pass?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
-                                        <input type="text" name="number-of-stations" id="number-of-stations" placeholder="Number of FORUM Stations" />
+                                        <input type="text" name="forum-number-of-stations" id="forum-number-of-stations" placeholder="Number of FORUM Stations" />
                                         <div class="label-left">Number of FORUM Stations</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
-                                        <input type="checkbox" id="changes-to-environment" name="changes-to-environment">
-                                        <label for="changes-to-environment">Any changes to environment?</label>
+                                        <input type="checkbox" id="forum-changes-to-environment" name="forum-changes-to-environment">
+                                        <label for="forum-changes-to-environment">Any changes to environment?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
-                                        <input type="text" name="affected-devices" id="affected-devices" placeholder="Affected Devices/Workstations/Servers" />
+                                        <input type="text" name="forum-affected-devices" id="forum-affected-devices" placeholder="Affected Devices/Workstations/Servers" />
                                         <div class="label-left">Affected Devices</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
-                                        <textarea rows="3" name="architecture" id="architecture" placeholder="Architecture"></textarea>
+                                        <textarea rows="3" name="forum-architecture" id="forum-architecture" placeholder="Architecture"></textarea>
                                         <div class="label-right">Architecture</div>
                                     </div>
                                     <!-- END INSTRUMENT FORMS -->
@@ -442,10 +442,10 @@
                                         <div class="label-left">Review Station Version</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall review-station-field">
-                                        <select name="review-station-archive-mode" id="review-station-archive-mode">
+                                        <select name="oct-review-station-archive-mode" id="oct-review-station-archive-mode">
                                             <option value="">&mdash; Review Station Archive Mode &mdash;</option>
-                                            <option value="Native">Archive / Instrument</option>
-                                            <option value="DICOM">DICOM / Native</option>
+                                            <option value="Native">Archive / Instrument / Native</option>
+                                            <option value="DICOM">DICOM / Local</option>
                                         </select>
                                         <div class="label-right">Review Station Archive Mode</div>
                                     </div>

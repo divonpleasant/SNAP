@@ -42,33 +42,33 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Error Code", value: document.getElementById('error-code').value },
         { label: "Action Code", value: document.getElementById('action-code').value },
 		/* Cirrus HD-OCT Fields */
-        { label: "Cirrus HD-OCT/Review Workstation Status", value: document.getElementById('work-station-status').value },
-        { label: "OS (C:) Free", value: document.getElementById('c-drive-free').value },
-		{ label: "OS (C:) Free Size", value: document.getElementById('c-drive-free-size').value },
-		{ label: "OS (C:) Total", value: document.getElementById('c-drive-total').value },
-		{ label: "OS (C:) Total Size", value: document.getElementById('c-drive-total-size').value },
-        { label: "Data (E:) Free", value: document.getElementById('e-drive-free').value },
-		{ label: "Data (E:) Free Size", value: document.getElementById('e-drive-free-size').value },
-		{ label: "Data (E:) Total", value: document.getElementById('e-drive-total').value },
-		{ label: "Data (E:) Total Size", value: document.getElementById('e-drive-total-size').value },
-		{ label: "Current Archive Label", value: document.getElementById('current-archive-label').value },
-		{ label: "Current Archive Description", value: document.getElementById('current-archive-description').value },
-        { label: "Current Archive Path", value: document.getElementById('current-archive-path').value },
-        { label: "Current Archive Mapping", value: document.getElementById('current-archive-mapping').value },
-        { label: "Current Archive Server Hostname", value: document.getElementById('current-archive-server-hostname').value },
-        { label: "Current Archive Server IP", value: document.getElementById('current-archive-server-ip').value },
-        { label: "Old Archive Label", value: document.getElementById('old-archive-label').value },
-        { label: "Old Archive Description", value: document.getElementById('old-archive-description').value },
-        { label: "Old Archive Path", value: document.getElementById('old-archive-path').value },
-        { label: "Old Archive Mapping", value: document.getElementById('old-archive-mapping').value },
+        { label: "Cirrus HD-OCT/Review Workstation Status", value: document.getElementById('oct-work-station-status').value },
+        { label: "OS (C:) Free", value: document.getElementById('oct-c-drive-free').value },
+		{ label: "OS (C:) Free Size", value: document.getElementById('oct-c-drive-free-size').value },
+		{ label: "OS (C:) Total", value: document.getElementById('oct-c-drive-total').value },
+		{ label: "OS (C:) Total Size", value: document.getElementById('oct-c-drive-total-size').value },
+        { label: "Data (E:) Free", value: document.getElementById('oct-e-drive-free').value },
+		{ label: "Data (E:) Free Size", value: document.getElementById('oct-e-drive-free-size').value },
+		{ label: "Data (E:) Total", value: document.getElementById('oct-e-drive-total').value },
+		{ label: "Data (E:) Total Size", value: document.getElementById('oct-e-drive-total-size').value },
+		{ label: "Current Archive Label", value: document.getElementById('oct-current-archive-label').value },
+		{ label: "Current Archive Description", value: document.getElementById('oct-current-archive-description').value },
+        { label: "Current Archive Path", value: document.getElementById('oct-current-archive-path').value },
+        { label: "Current Archive Mapping", value: document.getElementById('oct-current-archive-mapping').value },
+        { label: "Current Archive Server Hostname", value: document.getElementById('oct-current-archive-server-hostname').value },
+        { label: "Current Archive Server IP", value: document.getElementById('oct-current-archive-server-ip').value },
+        { label: "Old Archive Label", value: document.getElementById('oct-old-archive-label').value },
+        { label: "Old Archive Description", value: document.getElementById('oct-old-archive-description').value },
+        { label: "Old Archive Path", value: document.getElementById('oct-old-archive-path').value },
+        { label: "Old Archive Mapping", value: document.getElementById('oct-old-archive-mapping').value },
 		/* END OCT Fields */
         { label: "Other Internal Notes", value: document.getElementById('other-internal-notes').value },
         { label: "Device Software Version", value: document.getElementById('device-software-version').value },
-        { label: "Archive Mode", value: document.getElementById('archive-mode').value },
+        { label: "Archive Mode", value: document.getElementById('oct-archive-mode').value },
         { label: "Windows Version", value: document.getElementById('windows-version').value },
         /* Review Station Fields */
         { label: "Review Station Software Version", value: document.getElementById('review-station-software-version').value },
-        { label: "Review Station Archive Mode", value: document.getElementById('review-station-archive-mode').value },
+        { label: "Review Station Archive Mode", value: document.getElementById('review-station-oct-archive-mode').value },
         { label: "Review Station Windows Version", value: document.getElementById('review-station-windows-version').value },
         /* End Review Station Fields */
         { label: "Problem Description", value: document.getElementById('problem-description').value },
@@ -101,12 +101,12 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Forum Windows Version", value: document.getElementById('forum-windows-version').value },
         { label: "Forum Server Hostname", value: document.getElementById('forum-server-hostname').value },
         { label: "Forum Server IP", value: document.getElementById('forum-server-ip').value },
-        { label: "Forum Server Settings", value: document.getElementById('server-settings').value },
-        { label: "Number of Stations", value: document.getElementById('number-of-stations').value },
-        { label: "Dicom Test Pass?", value: document.getElementById('dicom-tests-pass').checked ? "Yes" : "No" },
-        { label: "Any Changes to Environment?", value: document.getElementById('changes-to-environment').checked ? "Yes" : "No" },
-        { label: "Affected Devices", value: document.getElementById('affected-devices').value },
-        { label: "Architecture", value: document.getElementById('architecture').value },
+        { label: "Forum Server Settings", value: document.getElementById('forum-server-settings').value },
+        { label: "Number of Stations", value: document.getElementById('forum-number-of-stations').value },
+        { label: "Dicom Test Pass?", value: document.getElementById('forum-dicom-tests-pass').checked ? "Yes" : "No" },
+        { label: "Any Changes to Environment?", value: document.getElementById('forum-changes-to-environment').checked ? "Yes" : "No" },
+        { label: "Affected Devices", value: document.getElementById('forum-affected-devices').value },
+        { label: "Architecture", value: document.getElementById('forum-architecture').value },
         /* End FORUM Fields */
         { label: "Network Configuration", value: document.getElementById('network-configuration').value }
     ];
@@ -150,8 +150,8 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 			debugmsg(5, 'test_field: ' + test_field + ' is empty; exiting');
 		}
 	}
-	var c_space = process_disk_space('c-drive-free');
-	var e_space = process_disk_space('e-drive-free');
+	var c_space = process_disk_space('oct-c-drive-free');
+	var e_space = process_disk_space('oct-e-drive-free');
     
     /* Process comm preferences */
     var comm_preference = outputCommunicationPref();
@@ -189,10 +189,10 @@ REQUEST NOTES.........................................................:
 REPORTED INCIDENT:
   Device Serial Number: ${document.getElementById('serial').value}
   Device Software Version: ${document.getElementById('device-software-version').value}
-  Archive Mode: ${document.getElementById('archive-mode').value}
+  Archive Mode: ${document.getElementById('oct-archive-mode').value}
   Windows Version: ${document.getElementById('windows-version').value}
   Review Station Software Version: ${document.getElementById('review-station-software-version').value}
-  Review Station Archive Mode: ${document.getElementById('review-station-archive-mode').value}
+  Review Station Archive Mode: ${document.getElementById('oct-review-station-archive-mode').value}
   Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
   Problem Description: ${document.getElementById('problem-description').value}
   Specific Error Message: ${document.getElementById('error-message-details').value}
@@ -247,19 +247,19 @@ Device Hostname: ${document.getElementById('device-hostname').value}
 Devices DHCP or Static IP: ${document.getElementById('device-ip').value}
 Review Station Hostname: ${document.getElementById('review-station-hostname').value}
 Review Station DHCP or Static IP: ${document.getElementById('review-station-ip').value}
-Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
+Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('oct-work-station-status').value}
 OS (C:): ${c_space}
 Data (E:): ${e_space}
-Current Archive Label: ${document.getElementById('current-archive-label').value}
-Current Archive Description: ${document.getElementById('current-archive-description').value}
-Current Archive Path: ${document.getElementById('current-archive-path').value}
-Current Archive Mapping: ${document.getElementById('current-archive-mapping').value}
-Current Archive Server Hostname: ${document.getElementById('current-archive-server-hostname').value}
-Current Archive Server IP: ${document.getElementById('current-archive-server-ip').value}
-Old Archive Label: ${document.getElementById('old-archive-label').value}
-Old Archive Description: ${document.getElementById('old-archive-description').value}
-Old Archive Path: ${document.getElementById('old-archive-path').value}
-Old Archive Mapping: ${document.getElementById('old-archive-mapping').value}
+Current Archive Label: ${document.getElementById('oct-current-archive-label').value}
+Current Archive Description: ${document.getElementById('oct-current-archive-description').value}
+Current Archive Path: ${document.getElementById('oct-current-archive-path').value}
+Current Archive Mapping: ${document.getElementById('oct-current-archive-mapping').value}
+Current Archive Server Hostname: ${document.getElementById('oct-current-archive-server-hostname').value}
+Current Archive Server IP: ${document.getElementById('oct-current-archive-server-ip').value}
+Old Archive Label: ${document.getElementById('oct-old-archive-label').value}
+Old Archive Description: ${document.getElementById('oct-old-archive-description').value}
+Old Archive Path: ${document.getElementById('oct-old-archive-path').value}
+Old Archive Mapping: ${document.getElementById('oct-old-archive-mapping').value}
 Network Configuration: ${document.getElementById('network-configuration').value}
 
 FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:
@@ -267,12 +267,12 @@ Forum Software Version: ${document.getElementById('forum-software-version').valu
 Forum Windows Version: ${document.getElementById('forum-windows-version').value}
 Forum Server Hostname: ${document.getElementById('forum-server-hostname').value}
 Forum Server IP: ${document.getElementById('forum-server-ip').value}
-Forum Server Settings: ${document.getElementById('server-settings').value}
-Number of Stations: ${document.getElementById('number-of-stations').value}
-Dicom Test Pass: ${document.getElementById('dicom-tests-pass').checked ? "Yes" : "No"}
-Changes to Environment: ${document.getElementById('changes-to-environment').checked ? "Yes" : "No"}
-Affected Devices: ${document.getElementById('affected-devices').value}
-Architecture: ${document.getElementById('architecture').value}
+Forum Server Settings: ${document.getElementById('forum-server-settings').value}
+Number of Stations: ${document.getElementById('forum-number-of-stations').value}
+Dicom Test Pass: ${document.getElementById('forum-dicom-tests-pass').checked ? "Yes" : "No"}
+Changes to Environment: ${document.getElementById('forum-changes-to-environment').checked ? "Yes" : "No"}
+Affected Devices: ${document.getElementById('forum-affected-devices').value}
+Architecture: ${document.getElementById('forum-architecture').value}
 `;
     console.log("DATA\n====\n" + data);
 

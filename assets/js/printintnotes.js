@@ -28,8 +28,8 @@ document.getElementById('printintnotes').addEventListener('click', function(even
 			return "";
 		}
 	}
-	var c_space = process_disk_space('c-drive-free');
-	var e_space = process_disk_space('e-drive-free');
+	var c_space = process_disk_space('oct-c-drive-free');
+	var e_space = process_disk_space('oct-e-drive-free');
     
     /* Process comm preferences */
     var comm_preference = outputCommunicationPref();
@@ -65,7 +65,7 @@ Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
 
-Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('work-station-status').value}
+Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('oct-work-station-status').value}
 OS (C Drive): ${c_space}
 Data (E Drive): ${e_space}
 
