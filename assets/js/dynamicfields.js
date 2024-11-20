@@ -204,7 +204,7 @@ document.getElementById('billing-type').addEventListener('change', function () {
 }, false);
 
 // Handle archive select fields
-var archive_select = document.getElementById('archive-mode');
+var archive_select = document.getElementById('oct-archive-mode');
 archive_select.addEventListener('change', function() {
     // change form field visibility based on selection
     switch (this.selectedIndex) {
