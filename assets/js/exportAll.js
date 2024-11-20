@@ -68,7 +68,7 @@ document.getElementById('exportall').addEventListener('click', function(event) {
         { label: "Windows Version", value: document.getElementById('windows-version').value },
         /* Review Station Fields */
         { label: "Review Station Software Version", value: document.getElementById('review-station-software-version').value },
-        { label: "Review Station Archive Mode", value: document.getElementById('review-station-oct-archive-mode').value },
+        { label: "Review Station Archive Mode", value: document.getElementById('review-station-archive-mode').value },
         { label: "Review Station Windows Version", value: document.getElementById('review-station-windows-version').value },
         /* End Review Station Fields */
         { label: "Problem Description", value: document.getElementById('problem-description').value },
@@ -192,7 +192,7 @@ REPORTED INCIDENT:
   Archive Mode: ${document.getElementById('oct-archive-mode').value}
   Windows Version: ${document.getElementById('windows-version').value}
   Review Station Software Version: ${document.getElementById('review-station-software-version').value}
-  Review Station Archive Mode: ${document.getElementById('oct-review-station-archive-mode').value}
+  Review Station Archive Mode: ${document.getElementById('review-station-archive-mode').value}
   Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
   Problem Description: ${document.getElementById('problem-description').value}
   Specific Error Message: ${document.getElementById('error-message-details').value}
