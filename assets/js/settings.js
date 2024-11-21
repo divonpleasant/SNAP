@@ -10,14 +10,20 @@ function settingsOverlay(event) {
     var debugLvlSttng = (getCookie('debugLevel') != '') ? getCookie('debugLevel') : debug_level;
     var alrtCpySttng = (getCookie('copyAlert') != '') ? getCookie('copyAlert') : copy_alert;
     var alrtXcSttng = (getCookie('xcAlert') != '') ? getCookie('xcAlert') : xc_alert;
+    var darkMode = (getCookie('darkMode') != '') ? getCookie('darkMode') : dark_mode;
+    var signEmail = (getCookie('signEmail') != '') ? getCookie('signEmail') : sign_email;
     debugmsg(5, 'debugSttng: ' + debugSttng);
     debugmsg(5, 'debugLvlSttng: ' + debugLvlSttng);
     debugmsg(5, 'alrtCpySttng: ' + alrtCpySttng);
     debugmsg(5, 'alrtXcSttng: ' + alrtXcSttng);
+    debugmsg(5, 'darkMode: ' + darkMode);
+    debugmsg(5, 'signEmail: ' + signEmail);
     
     (alrtCpySttng) ? document.getElementById('alert-on-copy').checked = true : '';
     (alrtXcSttng) ? document.getElementById('alert-for-xc').checked = true : '';
     (debugSttng) ? document.getElementById('debug-toggle').checked = true : '';
+    (darkMode) ? document.getElementById('dark-mode').checked = true : '';
+    (signEmail) ? document.getElementById('sign-email').checked = true : '';
     document.getElementById('debug-level').getElementsByTagName('option')[debugLvlSttng].selected = 'selected';
 
     document.getElementById('settings-overlay').style.display = 'flex';
@@ -29,6 +35,8 @@ function processSettings(event) {
     var user_set_alrtCpySttng = (document.getElementById('alert-on-copy').value == 'on') ? 'true' : 'false';
     var user_set_alrtXcSttng = (document.getElementById('alert-for-xc').value == 'on') ? 'true' : 'false';
     var user_set_debugSttng = (document.getElementById('debug-toggle').value == 'on') ? 'true' : 'false';
+    var user_set_darkModeSttng = (document.getElementById('dark-mode').value == 'on') ? 'true' : 'false';
+    var user_set_signEmailSttng = (document.getElementById('sign-email').value == 'on') ? 'true' : 'false';
     var user_set_debugLvlSttng = document.getElementById('debug-level').value;
     debugmsg(5, 'user_set_alrtCpySttng: ' + user_set_alrtCpySttng);
     debugmsg(5, 'user_set_alrtXcSttng: ' + user_set_alrtXcSttng);
@@ -37,6 +45,8 @@ function processSettings(event) {
     
     setCookie('copyAlert', user_set_alrtCpySttng, 365);
     setCookie('xcAlert', user_set_alrtXcSttng, 365);
+    setCookie('darkMode', user_set_darkModeSttng, 365);
+    setCookie('signEmail', user_set_signEmailSttng, 365);
     setCookie('debugMode', user_set_debugSttng, 365);
     setCookie('debugLevel', user_set_debugLvlSttng, 365);
     

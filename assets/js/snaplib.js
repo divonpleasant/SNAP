@@ -1,4 +1,4 @@
-const version = "3.0.41";
+const version = "3.0.42";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -10,13 +10,33 @@ var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug 
 var copy_alert = false;
 var xc_alert = true;
 var con_clear = true;
+var dark_mode = true;
+var sign_email = false;
 var tag = '';
+var style_sheet = 'main';
 // sb (sandbox) constant should only be defined by the sandbox index file
 if (typeof sb !== 'undefined') {
     var sandbox = sb;
     var tag = ' - Sandbox';
+    style_sheet = 'sandbox';
 } else {
     var sandbox = false;
+}
+// User Defaults
+var username = 'unknown';
+var fullname = 'TechSupport Engineer';
+var name_array = fullname.split(' ');
+var casual_name = name_array[0];
+var private_inbox = 'declined@zeiss.com';
+var contact_inbox = 'dl.med-usmedtechnicalsupport.us@zeiss.com';
+var email_sig = '';
+
+if (email_sig == '' && sign_email) {
+    email_sig = "-----\n" +
+                fullname + "\n" +
+                "Zeiss Technical Support Engineer\n" +
+                "Phone: 800-341-6968\n" +
+                "Email: " + contact_inbox + "\n\n"
 }
 
 function startUp() {
@@ -40,7 +60,18 @@ Debug Level: ${debug_level}
 Alert on Copy: ${copy_alert}
 Alert for Cross-Charge (XC): ${xc_alert}
 Clear Console on Reset: ${con_clear}
+Dark Mode: ${dark_mode}
+Sign Outgoing Email: ${sign_email}
 
+User Settings
+-------------
+Login Name: ${username}
+Full Name: ${fullname}
+Name: ${casual_name}
+Personal Email: ${private_inbox}
+Contact Email: ${contact_inbox}
+Email Signature: 
+${email_sig}
     `;
 
     export_date = curr_date.toUTCString();
@@ -60,10 +91,17 @@ startUp();
 document.getElementById("current-version").innerHTML = version;
 document.getElementById("copyright-year").innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
+if (dark_mode) {
+    style_sheet = style_sheet + '_darkmode';
+}
 if (sandbox) {
+    document.getElementById('page-title').innerHTML = 'SNAP [Sandbox]';
     document.getElementById('header-tag').innerHTML = '[Sandbox]';
     document.getElementById("current-version").innerHTML = version + '-sandbox';
 }
+final_style = 'assets/css/' + style_sheet + '.css';
+debugmsg(4, 'final_style: ' + final_style);
+document.getElementById('pagestyle').setAttribute('href', final_style);
 
 // LIB FUNCTIONS
 
@@ -100,51 +138,54 @@ function debugmsg(level, output) {
 // Process instrument/serial number strings
 function proc_template_serial (sn) {
     if (sn != "") {
-        serial_str = " with serial number " + sn;
-        subj_serial = " S/N: " + sn;
+        serial_str = ' with serial number ' + sn;
+        subj_serial = ' S/N: ' + sn;
+        paren_serial = '(#' + sn + ') ';
     } else {
-        serial_str = "";
-        subj_serial = "";
+        serial_str = '';
+        subj_serial = '';
+        paren_serial = '';
     }
     var instrument_str;
     switch (document.getElementById('instrument-model').value) {
-        case "Cirrus OCT": 
-            instrument_str = "Cirrus OCT" + serial_str;
+        case 'Cirrus OCT': 
+            instrument_str = 'Cirrus OCT' + serial_str;
             break;
-        case "Cirrus Photo": 
-            instrument_str = "Cirrus Photo" + serial_str;
+        case 'Cirrus Photo': 
+            instrument_str = 'Cirrus Photo' + serial_str;
             break;
-        case "Clarus": 
-            instrument_str = "Clarus" + serial_str;
+        case 'Clarus': 
+            instrument_str = 'Clarus' + serial_str;
             break;
-        case "HFA3": 
-            instrument_str = "HFA" + serial_str;
+        case 'HFA3': 
+            instrument_str = 'HFA' + serial_str;
             break;
-        case "IOLMaster": 
-            instrument_str = "IOLMaster" + serial_str;
+        case 'IOLMaster': 
+            instrument_str = 'IOLMaster' + serial_str;
             break;
-        case "Visucam 224/524": 
-            instrument_str = "Visucam" + serial_str;
+        case 'Visucam 224/524': 
+            instrument_str = 'Visucam' + serial_str;
             break;
-        case "Visucam Pro/NM/NMFA": 
-            instrument_str = "Visucam" + serial_str;
+        case 'Visucam Pro/NM/NMFA': 
+            instrument_str = 'Visucam' + serial_str;
             break;
-        case "Atlas 500": 
-            instrument_str = "Atlas" + serial_str;
+        case 'Atlas 500': 
+            instrument_str = 'Atlas' + serial_str;
             break;
-        case "Atlas 9000": 
-            instrument_str = "Atlas" + serial_str;
+        case 'Atlas 9000': 
+            instrument_str = 'Atlas' + serial_str;
             break;
-        case "Stratus 3000/Visante 1000 (old)": 
-            instrument_str = "device" + serial_str;
+        case 'Stratus 3000/Visante 1000 (old)': 
+            instrument_str = 'device' + serial_str;
             break;
         default:
-            instrument_str = "instrument" + serial_str;
+            instrument_str = 'instrument' + serial_str;
             break;
     }
-    var serials_data = [subj_serial, instrument_str];
+    var serials_data = [subj_serial, instrument_str, paren_serial];
     debugmsg(5, 'serials_data[0]: ' + serials_data[0]);
     debugmsg(5, 'serials_data[1]: ' + serials_data[1]);
+    debugmsg(5, 'serials_data[2]: ' + serials_data[2]);
     return serials_data;
 }
 
@@ -158,36 +199,45 @@ resetFunc.addEventListener('click', () => {
     startUp();
 })
 
+// Handle CI Reject button
+const ciReject = document.getElementById('copy-ci-rejection');
+ciReject.addEventListener('click', () => {
+    if (document.getElementById('ci-reject-string').value == '') {
+        console.error('[ERROR] ci-reject-string cannot be empty when copying CI Rejection');
+        return false;
+    }
+    var reject_str = document.getElementById('ci-reject-string').value;
+    var copy_str = "The text '" + reject_str + "' flagged for this ticket is not associated with any adverse event or product malfunction that could lead to any sort of injury or death.";
+    navigator.clipboard.writeText(copy_str).catch(function(err) {
+        alert('Failed to copy data to clipboard: ', err);
+    });
+});
+
 // Determine POC communication preferences
 function outputCommunicationPref() {
-    // Sandbox only for 3.0.40
-    if (!sandbox) {
-        return '';
-    } else {
-        var phone_num = document.getElementById('phone');
-        debugmsg(5, 'phone_num.value: ' + phone_num.value);
-        var ph_exist = (phone_num.value != '') ? true : false;
-        var email_adr = document.getElementById('email');
-        debugmsg(5, 'email_adr.value: ' + email_adr.value);
-        var em_exist = (email_adr.value != '') ? true : false;
-        debugmsg(5, 'ph_exist: ' + ph_exist);
-        debugmsg(5, 'em_exist: ' + em_exist);
-        var phone_pref = document.getElementById('prefer-phone').checked;
-        var email_pref = document.getElementById('prefer-email').checked;
-        debugmsg(5, 'phone_pref: ' + phone_pref);
-        debugmsg(5, 'email_pref: ' + email_pref);
-        if (ph_exist && em_exist) {
-            var cust_pref_str = 'Customer has no communication preference';
-            if (phone_pref && !email_pref) {
-                cust_pref_str = 'Customer prefers phone communication';
-            } else if (!phone_pref && email_pref) {
-                cust_pref_str = 'Customer prefers email communication';
-            }
-            debugmsg(5, 'cust_pref_str: ' + cust_pref_str);
-            return cust_pref_str;
-        } else {
-            return '';
+    var phone_num = document.getElementById('phone');
+    debugmsg(5, 'phone_num.value: ' + phone_num.value);
+    var ph_exist = (phone_num.value != '') ? true : false;
+    var email_adr = document.getElementById('email');
+    debugmsg(5, 'email_adr.value: ' + email_adr.value);
+    var em_exist = (email_adr.value != '') ? true : false;
+    debugmsg(5, 'ph_exist: ' + ph_exist);
+    debugmsg(5, 'em_exist: ' + em_exist);
+    var phone_pref = document.getElementById('prefer-phone').checked;
+    var email_pref = document.getElementById('prefer-email').checked;
+    debugmsg(5, 'phone_pref: ' + phone_pref);
+    debugmsg(5, 'email_pref: ' + email_pref);
+    if (ph_exist && em_exist) {
+        var cust_pref_str = 'Customer has no communication preference';
+        if (phone_pref && !email_pref) {
+            cust_pref_str = 'Customer prefers phone communication';
+        } else if (!phone_pref && email_pref) {
+            cust_pref_str = 'Customer prefers email communication';
         }
+        debugmsg(5, 'cust_pref_str: ' + cust_pref_str);
+        return cust_pref_str;
+    } else {
+        return '';
     }
 }
 

@@ -2,19 +2,31 @@ function recertemailtemp(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
 
+    // Self-identify for debugging
+    debugmsg(1, 'Executing recertmailtemp.js...');
+
     // Retrieve form values
     var serial = document.getElementById('serial').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
     var email = document.getElementById('email').value; // Retrieve the email from the input field
+    
+    const rc_serial_num_strings = proc_template_serial(serial);
+    debugmsg(4, 'rc_serial_num_strings: ' + rc_serial_num_strings);
+    var subj_serial = rc_serial_num_strings[0];
+    var instrument_str = rc_serial_num_strings[1];
+    var paren_serial = rc_serial_num_strings[2] + ' ';
+    debugmsg(4, 'subj_serial: ' + subj_serial);
+    debugmsg(4, 'instrument_str: ' + instrument_str);
+    debugmsg(4, 'paren_serial: ' + paren_serial);
 
     // Construct the subject line and body of the email
-    var subject = "Zeiss Recertification for S/N:" + serial;
+    var subject = "Zeiss Recertification" + subj_serial;
     var body = "Dear " + localContactPerson + ",\n\n" +
-               "Thank you for your recent service inquiry. According to our records, serial number " + serial + 
-               " is not registered to your place of business in our database. It is our responsibility to ensure the product " +
+               "Thank you for your recent service inquiry. According to our records, " + instrument_str + 
+               "is not registered to your place of business in our database. It is our responsibility to ensure the product " +
                "meets or exceeds technical specifications and is safe for use on patients. Please review the information below " +
                "about our Re-Certification program and complete the attached form to begin the process.\n" +
-               "Please send the form to recertification@zeiss.com\n\n" +
+               "Please send the attached form to recertification@zeiss.com\n\n" +
                "If there are any questions, please contact us at 1-800-341-6968.\n\n" +
                "What is Re-Certification?\n" +
                "The process to register a Zeiss product that gives CZMI the opportunity to ensure the device meets the manufacturers " +
@@ -30,7 +42,8 @@ function recertemailtemp(event) {
                "• National Field Service Team of experts\n" +
                "• Clinical Application Specialists (Trainers)\n" +
                "• Service agreement options\n" +
-               "• Consumables";
+               "• Consumables\n\n" +
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);

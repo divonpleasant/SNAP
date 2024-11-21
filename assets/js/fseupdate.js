@@ -7,7 +7,10 @@ function showOverlay(event) {
 // Function to send an email after "Proceed" is clicked
 function proceedToSendEmail(event) {
     event.preventDefault();
-    
+
+    // Self-identify for debugging
+    debugmsg(1, 'Executing fseupdate.js...');
+
     // Retrieve form values
     var serial = document.getElementById('serial').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
@@ -19,15 +22,15 @@ function proceedToSendEmail(event) {
     // Construct the subject line and body of the email
     var subject = "Field Service Engineer Status Inquiry - SVO #" + svoTicket;
     var body = "Hi Team,\n\n" +
-               "The customer, " + localContactPerson + ", has called requesting a status update on the dispatch of the Field Service Engineer for Service Request #" + svoTicket + ". \n" +
+               "The customer, " + localContactPerson + ", has called requesting a status update on the dispatch of the Field Service Engineer for Service Request #" + svoTicket + ".\n" +
                "Can someone please reach out and provide the latest update to the customer?\n\n" +
                "    Local Contact Person: " + localContactPerson + "\n" +
                "    Contact Phone Number: " + phone + "\n" +
                "    Email Address: " + email + "\n" +
-               "    SVO #: " + svoTicket + "\n\n" +
-               "    Created On: " + svoDate + "\n" +
+               "    SVO #: " + svoTicket + "\n" +
+               "    Created On: " + svoDate + "\n\n" +
                "Thank you for your prompt attention to this matter.\n\n" +
-               "Regards,";
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);

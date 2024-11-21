@@ -2,6 +2,9 @@ function proaimpmemailgen(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
 
+    // Self-identify for debugging
+    debugmsg(1, 'Executing proaimpmemailgen.js...');
+
     // Retrieve form values
     var cct = document.getElementById('cct').value;
     var description = document.getElementById('description').value;
@@ -14,8 +17,8 @@ function proaimpmemailgen(event) {
 	
 	// Construct the subject line and body of the email
 	var subject = "PROAIM Preventative Maintenance (PM) Request";
-	var body = "Dear Team, \n\n" +
-            "Please send to PROAIM to proceed with on-site service \n\n" +
+	var body = "Hi Team,\n\n" +
+            "Please send to PROAIM to proceed with on-site preventative maintenance.\n\n" +
             "Zeiss Ticket Number (CCT #): " + cct + "\n" +
             "Problem Description: " + description + "\n" +
             "Ticket Creation Date: " + simple_date + "\n" +
@@ -24,7 +27,8 @@ function proaimpmemailgen(event) {
             "Contact Person: " + localContactPerson + "\n" +
             "Phone Number: " + phone + "\n" +
             "Email Address: " + email + "\n" +
-            "Type of Request: Phone request for PM.\n\n"
+            "Type of Request: Phone request for PM.\n\n" +
+            "Regards,\n\n" + email_sig + "\n";
     
     // Encode the subject and body
     subject = encodeURIComponent(subject);
@@ -41,3 +45,4 @@ function proaimpmemailgen(event) {
 
 // Add event listener to the link
 document.getElementById('proaimpmemailgenLink').addEventListener('click', proaimpmemailgen);
+document.getElementById('proaimpmemailgenLink2').addEventListener('click', proaimpmemailgen);

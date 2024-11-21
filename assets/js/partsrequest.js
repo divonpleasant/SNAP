@@ -30,9 +30,11 @@ function procPartsList(parts) {
 // Function to send an email after "Proceed" is clicked
 function proceedToSendEmail(event) {
     event.preventDefault();
-    
+
+    // Self-identify for debugging
+    debugmsg(1, 'Executing partsrequest.js...');
+
     // Retrieve form values
-    
     var serial = document.getElementById('serial').value;
     var cct = document.getElementById('cct').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
@@ -53,7 +55,7 @@ function proceedToSendEmail(event) {
 
     // Construct the subject line and body of the email
     var subject = "[CCT #" + cct + "] " + foc_subj + order_name + " for " + serial;
-    var body = "Hello Parts Team,\n\n" +
+    var body = "Hi Parts Team,\n\n" +
                "Please ship the following part" + part_indicator + "...\n\n" + parts_data + "\n" +
                "Customer Care Ticket Number: " + cct + "\n" +
                "Instrument Serial Number: " + serial + "\n\n" +
@@ -62,7 +64,7 @@ function proceedToSendEmail(event) {
                "    Attention: " + shippingAddress + "\n\n" +
                "Shipment: " + delivery_type + "\n\n" +
                "Thank you for your prompt attention to this matter.\n\n" +
-               "Regards,";
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);

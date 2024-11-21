@@ -2,14 +2,14 @@
 <html>
     <head>
         <!-- DO NOT CHANGE THIS SECTION OR COPY TO/FROM SNAP.html -->
-        <title>SNAP [Sandbox]</title>
+        <script src="assets/js/sandbox.js"></script>
+        <!-- Everything below can be copied back and forth with SNAP.html -->
+        <title id="page-title">SNAP</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <link rel="stylesheet" href="assets/css/sandbox.css" />
+        <link id="pagestyle" rel="stylesheet" href="assets/css/main.css" />
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
-        <script src="assets/js/sandbox.js"></script>
-        <!-- Everything below can be copied back and forth with SNAP.html -->
     </head>
     <body class="is-preload">
         <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#export">Export/Reset</a></span></div>
@@ -640,7 +640,12 @@
                                         <div class="label-right">Other Internal Notes</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
-                                        <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
+                                        <input type="text" id="ci-reject-string" name="ci-reject-string" />
+                                        <div class="label-left">CI Rejection String</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a> 
+                                        <a href="#" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
                                     </div>
 
                                     <!-- Overlays -->
@@ -692,6 +697,10 @@
                                             <label for="alert-on-copy">Alert on Copy?</label><br />
                                             <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
                                             <label for="alert-for-xc">Alert for XC?</label><br />
+                                            <input type="checkbox" id="dark-mode" name="dark-mode">
+                                            <label for="dark-mode">Dark Mode?</label><br />
+                                            <input type="checkbox" id="sign-email" name="sign-email">
+                                            <label for="sign-email">Sign Outgoing Email?</label><br />
                                             <input type="checkbox" id="debug-toggle" name="debug-toggle">
                                             <label for="debug-toggle">Use Debug Mode?</label><br />
                                             <select name="debug-level" id="debug-level">
@@ -751,7 +760,7 @@
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink">PROAIM PM Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink2">PROAIM PM Request</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -772,8 +781,9 @@
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="porequestLink">Purchase Order Information</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -843,6 +853,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/formsupport.js"></script>
             <script src="assets/js/dynamicfields.js"></script>
             <script src="assets/js/fseporequest.js"></script>
+            <script src="assets/js/porequest.js"></script>
             <script src="assets/js/form-background.js"></script>
             <script src="assets/js/syncFields.js"></script>
             <script src="assets/js/partsrequest.js"></script>

@@ -2,6 +2,9 @@ function endofsupportoct4000(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
 
+    // Self-identify for debugging
+    debugmsg(1, 'Executing endofsupport4000.js...');
+
     // Retrieve form values
     var serial = document.getElementById('serial').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
@@ -14,7 +17,7 @@ function endofsupportoct4000(event) {
 
     // Construct the subject line and body of the email
     var subject = "End of Support, CIRRUS® 400 and 4000 Systems";
-    var body = "Hi " + localContactPerson + "," + serial_str +
+    var body = "Dear " + localContactPerson + "," + serial_str +
                "We want to inform you that, as of April 30, 2022, ZEISS has officially ended support for the CIRRUS® 400 and 4000 systems. " +
                "This change means that we no longer offer technical expertise, parts, or service for these devices. Additionally, it is no longer " +
                "possible to extend, renew, or create new service agreements for these systems.\n\n" +
@@ -25,7 +28,7 @@ function endofsupportoct4000(event) {
                "For more detailed information, please visit this page:\n\n" +
                "https://www.zeiss.com/content/dam/med-hcp/usa/customer-care/end-of-lifecycle-info/opt/final_eos_cirrus_400_4000.pdf/_jcr_content/renditions/original.media_file.download_attachment.file/final_eos_cirrus_400_4000.pdf\n\n" +
                "Thank you for your continued partnership with ZEISS.\n\n" +
-               "Sincerely,";
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);

@@ -2,13 +2,16 @@ function tvrequest(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
 
+    // Self-identify for debugging
+    debugmsg(1, 'Executing tvrequest.js...');
+
     // Retrieve form values
     var localContactPerson = document.getElementById('local-contact-person').value;
     var email = document.getElementById('email').value;
 
     // Construct the subject line and body of the email
     var subject = "Zeiss TeamViewer Request";
-    var body = "Hi " + localContactPerson + ",\n\n" +
+    var body = "Dear " + localContactPerson + ",\n\n" +
                "To best help you, we'd like to request access to your instrument via the TeamViewer app so we can investigate your issue.\n\n" +
                "In case the TeamViewer app isn't already available on your instrument:\n\n" +
                "        1. Open a browser (Google Chrome or Firefox work best) on your instrument\n" +
@@ -22,7 +25,7 @@ function tvrequest(event) {
                "Please also provide us with a convenient date and time window for us to remotely access the device. " +
                "Make sure no one is using the Zeiss instrument when we login.\n\n" +
                "If you have any problems getting TeamViewer installed, don't hesitate to reach out for help.\n\n" +
-               "Regards,";
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);
