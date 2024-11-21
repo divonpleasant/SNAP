@@ -199,6 +199,20 @@ resetFunc.addEventListener('click', () => {
     startUp();
 })
 
+// Handle CI Reject button
+const ciReject = document.getElementById('copy-ci-rejection');
+ciReject.addEventListener('click', () => {
+    if (document.getElementById('ci-reject-string').value == '') {
+        console.error('[ERROR] ci-reject-string cannot be empty when copying CI Rejection');
+        return false;
+    }
+    var reject_str = document.getElementById('ci-reject-string').value;
+    var copy_str = "The text '" + reject_str + "' flagged for this ticket is not associated with any adverse event or product malfunction that could lead to any sort of injury or death.";
+    navigator.clipboard.writeText(copy_str).catch(function(err) {
+        alert('Failed to copy data to clipboard: ', err);
+    });
+});
+
 // Determine POC communication preferences
 function outputCommunicationPref() {
     var phone_num = document.getElementById('phone');
