@@ -6,6 +6,9 @@ function showOverlay(event) {
 function proceedToSendEmail(event) {
     event.preventDefault();
 
+    // Self-identify for debugging
+    debugmsg(1, 'Executing serviceadminpmreqemail.js...');
+
     // Retrieve form values
     var serial = document.getElementById('serial').value;
 	var account = document.getElementById('account').value;
@@ -13,9 +16,18 @@ function proceedToSendEmail(event) {
     var localContactPerson = document.getElementById('local-contact-person').value;
     var localContactPhone = document.getElementById('phone').value;
     var contract = document.getElementById('contract-number').value.trim();
+    
+    const sapm_serial_num_strings = proc_template_serial(serial);
+    debugmsg(4, 'sapm_serial_num_strings: ' + sapm_serial_num_strings);
+    var subj_serial = sapm_serial_num_strings[0];
+    var instrument_str = sapm_serial_num_strings[1];
+    var paren_serial = sapm_serial_num_strings[2] + ' ';
+    debugmsg(4, 'subj_serial: ' + subj_serial);
+    debugmsg(4, 'instrument_str: ' + instrument_str);
+    debugmsg(4, 'paren_serial: ' + paren_serial);
 
     // Construct the subject line and body of the email
-    var subject = "Preventative Maintenance Request S/N: " + serial;
+    var subject = "Preventative Maintenance Request" + subj_serial;
     var body = "Hi Admin Team,\n\n" +
 			   "Customer has called in to request a contract PM with the following info:\n\n" +
 			   "Customer Name: " + account + "\n\n" +
@@ -24,7 +36,7 @@ function proceedToSendEmail(event) {
                "Serial Number: " + serial + "\n\n" +
                "Contract #: " + contract + "\n\n" +
                "Date PM Requested: " + simple_date + "\n\n" +
-               "Regards,";
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);

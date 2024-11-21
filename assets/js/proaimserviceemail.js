@@ -2,7 +2,10 @@ function proaimserviceemail(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
 
-	// Retrieve form values
+    // Self-identify for debugging
+    debugmsg(1, 'Executing proaimserviceemail.js...');
+
+    // Retrieve form values
     var cct = document.getElementById('cct').value;
     var description = document.getElementById('description').value;
     var serial = document.getElementById('serial').value;
@@ -14,8 +17,8 @@ function proaimserviceemail(event) {
 	
 	// Construct the subject line and body of the email
 	var subject = "PROAIM Field Service Request";
-	var body = "Dear Team, \n\n" +
-            "Please send to PROAIM to proceed with on-site service \n\n" +
+	var body = "Hi Team,\n\n" +
+            "Please send to PROAIM to proceed with on-site service.\n\n" +
             "Zeiss Ticket Number (CCT #): " + cct + "\n" +
             "Problem Description: " + description + "\n" +
             "Ticket Creation Date: " + simple_date + "\n" +
@@ -24,7 +27,8 @@ function proaimserviceemail(event) {
             "Contact Person: " + localContactPerson + "\n" +
             "Phone Number: " + phone + "\n" +
             "Email Address: " + email + "\n" +
-            "Type of Request: Phone request for break-fix.\n\n"
+            "Type of Request: Phone request for break-fix.\n\n" +
+            "Regards,\n\n" + email_sig + "\n";
     
 	// Encode the subject and body
     subject = encodeURIComponent(subject);

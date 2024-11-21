@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>SNAP</title>
+        <title id="page-title">SNAP</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <link rel="stylesheet" href="assets/css/main.css" />
+        <link id="pagestyle" rel="stylesheet" href="assets/css/main.css" />
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
     </head>
     <body class="is-preload">
@@ -689,6 +689,10 @@
                                             <label for="alert-on-copy">Alert on Copy?</label><br />
                                             <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
                                             <label for="alert-for-xc">Alert for XC?</label><br />
+                                            <input type="checkbox" id="dark-mode" name="dark-mode">
+                                            <label for="dark-mode">Dark Mode?</label><br />
+                                            <input type="checkbox" id="sign-email" name="sign-email">
+                                            <label for="sign-email">Sign Outgoing Email?</label><br />
                                             <input type="checkbox" id="debug-toggle" name="debug-toggle">
                                             <label for="debug-toggle">Use Debug Mode?</label><br />
                                             <select name="debug-level" id="debug-level">
@@ -748,7 +752,7 @@
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink">PROAIM PM Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink2">PROAIM PM Request</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -769,8 +773,9 @@
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="porequestLink">Purchase Order Information</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -840,6 +845,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/formsupport.js"></script>
             <script src="assets/js/dynamicfields.js"></script>
             <script src="assets/js/fseporequest.js"></script>
+            <script src="assets/js/porequest.js"></script>
             <script src="assets/js/form-background.js"></script>
             <script src="assets/js/syncFields.js"></script>
             <script src="assets/js/partsrequest.js"></script>

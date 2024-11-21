@@ -286,6 +286,12 @@ Architecture: ${document.getElementById('forum-architecture').value}
     var blob = new Blob([processedData], { type: 'text/plain' });
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `${document.getElementById('serial').value || 'export'}.txt`;
+    var filename = 'export';
+    if (document.getElementById('serial').value != '') {
+        filename = document.getElementById('serial').value;
+    } else if (document.getElementById('cct').value != '') {
+        filename = document.getElementById('cct').value;
+    }
+    link.download = `${filename}.txt`;
     link.click();
 });

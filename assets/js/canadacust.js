@@ -2,6 +2,9 @@ function canadacustomer(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
 
+    // Self-identify for debugging
+    debugmsg(1, 'Executing canadacust.js...');
+
     // Retrieve form values
     var serial = document.getElementById('serial').value;
     var localContactPerson = document.getElementById('local-contact-person').value;
@@ -41,7 +44,7 @@ function canadacustomer(event) {
                "        Email Address: " + email + "\n" +
                "        Problem Description: " + description + "\n" +
                "        Troubleshooting Performed: " + troubleshooting + "\n\n" +
-               "Regards,";
+               "Regards,\n\n" + email_sig + "\n";
 
     // Encode the subject and body
     subject = encodeURIComponent(subject);
