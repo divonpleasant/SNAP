@@ -1,4 +1,4 @@
-const version = "3.0.43";
+const version = "3.0.44";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -10,7 +10,7 @@ var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug 
 var copy_alert = false;
 var xc_alert = true;
 var con_clear = true;
-var dark_mode = true;
+var dark_mode = false;
 var sign_email = false;
 var tag = '';
 var style_sheet = 'main';
@@ -200,20 +200,23 @@ resetFunc.addEventListener('click', () => {
 })
 
 // Handle CI Reject button
-if (sandbox) {
-    const ciReject = document.getElementById('copy-ci-rejection');
-    ciReject.addEventListener('click', () => {
-        if (document.getElementById('ci-reject-string').value == '') {
-            console.error('[ERROR] ci-reject-string cannot be empty when copying CI Rejection');
-            return false;
-        }
+const ciReject = document.getElementById('copy-ci-rejection');
+ciReject.addEventListener('click', () => {
+    if (document.getElementById('ci-reject-string').value == '') {
+        console.warn('[WARNING] ci-reject-string cannot be empty when copying CI Rejection');
+        alert('The CI Rejection String field cannot be empty');
+    } else {
+        debugmsg(4, 'ci-reject-string is not empty: ' + document.getElementById('ci-reject-string').value);
         var reject_str = document.getElementById('ci-reject-string').value;
         var copy_str = "The text '" + reject_str + "' flagged for this ticket is not associated with any adverse event or product malfunction that could lead to any sort of injury or death.";
-        navigator.clipboard.writeText(copy_str).catch(function(err) {
+        navigator.clipboard.writeText(copy_str).then(function() {
+            (copy_alert) ? alert('CI rejection string copied to clipboard!') : '';
+        }).catch(function(err) {
             alert('Failed to copy data to clipboard: ', err);
         });
-    });
-}
+        debugmsg(2, "Copied text to clipboard: '" + copy_str + "'");
+    }
+});
 
 // Determine POC communication preferences
 function outputCommunicationPref() {

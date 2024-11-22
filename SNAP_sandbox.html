@@ -545,7 +545,7 @@
                                         <label for="remote-resolution">Remote resolution?</label>
                                     </div>
                                     <div class="col-12">
-                                        <a href="#" id="printrafta" class="button primary small">Copy Request Notes</a>
+                                        <a href="#rafta" id="printrafta" class="button primary small">Copy Request Notes</a>
                                         <hr />
                                     </div>
 
@@ -639,13 +639,14 @@
                                         <textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
                                         <div class="label-right">Other Internal Notes</div>
                                     </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" id="ci-reject-string" name="ci-reject-string" />
+                                    <div class="col-6 col-12-xsmall tooltip">
+                                        <input type="text" id="ci-reject-string" name="ci-reject-string" placeholder="CI Rejection String" />
+                                        <span class="tooltiptext">CRM will frequently flag various keywords&mdash;including partial matches&mdash;as potential<br />Critical Incidents (CI). In order to reject the CI, copy the "Keywords found" field from<br />CRM here and then click the Copy CI Rejection button below. Finally, paste (CTRL-V)<br />into CRM's "Rejection Reason" text field.</span>
                                         <div class="label-left">CI Rejection String</div>
                                     </div>
                                     <div class="col-12">
-                                        <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a> 
-                                        <a href="#" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
+                                        <a href="#internal" id="printintnotes" class="button primary small">Copy Internal Notes</a> 
+                                        <a href="#internal" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
                                     </div>
 
                                     <!-- Overlays -->
@@ -687,7 +688,41 @@
                                             <button id="parts-proceed">Continue</button>
                                         </div>
                                     </div>
-                                    
+
+                                    <!-- End of Support Overlay -->
+                                    <div id="eos-overlay" style="display: none;">
+                                        <div id="eos-overlay-content">
+                                            <span id="eos-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                            <h3 style="text-align: center">Enter EoS Instrument Information</h3>
+                                            <select name="eos-instrument-type" id="eos-instrument-type">
+                                                <option value="">&mdash; Instrument &mdash;</option>
+                                                <option value="acuitus">Acuitus Auto Refractor</option>
+                                                <option value="atlas">ATLAS</option>
+                                                <option value="cirrus-oct">Cirrus HD-OCT</option>
+                                                <option value="cirrus-photo">Cirrus Photo</option>
+                                                <option value="ct">Corneal Topographer (CT)</option>
+                                                <!--<option value="clarus">Clarus</option>-->
+                                                <option value="fundus-camera">Fundus Camera</option>
+                                                <option value="hfa">Humphrey Field Analyzer (HFA)</option>
+                                                <option value="hfa-ii">Humphrey Field Analyzer II (HFA II)</option>
+                                                <option value="iolmaster">IOLMaster</option>
+                                                <option value="matrix">Matrix</option>
+                                                <option value="oct">OCT</option>
+                                                <option value="slit-lamp">Slit Lamps (SL)</option>
+                                                <option value="stratus">Stratus</option>
+                                                <option value="visante">Visante OCT</option>
+                                                <option value="visucam">Visucam</option>
+                                                <option value="visupac">Visupac</option>
+                                            </select>
+                                            <select name="eos-instrument-model" id="eos-instrument-model">
+                                                <option value="">&mdash; Model &mdash;</option>
+                                            </select>
+                                            <div id="eos-submit-button-align">
+                                                <button id="eos-submit">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Settings Overlay -->
                                     <div id="settings-overlay" style="display: none;">
                                         <div id="settings-overlay-content">
@@ -718,10 +753,10 @@
                                     </div>
 
                                     <!-- Export Button -->
-                                    <a class="anchor" name="export"></a>
+                                    <a class="anchor" id="export" name="export"></a>
                                     <div class="col-12">
                                         <hr />
-                                        <a href="#" id="exportall" class="button primary small">Export Interaction</a>
+                                        <a href="#export" id="exportall" class="button primary small">Export Interaction</a>
                                         <input id="resetButton" type="reset" class="button primary small">
                                     </div>
                                 </div>
@@ -773,7 +808,7 @@
                                         <li>
                                             <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="endofsupportLink">EoS Explanation</a></li>
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
@@ -844,7 +879,8 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/prevmaintemail.js"></script>
             <script src="assets/js/serviceadminpmreqemail.js"></script>
             <script src="assets/js/stopwatch.js"></script>
-            <script src="assets/js/endofsupportoct4000.js"></script>
+            <!--<script src="assets/data/device_matrix.js"></script>-->
+            <script src="assets/js/endOfSupport.js"></script>
             <script src="assets/js/printrafta.js"></script>
             <script src="assets/js/printintnotes.js"></script>
             <script src="assets/js/canadacust.js"></script>

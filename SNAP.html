@@ -542,7 +542,7 @@
                                         <label for="remote-resolution">Remote resolution?</label>
                                     </div>
                                     <div class="col-12">
-                                        <a href="#" id="printrafta" class="button primary small">Copy Request Notes</a>
+                                        <a href="#rafta" id="printrafta" class="button primary small">Copy Request Notes</a>
                                         <hr />
                                     </div>
 
@@ -636,8 +636,14 @@
                                         <textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
                                         <div class="label-right">Other Internal Notes</div>
                                     </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
+                                    <div class="col-6 col-12-xsmall tooltip">
+                                        <input type="text" id="ci-reject-string" name="ci-reject-string" placeholder="CI Rejection String" />
+                                        <span class="tooltiptext">CRM will frequently flag various keywords&mdash;including partial matches&mdash;as potential<br />Critical Incidents (CI). In order to reject the CI, copy the "Keywords found" field from<br />CRM here and then click the Copy CI Rejection button below. Finally, paste (CTRL-V)<br />into CRM's "Rejection Reason" text field.</span>
+                                        <div class="label-left">CI Rejection String</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#internal" id="printintnotes" class="button primary small">Copy Internal Notes</a> 
+                                        <a href="#internal" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
                                     </div>
 
                                     <!-- Overlays -->
@@ -713,7 +719,7 @@
                                     <a class="anchor" name="export"></a>
                                     <div class="col-12">
                                         <hr />
-                                        <a href="#" id="exportall" class="button primary small">Export Interaction</a>
+                                        <a href="#export" id="exportall" class="button primary small">Export Interaction</a>
                                         <input id="resetButton" type="reset" class="button primary small">
                                     </div>
                                 </div>
