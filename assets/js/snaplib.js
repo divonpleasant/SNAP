@@ -10,7 +10,7 @@ var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug 
 var copy_alert = false;
 var xc_alert = true;
 var con_clear = true;
-var dark_mode = false;
+var dark_mode = true;
 var sign_email = false;
 var tag = '';
 var style_sheet = 'main';
