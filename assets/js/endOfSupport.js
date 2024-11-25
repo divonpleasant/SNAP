@@ -686,7 +686,6 @@ Devices = {
         }
     }
 };
-console.log(Devices, 'devices');
 
 function eos(event) {
     // Prevent the default action (which is following the link)
