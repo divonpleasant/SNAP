@@ -344,11 +344,68 @@ function handleRequestOrigin() {
     }
 }
 
-// Populate eos-instrument-model based on eos-instrument-type
-function handleEosModel() {
-    eos_model_list = document.getElementById('eos-instrument-model');
+// Keep eos-instrument-model synced to main instrument-model select
+function syncEosModelToInstrumentField() {
+    eos_instrument_field = document.getElementById('eos-instrument-type');
     debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+    /*
+        NOTE: The options here are cited by index; there may be a better way to reference the elements,
+        particularly since the organization and breakdown of the select field is subject to change over time.
+        In any case, if this is ever not working as expected, check the index values carefully.
+    */
     switch (this.options[this.selectedIndex].value) {
+        case 'Atlas 500':
+        case 'Atlas 9000':
+            handleEosModel('atlas');
+            eos_instrument_field.getElementsByTagName('option')[2].selected = 'selected';
+            break;
+        case 'Cirrus OCT':
+            eos_instrument_field.getElementsByTagName('option')[3].selected = 'selected';
+            handleEosModel('cirrus-oct');
+            break;
+        case 'Cirrus Photo':
+            eos_instrument_field.getElementsByTagName('option')[4].selected = 'selected';
+            handleEosModel('cirrus-photo');
+            break;
+        case 'Clarus':
+            eos_instrument_field.getElementsByTagName('option')[6].selected = 'selected';
+            handleEosModel('clarus');
+            break;
+        case 'HFA3':
+            eos_instrument_field.getElementsByTagName('option')[8].selected = 'selected';
+            handleEosModel('hfa');
+            break;
+        case 'IOLMaster':
+            eos_instrument_field.getElementsByTagName('option')[9].selected = 'selected';
+            handleEosModel('iolmaster');
+            break;
+        case 'Stratus 3000/Visante 1000 (old)':
+            handleEosModel('stratus');
+            eos_instrument_field.getElementsByTagName('option')[13].selected = 'selected';
+            break;
+        case 'Visucam 224/524':
+        case 'Visucam Pro/NM/NMFA':
+            handleEosModel('visucam');
+            eos_instrument_field.getElementsByTagName('option')[15].selected = 'selected';
+            break;
+        default:
+            break;
+    }
+}
+
+// Populate eos-instrument-model based on eos-instrument-type
+function handleEosModel(manual_switch) {
+    eos_model_list = document.getElementById('eos-instrument-model');
+    var eval_index = '';
+    debugmsg(4, 'manual_switch: ' + manual_switch);
+    if (typeof manual_switch !== 'object') {
+        eval_index = manual_switch;
+    } else {
+        debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+        eval_index = this.options[this.selectedIndex].value;
+    }
+    debugmsg(4, 'eval_index: ' + eval_index);
+    switch (eval_index) {
         case 'acuitus':
             enableAndReset(eos_model_list, 1);
             eos_model_list.add(new Option('Acuitus 5015', '5015'), eos_model_list.options[1]);
@@ -395,15 +452,12 @@ function handleEosModel() {
             break;
         case 'hfa':
             enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('HFA 750i', '750'), eos_model_list.options[1]);
-            break;
-        case 'hfa-ii':
-            enableAndReset(eos_model_list, 1);
             eos_model_list.add(new Option('HFA II 750', '750'), eos_model_list.options[1]);
             eos_model_list.add(new Option('HFA II 745', '745'), eos_model_list.options[1]);
             eos_model_list.add(new Option('HFA II 740', '740'), eos_model_list.options[1]);
             eos_model_list.add(new Option('HFA II 735', '735'), eos_model_list.options[1]);
             eos_model_list.add(new Option('HFA II 730', '730'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA 750i', '750'), eos_model_list.options[1]);
             break;
         case 'iolmaster':
             enableAndReset(eos_model_list, 1);
@@ -465,5 +519,6 @@ function handleEosModel() {
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
 if (sandbox) {
+    document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
     document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
 }

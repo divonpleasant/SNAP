@@ -704,11 +704,16 @@ function eos(event) {
     var email = document.getElementById('email').value;
     // Parse data
 
-    var serial_str = "\n\n";
-    if (serial != "") {
+    var serial_str = '';
+    if (serial != '') {
         serial_str = "\nSerial Number: " + serial + "\n\n";
     }
     var detail_page = '';
+    if (reqType == '' || reqModel == '') {
+        console.error('The model selected is not End of Support, End of Guaranteed Support, or an error occurred.');
+        alert('The model selected is not End of Support, End of Guaranteed Support, or an error occurred.');
+        return;
+    }
     if (Devices.instruments[reqType].models[reqModel].eos_url != '') {
         detail_page = "For more detailed information on your system's support, please visit this page:\n" +
                       Devices.instruments[reqType].models[reqModel].eos_url + "\n\n"
@@ -732,7 +737,7 @@ function eos(event) {
     }
     debugmsg(4, 'eosDate: ' + eosDate);
     output_eos_date = (use_date) ? ', as of ' + eosDate.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"}) + ', ' : ' ';
-    agreements_str = 'All existing service agreements for the ' + Devices.instruments[reqType].models[reqModel].full_name + ' systems were terminated as of' + eosDate.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"}) + ". If you had a prepaid service agreement extending beyond this date, ZEISS has already issued credits accordingly.\n\n";
+    agreements_str = 'All existing service agreements for the ' + Devices.instruments[reqType].models[reqModel].full_name + ' systems were terminated as of ' + eosDate.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"}) + ". If you had a prepaid service agreement extending beyond this date, ZEISS has already issued credits accordingly.\n\n";
     end_of_support_notice = output_eos_date + 'ZEISS ' + support_context_str;
     agreements_notice = (use_terminated_agreements_clause) ? agreements_str : "\n\n";
 
