@@ -9,6 +9,7 @@ var debug_mode = true;
 var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
 var copy_alert = false;
 var xc_alert = true;
+var copy_descr = true;
 var con_clear = true;
 var dark_mode = true;
 var sign_email = false;
@@ -59,6 +60,7 @@ Debug Mode: ${debug_mode}
 Debug Level: ${debug_level}
 Alert on Copy: ${copy_alert}
 Alert for Cross-Charge (XC): ${xc_alert}
+Copy CRM Description on Export: ${copy_descr}
 Clear Console on Reset: ${con_clear}
 Dark Mode: ${dark_mode}
 Sign Outgoing Email: ${sign_email}

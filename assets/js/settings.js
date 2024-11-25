@@ -9,6 +9,7 @@ function settingsOverlay(event) {
     var debugSttng = (getCookie('debugMode') != '') ? getCookie('debugMode') : debug_mode;
     var debugLvlSttng = (getCookie('debugLevel') != '') ? getCookie('debugLevel') : debug_level;
     var alrtCpySttng = (getCookie('copyAlert') != '') ? getCookie('copyAlert') : copy_alert;
+    var copyCrmDescrSttng = (getCookie('crmDescription') != '') ? getCookie('crmDescription') : copy_descr;
     var alrtXcSttng = (getCookie('xcAlert') != '') ? getCookie('xcAlert') : xc_alert;
     var darkMode = (getCookie('darkMode') != '') ? getCookie('darkMode') : dark_mode;
     var signEmail = (getCookie('signEmail') != '') ? getCookie('signEmail') : sign_email;
@@ -21,6 +22,7 @@ function settingsOverlay(event) {
     
     (alrtCpySttng) ? document.getElementById('alert-on-copy').checked = true : '';
     (alrtXcSttng) ? document.getElementById('alert-for-xc').checked = true : '';
+    (copyCrmDescrSttng) ? document.getElementById('copy-crm-description').checked = true : '';
     (debugSttng) ? document.getElementById('debug-toggle').checked = true : '';
     (darkMode) ? document.getElementById('dark-mode').checked = true : '';
     (signEmail) ? document.getElementById('sign-email').checked = true : '';
@@ -34,17 +36,20 @@ function processSettings(event) {
     
     var user_set_alrtCpySttng = (document.getElementById('alert-on-copy').value == 'on') ? 'true' : 'false';
     var user_set_alrtXcSttng = (document.getElementById('alert-for-xc').value == 'on') ? 'true' : 'false';
+    var user_set_copyCrmDescrSttng = (document.getElementById('copy-crm-description').value == 'on') ? 'true' : 'false';
     var user_set_debugSttng = (document.getElementById('debug-toggle').value == 'on') ? 'true' : 'false';
     var user_set_darkModeSttng = (document.getElementById('dark-mode').value == 'on') ? 'true' : 'false';
     var user_set_signEmailSttng = (document.getElementById('sign-email').value == 'on') ? 'true' : 'false';
     var user_set_debugLvlSttng = document.getElementById('debug-level').value;
     debugmsg(5, 'user_set_alrtCpySttng: ' + user_set_alrtCpySttng);
     debugmsg(5, 'user_set_alrtXcSttng: ' + user_set_alrtXcSttng);
+    debugmsg(5, 'user_set_copyCrmDescrSttng: ' + user_set_copyCrmDescrSttng);
     debugmsg(5, 'user_set_debugSttng: ' + user_set_debugSttng);
     debugmsg(5, 'user_set_debugLvlSttng: ' + user_set_debugLvlSttng);
     
     setCookie('copyAlert', user_set_alrtCpySttng, 365);
     setCookie('xcAlert', user_set_alrtXcSttng, 365);
+    setCookie('copyCrmDescrSttng', user_set_copyCrmDescrSttng, 365);
     setCookie('darkMode', user_set_darkModeSttng, 365);
     setCookie('signEmail', user_set_signEmailSttng, 365);
     setCookie('debugMode', user_set_debugSttng, 365);
