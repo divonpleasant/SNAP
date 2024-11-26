@@ -31,6 +31,7 @@ var casual_name = name_array[0];
 var private_inbox = 'declined@zeiss.com';
 var contact_inbox = 'dl.med-usmedtechnicalsupport.us@zeiss.com';
 var email_sig = '';
+var final_style = '';
 
 if (email_sig == '' && sign_email) {
     email_sig = "-----\n" +
@@ -76,13 +77,25 @@ Email Signature:
 ${email_sig}
     `;
 
+    // Process dates and styles
     export_date = curr_date.toLocaleString("en-US", {weekday: "long", day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric"});
     simple_date = curr_date.toDateString();
+    if (dark_mode) {
+        style_sheet = style_sheet + '_darkmode';
+    }
+    if (sandbox) {
+        document.getElementById('page-title').innerHTML = 'SNAP [Sandbox]';
+        document.getElementById('header-tag').innerHTML = '[Sandbox]';
+        document.getElementById("current-version").innerHTML = version + '-sandbox';
+    }
+    final_style = 'assets/css/' + style_sheet + '.css';
+
     debug_message = `Debugging
 ---------
 date = ${curr_date}
 export_date = ${export_date}
 simple_date = ${simple_date}
+stylesheet: ${final_style}
 `;
     console.log(startup_message);
     (debug_mode) ? console.log(debug_message) : '';
@@ -93,16 +106,6 @@ startUp();
 document.getElementById("current-version").innerHTML = version;
 document.getElementById("copyright-year").innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
-if (dark_mode) {
-    style_sheet = style_sheet + '_darkmode';
-}
-if (sandbox) {
-    document.getElementById('page-title').innerHTML = 'SNAP [Sandbox]';
-    document.getElementById('header-tag').innerHTML = '[Sandbox]';
-    document.getElementById("current-version").innerHTML = version + '-sandbox';
-}
-final_style = 'assets/css/' + style_sheet + '.css';
-debugmsg(4, 'final_style: ' + final_style);
 document.getElementById('pagestyle').setAttribute('href', final_style);
 
 // LIB FUNCTIONS
