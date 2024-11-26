@@ -6,7 +6,7 @@ var curr_date = new Date();
 var utc_year = curr_date.getUTCFullYear();
 // Setting Defaults
 var debug_mode = true;
-var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
+var debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
 var copy_alert = false;
 var xc_alert = true;
 var copy_descr = true;
