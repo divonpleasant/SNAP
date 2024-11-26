@@ -76,7 +76,7 @@ Email Signature:
 ${email_sig}
     `;
 
-    export_date = curr_date.toUTCString();
+    export_date = curr_date.toLocaleString("en-US", {weekday: "long", day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric"});
     simple_date = curr_date.toDateString();
     debug_message = `Debugging
 ---------
