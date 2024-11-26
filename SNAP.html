@@ -31,7 +31,7 @@
                                     <div class="col-6 col-12-xsmall">
                                         <select name="instrument-model" id="instrument-model">
                                             <option value="">&mdash; Instrument &mdash;</option>
-                                            <option value="Cirrus OCT" id="cirrus_oct">Cirrus OCT 400/4000/500/5000/6000</option>
+                                            <option value="Cirrus OCT" id="cirrus_oct">Cirrus OCT 500/5000/6000</option>
                                             <option value="Cirrus Photo" id="cirrus_photo">Cirrus Photo</option>
                                             <option value="Clarus" id="clarus">Clarus</option>
                                             <option value="HFA3" id="hfa3">HFA3</option>
@@ -542,7 +542,7 @@
                                         <label for="remote-resolution">Remote resolution?</label>
                                     </div>
                                     <div class="col-12">
-                                        <a href="#" id="printrafta" class="button primary small">Copy Request Notes</a>
+                                        <a href="#rafta" id="printrafta" class="button primary small">Copy Request Notes</a>
                                         <hr />
                                     </div>
 
@@ -636,8 +636,14 @@
                                         <textarea name="other-internal-notes" id="other-internal-notes" placeholder="Other Internal Notes" rows="3"></textarea>
                                         <div class="label-right">Other Internal Notes</div>
                                     </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <a href="#" id="printintnotes" class="button primary small">Copy Internal Notes</a>
+                                    <div class="col-6 col-12-xsmall tooltip">
+                                        <input type="text" id="ci-reject-string" name="ci-reject-string" placeholder="CI Rejection String" />
+                                        <span class="tooltiptext">CRM will frequently flag various keywords&mdash;including partial matches&mdash;as potential<br />Critical Incidents (CI). In order to reject the CI, copy the "Keywords found" field from<br />CRM here and then click the Copy CI Rejection button below. Finally, paste (CTRL-V)<br />into CRM's "Rejection Reason" text field.</span>
+                                        <div class="label-left">CI Rejection String</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#internal" id="printintnotes" class="button primary small">Copy Internal Notes</a> 
+                                        <a href="#internal" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
                                     </div>
 
                                     <!-- Overlays -->
@@ -689,6 +695,8 @@
                                             <label for="alert-on-copy">Alert on Copy?</label><br />
                                             <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
                                             <label for="alert-for-xc">Alert for XC?</label><br />
+                                            <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
+                                            <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
                                             <input type="checkbox" id="dark-mode" name="dark-mode">
                                             <label for="dark-mode">Dark Mode?</label><br />
                                             <input type="checkbox" id="sign-email" name="sign-email">
@@ -713,7 +721,7 @@
                                     <a class="anchor" name="export"></a>
                                     <div class="col-12">
                                         <hr />
-                                        <a href="#" id="exportall" class="button primary small">Export Interaction</a>
+                                        <a href="#export" id="exportall" class="button primary small">Export Interaction</a>
                                         <input id="resetButton" type="reset" class="button primary small">
                                     </div>
                                 </div>
@@ -767,6 +775,13 @@
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="endofsupportoct4000Link">OCT 400/4000 Series</a></li>
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span class="opener">SMILE Devices</span>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="mel80Link">MEL 80/90 Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="visumaxLink">VISUMAX Service Request</a><li>
                                             </ul>
                                         </li>
                                         <li>
@@ -849,6 +864,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/form-background.js"></script>
             <script src="assets/js/syncFields.js"></script>
             <script src="assets/js/partsrequest.js"></script>
+            <script src="assets/js/smileescalate.js"></script>
             <!-- <script src="assets/js/settings.js"></script> -->
 
     </body>

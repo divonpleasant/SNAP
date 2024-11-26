@@ -1,4 +1,4 @@
-const version = "3.0.43";
+const version = "3.0.44";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -6,9 +6,10 @@ var curr_date = new Date();
 var utc_year = curr_date.getUTCFullYear();
 // Setting Defaults
 var debug_mode = true;
-var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
+var debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
 var copy_alert = false;
 var xc_alert = true;
+var copy_descr = true;
 var con_clear = true;
 var dark_mode = true;
 var sign_email = false;
@@ -30,6 +31,7 @@ var casual_name = name_array[0];
 var private_inbox = 'declined@zeiss.com';
 var contact_inbox = 'dl.med-usmedtechnicalsupport.us@zeiss.com';
 var email_sig = '';
+var final_style = '';
 
 if (email_sig == '' && sign_email) {
     email_sig = "-----\n" +
@@ -59,6 +61,7 @@ Debug Mode: ${debug_mode}
 Debug Level: ${debug_level}
 Alert on Copy: ${copy_alert}
 Alert for Cross-Charge (XC): ${xc_alert}
+Copy CRM Description on Export: ${copy_descr}
 Clear Console on Reset: ${con_clear}
 Dark Mode: ${dark_mode}
 Sign Outgoing Email: ${sign_email}
@@ -74,13 +77,25 @@ Email Signature:
 ${email_sig}
     `;
 
-    export_date = curr_date.toUTCString();
+    // Process dates and styles
+    export_date = curr_date.toLocaleString("en-US", {weekday: "long", day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "numeric", second: "numeric"});
     simple_date = curr_date.toDateString();
+    if (dark_mode) {
+        style_sheet = style_sheet + '_darkmode';
+    }
+    if (sandbox) {
+        document.getElementById('page-title').innerHTML = 'SNAP [Sandbox]';
+        document.getElementById('header-tag').innerHTML = '[Sandbox]';
+        document.getElementById("current-version").innerHTML = version + '-sandbox';
+    }
+    final_style = 'assets/css/' + style_sheet + '.css';
+
     debug_message = `Debugging
 ---------
 date = ${curr_date}
 export_date = ${export_date}
 simple_date = ${simple_date}
+stylesheet: ${final_style}
 `;
     console.log(startup_message);
     (debug_mode) ? console.log(debug_message) : '';
@@ -91,16 +106,6 @@ startUp();
 document.getElementById("current-version").innerHTML = version;
 document.getElementById("copyright-year").innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
-if (dark_mode) {
-    style_sheet = style_sheet + '_darkmode';
-}
-if (sandbox) {
-    document.getElementById('page-title').innerHTML = 'SNAP [Sandbox]';
-    document.getElementById('header-tag').innerHTML = '[Sandbox]';
-    document.getElementById("current-version").innerHTML = version + '-sandbox';
-}
-final_style = 'assets/css/' + style_sheet + '.css';
-debugmsg(4, 'final_style: ' + final_style);
 document.getElementById('pagestyle').setAttribute('href', final_style);
 
 // LIB FUNCTIONS
@@ -200,20 +205,23 @@ resetFunc.addEventListener('click', () => {
 })
 
 // Handle CI Reject button
-if (sandbox) {
-    const ciReject = document.getElementById('copy-ci-rejection');
-    ciReject.addEventListener('click', () => {
-        if (document.getElementById('ci-reject-string').value == '') {
-            console.error('[ERROR] ci-reject-string cannot be empty when copying CI Rejection');
-            return false;
-        }
+const ciReject = document.getElementById('copy-ci-rejection');
+ciReject.addEventListener('click', () => {
+    if (document.getElementById('ci-reject-string').value == '') {
+        console.warn('[WARNING] ci-reject-string cannot be empty when copying CI Rejection');
+        alert('The CI Rejection String field cannot be empty');
+    } else {
+        debugmsg(4, 'ci-reject-string is not empty: ' + document.getElementById('ci-reject-string').value);
         var reject_str = document.getElementById('ci-reject-string').value;
         var copy_str = "The text '" + reject_str + "' flagged for this ticket is not associated with any adverse event or product malfunction that could lead to any sort of injury or death.";
-        navigator.clipboard.writeText(copy_str).catch(function(err) {
+        navigator.clipboard.writeText(copy_str).then(function() {
+            (copy_alert) ? alert('CI rejection string copied to clipboard!') : '';
+        }).catch(function(err) {
             alert('Failed to copy data to clipboard: ', err);
         });
-    });
-}
+        debugmsg(2, "Copied text to clipboard: '" + copy_str + "'");
+    }
+});
 
 // Determine POC communication preferences
 function outputCommunicationPref() {

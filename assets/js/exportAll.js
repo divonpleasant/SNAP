@@ -282,6 +282,17 @@ Architecture: ${document.getElementById('forum-architecture').value}
     var lineClearData = nonEmptyData.replace(/\n{3,}/g, '\n\n');
     var processedData = lineClearData.replace(/\n{1,}$/, '\n');
 	debugmsg(3, "PROCESSED DATA\n========================\n" + processedData);
+    
+    // Copy CRM Description to clipboard if setting allows
+    if (copy_descr) {
+        var clipboard_desc = cct_description.trim();
+        navigator.clipboard.writeText(clipboard_desc).then(function() {
+            (copy_alert) ? alert('CCT description string copied to clipboard!') : '';
+        }).catch(function(err) {
+            alert('Failed to copy data to clipboard: ', err);
+        });
+        debugmsg(2, "Copied text to clipboard: '" + clipboard_desc + "'");
+    }
 
     var blob = new Blob([processedData], { type: 'text/plain' });
     var link = document.createElement('a');

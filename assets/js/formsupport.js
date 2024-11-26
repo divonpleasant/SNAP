@@ -1,24 +1,25 @@
+// Generic function to enable target select field and clear previously generated options
+function enableAndReset(targetElement, defaultOptionsLength) {
+    targetElement.removeAttribute('disabled');
+    while (targetElement.options.length > defaultOptionsLength) {
+        targetElement.remove(1);
+    }
+}
 
-
+// Populate error-code based on error-group selection
 function handleErrorGroup() {
     var ec_list = document.getElementById('error-code');
     var group_index = this.options[this.selectedIndex].value;
     debugmsg(4, 'group_index: ' + group_index);
     switch (group_index) {
         case 'Cloud Services':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Login (Zeiss ID, ...)', 'Login (Zeiss ID, ...)'), ec_list.options[1]);
             ec_list.add(new Option('Cloud-Stack', 'Cloud-Stack'), ec_list.options[1]);
             ec_list.add(new Option('Calculation', 'Calculation'), ec_list.options[1]);
             break;
         case 'Computer':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Watchdog', 'Watchdog'), ec_list.options[1]);
             ec_list.add(new Option('Speaker', 'Speaker'), ec_list.options[1]);
             ec_list.add(new Option('Service Data Module (SD, USB, ...)', 'Service Data Module (SD, USB, ...)'), ec_list.options[1]);
@@ -32,10 +33,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('CMOS Battery', 'CMOS Battery'), ec_list.options[1]);
             break;
         case "Computer / Video Accessory":
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Wifi Adaptor', 'Wifi Adaptor'), ec_list.options[1]);
             ec_list.add(new Option('USB Extension', 'USB Extension'), ec_list.options[1]);
             ec_list.add(new Option('Removeable Device (USB / Portable HDD)', 'Removeable Device (USB / Portable HDD)'), ec_list.options[1]);
@@ -50,10 +48,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('3D Glasses', '3D Glasses'), ec_list.options[1]);
             break;
         case 'Consumables':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Treatment Pack', 'Treatment Pack'), ec_list.options[1]);
             ec_list.add(new Option('Treatment License', 'Treatment License'), ec_list.options[1]);
             ec_list.add(new Option('Hand Piece Tip', 'Hand Piece Tip'), ec_list.options[1]);
@@ -66,10 +61,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Aseptic Caps', 'Aseptic Caps'), ec_list.options[1]);
             break;
         case 'Customer Sales':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('User Configuration', 'User Configuration'), ec_list.options[1]);
             ec_list.add(new Option('Sterilization', 'Sterilization'), ec_list.options[1]);
             ec_list.add(new Option('Sales Support', 'Sales Support'), ec_list.options[1]);
@@ -94,10 +86,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Ambient Conditions', 'Ambient Conditions'), ec_list.options[1]);
             break;
         case 'Device Accessory':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Stereo Coobserver', 'Stereo Coobserver'), ec_list.options[1]);
             ec_list.add(new Option('Stereo Bridge', 'Stereo Bridge'), ec_list.options[1]);
             ec_list.add(new Option('Silicone Injection', 'Silicone Injection'), ec_list.options[1]);
@@ -118,10 +107,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Adaptor', 'Adaptor'), ec_list.options[1]);
             break;
         case 'Electronics':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Voltage Selector', 'Voltage Selector'), ec_list.options[1]);
             ec_list.add(new Option('Transformer', 'Transformer'), ec_list.options[1]);
             ec_list.add(new Option('Sliding Contact', 'Sliding Contact'), ec_list.options[1]);
@@ -149,17 +135,11 @@ function handleErrorGroup() {
             ec_list.add(new Option('Antenna', 'Antenna'), ec_list.options[1]);
             break;
         case 'End of Support':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('End of Support', 'End of Support'), ec_list.options[1]);
             break;
         case 'Mechanics':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Weights', 'Weights'), ec_list.options[1]);
             ec_list.add(new Option('Tip', 'Tip'), ec_list.options[1]);
             ec_list.add(new Option('Table / Plate / Tray', 'Table / Plate / Tray'), ec_list.options[1]);
@@ -196,10 +176,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Belt/Gear', 'Belt/Gear'), ec_list.options[1]);
             break;
         case "Network / Connectivity":
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Site Control Unit', 'Site Control Unit'), ec_list.options[1]);
             ec_list.add(new Option('Router / Hub / Switch', 'Router / Hub / Switch'), ec_list.options[1]);
             ec_list.add(new Option('Printer Connection', 'Printer Connection'), ec_list.options[1]);
@@ -221,10 +198,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Anti-Virus', 'Anti-Virus'), ec_list.options[1]);
             break;
         case "Optics / Light":
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Scanner', 'Scanner'), ec_list.options[1]);
             ec_list.add(new Option('Protection Glass', 'Protection Glass'), ec_list.options[1]);
             ec_list.add(new Option('Prism (Group)', 'Prism (Group)'), ec_list.options[1]);
@@ -245,10 +219,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Acousto-Optic Modulator (AOM)', 'Acousto-Optic Modulator (AOM)'), ec_list.options[1]);
             break;
         case 'Pneumatics':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Valve', 'Valve'), ec_list.options[1]);
             ec_list.add(new Option('Pump', 'Pump'), ec_list.options[1]);
             ec_list.add(new Option('Pressure Regulator', 'Pressure Regulator'), ec_list.options[1]);
@@ -256,10 +227,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Compressor', 'Compressor'), ec_list.options[1]);
             break;
         case 'Radiation':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('XRS', 'XRS'), ec_list.options[1]);
             ec_list.add(new Option('Water Phantom', 'Water Phantom'), ec_list.options[1]);
             ec_list.add(new Option('Unidos', 'Unidos'), ec_list.options[1]);
@@ -275,10 +243,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Applicator', 'Applicator'), ec_list.options[1]);
             break;
         case 'Service':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Training', 'Training'), ec_list.options[1]);
             ec_list.add(new Option('Tools', 'Tools'), ec_list.options[1]);
             ec_list.add(new Option('Test Eye', 'Test Eye'), ec_list.options[1]);
@@ -295,10 +260,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Contract / Installation / Preventative Maintenance', 'Contract / Installation / Preventative Maintenance'), ec_list.options[1]);
             break;
         case 'Software General':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('Webserver', 'Webserver'), ec_list.options[1]);
             ec_list.add(new Option('Video Recording', 'Video Recording'), ec_list.options[1]);
             ec_list.add(new Option('Update / Upgrade Package', 'Update / Upgrade Package'), ec_list.options[1]);
@@ -317,10 +279,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('Application Software / Graphical UI', 'Application Software / Graphical UI'), ec_list.options[1]);
             break;
         case 'Software Products':
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('OCT Function', 'OCT Function'), ec_list.options[1]);
             ec_list.add(new Option('Markerless Match', 'Markerless Match'), ec_list.options[1]);
             ec_list.add(new Option('Markerbased Match', 'Markerbased Match'), ec_list.options[1]);
@@ -335,10 +294,7 @@ function handleErrorGroup() {
             ec_list.add(new Option('3rd Party Software', '3rd Party Software'), ec_list.options[1]);
             break;
         case "Video / Photo":
-            document.getElementById('error-code').removeAttribute('disabled');
-            while (ec_list.options.length > 1) {
-                ec_list.remove(1);
-            }
+            enableAndReset(ec_list, 1);
             ec_list.add(new Option('System Cable', 'System Cable'), ec_list.options[1]);
             ec_list.add(new Option('Signal Chain', 'Signal Chain'), ec_list.options[1]);
             ec_list.add(new Option('Recording (Unit / Board)', 'Recording (Unit / Board)'), ec_list.options[1]);
@@ -353,11 +309,12 @@ function handleErrorGroup() {
             ec_list.add(new Option('3D Image', '3D Image'), ec_list.options[1]);
             break;
         default:
-            document.getElementById('error-code').setAttribute('disabled', true);
+            ec_list.setAttribute('disabled', true);
             break;
     }
 }
 
+// Populate request-source based on request-origin
 function handleRequestOrigin() {
     req_source_list = document.getElementById('request-source');
     debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
@@ -370,18 +327,14 @@ function handleRequestOrigin() {
     let ti_op = new Option('Team Inbox', 'Team Inbox');
     switch (this.options[this.selectedIndex].value) {
         case 'Call':
-            while (req_source_list.options.length > 2) {
-                req_source_list.remove(1);
-            }
+            enableAndReset(req_source_list, 2);
             req_source_list.add(vm_op, req_source_list.options[1]);
             req_source_list.add(q_op, req_source_list.options[1]);
             req_source_list.add(oc_op, req_source_list.options[1]);
             req_source_list.add(fu_op, req_source_list.options[1]);
             break;
         case 'Email':
-            while (req_source_list.options.length > 2) {
-                req_source_list.remove(1);
-            }
+            enableAndReset(req_source_list, 2);
             req_source_list.add(ti_op, req_source_list.options[1]);
             req_source_list.add(srf_op, req_source_list.options[1]);
             req_source_list.add(efu_op, req_source_list.options[1]);
@@ -391,5 +344,181 @@ function handleRequestOrigin() {
     }
 }
 
+// Keep eos-instrument-model synced to main instrument-model select
+function syncEosModelToInstrumentField() {
+    eos_instrument_field = document.getElementById('eos-instrument-type');
+    debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+    /*
+        NOTE: The options here are cited by index; there may be a better way to reference the elements,
+        particularly since the organization and breakdown of the select field is subject to change over time.
+        In any case, if this is ever not working as expected, check the index values carefully.
+    */
+    switch (this.options[this.selectedIndex].value) {
+        case 'Atlas 500':
+        case 'Atlas 9000':
+            handleEosModel('atlas');
+            eos_instrument_field.getElementsByTagName('option')[2].selected = 'selected';
+            break;
+        case 'Cirrus OCT':
+            eos_instrument_field.getElementsByTagName('option')[3].selected = 'selected';
+            handleEosModel('cirrus-oct');
+            break;
+        case 'Cirrus Photo':
+            eos_instrument_field.getElementsByTagName('option')[4].selected = 'selected';
+            handleEosModel('cirrus-photo');
+            break;
+        case 'Clarus':
+            eos_instrument_field.getElementsByTagName('option')[6].selected = 'selected';
+            handleEosModel('clarus');
+            break;
+        case 'HFA3':
+            eos_instrument_field.getElementsByTagName('option')[8].selected = 'selected';
+            handleEosModel('hfa');
+            break;
+        case 'IOLMaster':
+            eos_instrument_field.getElementsByTagName('option')[9].selected = 'selected';
+            handleEosModel('iolmaster');
+            break;
+        case 'Stratus 3000/Visante 1000 (old)':
+            handleEosModel('stratus');
+            eos_instrument_field.getElementsByTagName('option')[13].selected = 'selected';
+            break;
+        case 'Visucam 224/524':
+        case 'Visucam Pro/NM/NMFA':
+            handleEosModel('visucam');
+            eos_instrument_field.getElementsByTagName('option')[15].selected = 'selected';
+            break;
+        default:
+            break;
+    }
+}
+
+// Populate eos-instrument-model based on eos-instrument-type
+function handleEosModel(manual_switch) {
+    eos_model_list = document.getElementById('eos-instrument-model');
+    var eval_index = '';
+    debugmsg(4, 'manual_switch: ' + manual_switch);
+    if (typeof manual_switch !== 'object') {
+        eval_index = manual_switch;
+    } else {
+        debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+        eval_index = this.options[this.selectedIndex].value;
+    }
+    debugmsg(4, 'eval_index: ' + eval_index);
+    switch (eval_index) {
+        case 'acuitus':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('Acuitus 5015', '5015'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('Acuitus 5010', '5010'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('Acuitus 5000', '5000'), eos_model_list.options[1]);
+            break;
+        case 'atlas':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('ATLAS 995', '995'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('ATLAS 993', '993'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('ATLAS 992', '992'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('ATLAS 991', '991'), eos_model_list.options[1]);
+            break;
+        case 'cirrus-oct':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('Cirrus HD-OCT 4000', '4000'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('Cirrus HD-OCT 400', '400'), eos_model_list.options[1]);
+            break;
+        case 'cirrus-photo':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('Cirrus Photo 800', '800'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('Cirrus Photo 600', '600'), eos_model_list.options[1]);
+            break;
+        case 'ct':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('CT 992', '992'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('CT 991', '991'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('CT 990', '990'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('CT 920', '920'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('CT 910', '910'), eos_model_list.options[1]);
+            break;
+        case 'fundus-camera':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('RC 310', 'RC 310'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FK 30', 'FK 30'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 450plus IR', 'FF 450plus IR'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 450 IR', 'FF 450 IR'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 450plus', 'FF 450plus'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 450 IRu', 'FF 450 IRu'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 450plus IRu', 'FF 450plus IRu'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 450', 'FF 450'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 5', 'FF 5'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('FF 4', 'FF 4'), eos_model_list.options[1]);
+            break;
+        case 'hfa':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('HFA II 750', '750'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA II 745', '745'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA II 740', '740'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA II 735', '735'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA II 730', '730'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA 750i', '750'), eos_model_list.options[1]);
+            break;
+        case 'iolmaster':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('IOLMaster 5', '5'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('IOLMaster 4', '4'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('IOLMaster 3', '3'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('IOLMaster 2', '2'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('IOLMaster 1', '1'), eos_model_list.options[1]);
+            break;
+        case 'matrix':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('Matrix 715', '715'), eos_model_list.options[1]);
+            break;
+        case 'oct':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('OCT 2', '2'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('OCT 1', '1'), eos_model_list.options[1]);
+            break;
+        case 'slit-lamp':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('10 SL', '10'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('10 SL/O', '10-O'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('20 SL', '20'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('30 SL/M', '30'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('40 SL/P', '40'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('SL 100/16', '100'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('SL 105', '105'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('Photo-SL', 'Photo'), eos_model_list.options[1]);
+            break;
+        case 'stratus':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('Stratus P4', 'P4'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('Stratus P3', 'P3'), eos_model_list.options[1]);
+            break;
+        case 'visante':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('Visante OCT 1000', '1000'), eos_model_list.options[1]);
+            break;
+        case 'visucam':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('VISUCAM PRO NM 1', 'PRO NM 1'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('VISUCAM PRO NM 2', 'PRO NM 2'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('VISUCAM NM/FA1', 'NM/FA1'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('VISUCAM Lite', 'Lite'), eos_model_list.options[1]);
+            break;
+        case 'visupac':
+            enableAndReset(eos_model_list, 1);
+            eos_model_list.add(new Option('VISUPAC 481', '481'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('VISUPAC 471', '471'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('VISUPAC 450', '450'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('VISUPAC 430', '430'), eos_model_list.options[1]);
+            break;
+        default:
+            eos_model_list.setAttribute('disabled', true);
+            break;
+    }
+}
+
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
+if (sandbox) {
+    document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
+    document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
+}
