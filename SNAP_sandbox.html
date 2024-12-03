@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="include-review-station" name="include-review-station">
-                                        <label for="include-review-station">Include Review Station?</label>
+                                        <label for="include-review-station">Include review station?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall" id="forum_checkbox">
                                         <input type="checkbox" id="add_forum" name="add_forum">
@@ -120,11 +120,11 @@
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="remote-support" name="remote-support">
-                                        <label for="remote-support">Remote Support?</label>
+                                        <label for="remote-support">Remote support?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall billing-field">
                                         <input type="checkbox" id="billing-contact" name="billing-contact">
-                                        <label for="billing-contact">Include Billing Contact?</label>
+                                        <label for="billing-contact">Include billing contact?</label>
                                         <a class="anchor" name="billingcontactinfo"></a>
                                     </div>
                                     <div class="col-6 col-12-xsmall billing-contact-field">
@@ -196,11 +196,23 @@
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="current-software-version" name="current-software-version">
-                                        <label for="current-software-version">Device running current Software Version?</label>
+                                        <label for="current-software-version">Device running current software version?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="current-software-reason" id="current-software-reason" placeholder="If no, why?" />
                                         <div class="label-right">Outdated Software Reason</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="device-software-version" id="device-software-version" placeholder="Device Software Version" />
+                                        <div class="label-left">Device Software Version</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="windows-version" id="windows-version" placeholder="Device Windows Version" />
+                                        <div class="label-right">Device Windows Version</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea name="error-message-details" id="error-message-details" placeholder="Specific Error Message(s)" rows="3"></textarea>
+                                        <div class="label-right">Specific Error Message(s)</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="device-hostname" id="device-hostname" placeholder="Device Hostname" />
@@ -213,6 +225,26 @@
                                     <div class="col-12">
                                         <textarea name="network-configuration" id="network-configuration" cols="5" placeholder="Network Configuration (e.g. ipconfig \all)"></textarea>
                                         <div class="label-right">Network Configuration</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall review-station-field">
+                                        <input type="checkbox" id="review-station-current-software-version" name="review-station-current-software-version">
+                                        <label for="review-station-current-software-version">Review station running current software version?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall review-station-field">
+                                        <input type="text" name="review-station-software-version" id="review-station-software-version" placeholder="Review Station Software Version" />
+                                        <div class="label-left">Review Station Version</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall review-station-field">
+                                        <select name="review-station-archive-mode" id="review-station-archive-mode">
+                                            <option value="">&mdash; Review Station Archive Mode &mdash;</option>
+                                            <option value="Native">Archive / Instrument / Native</option>
+                                            <option value="DICOM">DICOM / Local</option>
+                                        </select>
+                                        <div class="label-right">Review Station Archive Mode</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall review-station-field">
+                                        <input type="text" name="review-station-windows-version" id="review-station-windows-version" placeholder="Review Station Windows Version" />
+                                        <div class="label-left">Review Station Windows Version</div>
                                     </div>
                                     <div class="col-6 col-12-xsmall review-station-field">
                                         <input type="text" name="review-station-hostname" id="review-station-hostname" placeholder="Review Station Hostname" />
@@ -328,7 +360,30 @@
                                     <!-- HFA3 Instrument-Specific -->
                                     <div class="col-12 hfa3-field">
                                         <h5>HFA3 Checklist</h5>
-                                        <p><em>Instrument checklist is not yet available.</em></p>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall hfa3-field">
+                                        <select name="hfa-network-status" id="hfa-network-status">
+                                            <option value="">&mdash; Network Status &mdash;</option>
+                                            <option value="Connected">Connected</option>
+                                            <option value="Disconnected">Disconnected</option>
+                                        </select>
+                                        <div class="label-left">Network Status</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall hfa3-field">
+                                        <select name="hfa-dhcp-seting" id="hfa-dhcp-seting">
+                                            <option value="">&mdash; DHCP Setting &mdash;</option>
+                                            <option value="Enabled">Enabled</option>
+                                            <option value="Disabled">Disabled</option>
+                                        </select>
+                                        <div class="label-right">DHCP Setting</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall hfa3-field">
+                                        <input type="checkbox" id="hfa-network-drive" name="hfa-network-drive">
+                                        <label for="hfa-network-drive">Network drive configured?</label>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall hfa3-field">
+                                        <input class="" type="text" name="hfa-network-drive-details" id="hfa-network-drive-details" placeholder="Network Drive Status/Details" />
+                                        <div class="label-right">Network Drive Details</div>
                                     </div>
 
                                     <!-- IOL Master Instrument-Specific -->
@@ -393,7 +448,7 @@
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
                                         <input type="checkbox" id="forum-dicom-tests-pass" name="forum-dicom-tests-pass">
-                                        <label for="forum-dicom-tests-pass">DICOM Tests pass?</label>
+                                        <label for="forum-dicom-tests-pass">DICOM tests pass?</label>
                                     </div>
                                     <div class="col-6 col-12-xsmall forum-field">
                                         <input type="text" name="forum-number-of-stations" id="forum-number-of-stations" placeholder="Number of FORUM Stations" />
@@ -430,39 +485,9 @@
                                     <div class="col-12">
                                         <h5>Reported Incident</h5>
                                     </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="device-software-version" id="device-software-version" placeholder="Device Software Version" />
-                                        <div class="label-left">Device Software Version</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <input type="text" name="windows-version" id="windows-version" placeholder="Device Windows Version" />
-                                        <div class="label-right">Device Windows Version</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                    </div>
-                                    <div class="col-6 col-12-xsmall review-station-field">
-                                        <input type="text" name="review-station-software-version" id="review-station-software-version" placeholder="Review Station Software Version" />
-                                        <div class="label-left">Review Station Version</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall review-station-field">
-                                        <select name="review-station-archive-mode" id="review-station-archive-mode">
-                                            <option value="">&mdash; Review Station Archive Mode &mdash;</option>
-                                            <option value="Native">Archive / Instrument / Native</option>
-                                            <option value="DICOM">DICOM / Local</option>
-                                        </select>
-                                        <div class="label-right">Review Station Archive Mode</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall review-station-field">
-                                        <input type="text" name="review-station-windows-version" id="review-station-windows-version" placeholder="Review Station Windows Version" />
-                                        <div class="label-left">Review Station Windows Version</div>
-                                    </div>
                                     <div class="col-12">
                                         <textarea name="problem-description" id="problem-description" placeholder="Problem Description (Mirrored From Above)" rows="3" disabled></textarea>
                                         <div class="label-right">Problem Description</div>
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea name="error-message-details" id="error-message-details" placeholder="Specific Error Message(s)" rows="3"></textarea>
-                                        <div class="label-right">Specific Error Message(s)</div>
                                     </div>
                                     <div class="col-12">
                                         <h5>Actual Problem</h5>
@@ -780,53 +805,54 @@
                                         <li>
                                             <span class="opener">Recertification</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-file" style="color: #778592;"></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-file""></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">PROAIM</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Preventative Maintenance</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="proaimpmemailgenLink2">PROAIM PM Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="prevmaintemailLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimpmemailgenLink2">PROAIM PM Request</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Field Service Interactions</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="endofsupportLink">EoS Explanation</a></li>
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="endofsupportLink">EoS Explanation</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square""></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">SMILE Devices</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="mel80Link">MEL 80/90 Service Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="visumaxLink">VISUMAX Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="mel80Link">MEL 80/90 Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="visumaxLink">VISUMAX Service Request</a><li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="porequestLink">Purchase Order Information</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope" style="color: #778592;"></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="canadacustomerLink">Canada Service Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="partsorderLink">Parts Order</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="porequestLink">Purchase Order Information</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="winSupportLink">Windows 10/11 Support Information</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -849,8 +875,8 @@
                                         <li>
                                             <span class="opener">Licensing</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://activation.zeiss.com/med/Instruments" target="_blank">Licensing Portal</a></li>
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square" style="color: #778592;"></span></i><a href="https://swl.zeiss.com/" target="_blank">License Management</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square""></span></i><a href="https://activation.zeiss.com/med/Instruments" target="_blank">Licensing Portal</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square""></span></i><a href="https://swl.zeiss.com/" target="_blank">License Management</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="https://mira.med.zeiss.com/" target="_blank">MIRA Reference Portal</a></li>
@@ -901,6 +927,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/syncFields.js"></script>
             <script src="assets/js/partsrequest.js"></script>
             <script src="assets/js/smileescalate.js"></script>
+            <script src="assets/js/win10SupportInfo.js"></script>
             <script src="assets/js/settings.js"></script>
 
     </body>

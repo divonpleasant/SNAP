@@ -398,6 +398,9 @@ function handleEosModel(manual_switch) {
     eos_model_list = document.getElementById('eos-instrument-model');
     var eval_index = '';
     debugmsg(4, 'manual_switch: ' + manual_switch);
+    // determine whether function is used as a callback from addEventListener
+    // if not, manual_switch is treated as a variable that explicitly specifies
+    // the index
     if (typeof manual_switch !== 'object') {
         eval_index = manual_switch;
     } else {
@@ -518,7 +521,5 @@ function handleEosModel(manual_switch) {
 
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
-if (sandbox) {
-    document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
-    document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
-}
+document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
+document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
