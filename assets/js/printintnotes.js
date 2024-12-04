@@ -2,36 +2,6 @@ document.getElementById('printintnotes').addEventListener('click', function(even
     event.preventDefault();
 
 	/* Process OCT Disk Space */
-	function process_disk_space(test_field) {
-		debugmsg(5, 'test_field: ' + test_field);
-		var test_value = document.getElementById(test_field).value;
-        var drive_array = test_field.split('-');
-        debugmsg(5, 'drive_array: ' + drive_array);
-		// drive_array[0] is for instrument name; drive_array[1] is drive letter
-        var instr_code = drive_array[0];
-        var base_drive = drive_array[1]; 
-		debugmsg(5, 'base_drive: ' + base_drive);
-		var drive = base_drive.toUpperCase();
-		var disk_string;
-		if (test_value != '') {
-			debugmsg(5, 'test_value (' + test_value + ') is not empty; processing string');
-			debugmsg(5, 'Drive: ' + drive + ":\ ");
-			var free_value = document.getElementById(instr_code + '-' + base_drive + '-drive-free').value;
-			debugmsg(5, 'free_value: ' + free_value);
-			var free_units = document.getElementById(instr_code + '-' + base_drive + '-drive-free-size').value;
-			debugmsg(5, 'free_units: ' + free_units);
-			var total_value = document.getElementById(instr_code + '-' + base_drive + '-drive-total').value;
-			debugmsg(5, 'total_value: ' + total_value);
-			var total_units = document.getElementById(instr_code + '-' + base_drive + '-drive-total-size').value;
-			debugmsg(5, 'total_units: ' + total_units);
-			disk_string = free_value + ' ' + free_units.toUpperCase() + ' of ' + total_value + ' ' + total_units.toUpperCase();
-			debugmsg(5, disk_string);
-			return disk_string;
-		} else {
-			debugmsg(5, 'test_field: ' + test_field + ' is empty; exiting');
-			return "";
-		}
-	}
 	var oct_c_space = process_disk_space('oct-c-drive-free');
 	var oct_e_space = process_disk_space('oct-e-drive-free');
     
