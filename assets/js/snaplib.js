@@ -6,7 +6,7 @@ var curr_date = new Date();
 var utc_year = curr_date.getUTCFullYear();
 // Setting Defaults
 var debug_mode = true;
-var debug_level = 4; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
+var debug_level = 5; // Range of 0 (same as debug_mode = false) to 5 (all debug messages)
 var copy_alert = false;
 var xc_alert = true;
 var copy_descr = true;
@@ -253,35 +253,36 @@ function outputCommunicationPref() {
 
 // Calculate instruments' available disk space
 function process_disk_space(test_field) {
-		debugmsg(5, 'test_field: ' + test_field);
-		var test_value = document.getElementById(test_field).value;
-        var drive_array = test_field.split('-');
-        debugmsg(5, 'drive_array: ' + drive_array);
-		// drive_array[0] is for instrument name; drive_array[1] is drive letter
-        var instr_code = drive_array[0];
-        var base_drive = drive_array[1]; 
-		debugmsg(5, 'base_drive: ' + base_drive);
-		var drive = base_drive.toUpperCase();
-		var disk_string;
-		if (test_value != '') {
-			debugmsg(5, 'test_value (' + test_value + ') is not empty; processing string');
-			debugmsg(5, 'Drive: ' + drive + ":\ ");
-			var free_value = document.getElementById(instr_code + '-' + base_drive + '-drive-free').value;
-			debugmsg(5, 'free_value: ' + free_value);
-			var free_units = document.getElementById(instr_code + '-' + base_drive + '-drive-free-size').value;
-			debugmsg(5, 'free_units: ' + free_units);
-			var total_value = document.getElementById(instr_code + '-' + base_drive + '-drive-total').value;
-			debugmsg(5, 'total_value: ' + total_value);
-			var total_units = document.getElementById(instr_code + '-' + base_drive + '-drive-total-size').value;
-			debugmsg(5, 'total_units: ' + total_units);
-			disk_string = free_value + ' ' + free_units.toUpperCase() + ' of ' + total_value + ' ' + total_units.toUpperCase();
-			debugmsg(5, disk_string);
-			return disk_string;
-		} else {
-			debugmsg(5, 'test_field: ' + test_field + ' is empty; exiting');
-			return "";
-		}
-	}
+    debugmsg(5, 'test_field: ' + test_field);
+    var test_value = document.getElementById(test_field).value;
+    var drive_array = test_field.split('-');
+    debugmsg(5, 'drive_array: ' + drive_array);
+    // drive_array[0] is for instrument name; drive_array[1] is drive letter
+    var instr_code = drive_array[0];
+    var base_drive = drive_array[1];
+    debugmsg(5, 'instr_code: ' + instr_code);
+    debugmsg(5, 'base_drive: ' + base_drive);
+    var drive = base_drive.toUpperCase();
+    var disk_string;
+    if (test_value != '') {
+        debugmsg(5, 'test_value (' + test_value + ') is not empty; processing string');
+        debugmsg(5, 'Drive: ' + drive + ":\ ");
+        var free_value = document.getElementById(instr_code + '-' + base_drive + '-drive-free').value;
+        debugmsg(5, 'free_value: ' + free_value);
+        var free_units = document.getElementById(instr_code + '-' + base_drive + '-drive-free-size').value;
+        debugmsg(5, 'free_units: ' + free_units);
+        var total_value = document.getElementById(instr_code + '-' + base_drive + '-drive-total').value;
+        debugmsg(5, 'total_value: ' + total_value);
+        var total_units = document.getElementById(instr_code + '-' + base_drive + '-drive-total-size').value;
+        debugmsg(5, 'total_units: ' + total_units);
+        disk_string = free_value + ' ' + free_units.toUpperCase() + ' of ' + total_value + ' ' + total_units.toUpperCase();
+        debugmsg(5, disk_string);
+        return disk_string;
+    } else {
+        debugmsg(5, 'test_field: ' + test_field + ' is empty; exiting');
+        return "";
+    }
+}
 
 // Process Billing Contact
 function createBillingString(bName, bPhone, bEmail) {
@@ -304,6 +305,9 @@ function generateBillingContact() {
     var output = '';
     debugmsg(5, 'bill_type.options[bill_type.selectedIndex].value: ' + bill_type.options[bill_type.selectedIndex].value);
     switch (bill_type.options[bill_type.selectedIndex].value) {
+        case '':
+            debugmsg(4, 'Billing type is not set; no billing info output');
+            break;
         case 'W':
             debugmsg(4, "Billing type is 'Warranty'; no billing info output");
             break;
