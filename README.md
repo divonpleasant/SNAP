@@ -48,13 +48,17 @@ SNAP uses a variant of semantic versioning (see [semver.org](https://semver.org/
 
 
 ## Contacts and Contributors
-Author: Divon Pleasant (divon.pleasant@zeiss.com)
+### Author
+Divon Pleasant (divon.pleasant@zeiss.com)
 
-Data/Verbiage Contributors:
+### Data/Verbiage Contributors
 - Andrew Yu (andrew.yu@zeiss.com)
 - Natasha French (natasha.french@zeiss.com)
 
-Code Contributors:
+### Code Contributors
 - Paul Hamilton (paul.hamilton@zeiss.com)
+
+### Consulting Contributors
+- Calvin Carter (calvin.carter@zeiss.com)
 
 Please help make SNAP better by sending bug reports and feature requests to us on [GitHub](https://github.com/divonpleasant/SNAP/issues)!

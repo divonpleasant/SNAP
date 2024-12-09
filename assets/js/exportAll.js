@@ -125,8 +125,8 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	console.log("Summary: " + cct_description);
 	
 	/* Process OCT Disk Space */
-	var c_space = process_disk_space('oct-c-drive-free');
-	var e_space = process_disk_space('oct-e-drive-free');
+	var oct_c_space = process_disk_space('oct-c-drive-free');
+	var oct_e_space = process_disk_space('oct-e-drive-free');
     
     /* Process comm preferences */
     var comm_preference = outputCommunicationPref();
@@ -223,18 +223,24 @@ Devices DHCP or Static IP: ${document.getElementById('device-ip').value}
 Review Station Hostname: ${document.getElementById('review-station-hostname').value}
 Review Station DHCP or Static IP: ${document.getElementById('review-station-ip').value}
 Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('oct-work-station-status').value}
-OS (C:): ${c_space}
-Data (E:): ${e_space}
-Current Archive Label: ${document.getElementById('oct-current-archive-label').value}
-Current Archive Description: ${document.getElementById('oct-current-archive-description').value}
-Current Archive Path: ${document.getElementById('oct-current-archive-path').value}
-Current Archive Mapping: ${document.getElementById('oct-current-archive-mapping').value}
-Current Archive Server Hostname: ${document.getElementById('oct-current-archive-server-hostname').value}
-Current Archive Server IP: ${document.getElementById('oct-current-archive-server-ip').value}
-Old Archive Label: ${document.getElementById('oct-old-archive-label').value}
-Old Archive Description: ${document.getElementById('oct-old-archive-description').value}
-Old Archive Path: ${document.getElementById('oct-old-archive-path').value}
-Old Archive Mapping: ${document.getElementById('oct-old-archive-mapping').value}
+Cirrus HD-OCT OS Drive Disk Space (C:): ${oct_c_space}
+Cirrus HD-OCT Data Drive Disk Space (E:): ${oct_e_space}
+Cirrus HD-OCT Current Archive Label: ${document.getElementById('oct-current-archive-label').value}
+Cirrus HD-OCT Current Archive Description: ${document.getElementById('oct-current-archive-description').value}
+Cirrus HD-OCT Current Archive Path: ${document.getElementById('oct-current-archive-path').value}
+Cirrus HD-OCT Current Archive Mapping: ${document.getElementById('oct-current-archive-mapping').value}
+Cirrus HD-OCT Current Archive Server Hostname: ${document.getElementById('oct-current-archive-server-hostname').value}
+Cirrus HD-OCT Current Archive Server IP: ${document.getElementById('oct-current-archive-server-ip').value}
+Cirrus HD-OCT Old Archive Label: ${document.getElementById('oct-old-archive-label').value}
+Cirrus HD-OCT Old Archive Description: ${document.getElementById('oct-old-archive-description').value}
+Cirrus HD-OCT Old Archive Path: ${document.getElementById('oct-old-archive-path').value}
+Cirrus HD-OCT Old Archive Mapping: ${document.getElementById('oct-old-archive-mapping').value}
+HFA Network Status: ${document.getElementById('hfa-network-status').value}
+HFA DHCP Setting: ${document.getElementById('hfa-dhcp-setting').value}
+HFA Network Drive Configured: ${document.getElementById('hfa-network-drive').value}
+HFA Network Drive Details: ${document.getElementById('hfa-network-drive-details').value}
+HFA Kiosk Mode: ${document.getElementById('hfa-kiosk-mode').value}
+HFA Kiosk Mode Details: ${document.getElementById('hfa-kiosk-mode-details').value}
 Network Configuration: ${document.getElementById('network-configuration').value}
 
 FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:

@@ -1,10 +1,6 @@
 document.getElementById('printintnotes').addEventListener('click', function(event) {
     event.preventDefault();
 
-	/* Process OCT Disk Space */
-	var oct_c_space = process_disk_space('oct-c-drive-free');
-	var oct_e_space = process_disk_space('oct-e-drive-free');
-    
     /* Process comm preferences */
     var comm_preference = outputCommunicationPref();
     /* Process billing POC */
@@ -38,10 +34,6 @@ ${billing_str}
 Error Code Group: ${document.getElementById('error-group').value}
 Error Code: ${document.getElementById('error-code').value}
 Action Code: ${document.getElementById('action-code').value}
-
-Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('oct-work-station-status').value}
-OS (C Drive): ${oct_c_space}
-Data (E Drive): ${oct_e_space}
 
 ${document.getElementById('other-internal-notes').value}`;
 
