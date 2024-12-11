@@ -65,13 +65,17 @@ Problem Description: ${event.details.description}
 Billing Type: ${event.details.billing}
 `;
 
+    // Ensure the correct format for DTSTART and DTEND
+    const dtStart = event.start.replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    const dtEnd = event.end.replace(/[-:]/g, '').slice(0, 15) + 'Z';
+
     const icsContent = `
 BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
 SUMMARY:${event.title}
-DTSTART:${event.start.replace(/[-:]/g, '').slice(0, -4)}Z
-DTEND:${event.end.replace(/[-:]/g, '').slice(0, -4)}Z
+DTSTART:${dtStart}
+DTEND:${dtEnd}
 DESCRIPTION:${bodyContent.replace(/\n/g, '\\n')}
 END:VEVENT
 END:VCALENDAR
