@@ -95,5 +95,5 @@ function smileEscalationMel80(event) {
 }
 
 // Add event listeners to the links
-document.getElementById('visumaxLink').addEventListener('click', smileEscalationVisumax);
-document.getElementById('mel80Link').addEventListener('click', smileEscalationMel80);
+(sandbox) ? '' : document.getElementById('visumaxLink').addEventListener('click', smileEscalationVisumax);
+(sandbox) ? '' : document.getElementById('mel80Link').addEventListener('click', smileEscalationMel80);

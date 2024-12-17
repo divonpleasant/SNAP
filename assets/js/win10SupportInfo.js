@@ -32,4 +32,4 @@ function win10support(event) {
 }
 
 // Add event listener to the link
-document.getElementById('winSupportLink').addEventListener('click', win10support);
+(sandbox) ? '' : document.getElementById('winSupportLink').addEventListener('click', win10support);
