@@ -86,7 +86,7 @@ function proceedToSendEmail(event) {
 document.getElementById('partsorderLink').addEventListener('click', showPartsOverlay);
 
 // Add event listener to the "Proceed" button for sending the email
-document.getElementById('parts-proceed').addEventListener('click', proceedToSendEmail);
+(sandbox) ? '' : document.getElementById('parts-proceed').addEventListener('click', proceedToSendEmail);
 
 // Close button functionality for the overlay
 document.getElementById('parts-close-overlay').addEventListener('click', function() {

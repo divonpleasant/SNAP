@@ -460,7 +460,7 @@ function handleEosModel(manual_switch) {
             eos_model_list.add(new Option('HFA II 740', '740'), eos_model_list.options[1]);
             eos_model_list.add(new Option('HFA II 735', '735'), eos_model_list.options[1]);
             eos_model_list.add(new Option('HFA II 730', '730'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('HFA 750i', '750'), eos_model_list.options[1]);
+            eos_model_list.add(new Option('HFA 750i', '750i'), eos_model_list.options[1]);
             break;
         case 'iolmaster':
             enableAndReset(eos_model_list, 1);

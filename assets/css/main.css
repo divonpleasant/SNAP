@@ -2569,53 +2569,6 @@ button,
     font-size: 34px;
 }
 
-/* Dynamic Fields Classes */
-.dynamic-hidden {
-    display: none;
-}
-.oct-field {
-}
-.cirrus-photo-field {
-}
-.clarus-field {
-}
-.hfa3-field {
-}
-.iolmaster-field {
-}
-.visucam-field {
-}
-.visucam-pro-field {
-}
-.atlas-500-field {
-}
-.atlas-9000-field {
-}
-.stratus-field {
-}
-.forum-field {
-}
-.review-station-field {
-}
-.remote-support-field {
-}
-.archive-field {
-}
-.billing-field {
-}
-.billing-contact-field {
-}
-
-#topnav {
-    font-size: 0.8em;
-    padding: 15px;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    background: #f2f5f8;
-    z-index: 9999;
-}
-
 #schedule-overlay {
   position: fixed;
   top: 0;
@@ -2671,4 +2624,51 @@ button,
   text-transform: uppercase;
   white-space: nowrap;
   margin-bottom: 20px;
+}
+
+/* Dynamic Fields Classes */
+.dynamic-hidden {
+    display: none;
+}
+.oct-field {
+}
+.cirrus-photo-field {
+}
+.clarus-field {
+}
+.hfa3-field {
+}
+.iolmaster-field {
+}
+.visucam-field {
+}
+.visucam-pro-field {
+}
+.atlas-500-field {
+}
+.atlas-9000-field {
+}
+.stratus-field {
+}
+.forum-field {
+}
+.review-station-field {
+}
+.remote-support-field {
+}
+.archive-field {
+}
+.billing-field {
+}
+.billing-contact-field {
+}
+
+#topnav {
+    font-size: 0.8em;
+    padding: 15px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background: #f2f5f8;
+    z-index: 9999;
 }

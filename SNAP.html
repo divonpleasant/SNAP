@@ -758,7 +758,7 @@
                                                 <option value="">&mdash; Model &mdash;</option>
                                             </select>
                                             <div id="eos-submit-button-align">
-                                                <button id="eos-submit">Submit</button>
+                                                <button id="eos-submit">Continue</button>
                                             </div>
                                         </div>
                                     </div>
@@ -793,24 +793,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Schedule callback overlay -->
+
+                                    <!-- Schedule Callback Overlay -->
                                     <div id="schedule-overlay" style="display: none;">
                                         <div id="schedule-overlay-content">
                                             <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
                                             <h3>Select Date and Time</h3>
-                                            <input type="datetime-local" id="scheduledDateTime" required /><br>                    
+                                            <input type="datetime-local" id="scheduledDateTime" required /><br />
                                             <button id="modalContinue">Continue</button>
-                                            </div>
                                         </div>
+                                    </div>
 
                                     <!-- Export Button -->
                                     <a class="anchor" name="export"></a>
                                     <div class="col-12">
                                         <hr />
                                         <a href="#export" id="exportall" class="button primary small">Export Interaction</a>
+                                        <a href="#export" id="schedulecall" class="button primary small">Schedule Call Back</a>
                                         <input id="resetButton" type="reset" class="button primary small">
-                                        <a href="#" id="schedulecall" class="button primary small">Schedule Call Back</a>
                                     </div>
                                 </div>
                         </form>
@@ -830,17 +830,24 @@
                                     <ul>
                                         <li><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SitePages/Zeiss-Technical-Support-Processes.aspx" target="_blank">Technical Support Process Docs</a></li>
                                         <li>
-                                            <span class="opener">Recertification</span>
+                                            <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-file""></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="endofsupportLink">EoS Explanation</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square""></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <span class="opener">PROAIM</span>
+                                            <span class="opener">Field Service Interactions</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span class="opener">FORUM Services</span>
+                                            <ul class="fa-ul">
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://forms.office.com/pages/responsepage.aspx?id=RCIEKFG71kyANHd2-jcD6PadknRXtxdCiVY425ub2h1UOTc4Wk5BR1EzQTlSRUwyMzNJOEhKSFNJVi4u&wdLOR=c9C5EF61B-3AF6-4F19-9E34-E6E69B71D4DA" target="_blank">Service Contract Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://forms.office.com/pages/responsepage.aspx?id=RCIEKFG71kyANHd2-jcD6DkE_gyu5JlLvse21CWVeLhUNzIwVDYxMEo4Nkg1SEROUUhWTzdKSERKOS4u" target="_blank">Upgrade/Migration Request</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -852,17 +859,17 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <span class="opener">Field Service Interactions</span>
+                                            <span class="opener">PROAIM</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="fsepoauthLink">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimserviceemailLink">Service Call</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="proaimpmemailgenLink">Preventative Maintenance</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <span class="opener">End of Support</span>
+                                            <span class="opener">Recertification</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="endofsupportLink">EoS Explanation</a></li>
-                                                <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square""></span></i><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope""></span></i><a href="#" id="recertemailtempLink">Recertification Email</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-file""></span></i><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
                                             </ul>
                                         </li>
                                         <li>

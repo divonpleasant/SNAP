@@ -1,4 +1,4 @@
-const version = "3.0.47";
+const version = "3.0.49";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -140,6 +140,21 @@ function debugmsg(level, output) {
     }
 }
 
+// Process CCT strings
+function proc_template_cct (tix) {
+    if (tix != "") {
+        subj_incl = 'CCT #' + tix;
+        subj_prefix = '[' + subj_incl + '] ';
+        subj_suffix = ' ' + subj_incl;
+    } else {
+        subj_incl = '';
+        subj_prefix = '';
+        subj_suffix = '';
+    }
+    var cct_data = [subj_incl, subj_prefix, subj_suffix];
+    return cct_data;
+}
+
 // Process instrument/serial number strings
 function proc_template_serial (sn) {
     if (sn != "") {
@@ -184,7 +199,7 @@ function proc_template_serial (sn) {
             instrument_str = 'device' + serial_str;
             break;
         default:
-            instrument_str = 'instrument' + serial_str;
+            instrument_str = 'Zeiss instrument' + serial_str;
             break;
     }
     var serials_data = [subj_serial, instrument_str, paren_serial];
@@ -193,6 +208,7 @@ function proc_template_serial (sn) {
     debugmsg(5, 'serials_data[2]: ' + serials_data[2]);
     return serials_data;
 }
+var serial_strings = proc_template_serial('');
 
 // Handle Reset button
 const resetFunc = document.getElementById('resetButton');
@@ -222,6 +238,20 @@ ciReject.addEventListener('click', () => {
         debugmsg(2, "Copied text to clipboard: '" + copy_str + "'");
     }
 });
+
+// Handle Deferred Billing button
+if (sandbox) {
+    const defBilling = document.getElementById('copy-deferred-billing');
+    defBilling.addEventListener('click', () => {
+        var deferred_billing_str = 'Customer is not prepared with payment information. Provided the customer with the ticket number and advised to contact our SVCOPS team via email when they are ready to proceed with service.';
+        navigator.clipboard.writeText(deferred_billing_str).then(function() {
+            (copy_alert) ? alert('Deferred billing verbiage copies to clipboard!') : '';
+        }).catch(function(err) {
+            alert('Failed to copy data to clipboard: ', err);
+        });
+        debugmsg(2, "'Copied text to clipboard: '" + deferred_billing_str + "'");
+    });
+}
 
 // Determine POC communication preferences
 function outputCommunicationPref() {

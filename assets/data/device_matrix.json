@@ -294,21 +294,14 @@
             "product_class": "Ophthalmic Visual Field",
             "short_name": "HFA",
             "models": {
-                "750": {
+                "750i": {
                     "model_number": "750i",
                     "full_name": "HFA 750i",
                     "launch_date": "",
                     "eos_date": "09-17-2024",
                     "eogs_date": "",
                     "eos_url": ""
-                }
-            }
-        },
-        "hfa-ii": {
-            "product_name": "Humphrey Field Analyzer II",
-            "product_class": "Ophthalmic Visual Field",
-            "short_name": "HFA II",
-            "models": {
+                },
                 "730": {
                     "model_number": "730",
                     "full_name": "HFA II 730",
