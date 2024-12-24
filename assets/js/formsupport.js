@@ -4,7 +4,7 @@ Browser support:
     Chrome - Webkit's autofill background changer is only manipulable by hacks
              which have not been implemented here. This is mostly noticeable
              when using dark mode, although the background colors differ
-             slightly even in default (light) mode from the offical one
+             somewhat even in default (light) mode from the offical color
              configured below.
 */
 $('input, textarea, select').on('focus keyup input change keydown paste', function () {
