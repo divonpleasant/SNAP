@@ -1,3 +1,33 @@
+// Filled form fields backgrounds
+/*
+Browser support:
+    Chrome - Webkit's autofill background changer is only manipulable by hacks
+             which have not been implemented here. This is mostly noticeable
+             when using dark mode, although the background colors differ
+             slightly even in default (light) mode from the offical one
+             configured below.
+*/
+$('input, textarea, select').on('focus keyup input change keydown paste', function () {
+    this.style.backgroundColor = (dark_mode) ? '#244a86' : '#e6f2ff';
+});
+
+$('input, textarea, select').on('blur', function () {
+    if (this.value === '') {
+        this.style.backgroundColor = '';
+    }
+});
+
+// Clear the background color on Reset and scroll to top
+document.getElementById('resetButton').addEventListener('click', function () {
+    document.querySelectorAll('input[type="text"], textarea').forEach(function (input) {
+        input.style.backgroundColor = '';
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+});
+
+//----- FUNCTIONS -----//
 // Generic function to enable target select field and clear previously generated options
 function enableAndReset(targetElement, defaultOptionsLength) {
     targetElement.removeAttribute('disabled');
@@ -318,26 +348,20 @@ function handleErrorGroup() {
 function handleRequestOrigin() {
     req_source_list = document.getElementById('request-source');
     debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
-    let fu_op = new Option('Follow-Up Call', 'Follow-Up Call');
-    let oc_op = new Option('Outgoing Call', 'Outgoing Call');
-    let q_op = new Option('Queue', 'Queue');
-    let vm_op = new Option('Voicemail', 'Voicemail');
-    let efu_op = new Option('Follow-Up Email', 'Follow-Up Email');
-    let srf_op = new Option('Service Request Form', 'Service Request Form');
-    let ti_op = new Option('Team Inbox', 'Team Inbox');
     switch (this.options[this.selectedIndex].value) {
         case 'Call':
             enableAndReset(req_source_list, 2);
-            req_source_list.add(vm_op, req_source_list.options[1]);
-            req_source_list.add(q_op, req_source_list.options[1]);
-            req_source_list.add(oc_op, req_source_list.options[1]);
-            req_source_list.add(fu_op, req_source_list.options[1]);
+            req_source_list.add(new Option('Voicemail', 'Voicemail'), req_source_list.options[1]);
+            req_source_list.add(new Option('Queue', 'Queue'), req_source_list.options[1]);
+            req_source_list.add(new Option('Outgoing Call', 'Outgoing Call'), req_source_list.options[1]);
+            req_source_list.add(new Option('Follow-Up Call', 'Follow-Up Call'), req_source_list.options[1]);
+            req_source_list.add(new Option('Callback Queue', 'Callback Queue'), req_source_list.options[1]);
             break;
         case 'Email':
             enableAndReset(req_source_list, 2);
-            req_source_list.add(ti_op, req_source_list.options[1]);
-            req_source_list.add(srf_op, req_source_list.options[1]);
-            req_source_list.add(efu_op, req_source_list.options[1]);
+            req_source_list.add(new Option('Team Inbox', 'Team Inbox'), req_source_list.options[1]);
+            req_source_list.add(new Option('Service Request Form', 'Service Request Form'), req_source_list.options[1]);
+            req_source_list.add(new Option('Follow-Up Email', 'Follow-Up Email'), req_source_list.options[1]);
             break;
         default:
             break;

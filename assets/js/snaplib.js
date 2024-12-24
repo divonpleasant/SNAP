@@ -1,4 +1,4 @@
-const version = "3.0.49";
+const version = "3.0.50";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -41,7 +41,10 @@ if (email_sig == '' && sign_email) {
                 "Email: " + contact_inbox + "\n\n"
 }
 
-function startUp() {
+function startUp(style_refresh = false) {
+    if (style_refresh) {
+        style_sheet = (sandbox) ? 'sandbox' : 'main';
+    }
     // Message formatting
     underline = "=".repeat(version.length + tag.length + 5);
 
@@ -217,7 +220,7 @@ resetFunc.addEventListener('click', () => {
     hideAllDynamicFields();
     // clear console if using 'Developer' debug level
     (con_clear) ? console.clear() : '';
-    startUp();
+    startUp(true);
 })
 
 // Handle CI Reject button
