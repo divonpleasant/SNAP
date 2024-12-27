@@ -19,7 +19,7 @@ $('input, textarea, select').on('blur', function () {
 
 // Clear the background color on Reset and scroll to top
 document.getElementById('resetButton').addEventListener('click', function () {
-    document.querySelectorAll('input[type="text"], textarea').forEach(function (input) {
+    document.querySelectorAll('input[type="text"], textarea, select').forEach(function (input) {
         input.style.backgroundColor = '';
     });
 
