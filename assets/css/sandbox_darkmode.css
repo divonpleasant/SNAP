@@ -1992,7 +1992,7 @@ button,
   font-size: 0.9em;
   position: relative;
   /* sidebar scrolling prototype
-  max-height: 100vh !important;
+  max-height: 110vh !important;
   overflow-y: auto !important;
   overflow-x: hidden;
   scrollbar-width: thin;

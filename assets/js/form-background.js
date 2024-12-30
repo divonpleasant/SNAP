@@ -1,3 +1,4 @@
+// Deprecated in 3.0.50; functionality migrated to formSupport.js
 document.querySelectorAll('input[type="text"], textarea').forEach(function (input) {
     if (input.id !== "problem-description") {
         input.addEventListener('input', function () {

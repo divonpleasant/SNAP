@@ -1,4 +1,5 @@
 // Function to open the overlay when the endofsupportLink is clicked
+// Reference page: https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html
 function showEosOverlay(event) {
     event.preventDefault();
     document.getElementById('eos-overlay').style.display = 'flex';
