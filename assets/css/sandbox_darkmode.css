@@ -2718,3 +2718,16 @@ button,
     background: #606a76;
     z-index: 9999;
 }
+
+#prompt {
+    display: none;
+    color: #32373e;
+    border-radius: 10px;
+    background: #8daac8;
+    margin: 20px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 9998;
+}

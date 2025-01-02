@@ -50,7 +50,24 @@ Contact Details
 Regards,
 ${email_sig}`
             },
-            "parts-proceed": {
+            "end-of-support": {
+                "name": "End of Support Explanation",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": "End of Support: " + `${context[1]}`,
+                "body": `Dear ${document.getElementById('local-contact-person').value},
+
+${serial_strings[0]}
+
+We want to inform you that${context[2]} for the ${context[1]} systems. This change means that we no longer offer technical expertise, parts, or service for these devices. Additionally, it is no longer possible to extend, renew, or create new service agreements for these systems.
+
+${context[3]}If you need guidance on how to manage your ${context[0]} devices or are exploring alternative solutions, our sales team are here to assist you. Please reach out to them at sales.support@zeiss.com. They can provide detailed information on your options and help you find the best path forward for your needs.
+
+${context[4]}Regards,
+${email_sig}`
+            },
+            "parts-request": {
                 "name": "Parts Order Request",
                 "recipient": "c.osparts@zeiss.com",
                 "cc": [],
@@ -70,6 +87,31 @@ Address:
 Shipment: ${document.getElementById('delivery-type').value}
 
 Thank you for your prompt attention to this matter.
+
+Regards,
+${email_sig}`
+            },
+            "billing-request": {
+                "name": "Billing Request",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": `ZEISS ${context[0]} Request ${serial_strings[2]}`,
+                "body": `Dear ${document.getElementById('local-contact-person').value},
+According to our records, your ${serial_strings[1]} is currently not covered under Warranty or Service Contract.
+
+In order to proceed with this service request, we will need your approval of the payment method:
+
+        [ a ]  Payment with a Credit Card
+        [ b ]  Payment with a Hard Copy Purchase Order (PO)
+        
+This approval would be for the minimum amount of $${context[1]} USD [${context[2]}]${context[3]}.
+
+If payment is by Credit Card, you will be invoiced after services are performed and/or parts are replaced by a Zeiss Technician.
+
+If payment is by Purchase Order, email the hard copy of the PO to ZEISS MED Service Operations Admin US at billableservicerequest@zeiss.com, or as a reply to this message. Reference the Customer Care Ticket number ${context[4]}and serial number of the Zeiss instrument ${serial_strings[2]}on the Purchase Order to expedite the service request.
+
+The Zeiss Technician will contact the office within ${context[5]} business ${context[6]} to schedule the visit. At which time, they will answer all questions regarding specific prices, hourly rates, and travel time. Or, after discussing pricing with your FSE, you may cancel the service request.
 
 Regards,
 ${email_sig}`
@@ -134,6 +176,9 @@ ${email_sig}`
             }
         },
         "script": {
+            "greeting": {
+                "text": "Hello! Thank you for calling Zeiss Technical Support. Can I have the serial number of your instrument or an existing ticket number?"
+            }
         },
         "prompt": {
         },
