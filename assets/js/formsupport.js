@@ -547,3 +547,138 @@ document.getElementById('request-came-from').addEventListener('change', handleRe
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
 document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
 document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
+
+function activateProcess () {
+    // Prevent the default action (which is following the link)
+    event.preventDefault();
+    proc_template_id = event.srcElement.id.substr(15,);
+    debugmsg(4, 'proc_template_id: ' + proc_template_id);
+    var proc_context = new Array;
+    var proc_location = findProcessText(proc_template_id);
+    debugmsg(4, 'proc_location: ' + proc_location);
+    const pt = new generateTemplates(proc_context);
+    var proc_text = pt.templates.process[proc_template_id].general[proc_location];
+    document.getElementById('prompt-text').innerHTML = proc_text;
+    document.getElementById('prompt').style.display = 'flex';
+    document.getElementById('prompt-tail').style.display = 'none';
+}
+function manualActivateProcess (proc_type) {
+    var proc_context = new Array;
+    var proc_location = findProcessText(proc_type);
+    const pt = new generateTemplates(proc_context);
+    var proc_text = pt.templates.process[proc_template_id].general[proc_location];
+    document.getElementById('prompt-text').innerHTML = proc_text;
+    document.getElementById('prompt').style.display = 'flex';
+    document.getElementById('prompt-tail').style.display = 'none';
+}
+function updateDescription () {
+    debugmsg(4, 'Executing updateDescription...');
+    (document.getElementById('prompt').style.display == 'flex') ? manualActivateProcess('call-types') : '';
+    var proc_id = document.getElementById('common-call-types').options[document.getElementById('common-call-types').selectedIndex].value;
+    debugmsg(4, 'proc_id: ' + proc_id);
+    var existing_description = document.getElementById('description').value.split('. ');
+    (existing_description.length <= 1) ? document.getElementById('description').innerHTML = '' : '';
+    debugmsg(4, 'existing_description: ' + existing_description);
+    var descr_txt = '';
+    switch (proc_id) {
+        case 'delivery-doa':
+            descr_txt = 'Delivery DOA.';
+            break;
+        case 'fse-follow-up':
+            descr_txt = 'FSE Follow-Up.';
+            break;
+        case 'pm-request':
+        case 'proaim-pm-request':
+            descr_txt = 'PM Request.';
+            break;
+        case 'review-station-software-install':
+            descr_txt = 'RS Software Install.';
+            break;
+        case 'spare-parts':
+            descr_txt = 'Spare Parts Request.';
+            break;
+        default:
+            descr_txt = '';
+            break;
+    }
+    document.getElementById('description').insertAdjacentHTML('afterbegin', descr_txt);
+}
+function findProcessText(proc_type) {
+    var template_label = 'default';
+    switch (proc_type) {
+        case 'call-types':
+            console.log(document.getElementById('common-call-types'));
+            var template_el = document.getElementById('common-call-types');
+            debugmsg(4, 'template_el.selectedIndex: ' + template_el.selectedIndex);
+            template_label = template_el.options[template_el.selectedIndex].value;
+            break;
+        default:
+            break;
+    }
+    debugmsg(4, 'template_label: ' + template_label);
+    return (template_label === '') ? 'default' : template_label;
+}
+
+function activateScript () {
+    // Prevent the default action (which is following the link)
+    event.preventDefault();
+    // Retrieve element id and strip prefix (script-prompt-)
+    var scr_template_id = event.srcElement.id.substr(14,);
+    debugmsg(4, 'scr_template_id: ' + scr_template_id);
+    var script_context = new Array;
+    var script_location = findScriptText(scr_template_id);
+    const st = new generateTemplates(script_context);
+    //document.getElementById('prompt-text').innerHTML = st.templates.script.greeting.default['callback_text'];
+    var script_txt = st.templates.script[scr_template_id][script_location[0]][script_location[1]];
+    if (typeof script_txt === 'undefined') {
+        script_txt = st.templates.script[scr_template_id].default[script_location[1]];
+    }
+    document.getElementById('prompt-text').innerHTML = script_txt;
+    //console.log(st.templates.script.greeting.default);
+    document.getElementById('prompt').style.display = 'flex';
+    document.getElementById('prompt-tail').style.display = 'inline';
+}
+function findScriptText(script_type) {
+    var subsection = (use_custom_scripts) ? 'user' : 'default';
+    var template_label = '';
+    switch (script_type) {
+        case 'greeting':
+            var call_source = document.getElementById('request-source').value
+            switch (call_source) {
+                case 'Voicemail':
+                    template_label = 'voicemail';
+                    break;
+                case 'Queue':
+                    template_label = 'queue';
+                    break;
+                case 'Outgoing Call':
+                    template_label = 'outgoing';
+                    break;
+                case 'Follow-Up Call':
+                    template_label = 'outgoing';
+                    break;
+                case 'Callback Queue':
+                    template_label = 'callback';
+                    break;
+                default:
+                    template_label = 'queue';
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+    debugmsg(4, 'subsection: ' + subsection + "\ntemplate_label: " + template_label);
+    var locations = [subsection, template_label];
+    return locations;
+}
+function closeScript() {
+    document.getElementById('prompt').style.display = 'none';
+}
+
+if (sandbox) {
+    document.getElementById('common-call-types').addEventListener('change', updateDescription);
+    document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
+    document.getElementById('script-prompt-greeting').addEventListener('click', activateScript);
+    document.getElementById('prompt-close').addEventListener('click', closeScript);
+}

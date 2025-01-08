@@ -116,6 +116,26 @@ The Zeiss Technician will contact the office within ${context[5]} business ${con
 Regards,
 ${email_sig}`
             },
+            "fse-update": {
+                "name": "FSE Update Request",
+                "recipient": "fieldservicedispatchinquiries.med.us@zeiss.com",
+                "cc": [],
+                "bcc": [],
+                "subject": `Field Service Engineer Status Inquiry - SVO #${context[0]}`,
+                "body": `Hi Team,
+The customer, ${document.getElementById('local-contact-person').value}, has called requesting a status update on the dispatch of the Field Service Engineer for Service Request #${context[0]}. Can someone please reach out and provide the latest update to the customer?
+
+    Local Contact Person: ${document.getElementById('local-contact-person').value}
+    Contact Phone Number: ${document.getElementById('phone').value}${(context[2] === 'p') ? ' (Preferred)' : ''}
+    Email Address: ${document.getElementById('email').value}${(context[2] === 'e') ? ' (Preferred)' : ''}
+    SVO #: ${context[0]}
+    Created On: ${context[1]}
+
+Thank you for your prompt attention to this matter.
+
+Regards,
+${email_sig}`
+            },
             "smart-services-confirmation": {
                 "name": "Smart Services Confirmation",
                 "recipient": `${document.getElementById('email').value}`,
@@ -177,10 +197,92 @@ ${email_sig}`
         },
         "script": {
             "greeting": {
-                "text": "Hello! Thank you for calling Zeiss Technical Support. Can I have the serial number of your instrument or an existing ticket number?"
+                "default": {
+                    "queue": "Hello! Thank you for calling Zeiss Technical Support. May I have the serial number of your instrument, please?",
+                    "callback": `Hello! This is ${casual_name} from Zeiss Technical Support, returning a call for assistance on a Zeiss instrument or software.`,
+                    "voicemail": `Hello, this is ${casual_name} calling from Zeiss Technical Support. ${(document.getElementById('local-contact-person').value !== '') ? 'This message is for' + document.getElementById('local-contact-person').value + ' ' : ''}Sorry to have missed you.`,
+                    "outgoing": `Hello! This is ${casual_name} calling from Zeiss Technical Support.${(document.getElementById('local-contact-person').value !== '') ? "I'm trying to reach " + document.getElementById('local-contact-person').value + ", please." : ''}`
+                },
+                "user": {
+                    "queue": `${(curr_date.getHours() <= 12) ? 'Good morning! ' : ''}Thank you for calling Zeiss Technical Support, this is ${casual_name}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`
+                }                    
             }
         },
-        "prompt": {
+        "process": {
+            "call-types": {
+                "general": {
+                    "default": `<h1>Generic Troubleshooting Call</h1>
+<ol>
+    <li><a href="#top">Gather customer and device information</a></li>
+    <li>Follow <a href="#checklist">Technical Support Call Checklist</a> to troubleshoot issue</li>
+    <li>${TRef.cct_in_crm} from <a href="#rafta">Request Notes</a> and <a href="#internal">Internal Notes</a></li>
+    <li><a href="#export">Export</a> SNAP log and attach to CCT</li>
+    <li>Close ticket if applicable.</li>
+</ol>`,
+                    "delivery-doa": `<h1>Delivery Dead On Arrival</h1>
+<ol>
+    <li>Dead On Arrival (DOA) issues for new instruments are generally reported by Technical Transportation (TechTrans) while onsite performing 'white glove' delivery service</li>
+    <li>Instrument may not be connected to the network and remote troubleshooting may not be possible</li>
+    <li>DOA complaints require the ${TRef.crm} CCT to be flagged as a Sustaining Ticket (use Critical Incident field and select 'Investig. required, unusual occurrence')</li>
+    <li>Note any relevant information provided by TechTrans in the ticket description (e.g. initialization step where failure occurred, error messages, condition of the packaging upon delivery)</li>
+    <li>Otherwise treat as a standard onsite dispatch</li>
+</ol>`,
+                    "fse-follow-up": `<h1>FSE Follow-Up</h1>
+<ol>
+    <li>Apologize to customer for any delay</li>
+    <li>Check the status of the SVO (85*) in ${TRef.crm} (customer may have either the CCT number or the SVO number as reference)
+        <ul>
+            <li>On the SVO, under Items &raquo; Actions select the edit button for Item Number 10</li>
+            <li>Under Assignments, verify Start Date (indicates when the order was dispatched) and check Start Time/End Time</li>
+            <li>If Start Time is 20:00 and End Time is 21:00 (8:00 pm&ndash;9:00 pm), the visit likely hasn't been scheduled</li>
+        </ul>
+    </li>
+    <li>Use the <a href="#" onclick="manualOverlay('fse-update');">FSE Status Inquiry</a> email template. You'll need to provide:
+        <ul>
+            <li>Point of Contact (POC) Name</li>
+            <li>POC Phone Number</li>
+            <li>POC Email</li>
+            <li>The SVO Number and creation date for the SVO (in pop-up)</li>
+        </ul>
+    </li>
+    <li>Use the FSE Tool to CC the assignee and the Field Service Supervisor (FSS) for fastest response</li><li>Complete CCT noting that email was sent to the appropriate parties</li>
+</ol>`,
+                    "pm-request": `<h1>Preventative Maintenance Request (with Service Contract)</h1>
+<ol>
+    <li>Note the Contract ID in ${TRef.crm}</li>
+    <li>Verify the instrument address</li>
+    <li>Use the <a href="#" onclick="">Admin PM Request</a> email template</li>
+</ol>
+For a PM request without a service contract:
+<ol>
+    <li>Confirm billing (use the <a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')">PO Authorization</a> email request template if needed)</li>
+    <li>If billing is authorized verbally or approval/PO is sent to you, create Preventative Maintenance task</li>
+    <li>Leave CCT as 'In Process with Follow-Up'</li>
+</ol>`,
+                    "proaim-pm-request": `<h1>PROAIM Preventative Maintenance Request</h1>
+<ol>
+    <li>Use <a href="#" onclick="">PROAIM PM Request</a> email template</li>
+</ol>`,
+                    "review-station-software-install": `<h1>Software Install (Review Station)</h1>
+<ol>
+    <li>[Recommended] Notify customer that at some point in the future, this type of support may fall under 'Professional Services' and carry a billable rate</li>
+    <li>Remotely access review station using TeamViewer</li>
+    <li>Use software download link to acquire installation kit, or, if available, have customer connect USB drive with install kit for target software version</li>
+    <li>Verify system requirements for the software to be installed</li>
+    <li>Uninstall existing software (if performing software upgrade</li>
+    <li>Run installer</li>
+    <li>Perform any necessary post-install configuration steps</li>
+    <li>${TRef.cct_in_crm}, using Call Type 'Remote Service' and including all relevant information</li>
+    <li>Set Status to 'In Process'</li>
+    <li>Set CCT Processor to 'Vanessa Beliso' (User Name U6VBELIS)</li>
+</ol>`,
+                    "spare-parts": `<h1>Spare Parts Request</h1>
+<ol>
+    <li>Check for part description and part number in SIS</li>
+    <li>Use <a href="#" onclick="manualOverlay('parts-order')">Parts Order</a> email template</li>
+</ol>`
+                }
+            }
         },
         "solution": {
         },

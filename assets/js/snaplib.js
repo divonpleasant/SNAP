@@ -1,4 +1,4 @@
-const version = "3.0.51";
+const version = "3.0.52";
 const project_home = "https://github.com/divonpleasant/SNAP"
 
 // Startup routine
@@ -32,6 +32,7 @@ var private_inbox = 'declined@zeiss.com';
 var contact_inbox = 'dl.med-usmedtechnicalsupport.us@zeiss.com';
 var email_sig = '';
 var final_style = '';
+var use_custom_scripts = false;
 
 if (email_sig == '' && sign_email) {
     email_sig = "-----\n" +
@@ -76,6 +77,7 @@ Full Name: ${fullname}
 Name: ${casual_name}
 Personal Email: ${private_inbox}
 Contact Email: ${contact_inbox}
+Custom Scripts: ${use_custom_scripts}
 Email Signature: 
 ${email_sig}
     `;
@@ -224,8 +226,7 @@ resetFunc.addEventListener('click', () => {
 })
 
 // Handle CI Reject button
-const ciReject = document.getElementById('copy-ci-rejection');
-ciReject.addEventListener('click', () => {
+document.getElementById('copy-ci-rejection').addEventListener('click', () => {
     if (document.getElementById('ci-reject-string').value == '') {
         console.warn('[WARNING] ci-reject-string cannot be empty when copying CI Rejection');
         alert('The CI Rejection String field cannot be empty');
@@ -243,18 +244,16 @@ ciReject.addEventListener('click', () => {
 });
 
 // Handle Deferred Billing button
-if (sandbox) {
-    const defBilling = document.getElementById('copy-deferred-billing');
-    defBilling.addEventListener('click', () => {
-        var deferred_billing_str = 'Customer is not prepared with payment information. Provided the customer with the ticket number and advised to contact our SVCOPS team via email when they are ready to proceed with service.';
-        navigator.clipboard.writeText(deferred_billing_str).then(function() {
-            (copy_alert) ? alert('Deferred billing verbiage copies to clipboard!') : '';
-        }).catch(function(err) {
-            alert('Failed to copy data to clipboard: ', err);
-        });
-        debugmsg(2, "'Copied text to clipboard: '" + deferred_billing_str + "'");
+document.getElementById('copy-deferred-billing').addEventListener('click', () => {
+    var deferred_billing_str = 'Customer is not prepared with payment information. Provided the customer with the ticket number and advised to contact our SVCOPS team via email when they are ready to proceed with service.';
+    navigator.clipboard.writeText(deferred_billing_str).then(function() {
+        (copy_alert) ? alert('Deferred billing verbiage copies to clipboard!') : '';
+    }).catch(function(err) {
+        alert('Failed to copy data to clipboard: ', err);
     });
-}
+    debugmsg(2, "'Copied text to clipboard: '" + deferred_billing_str + "'");
+});
+
 
 // Determine POC communication preferences
 function outputCommunicationPref() {

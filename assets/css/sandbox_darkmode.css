@@ -245,18 +245,20 @@ hr {
 
 /* Labels */
 .label-right {
-	font-size: 8pt;
-	width: 100%;
-	text-align: right;
-	color: light-gray;
-	align-items: stretch;
+    font-size: 8pt;
+    width: 100%;
+    text-align: right;
+    align-content: center;
+    color: light-gray;
+    align-items: stretch;
 }
 
 .label-left {
-	font-size: 8pt;
-	width: 100%;
-	color: light-gray;
-	align-items: stretch;
+    font-size: 8pt;
+    width: 100%;
+    align-content: center;
+    color: light-gray;
+    align-items: stretch;
 }
 /* Row */
 .row {
@@ -1992,6 +1994,9 @@ button,
   font-size: 0.9em;
   position: relative;
   /* sidebar scrolling prototype
+  position: fixed;
+  left: 0px;
+  top: 0px;
   max-height: 110vh !important;
   overflow-y: auto !important;
   overflow-x: hidden;
@@ -2435,7 +2440,7 @@ button,
       margin-bottom: 10px;
   }
 
-  /* Overlays*/
+/* Overlays*/
   #overlay {
     position: fixed;
     top: 0;
@@ -2463,8 +2468,8 @@ button,
     right: 15px;
     font-size: 34px;
   }
-  
-  #parts-overlay {
+
+#fse-update-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -2475,8 +2480,22 @@ button,
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  #parts-order-overlay {
+}
+#fse-update-overlay-content {
+    background-color: #606a76;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+#fse-update-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+}
+
+#parts-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -2487,35 +2506,45 @@ button,
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-
-  #parts-overlay-content {
+}
+#parts-order-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#parts-overlay-content {
     background-color: #606a76;
     padding: 50px;
     border-radius: 10px;
     text-align: center;
     position: relative;
-  }
-  #parts-order-overlay-content {
+}
+#parts-order-overlay-content {
     background-color: #606a76;
     padding: 50px;
     border-radius: 10px;
     text-align: center;
     position: relative;
-  }
-
-  #parts-close-overlay {
+}
+#parts-close-overlay {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 34px;
-  }
-  #parts-order-close-overlay {
+}
+#parts-order-close-overlay {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 34px;
-  }
+}
 
 #overlay-pmreq {
     position: fixed;
@@ -2594,7 +2623,6 @@ button,
     align-items: center;
     z-index: 1000;
 }
-
 #eos-overlay-content {
     background-color: #606a76;
     padding: 50px;
@@ -2602,12 +2630,10 @@ button,
     text-align: left;
     position: relative;
 }
-
 #eos-submit-button-align {
     align-items: center;
     text-align: center;
 }
-
 #eos-close-overlay {
     position: absolute;
     top: 10px;
@@ -2627,14 +2653,12 @@ button,
   align-items: center;
   z-index: 1000;
 }
-
 #schedule-close-overlay {
   position: absolute;
   top: 10px;
   right: 15px;
   font-size: 34px;
 }
-
 #schedule-overlay-content {
   background-color: #606a76;
   padding: 50px;
@@ -2642,7 +2666,6 @@ button,
   text-align: center;
   position: relative;
 }
-
 #scheduledDateTime {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -2716,18 +2739,60 @@ button,
     top: 0px;
     right: 0px;
     background: #606a76;
-    z-index: 9999;
+    z-index: 999;
 }
 
+.script-scroll {
+    float: right;
+    vertical-align: bottom;
+    margin: 0px 1px 0px 8px;
+}
 #prompt {
     display: none;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    max-width: 65%;
+    max-height: 35%;
+    z-index: 998;
+}
+#prompt-content {
     color: #32373e;
     border-radius: 10px;
     background: #8daac8;
     margin: 20px;
     padding: 15px;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    z-index: 9998;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #32373e #8daac8;
+}
+#prompt-content a {
+    color: #a70240;
+    border-bottom: dotted 1px;
+}
+#prompt-content a:hover {
+    color: #ea591b !important;
+}
+#prompt-content h1 {
+    color: inherit;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+#prompt-content ul,ol {
+    margin-bottom: .4em;
+    padding-left: 2em;
+}
+.close-x {
+    position: absolute;
+    top: -25px;
+    right: 25px;
+    font-size: 34px;
+    color: #8daac8;
+}
+#prompt-tail {
+    color: #8daac8;
+    position: absolute;
+    bottom: 6px;
+    left: 40px;
+    z-index: 997;
 }

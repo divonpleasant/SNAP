@@ -30,6 +30,26 @@
                             <!-- Content -->
                             <form method="post" action="#">
                                 <div class="row gtr-uniform">
+                                    <div class="col-12">
+                                        <span class="script-scroll"><a style="border-bottom: none;" href="#top"><i id="script-prompt-greeting" class="fa-solid fa-scroll"></i></a></span>
+                                        <h4>Initialize Call</h4>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="request-came-from" id="request-came-from">
+                                            <option value="">&mdash; Request Came From &mdash;</option>
+                                            <option value="Call">Call</option>
+                                            <option value="Email">Email</option>
+                                        </select>
+                                        <div class="label-left">Request Came From</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="request-source" id="request-source">
+                                            <option value="">&mdash; Source &mdash;</option>
+                                            <option value="Other Means">Other</option>
+                                        </select>
+                                        <div class="label-right">Request Source</div>
+                                    </div>
+                                    
                                     <!-- Instrument Information -->
                                     <div class="col-6 col-12-xsmall">
                                         <select name="instrument-model" id="instrument-model">
@@ -81,6 +101,19 @@
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
                                         <div class="label-right">CCT Number</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <select name="common-call-types" id="common-call-types">
+                                            <option value="">&mdash; Common Call Types &mdash;</option>
+                                            <option value="delivery-doa">Delivery DOA</option>
+                                            <option value="fse-follow-up">FSE Follow-Up</option>
+                                            <option value="pm-request">Preventative Maintenance Request</option>
+                                            <option value="proaim-pm-request">PROAIM Preventative Maintenance Request</option>
+                                            <option value="review-station-software-install">Review Station Software Installation</option>
+                                            <option value="spare-parts">Spare Parts</option>
+                                        </select>
+                                        
+                                        <div class="label-right">Call Type <span class="script-scroll"><a style="border-bottom: none;" href="#top"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                                     </div>
                                     <div class="col-12">
                                         <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
@@ -194,7 +227,7 @@
                                     <!-- Technical Support Call Checklist -->
                                     <a class="anchor" name="checklist"></a>
                                     <div class="col-12">
-                                        <h5>Technical Support Call Checklist</h5>
+                                        <h4>Technical Support Call Checklist</h4>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="current-software-version" name="current-software-version">
@@ -599,22 +632,7 @@
                                     <!-- Internal Notes -->
                                     <a class="anchor" name="internal"></a>
                                     <div class="col-12">
-                                        <h4>Internal Notes:</h4>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <select name="request-came-from" id="request-came-from">
-                                            <option value="">&mdash; Request Came From &mdash;</option>
-                                            <option value="Call">Call</option>
-                                            <option value="Email">Email</option>
-                                        </select>
-                                        <div class="label-left">Request Came From</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <select name="request-source" id="request-source">
-                                            <option value="">&mdash; Source &mdash;</option>
-                                            <option value="Other Means">Other</option>
-                                        </select>
-                                        <div class="label-right">Request Source</div>
+                                        <h4>Internal Notes</h4>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="remote-time" id="remote-time" placeholder="Time Spent" />
@@ -696,120 +714,6 @@
                                         <a href="#internal" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
                                     </div>
 
-                                    <!-- Overlays -->
-                                    <!-- FSE Update Request Overlay -->
-                                    <div id="overlay" style="display: none;">
-                                        <div id="overlay-content">
-                                            <span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Enter SVO Information</h3>
-                                            <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
-                                            <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
-                                            <button id="proceed-button">Continue</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- PM Service Ops (Contract) Overlay -->
-                                    <div id="overlay-pmreq" style="display: none;">
-                                        <div id="overlay-content-pmreq">
-                                            <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Enter Contract Number</h3>
-                                            <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
-                                            <button id="pm-proceed-button">Continue</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Parts Order Overlay -->
-                                    <div id="parts-order-overlay" style="display: none;">
-                                        <div id="parts-order-overlay-content">
-                                            <span id="parts-order-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Enter Parts Order Information</h3>
-                                            <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
-                                            <textarea rows="4" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID; one part per line"></textarea><br />
-                                            <input type="checkbox" id="foc" name="foc">
-                                            <label for="foc">Free of Charge?</label><br />
-                                            <select name="delivery-type" id="delivery-type">
-                                                <option value="">&mdash; Delivery Type &mdash;</option>
-                                                <option value="Overnight">Overnight</option>
-                                                <option value="Ground">Ground</option>
-                                            </select><br />
-                                            <button id="parts-proceed">Continue</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- End of Support Overlay -->
-                                    <div id="eos-overlay" style="display: none;">
-                                        <div id="eos-overlay-content">
-                                            <span id="eos-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3 style="text-align: center">Enter EoS Instrument Information</h3>
-                                            <select name="eos-instrument-type" id="eos-instrument-type">
-                                                <option value="">&mdash; Instrument &mdash;</option>
-                                                <option value="acuitus">Acuitus Auto Refractor</option>
-                                                <option value="atlas">ATLAS</option>
-                                                <option value="cirrus-oct">Cirrus HD-OCT</option>
-                                                <option value="cirrus-photo">Cirrus Photo</option>
-                                                <option value="ct">Corneal Topographer (CT)</option>
-                                                <option value="clarus">Clarus</option>
-                                                <option value="fundus-camera">Fundus Camera</option>
-                                                <option value="hfa">Humphrey Field Analyzer (HFA)</option>
-                                                <option value="iolmaster">IOLMaster</option>
-                                                <option value="matrix">Matrix</option>
-                                                <option value="oct">OCT</option>
-                                                <option value="slit-lamp">Slit Lamps (SL)</option>
-                                                <option value="stratus">Stratus</option>
-                                                <option value="visante">Visante OCT</option>
-                                                <option value="visucam">Visucam</option>
-                                                <option value="visupac">Visupac</option>
-                                            </select>
-                                            <select name="eos-instrument-model" id="eos-instrument-model">
-                                                <option value="">&mdash; Model &mdash;</option>
-                                            </select>
-                                            <div id="eos-submit-button-align">
-                                                <button id="eos-proceed">Continue</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Settings Overlay -->
-                                    <div id="settings-overlay" style="display: none;">
-                                        <div id="settings-overlay-content">
-                                            <span id="settings-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3 style="text-align: center">User Settings</h3>
-                                            <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
-                                            <label for="alert-on-copy">Alert on Copy?</label><br />
-                                            <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
-                                            <label for="alert-for-xc">Alert for XC?</label><br />
-                                            <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
-                                            <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
-                                            <input type="checkbox" id="dark-mode" name="dark-mode">
-                                            <label for="dark-mode">Dark Mode?</label><br />
-                                            <input type="checkbox" id="sign-email" name="sign-email">
-                                            <label for="sign-email">Sign Outgoing Email?</label><br />
-                                            <input type="checkbox" id="debug-toggle" name="debug-toggle">
-                                            <label for="debug-toggle">Use Debug Mode?</label><br />
-                                            <select name="debug-level" id="debug-level">
-                                                <option value="">&mdash; Debug Level &mdash;</option>
-                                                <option value="1">Level 1 (Overview)</option>
-                                                <option value="2">Level 2 (Troubleshooting)</option>
-                                                <option value="3">Level 3 (Errors)</option>
-                                                <option value="4">Level 4 (Debugging)</option>
-                                                <option value="5">Level 5 (Developer)</option>
-                                            </select><br />
-                                            <div id="setting-save-button-align">
-                                                <button id="settings-save">Save</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Schedule Callback Overlay -->
-                                    <div id="schedule-overlay" style="display: none;">
-                                        <div id="schedule-overlay-content">
-                                            <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Select Date and Time</h3>
-                                            <input type="datetime-local" id="scheduledDateTime" required /><br />
-                                            <button id="modalContinue">Continue</button>
-                                        </div>
-                                    </div>
-
                                     <!-- Export Button -->
                                     <a class="anchor" id="export" name="export"></a>
                                     <div class="col-12">
@@ -821,6 +725,119 @@
                                 </div>
                         </form>
 
+                        <!-- Overlays -->
+                        <!-- FSE Update Request Overlay -->
+                        <div id="fse-update-overlay" style="display: none;">
+                            <div id="fse-update-overlay-content">
+                                <span id="fse-update-close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter SVO Information</h3>
+                                <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
+                                <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
+                                <button id="fse-update-proceed">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- PM Service Ops (Contract) Overlay -->
+                        <div id="overlay-pmreq" style="display: none;">
+                            <div id="overlay-content-pmreq">
+                                <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter Contract Number</h3>
+                                <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
+                                <button id="pm-proceed-button">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Parts Order Overlay -->
+                        <div id="parts-order-overlay" style="display: none;">
+                            <div id="parts-order-overlay-content">
+                                <span id="parts-order-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter Parts Order Information</h3>
+                                <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
+                                <textarea rows="4" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID; one part per line"></textarea><br />
+                                <input type="checkbox" id="foc" name="foc">
+                                <label for="foc">Free of Charge?</label><br />
+                                <select name="delivery-type" id="delivery-type">
+                                    <option value="">&mdash; Delivery Type &mdash;</option>
+                                    <option value="Overnight">Overnight</option>
+                                    <option value="Ground">Ground</option>
+                                </select><br />
+                                <button id="parts-order-proceed">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- End of Support Overlay -->
+                        <div id="eos-overlay" style="display: none;">
+                            <div id="eos-overlay-content">
+                                <span id="eos-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3 style="text-align: center">Enter EoS Instrument Information</h3>
+                                <select name="eos-instrument-type" id="eos-instrument-type">
+                                    <option value="">&mdash; Instrument &mdash;</option>
+                                    <option value="acuitus">Acuitus Auto Refractor</option>
+                                    <option value="atlas">ATLAS</option>
+                                    <option value="cirrus-oct">Cirrus HD-OCT</option>
+                                    <option value="cirrus-photo">Cirrus Photo</option>
+                                    <option value="ct">Corneal Topographer (CT)</option>
+                                    <option value="clarus">Clarus</option>
+                                    <option value="fundus-camera">Fundus Camera</option>
+                                    <option value="hfa">Humphrey Field Analyzer (HFA)</option>
+                                    <option value="iolmaster">IOLMaster</option>
+                                    <option value="matrix">Matrix</option>
+                                    <option value="oct">OCT</option>
+                                    <option value="slit-lamp">Slit Lamps (SL)</option>
+                                    <option value="stratus">Stratus</option>
+                                    <option value="visante">Visante OCT</option>
+                                    <option value="visucam">Visucam</option>
+                                    <option value="visupac">Visupac</option>
+                                </select>
+                                <select name="eos-instrument-model" id="eos-instrument-model">
+                                    <option value="">&mdash; Model &mdash;</option>
+                                </select>
+                                <div id="eos-submit-button-align">
+                                    <button id="eos-proceed">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Settings Overlay -->
+                        <div id="settings-overlay" style="display: none;">
+                            <div id="settings-overlay-content">
+                                <span id="settings-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3 style="text-align: center">User Settings</h3>
+                                <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
+                                <label for="alert-on-copy">Alert on Copy?</label><br />
+                                <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
+                                <label for="alert-for-xc">Alert for XC?</label><br />
+                                <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
+                                <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
+                                <input type="checkbox" id="dark-mode" name="dark-mode">
+                                <label for="dark-mode">Dark Mode?</label><br />
+                                <input type="checkbox" id="sign-email" name="sign-email">
+                                <label for="sign-email">Sign Outgoing Email?</label><br />
+                                <input type="checkbox" id="debug-toggle" name="debug-toggle">
+                                <label for="debug-toggle">Use Debug Mode?</label><br />
+                                <select name="debug-level" id="debug-level">
+                                    <option value="">&mdash; Debug Level &mdash;</option>
+                                    <option value="1">Level 1 (Overview)</option>
+                                    <option value="2">Level 2 (Troubleshooting)</option>
+                                    <option value="3">Level 3 (Errors)</option>
+                                    <option value="4">Level 4 (Debugging)</option>
+                                    <option value="5">Level 5 (Developer)</option>
+                                </select><br />
+                                <div id="setting-save-button-align">
+                                    <button id="settings-save">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Schedule Callback Overlay -->
+                        <div id="schedule-overlay" style="display: none;">
+                            <div id="schedule-overlay-content">
+                                <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Select Date and Time</h3>
+                                <input type="datetime-local" id="scheduledDateTime" required /><br />
+                                <button id="modalContinue">Continue</button>
+                            </div>
+                        </div>
                         </div>
                     </div>
 
@@ -838,15 +855,15 @@
                                         <li>
                                             <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="eos">EoS Explanation</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('eos')" id="eos">EoS Explanation</a></li>
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Field Service Interactions</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="fse-billing-request">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')" id="fse-billing-request">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('fse-update')" id="fse-update">FSE Status Inquiry</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -859,7 +876,7 @@
                                         <li>
                                             <span class="opener">Preventative Maintenance</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="pm-billing-request">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('pm-billing-request')" id="pm-billing-request">PO Authorization</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="proaimpmemailgenLink2">PROAIM PM Request</a></li>
                                             </ul>
@@ -882,24 +899,24 @@
                                             <span class="opener">Smart Services</span>
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://forms.office.com/e/DppCjfLcad" target="_blank">Deployment Request Form</a>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="smart-services-confirmation">Smart Services Confirmation</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('smart-services-confirmation')" id="smart-services-confirmation">Smart Services Confirmation</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">SMILE Devices</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="mel-80-90">MEL 80/90 Service Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="visumax">VISUMAX Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('mel-80-90')" id="mel-80-90">MEL 80/90 Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('visumax')" id="visumax">VISUMAX Service Request</a><li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="canada-service-request">Canada Service Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="parts-order">Parts Order</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('canada-service-request')" id="canada-service-request">Canada Service Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('parts-order')" id="parts-order">Parts Order</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="porequestLink">Purchase Order Information</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="win-support">Windows 10/11 Support Information</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('win-support')" id="win-support">Windows 10/11 Support Information</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -952,7 +969,13 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                     </div>
 
             </div>
-        <div id="prompt"></div>
+        <div id="prompt">
+            <div id="prompt-content">
+                <span id="prompt-close" class="close-x" style="cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-xs"></i></span> <!-- X button to close -->
+                <span id="prompt-text"></span>
+                <span id="prompt-tail"><i class="fa-solid fa-caret-down fa-2xl"></i></span>
+            </div>
+        </div>
 
             <!-- Scripts -->
             <script src="assets/js/snaplib.js"></script>
@@ -970,7 +993,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/printrafta.js"></script>
             <script src="assets/js/printintnotes.js"></script>
             <script src="assets/js/tvrequest.js"></script>
-            <script src="assets/js/fseupdate.js"></script>
+            <!--<script src="assets/js/fseupdate.js"></script>-->
             <script src="assets/js/formSupport.js"></script>
             <script src="assets/js/dynamicfields.js"></script>
             <script src="assets/js/porequest.js"></script>
