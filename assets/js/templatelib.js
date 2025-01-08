@@ -83,6 +83,12 @@ function eosProcContext(data) {
 }
 
 // OBJECTS
+// Template References (re-usable HTML blobs)
+TRef = {
+    "cct_in_crm": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">Create CCT in CRM</a>",
+    "crm": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">CRM</a>"
+}
+
 // Devices Metadata Object **SOURCE OF TRUTH**
 Devices = {
     "master_reference": "https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html",

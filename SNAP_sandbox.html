@@ -30,6 +30,26 @@
                             <!-- Content -->
                             <form method="post" action="#">
                                 <div class="row gtr-uniform">
+                                    <div class="col-12">
+                                        <span class="script-scroll"><a style="border-bottom: none;" href="#top"><i id="script-prompt-greeting" class="fa-solid fa-scroll"></i></a></span>
+                                        <h4>Initialize Call</h4>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="request-came-from" id="request-came-from">
+                                            <option value="">&mdash; Request Came From &mdash;</option>
+                                            <option value="Call">Call</option>
+                                            <option value="Email">Email</option>
+                                        </select>
+                                        <div class="label-left">Request Came From</div>
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <select name="request-source" id="request-source">
+                                            <option value="">&mdash; Source &mdash;</option>
+                                            <option value="Other Means">Other</option>
+                                        </select>
+                                        <div class="label-right">Request Source</div>
+                                    </div>
+                                    
                                     <!-- Instrument Information -->
                                     <div class="col-6 col-12-xsmall">
                                         <select name="instrument-model" id="instrument-model">
@@ -81,6 +101,19 @@
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
                                         <div class="label-right">CCT Number</div>
+                                    </div>
+                                    <div class="col-12">
+                                        <select name="common-call-types" id="common-call-types">
+                                            <option value="">&mdash; Common Call Types &mdash;</option>
+                                            <option value="delivery-doa">Delivery DOA</option>
+                                            <option value="fse-follow-up">FSE Follow-Up</option>
+                                            <option value="pm-request">Preventative Maintenance Request</option>
+                                            <option value="proaim-pm-request">PROAIM Preventative Maintenance Request</option>
+                                            <option value="review-station-software-install">Review Station Software Installation</option>
+                                            <option value="spare-parts">Spare Parts</option>
+                                        </select>
+                                        
+                                        <div class="label-right">Call Type <span class="script-scroll"><a style="border-bottom: none;" href="#top"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                                     </div>
                                     <div class="col-12">
                                         <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
@@ -194,7 +227,7 @@
                                     <!-- Technical Support Call Checklist -->
                                     <a class="anchor" name="checklist"></a>
                                     <div class="col-12">
-                                        <h5>Technical Support Call Checklist</h5>
+                                        <h4>Technical Support Call Checklist</h4>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="checkbox" id="current-software-version" name="current-software-version">
@@ -599,22 +632,7 @@
                                     <!-- Internal Notes -->
                                     <a class="anchor" name="internal"></a>
                                     <div class="col-12">
-                                        <h4>Internal Notes:</h4>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <select name="request-came-from" id="request-came-from">
-                                            <option value="">&mdash; Request Came From &mdash;</option>
-                                            <option value="Call">Call</option>
-                                            <option value="Email">Email</option>
-                                        </select>
-                                        <div class="label-left">Request Came From</div>
-                                    </div>
-                                    <div class="col-6 col-12-xsmall">
-                                        <select name="request-source" id="request-source">
-                                            <option value="">&mdash; Source &mdash;</option>
-                                            <option value="Other Means">Other</option>
-                                        </select>
-                                        <div class="label-right">Request Source</div>
+                                        <h4>Internal Notes</h4>
                                     </div>
                                     <div class="col-6 col-12-xsmall">
                                         <input type="text" name="remote-time" id="remote-time" placeholder="Time Spent" />
@@ -698,13 +716,13 @@
 
                                     <!-- Overlays -->
                                     <!-- FSE Update Request Overlay -->
-                                    <div id="overlay" style="display: none;">
-                                        <div id="overlay-content">
-                                            <span id="close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                    <div id="fse-update-overlay" style="display: none;">
+                                        <div id="fse-update-overlay-content">
+                                            <span id="fse-update-close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
                                             <h3>Enter SVO Information</h3>
                                             <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
                                             <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
-                                            <button id="proceed-button">Continue</button>
+                                            <button id="fse-update-proceed">Continue</button>
                                         </div>
                                     </div>
 
@@ -732,7 +750,7 @@
                                                 <option value="Overnight">Overnight</option>
                                                 <option value="Ground">Ground</option>
                                             </select><br />
-                                            <button id="parts-proceed">Continue</button>
+                                            <button id="parts-order-proceed">Continue</button>
                                         </div>
                                     </div>
 
@@ -838,15 +856,15 @@
                                         <li>
                                             <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="eos">EoS Explanation</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('eos')" id="eos">EoS Explanation</a></li>
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Field Service Interactions</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="fse-billing-request">PO Authorization</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="fseupdateLink">FSE Status Inquiry</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')" id="fse-billing-request">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('fse-update')" id="fse-update">FSE Status Inquiry</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -859,7 +877,7 @@
                                         <li>
                                             <span class="opener">Preventative Maintenance</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="pm-billing-request">PO Authorization</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('pm-billing-request')" id="pm-billing-request">PO Authorization</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="serviceadminpmreqemailLink">Service Admin PM Request</a><li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="proaimpmemailgenLink2">PROAIM PM Request</a></li>
                                             </ul>
@@ -882,24 +900,24 @@
                                             <span class="opener">Smart Services</span>
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://forms.office.com/e/DppCjfLcad" target="_blank">Deployment Request Form</a>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="smart-services-confirmation">Smart Services Confirmation</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('smart-services-confirmation')" id="smart-services-confirmation">Smart Services Confirmation</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">SMILE Devices</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="mel-80-90">MEL 80/90 Service Request</a><li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="visumax">VISUMAX Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('mel-80-90')" id="mel-80-90">MEL 80/90 Service Request</a><li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('visumax')" id="visumax">VISUMAX Service Request</a><li>
                                             </ul>
                                         </li>
                                         <li>
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="canada-service-request">Canada Service Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="parts-order">Parts Order</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('canada-service-request')" id="canada-service-request">Canada Service Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('parts-order')" id="parts-order">Parts Order</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="porequestLink">Purchase Order Information</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="win-support">Windows 10/11 Support Information</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('win-support')" id="win-support">Windows 10/11 Support Information</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -952,7 +970,13 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                     </div>
 
             </div>
-        <div id="prompt"></div>
+        <div id="prompt">
+            <div id="prompt-content">
+                <span id="prompt-close" class="close-x" style="cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-xs"></i></span> <!-- X button to close -->
+                <span id="prompt-text"></span>
+                <span id="prompt-tail"><i class="fa-solid fa-caret-down fa-2xl"></i></span>
+            </div>
+        </div>
 
             <!-- Scripts -->
             <script src="assets/js/snaplib.js"></script>
@@ -970,7 +994,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/printrafta.js"></script>
             <script src="assets/js/printintnotes.js"></script>
             <script src="assets/js/tvrequest.js"></script>
-            <script src="assets/js/fseupdate.js"></script>
+            <!--<script src="assets/js/fseupdate.js"></script>-->
             <script src="assets/js/formSupport.js"></script>
             <script src="assets/js/dynamicfields.js"></script>
             <script src="assets/js/porequest.js"></script>
