@@ -714,120 +714,6 @@
                                         <a href="#internal" id="copy-ci-rejection" class="button primary small">Copy CI Rejection</a>
                                     </div>
 
-                                    <!-- Overlays -->
-                                    <!-- FSE Update Request Overlay -->
-                                    <div id="fse-update-overlay" style="display: none;">
-                                        <div id="fse-update-overlay-content">
-                                            <span id="fse-update-close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Enter SVO Information</h3>
-                                            <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
-                                            <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
-                                            <button id="fse-update-proceed">Continue</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- PM Service Ops (Contract) Overlay -->
-                                    <div id="overlay-pmreq" style="display: none;">
-                                        <div id="overlay-content-pmreq">
-                                            <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Enter Contract Number</h3>
-                                            <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
-                                            <button id="pm-proceed-button">Continue</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Parts Order Overlay -->
-                                    <div id="parts-order-overlay" style="display: none;">
-                                        <div id="parts-order-overlay-content">
-                                            <span id="parts-order-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Enter Parts Order Information</h3>
-                                            <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
-                                            <textarea rows="4" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID; one part per line"></textarea><br />
-                                            <input type="checkbox" id="foc" name="foc">
-                                            <label for="foc">Free of Charge?</label><br />
-                                            <select name="delivery-type" id="delivery-type">
-                                                <option value="">&mdash; Delivery Type &mdash;</option>
-                                                <option value="Overnight">Overnight</option>
-                                                <option value="Ground">Ground</option>
-                                            </select><br />
-                                            <button id="parts-order-proceed">Continue</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- End of Support Overlay -->
-                                    <div id="eos-overlay" style="display: none;">
-                                        <div id="eos-overlay-content">
-                                            <span id="eos-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3 style="text-align: center">Enter EoS Instrument Information</h3>
-                                            <select name="eos-instrument-type" id="eos-instrument-type">
-                                                <option value="">&mdash; Instrument &mdash;</option>
-                                                <option value="acuitus">Acuitus Auto Refractor</option>
-                                                <option value="atlas">ATLAS</option>
-                                                <option value="cirrus-oct">Cirrus HD-OCT</option>
-                                                <option value="cirrus-photo">Cirrus Photo</option>
-                                                <option value="ct">Corneal Topographer (CT)</option>
-                                                <option value="clarus">Clarus</option>
-                                                <option value="fundus-camera">Fundus Camera</option>
-                                                <option value="hfa">Humphrey Field Analyzer (HFA)</option>
-                                                <option value="iolmaster">IOLMaster</option>
-                                                <option value="matrix">Matrix</option>
-                                                <option value="oct">OCT</option>
-                                                <option value="slit-lamp">Slit Lamps (SL)</option>
-                                                <option value="stratus">Stratus</option>
-                                                <option value="visante">Visante OCT</option>
-                                                <option value="visucam">Visucam</option>
-                                                <option value="visupac">Visupac</option>
-                                            </select>
-                                            <select name="eos-instrument-model" id="eos-instrument-model">
-                                                <option value="">&mdash; Model &mdash;</option>
-                                            </select>
-                                            <div id="eos-submit-button-align">
-                                                <button id="eos-proceed">Continue</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Settings Overlay -->
-                                    <div id="settings-overlay" style="display: none;">
-                                        <div id="settings-overlay-content">
-                                            <span id="settings-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3 style="text-align: center">User Settings</h3>
-                                            <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
-                                            <label for="alert-on-copy">Alert on Copy?</label><br />
-                                            <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
-                                            <label for="alert-for-xc">Alert for XC?</label><br />
-                                            <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
-                                            <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
-                                            <input type="checkbox" id="dark-mode" name="dark-mode">
-                                            <label for="dark-mode">Dark Mode?</label><br />
-                                            <input type="checkbox" id="sign-email" name="sign-email">
-                                            <label for="sign-email">Sign Outgoing Email?</label><br />
-                                            <input type="checkbox" id="debug-toggle" name="debug-toggle">
-                                            <label for="debug-toggle">Use Debug Mode?</label><br />
-                                            <select name="debug-level" id="debug-level">
-                                                <option value="">&mdash; Debug Level &mdash;</option>
-                                                <option value="1">Level 1 (Overview)</option>
-                                                <option value="2">Level 2 (Troubleshooting)</option>
-                                                <option value="3">Level 3 (Errors)</option>
-                                                <option value="4">Level 4 (Debugging)</option>
-                                                <option value="5">Level 5 (Developer)</option>
-                                            </select><br />
-                                            <div id="setting-save-button-align">
-                                                <button id="settings-save">Save</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Schedule Callback Overlay -->
-                                    <div id="schedule-overlay" style="display: none;">
-                                        <div id="schedule-overlay-content">
-                                            <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                            <h3>Select Date and Time</h3>
-                                            <input type="datetime-local" id="scheduledDateTime" required /><br />
-                                            <button id="modalContinue">Continue</button>
-                                        </div>
-                                    </div>
-
                                     <!-- Export Button -->
                                     <a class="anchor" id="export" name="export"></a>
                                     <div class="col-12">
@@ -839,6 +725,119 @@
                                 </div>
                         </form>
 
+                        <!-- Overlays -->
+                        <!-- FSE Update Request Overlay -->
+                        <div id="fse-update-overlay" style="display: none;">
+                            <div id="fse-update-overlay-content">
+                                <span id="fse-update-close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter SVO Information</h3>
+                                <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
+                                <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
+                                <button id="fse-update-proceed">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- PM Service Ops (Contract) Overlay -->
+                        <div id="overlay-pmreq" style="display: none;">
+                            <div id="overlay-content-pmreq">
+                                <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter Contract Number</h3>
+                                <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
+                                <button id="pm-proceed-button">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Parts Order Overlay -->
+                        <div id="parts-order-overlay" style="display: none;">
+                            <div id="parts-order-overlay-content">
+                                <span id="parts-order-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter Parts Order Information</h3>
+                                <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
+                                <textarea rows="4" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID; one part per line"></textarea><br />
+                                <input type="checkbox" id="foc" name="foc">
+                                <label for="foc">Free of Charge?</label><br />
+                                <select name="delivery-type" id="delivery-type">
+                                    <option value="">&mdash; Delivery Type &mdash;</option>
+                                    <option value="Overnight">Overnight</option>
+                                    <option value="Ground">Ground</option>
+                                </select><br />
+                                <button id="parts-order-proceed">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- End of Support Overlay -->
+                        <div id="eos-overlay" style="display: none;">
+                            <div id="eos-overlay-content">
+                                <span id="eos-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3 style="text-align: center">Enter EoS Instrument Information</h3>
+                                <select name="eos-instrument-type" id="eos-instrument-type">
+                                    <option value="">&mdash; Instrument &mdash;</option>
+                                    <option value="acuitus">Acuitus Auto Refractor</option>
+                                    <option value="atlas">ATLAS</option>
+                                    <option value="cirrus-oct">Cirrus HD-OCT</option>
+                                    <option value="cirrus-photo">Cirrus Photo</option>
+                                    <option value="ct">Corneal Topographer (CT)</option>
+                                    <option value="clarus">Clarus</option>
+                                    <option value="fundus-camera">Fundus Camera</option>
+                                    <option value="hfa">Humphrey Field Analyzer (HFA)</option>
+                                    <option value="iolmaster">IOLMaster</option>
+                                    <option value="matrix">Matrix</option>
+                                    <option value="oct">OCT</option>
+                                    <option value="slit-lamp">Slit Lamps (SL)</option>
+                                    <option value="stratus">Stratus</option>
+                                    <option value="visante">Visante OCT</option>
+                                    <option value="visucam">Visucam</option>
+                                    <option value="visupac">Visupac</option>
+                                </select>
+                                <select name="eos-instrument-model" id="eos-instrument-model">
+                                    <option value="">&mdash; Model &mdash;</option>
+                                </select>
+                                <div id="eos-submit-button-align">
+                                    <button id="eos-proceed">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Settings Overlay -->
+                        <div id="settings-overlay" style="display: none;">
+                            <div id="settings-overlay-content">
+                                <span id="settings-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3 style="text-align: center">User Settings</h3>
+                                <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
+                                <label for="alert-on-copy">Alert on Copy?</label><br />
+                                <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
+                                <label for="alert-for-xc">Alert for XC?</label><br />
+                                <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
+                                <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
+                                <input type="checkbox" id="dark-mode" name="dark-mode">
+                                <label for="dark-mode">Dark Mode?</label><br />
+                                <input type="checkbox" id="sign-email" name="sign-email">
+                                <label for="sign-email">Sign Outgoing Email?</label><br />
+                                <input type="checkbox" id="debug-toggle" name="debug-toggle">
+                                <label for="debug-toggle">Use Debug Mode?</label><br />
+                                <select name="debug-level" id="debug-level">
+                                    <option value="">&mdash; Debug Level &mdash;</option>
+                                    <option value="1">Level 1 (Overview)</option>
+                                    <option value="2">Level 2 (Troubleshooting)</option>
+                                    <option value="3">Level 3 (Errors)</option>
+                                    <option value="4">Level 4 (Debugging)</option>
+                                    <option value="5">Level 5 (Developer)</option>
+                                </select><br />
+                                <div id="setting-save-button-align">
+                                    <button id="settings-save">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Schedule Callback Overlay -->
+                        <div id="schedule-overlay" style="display: none;">
+                            <div id="schedule-overlay-content">
+                                <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Select Date and Time</h3>
+                                <input type="datetime-local" id="scheduledDateTime" required /><br />
+                                <button id="modalContinue">Continue</button>
+                            </div>
+                        </div>
                         </div>
                     </div>
 

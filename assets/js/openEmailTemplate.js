@@ -34,6 +34,7 @@ function openEmailTemplate(event) {
         case 'fse-update-proceed':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
             device_context.push((document.getElementById('svo-date').value !== '') ? document.getElementById('svo-date').value : '');
+            device_context.push(setPreferredComm());
             template_id = 'fse-update';
             break;
         case 'fse-billing-request':
@@ -138,6 +139,8 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
         case 'fse-update-proceed':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
             device_context.push((document.getElementById('svo-date').value !== '') ? document.getElementById('svo-date').value : '');
+            device_context.push(setPreferredComm());
+            device_context.push(setPreferredComm());
             template_id = 'fse-update';
             break;
         case 'fse-billing-request':

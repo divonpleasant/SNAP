@@ -1,5 +1,5 @@
 // FUNCTIONS
-// Function to process parts list
+// Process parts list data
 function procPartsList(parts) {
     if (parts == '') {
         return "NO PARTS DEFINED\n";
@@ -19,6 +19,26 @@ function procPartsList(parts) {
     return final_part_str;
 }
 
+function setPreferredComm() {
+    var comm_pref = outputCommunicationPref();
+    switch (comm_pref) {
+        case 'Customer prefers phone communication':
+            return 'p';
+            break;
+        case 'Customer prefers email communication':
+            return 'e';
+            break;
+        case 'Customer has no communication preference':
+            return '';
+            break;
+        default:
+            console.error('outputCommunicationPref() returned invalid result: ' + comm_pref);
+            return '';
+            break;
+    }
+}
+
+// Check if EOS form was correctly completed
 function eosPreCheck() {
     debugmsg(5, 'Executing eosPreCheck');
     if (document.getElementById('eos-instrument-type').value === '' || document.getElementById('eos-instrument-model').value === '') {
@@ -31,6 +51,7 @@ function eosPreCheck() {
     }
 }
 
+// Retrieve EoS data from Devices object
 function fetchEosData() {
     debugmsg(5, 'Retrieving Devices object');
     var activeEosModel = Devices.instruments[document.getElementById('eos-instrument-type').value];

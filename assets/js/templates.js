@@ -126,8 +126,8 @@ ${email_sig}`
 The customer, ${document.getElementById('local-contact-person').value}, has called requesting a status update on the dispatch of the Field Service Engineer for Service Request #${context[0]}. Can someone please reach out and provide the latest update to the customer?
 
     Local Contact Person: ${document.getElementById('local-contact-person').value}
-    Contact Phone Number: ${document.getElementById('phone').value}
-    Email Address: ${document.getElementById('email').value}
+    Contact Phone Number: ${document.getElementById('phone').value}${(context[2] === 'p') ? ' (Preferred)' : ''}
+    Email Address: ${document.getElementById('email').value}${(context[2] === 'e') ? ' (Preferred)' : ''}
     SVO #: ${context[0]}
     Created On: ${context[1]}
 
