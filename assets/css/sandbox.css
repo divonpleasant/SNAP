@@ -2698,6 +2698,7 @@ button,
     bottom: 0px;
     right: 0px;
     max-width: 65%;
+    max-height: 35%;
     z-index: 998;
 }
 #prompt-content {
@@ -2706,6 +2707,9 @@ button,
     background: #dce3e9;
     margin: 20px;
     padding: 15px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #32373e #8daac8;
 }
 #prompt-content a {
     border-bottom: dottend 1px;

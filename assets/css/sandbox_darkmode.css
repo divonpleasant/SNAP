@@ -1994,6 +1994,9 @@ button,
   font-size: 0.9em;
   position: relative;
   /* sidebar scrolling prototype
+  position: fixed;
+  left: 0px;
+  top: 0px;
   max-height: 110vh !important;
   overflow-y: auto !important;
   overflow-x: hidden;
@@ -2750,6 +2753,7 @@ button,
     bottom: 0px;
     right: 0px;
     max-width: 65%;
+    max-height: 35%;
     z-index: 998;
 }
 #prompt-content {
@@ -2758,6 +2762,9 @@ button,
     background: #8daac8;
     margin: 20px;
     padding: 15px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #32373e #8daac8;
 }
 #prompt-content a {
     color: #a70240;
