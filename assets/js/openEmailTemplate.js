@@ -117,7 +117,8 @@ function manualOverlay(o_id) {
     document.getElementById(o_id + '-overlay').style.display = 'flex';
 }
 function manualCloseOverlay(o_id) {
-    o_id = o_id.substr(0, o_id.length - 8);
+    debugmsg(4, 'o_id: ' + o_id);
+    //o_id = o_id.substr(0, o_id.length - 8);
     debugmsg(4, 'Manually executing closeOverlay::'+ o_id);
     document.getElementById(o_id + '-overlay').style.display = 'none';
 }
@@ -128,20 +129,18 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Find correct template and perform any context-relevant actions
     var device_context = [];
     switch (template_id) {
-        case 'eos-proceed':
+        case 'end-of-support':
             var activeModel = (eosPreCheck()) ? fetchEosData() : manualOverlay('eos');
             device_context.push(activeModel.short_name);
             device_context.push(activeModel.models[document.getElementById('eos-instrument-model').value].full_name);
             var procd_strs = eosProcContext(activeModel);
             device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
-            template_id = 'end-of-support';
             break;
-        case 'fse-update-proceed':
+        case 'fse-update':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
             device_context.push((document.getElementById('svo-date').value !== '') ? document.getElementById('svo-date').value : '');
             device_context.push(setPreferredComm());
             device_context.push(setPreferredComm());
-            template_id = 'fse-update';
             break;
         case 'fse-billing-request':
             device_context.push('Field Service');
@@ -157,11 +156,10 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             template_id = 'smile-device';
             device_context = ['MEL 80/90'];
             break;
-        case 'parts-proceed':
+        case 'parts-order':
             device_context.push((document.getElementById('foc').checked) ? 'FOC ' : '');
             device_context.push((document.getElementById('part-list').value.split('\n').length > 1) ? "s" : '');
             device_context.push(procPartsList(document.getElementById('part-list').value));
-            template_id = 'parts-request';
             break;
         case 'pm-billing-request':
             device_context.push('Preventative Maintenance');
@@ -224,7 +222,6 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     document.getElementById('smart-services-confirmation').addEventListener('click', openEmailTemplate);
     document.getElementById('visumax').addEventListener('click', openEmailTemplate);
     document.getElementById('win-support').addEventListener('click', openEmailTemplate);
-*/
 
 // Add event listeners to overlay confirmation buttons
 document.getElementById('parts-order-proceed').addEventListener('click', openEmailTemplate);
@@ -235,3 +232,4 @@ document.getElementById('fse-update-proceed').addEventListener('click', openEmai
 document.getElementById('parts-order-close-overlay').addEventListener('click', closeOverlay);
 document.getElementById('eos-close-overlay').addEventListener('click', closeOverlay);
 document.getElementById('fse-update-close-overlay').addEventListener('click', closeOverlay);
+*/

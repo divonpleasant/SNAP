@@ -726,49 +726,21 @@
                         </form>
 
                         <!-- Overlays -->
-                        <!-- FSE Update Request Overlay -->
-                        <div id="fse-update-overlay" style="display: none;">
-                            <div id="fse-update-overlay-content">
-                                <span id="fse-update-close-overlay" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                <h3>Enter SVO Information</h3>
-                                <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br>
-                                <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br>
-                                <button id="fse-update-proceed">Continue</button>
-                            </div>
-                        </div>
-
-                        <!-- PM Service Ops (Contract) Overlay -->
-                        <div id="overlay-pmreq" style="display: none;">
-                            <div id="overlay-content-pmreq">
-                                <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
-                                <h3>Enter Contract Number</h3>
-                                <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
-                                <button id="pm-proceed-button">Continue</button>
-                            </div>
-                        </div>
-
-                        <!-- Parts Order Overlay -->
-                        <div id="parts-order-overlay" style="display: none;">
-                            <div id="parts-order-overlay-content">
-                                <span id="parts-order-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                <h3>Enter Parts Order Information</h3>
-                                <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Chinrest)"><br />
-                                <textarea rows="4" id="part-list" name="part-list" placeholder="Semicolon-separated list of part descriptions and part numbers, e.g. Part_Name;Part_ID; one part per line"></textarea><br />
-                                <input type="checkbox" id="foc" name="foc">
-                                <label for="foc">Free of Charge?</label><br />
-                                <select name="delivery-type" id="delivery-type">
-                                    <option value="">&mdash; Delivery Type &mdash;</option>
-                                    <option value="Overnight">Overnight</option>
-                                    <option value="Ground">Ground</option>
-                                </select><br />
-                                <button id="parts-order-proceed">Continue</button>
+                        <!-- Compliance Check Overlay -->
+                        <div id="compliance-check-overlay" class="overlay" style="display: none;">
+                            <div id="compliance-check-overlay-content" class="overlay-content">
+                                <span id="compliance-check-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('compliance-check');">&times;</a></span> <!-- X button to close -->
+                                <h3 style="text-align: center">Enter Compliance Check Information</h3>
+                                <input type="text" id="compliance-id" name="compliance-id" placeholder="Enter Compliance ID (From Details)"><br />
+                                <input type="text" id="account-id" name="account-id" placeholder="Account ID"><br />
+                                <button id="compliance-check-proceed" onclick="manualOpenEmailTemplate('compliance-check', true)">Continue</button>
                             </div>
                         </div>
 
                         <!-- End of Support Overlay -->
-                        <div id="eos-overlay" style="display: none;">
-                            <div id="eos-overlay-content">
-                                <span id="eos-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                        <div id="end-of-support-overlay" class="overlay" style="display: none;">
+                            <div id="eos-overlay-content" class="overlay-content">
+                                <span id="eos-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('end-of-support');">&times;</a></span> <!-- X button to close -->
                                 <h3 style="text-align: center">Enter EoS Instrument Information</h3>
                                 <select name="eos-instrument-type" id="eos-instrument-type">
                                     <option value="">&mdash; Instrument &mdash;</option>
@@ -788,13 +760,62 @@
                                     <option value="visante">Visante OCT</option>
                                     <option value="visucam">Visucam</option>
                                     <option value="visupac">Visupac</option>
-                                </select>
+                                </select><br />
                                 <select name="eos-instrument-model" id="eos-instrument-model">
                                     <option value="">&mdash; Model &mdash;</option>
-                                </select>
+                                </select><br />
                                 <div id="eos-submit-button-align">
-                                    <button id="eos-proceed">Continue</button>
+                                    <button id="eos-proceed" onclick="manualOpenEmailTemplate('end-of-support', true)">Continue</button>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- FSE Update Request Overlay -->
+                        <div id="fse-update-overlay" class="overlay" style="display: none;">
+                            <div id="fse-update-overlay-content" class="overlay-content">
+                                <span id="fse-update-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('fse-update');">&times;</a></span> <!-- X button to close -->
+                                <h3>Enter SVO Information</h3>
+                                <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br />
+                                <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br />
+                                <button id="fse-update-proceed" onclick="manualOpenEmailTemplate('fse-update', true)">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Parts Order Overlay -->
+                        <div id="parts-order-overlay" class="overlay" style="display: none;">
+                            <div id="parts-order-overlay-content" class="overlay-content tooltip">
+                                <span id="parts-order-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('parts-order');">&times;</a></span> <!-- X button to close -->
+                                <h3>Enter Parts Order Information</h3>
+                                <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Fuses)"><br />
+                                <span class="parts-tooltip"><textarea rows="4" id="part-list" name="part-list" placeholder="PART_DESC_01;PART_ID_01&#10;PART_DESC_02;PART_ID_02"></textarea><span class="parts-req-tooltiptext">Semicolon-separated list of part descriptions and part numbers.<br />Input one part entry per line.<br />Example:<br />FUSE 6.3A/250VAC 5X20MM TYPE T;000000-1211-851<br /></span></span><br />
+                                <input type="checkbox" id="foc" name="foc">
+                                <label for="foc">Free of Charge?</label><br />
+                                <select name="delivery-type" id="delivery-type">
+                                    <option value="">&mdash; Delivery Type &mdash;</option>
+                                    <option value="Overnight">Overnight</option>
+                                    <option value="Ground">Ground</option>
+                                </select><br />
+                                <button id="parts-order-proceed" onclick="manualOpenEmailTemplate('parts-order', true)">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- PM Service Ops (Contract) Overlay -->
+                        <div id="overlay-pmreq" style="display: none;">
+                            <div id="overlay-content-pmreq">
+                                <span id="close-overlay-pmreq" style="cursor:pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Enter Contract Number</h3>
+                                <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
+                                <button id="pm-proceed-button">Continue</button>
+                            </div>
+                        </div>
+
+                        <!-- Schedule Callback Overlay -->
+                        <div id="schedule-overlay" style="display: none;">
+                            <div id="schedule-overlay-content">
+                                <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                                <h3>Select Date and Time</h3>
+                                <input type="datetime-local" id="scheduledDateTime" required /><br />
+                                <button id="modalContinue">Continue</button>
                             </div>
                         </div>
 
@@ -829,15 +850,6 @@
                             </div>
                         </div>
 
-                        <!-- Schedule Callback Overlay -->
-                        <div id="schedule-overlay" style="display: none;">
-                            <div id="schedule-overlay-content">
-                                <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
-                                <h3>Select Date and Time</h3>
-                                <input type="datetime-local" id="scheduledDateTime" required /><br />
-                                <button id="modalContinue">Continue</button>
-                            </div>
-                        </div>
                         </div>
                     </div>
 
@@ -855,7 +867,7 @@
                                         <li>
                                             <span class="opener">End of Support</span>
                                             <ul class="fa-ul">
-                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('eos')" id="eos">EoS Explanation</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('end-of-support')" id="eos">EoS Explanation</a></li>
                                                 <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                             </ul>
                                         </li>
@@ -913,6 +925,7 @@
                                             <span class="opener">Misc. Email Templates</span>
                                             <ul class="fa-ul">
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('canada-service-request')" id="canada-service-request">Canada Service Request</a></li>
+                                                <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('compliance-check')" id="compliance-check">Compliance Check Alert</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('parts-order')" id="parts-order">Parts Order</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="porequestLink">Purchase Order Information</a></li>
                                                 <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="tvrequestLink">TeamViewer Request</a></li>
