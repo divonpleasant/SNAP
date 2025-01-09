@@ -29,7 +29,8 @@ function generateTemplates(context) {
                 "cc": [],
                 "bcc": [],
                 "subject": `Service Request - Calgary, AB${cct_strings[2]}${serial_strings[0]}`,
-                "body": `The following Canadian customer needs a Service Request, please.
+                "body": `Hi Team,
+The following Canadian customer needs a Service Request, please.
 
 Business Location Details
 
@@ -46,6 +47,26 @@ Contact Details
     Email Address: ${document.getElementById('email').value}
     Problem Description: ${document.getElementById('description').value}
     Troubleshooting Performed: ${document.getElementById('troubleshooting-performed').value}
+
+Regards,
+${email_sig}`
+            },
+            "compliance-check": {
+                "name": "Compliance Check Alert Inquiry",
+                "recipient": "DL.MED-ITC@zeiss.com",
+                "cc": ['rikka.mejia@zeiss.com'],
+                "bcc": [],
+                "subject": "Compliance Check Alert",
+                "body": `Hi Team,
+
+An incoming customer call for a ${serial_strings[1]} came in with a Compliance Check notification. Here are the details:
+
+    Compliance Match ID: ${document.getElementById('compliance-id').value}
+    Account ID: ${document.getElementById('account-id').value}
+    Account Name: ${document.getElementById('account').value}
+    Address: ${document.getElementById('instrument-address').value}
+
+Please advise on how I may proceed.
 
 Regards,
 ${email_sig}`
@@ -67,7 +88,7 @@ ${context[3]}If you need guidance on how to manage your ${context[0]} devices or
 ${context[4]}Regards,
 ${email_sig}`
             },
-            "parts-request": {
+            "parts-order": {
                 "name": "Parts Order Request",
                 "recipient": "c.osparts@zeiss.com",
                 "cc": [],
@@ -204,7 +225,7 @@ ${email_sig}`
                     "outgoing": `Hello! This is ${casual_name} calling from Zeiss Technical Support.${(document.getElementById('local-contact-person').value !== '') ? "I'm trying to reach " + document.getElementById('local-contact-person').value + ", please." : ''}`
                 },
                 "user": {
-                    "queue": `${(curr_date.getHours() <= 12) ? 'Good morning! ' : ''}Thank you for calling Zeiss Technical Support, this is ${casual_name}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`
+                    "queue": `${(curr_date.getHours() <= 9) ? 'Good morning' : 'Hello'}! Thank you for calling Zeiss Technical Support, this is ${casual_name}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`
                 }                    
             }
         },

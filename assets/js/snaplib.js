@@ -1,5 +1,5 @@
-const version = "3.0.52";
-const project_home = "https://github.com/divonpleasant/SNAP"
+const version = '3.0.53';
+const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
 var curr_date = new Date();
@@ -18,7 +18,7 @@ var style_sheet = 'main';
 // sb (sandbox) constant should only be defined by the sandbox index file
 if (typeof sb !== 'undefined') {
     var sandbox = sb;
-    var tag = ' - Sandbox';
+    tag = ' - Sandbox';
     style_sheet = 'sandbox';
 } else {
     var sandbox = false;
@@ -33,6 +33,7 @@ var contact_inbox = 'dl.med-usmedtechnicalsupport.us@zeiss.com';
 var email_sig = '';
 var final_style = '';
 var use_custom_scripts = false;
+
 
 if (email_sig == '' && sign_email) {
     email_sig = "-----\n" +
@@ -91,7 +92,9 @@ ${email_sig}
     if (sandbox) {
         document.getElementById('page-title').innerHTML = 'SNAP [Sandbox]';
         document.getElementById('header-tag').innerHTML = '[Sandbox]';
-        document.getElementById("current-version").innerHTML = version + '-sandbox';
+        document.getElementById('current-version').innerHTML = version + '-sandbox';
+    } else {
+        document.getElementById('current-version').innerHTML = version;
     }
     final_style = 'assets/css/' + style_sheet + '.css';
 
@@ -108,8 +111,7 @@ stylesheet: ${final_style}
 startUp();
 
 // Page outputs
-document.getElementById("current-version").innerHTML = version;
-document.getElementById("copyright-year").innerHTML = utc_year;
+document.getElementById('copyright-year').innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
 document.getElementById('pagestyle').setAttribute('href', final_style);
 

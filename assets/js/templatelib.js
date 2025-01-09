@@ -28,6 +28,7 @@ function setPreferredComm() {
         case 'Customer prefers email communication':
             return 'e';
             break;
+        case '':
         case 'Customer has no communication preference':
             return '';
             break;
