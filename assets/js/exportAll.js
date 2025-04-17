@@ -119,8 +119,15 @@ document.getElementById('exportall').addEventListener('click', function(event) {
 	}
 	var serialnum = document.getElementById('serial').value;
 	var raw_description = document.getElementById('description').value;
+    debugmsg(5, 'serialnum: ' + serialnum);
+    debugmsg(5, 'serialnum.length: ' + serialnum.length);
+    debugmsg(5, 'bt: ' + bt);
+    debugmsg(5, 'bt.length: ' + bt.length);
+    var prefix_len = serialnum.length + bt.length;
+    debugmsg(5, 'prefix_len: ' + prefix_len);
+    var avail_chars = 40 - prefix_len; // tested description field in CRM for 40 characters total
 	var desc_arr = raw_description.split(".");
-	var description = desc_arr[0].substring(0, 20);
+	var description = desc_arr[0].substring(0, avail_chars);
 	var cct_description = serialnum + " " + bt + " " + description;
 	console.log("Summary: " + cct_description);
 	
@@ -265,10 +272,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
 	debugmsg(3, "PROCESSED DATA\n========================\n" + processedData);
     
     // Copy CRM Description to clipboard if setting allows
-    if (copy_descr) {
+    if (so.Settings.ui.copy_description.value) {
         var clipboard_desc = cct_description.trim();
         navigator.clipboard.writeText(clipboard_desc).then(function() {
-            (copy_alert) ? alert('CCT description string copied to clipboard!') : '';
+            (so.Settings.alerts.copy.value) ? alert('CCT description string copied to clipboard!') : '';
         }).catch(function(err) {
             alert('Failed to copy data to clipboard: ', err);
         });

@@ -2102,6 +2102,7 @@ button,
       #sidebar.inactive {
         box-shadow: none; }
       #sidebar > .inner {
+          /* TEST THESE SETTINGS IN OTHER SCREEN CONTEXTS FOR OVERFLOW BEHAVIOR */
         -webkit-overflow-scrolling: touch;
         height: 100%;
         left: 0;
@@ -2267,6 +2268,13 @@ button,
 }
 #footer .settings a {
   color: inherit;
+}
+#footer .settings-label {
+    font-size: 1em;
+    display: inline;
+    border-bottom: 1px dotted;
+    color: inherit;
+    font-weight: normal;
 }
 #footer .copyright {
   color: #929eab;
@@ -2669,6 +2677,39 @@ button,
     font-size: 34px;
 }
 
+#account-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#account-overlay-content {
+    background-color: #606a76;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+}
+
+#account-save-button-align {
+    align-items: center;
+    text-align: center;
+}
+
+#account-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+}
+
 #eos-overlay {
     position: fixed;
     top: 0;
@@ -2753,27 +2794,33 @@ button,
   margin-bottom: 20px;
 }
 
+#upload {
+    display: none;
+}
+
 /* Dynamic Fields Classes */
 .dynamic-hidden {
     display: none;
 }
 .oct-field {
 }
+.cirrus-oct-field {
+}
 .cirrus-photo-field {
 }
 .clarus-field {
 }
-.hfa3-field {
+.hfa-field {
 }
 .iolmaster-field {
 }
 .visucam-field {
 }
-.visucam-pro-field {
+.visucam-field {
 }
-.atlas-500-field {
+.atlas-field {
 }
-.atlas-9000-field {
+.atlas-field {
 }
 .stratus-field {
 }
@@ -2788,6 +2835,14 @@ button,
 .billing-field {
 }
 .billing-contact-field {
+}
+
+input.teamviewer-info-head {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #fff;
 }
 
 #topnav {
@@ -2805,6 +2860,7 @@ button,
     vertical-align: bottom;
     margin: 0px 1px 0px 8px;
 }
+
 #prompt {
     display: none;
     position: fixed;
@@ -2824,6 +2880,10 @@ button,
     scrollbar-width: thin;
     scrollbar-color: #32373e #8daac8;
 }
+#prompt-content.system-message {
+    background: #e71e1e;
+    color: #fff;
+}
 #prompt-content a {
     color: #a70240;
     border-bottom: dotted 1px;
@@ -2835,6 +2895,12 @@ button,
     color: inherit;
     font-size: 1.5em;
     font-weight: bold;
+}
+#prompt-content h2 {
+    color: inherit;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
 }
 #prompt-content ul,ol {
     margin-bottom: .4em;
@@ -2853,4 +2919,8 @@ button,
     bottom: 6px;
     left: 40px;
     z-index: 997;
+}
+
+.copy-tv-info {
+    font-size: 0.6em;
 }

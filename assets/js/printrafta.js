@@ -70,7 +70,7 @@ A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes
 
     // Copy data to clipboard
     navigator.clipboard.writeText(nonEmptyData).then(function() {
-        (copy_alert) ? alert('RAFTA copied to clipboard!') : '';
+        (so.Settings.alerts.copy.value) ? alert('RAFTA copied to clipboard!') : '';
     }).catch(function(err) {
         alert('Failed to copy data to clipboard: ', err);
     });
