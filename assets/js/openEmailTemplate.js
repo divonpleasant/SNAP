@@ -171,6 +171,21 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             device_context.push('days');
             template_id = 'billing-request';
             break;
+        case 'proaim-pm-request':
+            device_context.push('Preventative Maintenance (PM)');
+            device_context.push('preventative maintenance');
+            device_context.push('PM');
+            template_id = 'proaim-request';
+            break;
+        case 'proaim-service-request':
+            device_context.push('Service');
+            device_context.push('service');
+            device_context.push('break-fix');
+            template_id = 'proaim-request';
+            break;
+        case 'soa-contract-pm':
+            template_id = 'service-admin-contract-pm-request';
+            break;
         case 'visumax':
             template_id = 'smile-device';
             device_context = ['Visumax'];
@@ -204,32 +219,53 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     }
 
     debugmsg(5, 'mailto_link: ' + mailto_link);
+    debugmsg(4, 'mailto_link.length: ' + mailto_link.length);
+    
+    /*
+        Google Chrome has a limitation where it will silently refuse to open a 
+        mailto link if it exceeds a particular length (tested at 2,034 
+        characters). This is also affected by the encoding of values, which 
+        expands whitespace and special characters (e.g. commas) to 3-character 
+        codes, so templates with a lot of formatting are likely to hit this 
+        condition more frequently.
+        The following workaround copies the template text to the clipboard 
+        rather than performing the mailto: operation when this condition is 
+        met.
+        The mailto:?subject&body= characters equal 21
+        To accommodate 95 % of email addresses (given an average of 22 
+            characters), add 31.
+        To accommodate first names, in database communities, 30/35 is 
+            generally accepted as reasonable practice.
+        Signatures add an estimated 175 characters (including encoded white 
+        space).
+        This should mean a baseline estimate for "overhead" characters is ~275.
+        
+        The average word-plus-whitespace length (encoded) is 9 characters, 
+        in English, which gives us a rough guideline of 190 words per template.
+        
+        This should accommodate overhead characters plus a conservative 
+        guideline to avoid hitting the copy/paste fallback condition as much 
+        as possible.
+    */
+    if (mailto_link.length > 2034) {
+        var html_text_email = `<strong>To:</strong> ${addresses}<br />
+<strong>Subject:</strong> ${t.templates.email[template_id].subject}<br />
+${t.templates.email[template_id].body}`;
+        navigator.clipboard.writeText(html_text_email).then(function() {
+            (so.Settings.alerts.copy.value) ? alert('Email text copied to clipboard!') : '';
+        }).catch(function(err) {
+            alert('Failed to copy data to clipboard: ', err);
+        });
+        debugmsg(2, "'Copied text to clipboard: '" + html_text_email + "'");
 
-    // Open the mailto link
-    window.location.href = mailto_link;
+        displayProcessMessage(`The current template, "${t.templates.email[template_id].name}", when combined with the appropriate form data, exceeds the maximum template length for certain browsers by ${mailto_link.length - 2034} characters.<br />The following text has been copied to the clipboard instead, which can be manually pasted into a new email document from your mail client:<br /><br />
+${html_text_email}`);
+    } else {
+        // Open the mailto link
+        try {
+            window.location.href = mailto_link;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
-
-
-// Add event listeners to the links
-/*
-    document.getElementById('canada-service-request').addEventListener('click', openEmailTemplate);
-    document.getElementById('eos').addEventListener('click', showOverlay);
-    document.getElementById('fse-billing-request').addEventListener('click', openEmailTemplate);
-    document.getElementById('fse-update').addEventListener('click', showOverlay);
-    document.getElementById('mel-80-90').addEventListener('click', openEmailTemplate);
-    document.getElementById('parts-order').addEventListener('click', showOverlay);
-    document.getElementById('pm-billing-request').addEventListener('click', openEmailTemplate);
-    document.getElementById('smart-services-confirmation').addEventListener('click', openEmailTemplate);
-    document.getElementById('visumax').addEventListener('click', openEmailTemplate);
-    document.getElementById('win-support').addEventListener('click', openEmailTemplate);
-
-// Add event listeners to overlay confirmation buttons
-document.getElementById('parts-order-proceed').addEventListener('click', openEmailTemplate);
-document.getElementById('eos-proceed').addEventListener('click', openEmailTemplate);
-document.getElementById('fse-update-proceed').addEventListener('click', openEmailTemplate);
-
-// Add event listeners to the overlay close elements
-document.getElementById('parts-order-close-overlay').addEventListener('click', closeOverlay);
-document.getElementById('eos-close-overlay').addEventListener('click', closeOverlay);
-document.getElementById('fse-update-close-overlay').addEventListener('click', closeOverlay);
-*/

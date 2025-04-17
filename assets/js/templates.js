@@ -18,6 +18,7 @@ each top-level functional category and context is only available to each
 instance upon initialization. 
 */
 function generateTemplates(context) {
+    debugmsg(5, 'Executing generateTemplates...');
     debugmsg(4, 'generateTemplates context: ' + context);
     serial_strings = proc_template_serial(document.getElementById('serial').value);
     cct_strings = proc_template_cct(document.getElementById('cct').value);
@@ -37,7 +38,7 @@ Business Location Details
     Account Name: ${document.getElementById('account').value}
     Address: ${document.getElementById('instrument-address').value}
     Serial Number: ${document.getElementById('serial').value}
-    Instrument Description: ${document.getElementById('instrument-model').value}
+    Instrument Description: ${getInstrumentModel()}
     Windows Version: ${document.getElementById('windows-version').value}
     
 Contact Details
@@ -49,7 +50,7 @@ Contact Details
     Troubleshooting Performed: ${document.getElementById('troubleshooting-performed').value}
 
 Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
             },
             "compliance-check": {
                 "name": "Compliance Check Alert Inquiry",
@@ -69,7 +70,7 @@ An incoming customer call for a ${serial_strings[1]} came in with a Compliance C
 Please advise on how I may proceed.
 
 Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
             },
             "end-of-support": {
                 "name": "End of Support Explanation",
@@ -77,7 +78,7 @@ ${email_sig}`
                 "cc": [],
                 "bcc": [],
                 "subject": "End of Support: " + `${context[1]}`,
-                "body": `Dear ${document.getElementById('local-contact-person').value},
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
 
 ${serial_strings[0]}
 
@@ -86,7 +87,18 @@ We want to inform you that${context[2]} for the ${context[1]} systems. This chan
 ${context[3]}If you need guidance on how to manage your ${context[0]} devices or are exploring alternative solutions, our sales team are here to assist you. Please reach out to them at sales.support@zeiss.com. They can provide detailed information on your options and help you find the best path forward for your needs.
 
 ${context[4]}Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
+            },
+            "generic": {
+                "name": "Generic Email",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [`${so.Settings.user.private_inbox.value}`],
+                "subject": `${(document.getElementById('cct').value) !== '' ? '[CCT: #' + document.getElementById('cct').value + '] ' : ''}`,
+                "body": `Dear ${document.getElementById('local-contact-person').value},
+
+Regards,
+${so.Settings.user.email_sig.value}`
             },
             "parts-order": {
                 "name": "Parts Order Request",
@@ -95,7 +107,6 @@ ${email_sig}`
                 "bcc": [],
                 "subject": `${cct_strings[1]}${context[0]}${document.getElementById('order-name').value} ${serial_strings[2]}`,
                 "body": `Hi Parts Team,
-
 Please ship the following part${context[1]}...
 
 ${context[2]}
@@ -110,15 +121,15 @@ Shipment: ${document.getElementById('delivery-type').value}
 Thank you for your prompt attention to this matter.
 
 Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
             },
             "billing-request": {
                 "name": "Billing Request",
                 "recipient": `${document.getElementById('email').value}`,
                 "cc": [],
                 "bcc": [],
-                "subject": `ZEISS ${context[0]} Request ${serial_strings[2]}`,
-                "body": `Dear ${document.getElementById('local-contact-person').value},
+                "subject": `Zeiss ${context[0]} Request ${serial_strings[2]}`,
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
 According to our records, your ${serial_strings[1]} is currently not covered under Warranty or Service Contract.
 
 In order to proceed with this service request, we will need your approval of the payment method:
@@ -135,7 +146,7 @@ If payment is by Purchase Order, email the hard copy of the PO to ZEISS MED Serv
 The Zeiss Technician will contact the office within ${context[5]} business ${context[6]} to schedule the visit. At which time, they will answer all questions regarding specific prices, hourly rates, and travel time. Or, after discussing pricing with your FSE, you may cancel the service request.
 
 Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
             },
             "fse-update": {
                 "name": "FSE Update Request",
@@ -155,7 +166,93 @@ The customer, ${document.getElementById('local-contact-person').value}, has call
 Thank you for your prompt attention to this matter.
 
 Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
+            },
+            "po-info": {
+                "name": "Purchase Order Information",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": "Zeiss Purchase Order Information",
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
+Thank you for being a valuable Zeiss customer. You are receving this message because you inquired about payment via Purchase Order (PO) for Zeiss goods or services.
+
+To make a payment by Purchase Order, email the hard copy of the PO to ZEISS MED Service Operations Admin US at billableservicerequest@zeiss.com
+
+Reference any Customer Care Ticket number you were provided and, if applicable, include the serial number of your Zeiss instrument on the Purchase Order to expedite the request.
+
+Regards,
+${so.Settings.user.email_sig.value}`
+            },
+            "proaim-request": {
+                "name": "PROAIM Request",
+                "recipient": "serviceoperationsadmin.med.us@zeiss.com",
+                "cc": [],
+                "bcc": [],
+                "subject": `PROAIM ${context[0]} Request`,
+                "body": `Hi Admin Team,
+Please send to PROAIM to proceed with on-site ${context[1]}.
+
+Zeiss Ticket Number (CCT #): ${document.getElementById('cct').value}
+Problem Description: ${document.getElementById('description').value}
+Ticket Creation Date: ${simple_date}
+Serial Number: ${document.getElementById('serial').value}
+Customer Site: ${document.getElementById('instrument-address').value}
+Contact Person: ${document.getElementById('local-contact-person').value}
+Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
+Type of Request: Phone request for ${context[2]}.
+
+Regards,
+${so.Settings.user.email_sig.value}`
+            },
+            "recertification": {
+                "name": "Recertification Program Information",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": `Zeiss Re-Certification ${serial_strings[0]}`,
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
+Thank you for your recent service inquiry. According to our records, ${serial_strings[1]} is not registered to your place of business in our database. It is our responsibility to ensure the product meets or exceeds technical specifications and is safe for use on patients. Please review the information below about our Re-Certification program and complete the attached form to begin the process. Send the completed form to recertification@zeiss.com.
+
+What is Re-Certification?
+The process to register a Zeiss product that gives CZMI the opportunity to ensure the device meets the manufacturer's specifications for safe use on patients. In addition, to maintain compliance with the Food & Drug Administration (FDA) and International Standard for Organization (ISO).
+
+What are the customer benefits for Re-Certification?
+If the Zeiss product qualifies for Re-Certification and meets or exceeds the manufacturer's specifications, you will receive access to the following:
+    • National Technical Support
+    • Remote support (Teamviewer, Teleservice, etc.)
+    • Software updates (not including billable software and/or licenses)
+    • Factory repair
+    • National Field Service Team Support
+    • Training
+    • Service agreement options
+    • Consumables
+
+If there are any questions, please contact us at 1-800-341-6968.
+
+Regards,
+${so.Settings.user.email_sig.value}`
+            },
+            "service-admin-contract-pm-request": {
+                "name": "Preventative Maintenance Request with Contract",
+                "recipient": "serviceoperationsadmin.med.us@zeiss.com",
+                "cc": [],
+                "bcc": [],
+                "subject": `Preventative Maintenance (PM) Request${serial_strings[0]}`,
+                "body": `Hi Admin Team,
+Customer has called in to request a contract PM with the following info:
+
+Customer (Account Name): ${document.getElementById('account').value}
+Site Location: ${document.getElementById('instrument-address').value}
+Contact Name: ${document.getElementById('local-contact-person').value}
+Contact Phone Number: ${document.getElementById('phone').value}
+Serial Number: ${document.getElementById('serial').value}
+Contract ID: ${document.getElementById('contract-number').value}
+Date PM Requested: ${simple_date}
+
+Regards,
+${so.Settings.user.email_sig.value}`
             },
             "smart-services-confirmation": {
                 "name": "Smart Services Confirmation",
@@ -163,14 +260,13 @@ ${email_sig}`
                 "cc": [],
                 "bcc": [],
                 "subject": "Smart Services Request Confirmation",
-                "body": `Dear ${document.getElementById('local-contact-person').value},
-
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
 Thank you for choosing to use Zeiss Smart Services. The information for your ${serial_strings[1]} has been submitted to the Customer Care Advocate Team (CAS) for processing. It may take CAS up to 48 hours to finalize this request at which time you should receive a message from the Zeiss Parts department, containing a unique link to download Zeiss Smart Services. Shortly after this link is provided, a CAS representative will be contacting you and will assist with your installation.
 
 If you have any questions or concerns, please respond to this message or you may reach CAS directly at customeradvocates.med.us@zeiss.com.
 
 Warm Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
             },
             "smile-device": {
                 "name": `${context[0]} Service Request`,
@@ -179,7 +275,6 @@ ${email_sig}`
                 "bcc": [],
                 "subject": `SMILE Device (${context[0]}) Service Request`,
                 "body": `Hi Terry,
-
 The following customer needs a service request for a ${context[0]} device, please.
 
 Business Location Details
@@ -194,7 +289,31 @@ Contact Details
     Troubleshooting Performed: ${document.getElementById('troubleshooting-performed').value}
     
 Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
+            },
+            "tv-request": {
+                "name": "TeamViewer Request",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": "Zeiss TeamViewer Request",
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
+To best help you, we'd like to request access to your instrument via the TeamViewer app so we can investigate your issue.
+
+In case the TeamViewer app isn't already available on your instrument or review station:
+    1. Open a browser (Google Chrome or Firefox work best) on your instrument
+    2. Copy and paste (or enter) the following into the browser's address bar:
+        https://tiny.cc/zeissqs
+    3. A download should automatically begin (although the screen won't necessarily change)
+    4. When the file has finished downloading, you should see an indication of the new file, named TeamViewerQS.exe
+    5. Double-click on the TeamViewerQS.exe file to run it
+    6. Accept any license agreements
+We will need the TeamViewer's Partner ID (a series of numbers), and password (an alphanumeric string) in order to make the connection. Please also provide us with a convenient date and time window for us to remotely access the device. Make sure no one is using the Zeiss instrument when we login.
+
+If you have any problems getting TeamViewer installed, don't hesitate to reach out for help.
+
+Regards,
+${so.Settings.user.email_sig.value}`
             },
             "win-support": {
                 "name": "Windows 10/11 Support Information",
@@ -202,8 +321,7 @@ ${email_sig}`
                 "cc": [],
                 "bcc": [],
                 "subject": "Zeiss Windows 10/11 Support",
-                "body": `Dear ${document.getElementById('local-contact-person').value},
-
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
 You are receiving this message because you inquired about Zeiss's intentions regarding Windows 10 and/or Windows 11 support.
 
 The Zeiss HFA3, CIRRUS, CLARUS and PLEX Elite devices are currently shipping with Windows 10 1607 (LTSC). We have extended support from Microsoft for that operating system until October 2026.
@@ -213,24 +331,51 @@ This coming calendar year (2025) we plan to start shipping new devices with Wind
 With regards to Windows 11... Microsoft Windows 11 IoT Enterprise LTSC 2024 is not backwards compatible with the hardware in some of Zeiss's products and will, therefore, require a hardware upgrade. This will require additional engineering time for hardware development and will cost more to upgrade. As a result, Zeiss has made a decision to provide a Windows 10 IoT Enterprise LTSC 2021 based solution that is supported by Microsoft until 2032 ensuring a timely, supported solution is available for our customers.
 
 Warm Regards,
-${email_sig}`
+${so.Settings.user.email_sig.value}`
             }
         },
         "script": {
             "greeting": {
                 "default": {
                     "queue": "Hello! Thank you for calling Zeiss Technical Support. May I have the serial number of your instrument, please?",
-                    "callback": `Hello! This is ${casual_name} from Zeiss Technical Support, returning a call for assistance on a Zeiss instrument or software.`,
-                    "voicemail": `Hello, this is ${casual_name} calling from Zeiss Technical Support. ${(document.getElementById('local-contact-person').value !== '') ? 'This message is for' + document.getElementById('local-contact-person').value + ' ' : ''}Sorry to have missed you.`,
-                    "outgoing": `Hello! This is ${casual_name} calling from Zeiss Technical Support.${(document.getElementById('local-contact-person').value !== '') ? "I'm trying to reach " + document.getElementById('local-contact-person').value + ", please." : ''}`
+                    "callback": `Hello! This is ${so.Settings.user.casual_name.value} from Zeiss Technical Support, returning a call for assistance with a Zeiss instrument, service, or software.`,
+                    "voicemail": `Hello, this is ${so.Settings.user.casual_name.value} calling from Zeiss Technical Support. ${(document.getElementById('local-contact-person').value !== '') ? 'This message is for ' + document.getElementById('local-contact-person').value + '. ' : ''}Sorry to have missed you.`,
+                    "outgoing": `Hello! This is ${so.Settings.user.casual_name.value} calling from Zeiss Technical Support.${(document.getElementById('local-contact-person').value !== '') ? "I'm trying to reach " + document.getElementById('local-contact-person').value + ", please." : ''}`
                 },
                 "user": {
-                    "queue": `${(curr_date.getHours() <= 9) ? 'Good morning' : 'Hello'}! Thank you for calling Zeiss Technical Support, this is ${casual_name}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`
+                    "queue": `${(curr_date.getHours() <= 9) ? 'Good morning' : 'Hello'}! Thank you for calling Zeiss Technical Support, this is ${so.Settings.user.casual_name.value}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`
                 }                    
+            },
+            "wrap-up": {
+                "default": {
+                    "standard": "Before we wrap this up, are there any other questions I can answer for you? [IF NO] Thank you for calling Zeiss Technical Support, good bye!"
+                },
+                "user": {
+                    "standard": "Before we wrap this up, are there any other questions I can answer or anything else I can do to be of assistance today? [IF NO] Thank you for calling Zeiss Technical Support and have a fantastic rest of your day!"
+                }
             }
         },
         "process": {
-            "call-types": {
+            "crm": {
+                "cct": {},
+                "search": {},
+                "svo": {},
+                "tasks": {
+                    "create-task-task": `<h1>Create a Task-Task</h1>
+Task-Tasks are so called because their Category Description and Transaction Type Description are both "Task". These are generic activities typically carried out by the Service Operations Admin team to maintain various data components in ${TRef.crm}.<br /><br />
+To create a Task-Task:
+<ol>
+    <li>Select Create Follow-Up from a CCT view</li>
+    <li>Find the entry with Category Description 'Task' and Transaction Type Description 'Task' (usually the last entry in the list, you may need to page forward)</li>
+    <li>Click the selection box to the left of the entry</li>
+    <li>Update the Description to something appropriate (it defaults to copying the Description field from the associated CCT; generally you can leave the serial number intact and update the billing code and description string to something like "Address Change")</li>
+    <li>Add all necessary information for the Service Operations Administration team to complete the Task into the Notes field</li>
+    <li>Change the Employee Responsible field to "Victoria Norris"</li>
+    <li>Click the "Save and Back" button to create the Task and return to the CCT screen</li>
+</ol>`
+                }
+            },
+            "call-scenarios": {
                 "general": {
                     "default": `<h1>Generic Troubleshooting Call</h1>
 <ol>
@@ -240,6 +385,61 @@ ${email_sig}`
     <li><a href="#export">Export</a> SNAP log and attach to CCT</li>
     <li>Close ticket if applicable.</li>
 </ol>`,
+                    "canadian-customer": `<h1>Canadian Customer Call</h1>
+                    <h2>Creating Tickets</h2>
+                    <p>When creating a ticket in ${TRef.crm}, do not use serial number to search for customer (Canadian serial numbers are unlikely to be visible). Instead, use customer phone number or address to search for the account.</p>
+                    <p>Once account is confirmed, use the following table to populate the iBase ID:</p>
+                    <h3>CRM iBase Inputs</h3>
+                    <table>
+                        <tr>
+                            <th>Team</th>
+                            <th>Serial Number</th>
+                            <th>iBase ID</th>
+                        </tr>
+                        <tr>
+                            <td>OCT (Cirrus, Plex, Stratus, Visante)</td>
+                            <td>CANADAOCT</td>
+                            <td>7562449</td>
+                        </tr>
+                        <tr>
+                            <td>Refractive (Atlas, IOLMaster, Lasers)</td>
+                            <td>CANADAREFRACTIVE</td>
+                            <td>7562418</td>
+                        </tr>
+                        <tr>
+                            <td>Perimetry (HFA, Matrix)</td>
+                            <td>CANADAPERIMETRY</td>
+                            <td>7562496</td>
+                        </tr>
+                        <tr>
+                            <td>Imaging (Cirrus Photo, Clarus, Fundus, Slit Lamps, Visu*)</td>
+                            <td>CANADAIMAGING</td>
+                            <td>7562580</td>
+                        </tr>
+                        <tr>
+                            <td>Forum</td>
+                            <td>CANADAFORUM</td>
+                            <td>8082827</td>
+                        </tr>
+                    </table>
+                    <h3>Additional Process Notes</h3>
+                    <ul>
+                        <li>CCT Description, Request Notes, and Solution Notes should always include string "Assisted Canadian Customer"</li>
+                        <li>Make sure to verify the following data and populate the form fields:
+                            <ol>
+                                <li>Instrument/Shipping Address</li>
+                                <li>Point of Contact (POC) Name</li>
+                                <li>POC Phone Number</li>
+                                <li>POC Email Address</li>
+                                <li>Serial Number</li>
+                                <li>Problem/Issue Description</li>
+                                <li>Actual Problem</li>
+                                <li>Frequency</li>
+                                <li>Troubleshooting/Actions Performed</li>
+                            </ol>
+                        </li>
+                        <li>Attach a completed <a href="assets/documents/Canadian_Service_Request_Form.pdf" target="_blank">Canadian Service Request Form</a> to the <a href="#" onclick="manualOpenEmailTemplate('canada-service-request')">Candian Service Request Email Template</a></li>
+                    </ul>`,
                     "delivery-doa": `<h1>Delivery Dead On Arrival</h1>
 <ol>
     <li>Dead On Arrival (DOA) issues for new instruments are generally reported by Technical Transportation (TechTrans) while onsite performing 'white glove' delivery service</li>
@@ -268,22 +468,126 @@ ${email_sig}`
     </li>
     <li>Use the FSE Tool to CC the assignee and the Field Service Supervisor (FSS) for fastest response</li><li>Complete CCT noting that email was sent to the appropriate parties</li>
 </ol>`,
-                    "pm-request": `<h1>Preventative Maintenance Request (with Service Contract)</h1>
+                    "pm-request": `<h1>Preventative Maintenance Request</h1>
+<ol>
+    <li>Make sure to verify the following data and populate the form fields:
+        <ul>
+            <li>Serial Number</li>
+            <li>Point of Contact Name</li>
+            <li>POC Phone Number and/or Email Address</li>
+            <li>Account Name</li>
+            <li>Instrument/Shipping Address</li>
+            <li>CCT Number</li>
+        </ul>
+    </li>
+</ol>
+<h2>With Service Contract</h2>
 <ol>
     <li>Note the Contract ID in ${TRef.crm}</li>
-    <li>Verify the instrument address</li>
-    <li>Use the <a href="#" onclick="">Admin PM Request</a> email template</li>
+    <li>Use the <a href="#" onclick="manualOpenEmailTemplate('service-admin-contract-pm-request')">Admin PM Request</a> email template</li>
+    <li>Create a ${TRef.cct}:
+        <ul>
+            <li>Use the Call Type 'Prev. Maintenance'</li>
+            <li>Use the Call Type Details 'PM Under Service Contract'</li>
+            <li>Use the Symptom Code 'PM/Install/Relocate Equipment'</li>
+            <li>Solution note should reference that email was sent to Service Operations Admin or "appropriate team"</li>
+            <li>Mark CCT Status as 'Completed'</li>
+        </ul>
+    </li>
 </ol>
-For a PM request without a service contract:
+<h2>Without Service Contract</h2>
 <ol>
     <li>Confirm billing (use the <a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')">PO Authorization</a> email request template if needed)</li>
-    <li>If billing is authorized verbally or approval/PO is sent to you, create Preventative Maintenance task</li>
-    <li>Leave CCT as 'In Process with Follow-Up'</li>
+    <li>Create a ${TRef.cct}:
+        <ul>
+            <li>Use the Call Type 'Prev. Maintenance'</li>
+            <li>Use the Call Type Details 'PM On-Call'</li>
+            <li>Use the Symptom Code 'PM/Install/Relocate Equipment'</li>
+            <li>If billing is authorized verbally or approval/PO is sent to you, create Preventative Maintenance task as Follow-Up</li>
+            <li>Leave Status as 'In Process with Follow-Up'</li>
+        </ul>
+    </li>
 </ol>`,
                     "proaim-pm-request": `<h1>PROAIM Preventative Maintenance Request</h1>
 <ol>
-    <li>Use <a href="#" onclick="">PROAIM PM Request</a> email template</li>
+    <li>Get serial number from customer, and verify Account in ${TRef.crm} is PROAIM
+        <ul>
+            <li>If account is <em>not</em> PROAIM (i.e. billing code 920487), <a href="" onclick="manualActivateProcess('create-a-task')">create a Task</a> to update the account with the description: "Please update Billing Account to PROAIM Medical - Account ID: 920487"</li>
+            <li>If the Point of Contact is not found in ${TRef.crm}, <strong>DO NOT</strong> add them to the PROAIM Medical account. Use the "Create Contact for Site" option to add them to the site/ship-to account. TSEs should not add contacts to the PROAIM Medical account (ID 920487)</li>
+        </ul>
+    </li>
+    <li>Verify the Shipping Address in CRM is correct</li>
+    <li>Make sure to fill in the following fields: Point of Contact Name, Serial Number, POC Phone Number, POC Email, Instrument/Shipping Address</li>
+    <li>In CRM, start a new CCT
+        <ol>
+            <li>Call Type and Call Type Details: 'Phone fix'</li>
+            <li>Symptom Code: 'PM/Install/Relocate Equipment'</li>
+            <li>Error Code Group: 'Service'</li>
+            <li>Error Code: Service 'Other'</li>
+            <li>Action Code: 'No Repair/Action'</li>
+            <li>Use Copy Request Notes to copy/paste RAFTA into Request Note</li>
+            <li>Use Copy Internal Notes to copy/paste into Internal Note</li>
+            <li>Use Copy Deferred Billing to copy/paste into Solution Note</li>
+        </ol>
+    </li>
+    <li>Copy the new CCT number into the CCT field.
+    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-pm-request')">PROAIM PM Request</a> email template to send request to Service Ops</li>
+    <li>Mark the CCT as Complete</li>
 </ol>`,
+                    "proaim-request": `<h1>PROAIM Service Request</h1>
+<ol>
+    <li>Get serial number from customer, and verify Account in ${TRef.crm} is PROAIM
+        <ul>
+            <li>If account is <em>not</em> PROAIM (i.e. billing code 920487), <a href="" onclick="manualActivateProcess('create-a-task')">create a Task</a> to update the account with the description: "Please update Billing Account to PROAIM Medical - Account ID: 920487"</li>
+            <li>If the Point of Contact is not found in ${TRef.crm}, <strong>DO NOT</strong> add them to the PROAIM Medical account. Use the "Create Contact for Site" option to add them to the site/ship-to account. TSEs should not add contacts to the PROAIM Medical account (ID 920487)</li>
+        </ul>
+    </li>
+    <li>Verify the Shipping Address in CRM is correct</li>
+    <li>Make sure to fill in the following fields: Point of Contact Name, Serial Number, POC Phone Number, POC Email, Instrument/Shipping Address</li>
+    <li>In CRM, start a new CCT
+        <ol>
+            <li>Call Type and Call Type Details: 'Phone fix'</li>
+            <li>Symptom Code: Use appropriate selection for issue</li>
+            <li>Error Code Group: 'Service'</li>
+            <li>Error Code: Service 'Other'</li>
+            <li>Action Code: 'No Repair/Action'</li>
+            <li>Use Copy Request Notes to copy/paste RAFTA into Request Note</li>
+            <li>Use Copy Internal Notes to copy/paste into Internal Note</li>
+            <li>Use Copy Deferred Billing to copy/paste into Solution Note</li>
+        </ol>
+    </li>
+    <li>Copy the new CCT number into the CCT field.
+    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-request')">PROAIM Service Call</a> email template to send request to Service Ops</li>
+    <li>Mark the CCT as Complete</li>
+</ol>`,
+                    "recertification": `<h1>Recertification</h1>
+                    <h2>Identifying Recertifications and Customer Communication</h2>
+                    <p>If the billing account does not match the customer, or the ship-to address is listed as CZMI (5300 Central Parkway, Dublin CA), ask the customer where and when they purchased the instrument. Zeiss does not authorize third-party reselling of their devices. If a Zeiss instrument was acquired from an unauthorized reseller, the instrument must be recertified.</p>
+                    <p><strong>Do not provide service on uncertified instruments or devices.</strong></p>
+                    <p>"Unfortunately, because Zeiss cannot ensure that uncertified devices meet our techincal specifications and are in compliance with FDA and ISO standards, I cannot provide any service on your instrument until a recertification process is completed."</p>
+                    <h2>Process</h2>
+                    <ol>
+                        <li>Verify and enter the Serial Number, Point of Contact (POC) Name, POC Phone Number, POC Email Address, Account Name, Billing POC, Billing POC Phone Number, and Billing POC Email Address</li>
+                        <li>If possible, locate the new Bill-To Account ID (enter it into the Internal Notes field)</li>
+                        <li>Download a copy of the <a href="assets/documents/Recertification_Form.pdf" target="_blank">Recertification Form</a>.</li>
+                        <li>${TRef.cct_in_crm}, noting the CCT number
+                            <ul>
+                                <li>Call Type: Phone Fix</li>
+                                <li>Symptom Code: Other</li>
+                                <li>Status/Priority: Customer Action Required</li>
+                                <li>Assign to Corinne Debenedetti</li>
+                            </ul>
+                        </li>
+                        <li>Fill out the top section of the Recertification Form, save as a copy, and use the <a href="#" onclick="manualOpenEmailTemplate('recertification')">Recertification email template</a> to send the form to the customer as an attachment</li>
+                        <li>Create a Task-Task
+                            <ul>
+                                <li>Description: Recertification Sent to Customer</li>
+                                <li>Notes should include the Serial Number, Billing POC information, new Bill-To Account information</li>
+                                <li>Attach the Recertification form to the task</li>
+                                <li>Assign to Corinne Debenedetti</li>
+                            </ul>
+                        </li>
+                    </ol>`,
                     "review-station-software-install": `<h1>Software Install (Review Station)</h1>
 <ol>
     <li>[Recommended] Notify customer that at some point in the future, this type of support may fall under 'Professional Services' and carry a billable rate</li>
@@ -300,18 +604,852 @@ For a PM request without a service contract:
                     "spare-parts": `<h1>Spare Parts Request</h1>
 <ol>
     <li>Check for part description and part number in SIS</li>
+    <li>${TRef.cct_in_crm}, using Call Type 'Spare Parts Order' and including all relevant information</li>
+    <li>Leave CCT Status/Priority as "In Progress" until Parts team provides a Sales Order number</li>
+    <li>Make sure to verify and fill in the following fields: Point of Contact (POC) Name, POC Phone Number, POC Email, Instrument/Shipping Address, CCT Number</li>
     <li>Use <a href="#" onclick="manualOverlay('parts-order')">Parts Order</a> email template</li>
+    <li>If customer wants multiples of a part, enter the part number and description multiple times</li>
 </ol>`
+                }
+            },
+            "serial-numbers": {
+                "general": {
+                    "not-found": `<h1>Serial Number Not Found</h1>
+If a serial number provided by the customer does not return any results:
+<ol>
+    <li>Check the location of the customer. If they are a Canadian practice, Canada has their own views in CRM and those regional serial numbers may not be accessible. You can either:
+    <ol>
+        <li>Gather as much information as possible and then use the <a href="#" onclick="manualOpenEmailTemplate('canada-service-request')">Canada Service Request email template</a> to forward the issue to Canada Technical Support for processing</li>
+        <li>Use a temporary serial number (see below) with the Serial Number field search <code>*Canada*</code></li>
+    </ol></li>
+    <li>Verify the customer has provided the correct serial number. In some cases, such as the Visulas 532s/YAG 3, there are multiple serial numbers across several components. Be sure the customer is providing the correct number referencing the iBase in ${TRef.crm}</li>
+    <li>Use the ${TRef.crm} Business Role to search for the iBase (Masterdata &gt; Installed Bases, use the Search For option "Header Using Componaent Data")</li>
+    <li>If the instrument cannot be found using any of the above methods, you may use a temporary serial number:
+    <ol>
+        <li>Input and verify the Account information (it may help to find the Account ID from the Business Role or another customer serial number)</li>
+        <li>Add the contact (if necessary) and confirm the account</li>
+        <li>Search the Serial Number field for: <code>*TEMP*</code></li>
+        <li>Select an appropriate iBase Desc</li>
+        <li>${TRef.cct_in_crm} as normal, but note you cannot use the Service Transactions to view the device history (previous Service Transactions apply to all tickets that used the temporary serial)</li>
+    </ol></li>
+</ol>`
+                }
+            },
+            "call-types": {
+                "general": {
+                    "default": `<h1>Call Types</h1>
+<p>${TRef.crm} includes a Call Type field indicating the broad classification of a CCT. There are two related fields, "Call Type" and "Call Type Details." In most circumstances, these fields will match (e.g. 'Phone fix' &amp; 'Phone fix'), though in a few cases there are useful Details options. Because The Call Type Details field is technically optional, use your best judgement when selecting a Details option unless specifically cited in the process.</p>
+<p>There are several other options in the ${TRef.crm} Call Type field than featured here. This is because by process Technical Support uses a subset of the available Type options. In general:</p>
+<ol>
+    <li>If a Field Service Engineer dispatch is required, the Call Type should be 'Onsite fix' (unless dispatching for a government-owned/PROAIM-managed instrument, in which case use the <a href="#" onclick="manualActivateProcess('general_proaim-request')">PROAIM Process</a> and choose 'Phone fix')</li>
+    <li>If you remotely connected to a customer's instrument or review station using TeamViewer, Teleservice, or Smart Services, the Call Type should be 'Remote Service'</li>
+    <li>If the device is not field servicable and requires repair, use 'Inhouse Repair' Call Type</li>
+    <li>If ordering a customer-replaceable part from the Parts Department, the Call Type should be 'Spare Part Order'</li>
+    <li>Otherwise, the Call Type should be 'Phone fix'</li>
+</ol>`,
+                    "inhouse-repair": `<h1>Inhouse Repair</h1>
+<p>Some devices are not field-servicable (VisuRef, for example) and can only be serviced via in-house repair. ${TRef.cct_in_crm} as normal, set the Call Type to 'Inhouse Repair', and leave the ticket In Process. Assign the CCT to: Sayed Haschemi, the local In-House Repair (IHR) contact person.</p>
+<p>Inform the customer that IHR will follow up with them within 24 hours with pricing, packaging, and shipment information.`,
+                    "onsite-fix": `<h1>Onsite Fix</h1>
+<p>The Onsite Fix call type is used whenever a Service Order is generated to dispatch a Field Service Engineer (FSE).</p>`,
+                    "phone-fix": `<h1>Phone Fix</h1>
+<p>The Phone Fix call type is used for most calls that are resolved without an FSE dispatch or remote access to a customer instrument or system. It is also the catch-all for various process-based ticket handling scenarios such as PROAIM service requests, scheduled callback discussions, status inquiries, etc.</p>`,
+                    "remote-service": `<h1>Remote Service</h1>
+<p>The Remote Service call type is used whenever a TSE remotely connects to a customer's instrument or review station using TeamViewer, Teleservice, Smart Services, or via some remote viewing method such as shared desktop in a Teams meeting. It indicates the TSE has had hands-on access to the customer's equipment and taken proactive steps to evaluate or repair a device.</p>
+<h2>Professional Services</h2>
+<p>Remote Service can sometimes fall under a Professional Services umbrella. This is when an issue is resolved via remote connection that would otherwise require a Field Service dispatch to fix. Professional Services also encompasses when the expertise of a Technical Support Engineer is leveraged to repair, configure, install, or evaluate a customer's software, network, or system.</p>
+<p>At present, Professional Services should only be invoked when the customer is requesting remote hands support that could otherwise be done by the customer or the customer's IT group using the provided documentation. For example, installing and configuring review station software on multiple PCs; configuring network connectivity between review stations and instruments; upgrading instrument software using a supplied install kit. Zeiss provides documentation for each of these tasks and while it is at the discretion of the TSE to determine when to invoke Professional Services, a good rule of thumb is that if the customer or customer's IT has attempted to perform the task themselves and has less than three (3) devices or review stations in need of service, it can be treated as a standard support call. Customers requesting a fleet of review stations or an office full of Zeiss instruments be upgraded, configured, or networked, should be billed for the TSE's time.</p>
+<h3>Future of Remote Service and Professional Services</h3>
+<p>In the future, Zeiss Technical Support is likely to move to a more revenue-generating model in which all remote service is treated as billable. It's not a bad idea, even if you choose not to invoke Professional Services for a complex remote service call, to let a customer know that at some point the action you're taking may cost them money. The more customers that are aware of this pending change, the fewer exemptions are likely to be demanded during the transition period and the fewer upset customers who may come to rely on Zeiss TSE expertise as a way to circumvent IT contractor bills.</p>`,
+                    "spare-part-order": `<h1>Spare Part Order</h1>
+<p>Spare parts tickets should be left In Progress until the Parts Department follows up from the email sent via the <a href="#" onclick="manualOpenEmailTemplate('parts-order')">Spare Parts Order email template</a>.</p>
+<ul>
+    <li>If they provide a confirmation number, add it to the Internal Notes and close the ticket</li>
+    <li>If the part is on back order, copy the backorder ETA into the Internal Notes and close the ticket</li>
+    <li>If there is additional follow-up required, contact the customer and confirm all necessary information, then proceed until the order is confirmed and the ticket can be closed</li>
+    <li>If the customer requests an ETA on a fulfilled order, direct an inquiry including the Sales Order number and the Part Number(s) to <a href="mailto:logistics@watchpointlogistics.com">logistics@watchpointlogistics.com</a></li>
+</ul>`
+                }
+            },
+            "clipboard-templates": {
+                "general": {
+                    "default": `<h1>Clipboard Templates</h1>
+Several key fields can be selected to be automatically copied into the clipboard, as well as some pre-approved verbiage for various processes and CCT creation.`
                 }
             }
         },
         "solution": {
         },
+        "clipboard": {
+            "ci-rejection": `The text '${context[0]}' flagged for this ticket is not associated with any adverse event or product malfunction that could lead to any sort of injury or death.`,
+            "deferred-billing": "Customer is not prepared with payment information. Provided the customer with the ticket number and advised to contact our SVCOPS team via email when they are ready to proceed with service.",
+            "teamviewer-info1": `TeamViewer Info [${document.getElementById('teamviewer-info-head1').value}] ... ID: ${document.getElementById('teamviewer-username1').value}  PW: ${document.getElementById('teamviewer-password1').value}`,
+            "teamviewer-info2": `TeamViewer Info [${document.getElementById('teamviewer-info-head2').value}] ... ID: ${document.getElementById('teamviewer-username2').value}  PW: ${document.getElementById('teamviewer-password2').value}`,
+            "teamviewer-info3": `TeamViewer Info [${document.getElementById('teamviewer-info-head3').value}] ... ID: ${document.getElementById('teamviewer-username3').value}  PW: ${document.getElementById('teamviewer-password3').value}`,
+            "teamviewer-info-all": `TeamViewer Info
+--------------
+[${document.getElementById('teamviewer-info-head1').value}] ... ID: ${document.getElementById('teamviewer-username1').value}  PW: ${document.getElementById('teamviewer-password1').value}
+[${document.getElementById('teamviewer-info-head2').value}] ... ID: ${document.getElementById('teamviewer-username2').value}  PW: ${document.getElementById('teamviewer-password2').value}
+[${document.getElementById('teamviewer-info-head3').value}] ... ID: ${document.getElementById('teamviewer-username3').value}  PW: ${document.getElementById('teamviewer-password3').value}`
+        },
+        "system": {
+        },
         "hint": {
         },
         "reminder": {
         },
+        "reference": {
+        },
         "export": {
+            "rafta": {
+                "name": "RAFTA",
+                "export_type": "copy",
+                "format": `R - ${document.getElementById('problem-description').value}
+    Specific Error Message: ${document.getElementById('error-message-details').value}
+A - ${context[0]}
+F - ${document.getElementById('frequency-selector').value}
+    Details: ${document.getElementById('frequency-problem').value}
+    Problem Started: ${document.getElementById('problem-started').value}
+    What Changed?: ${document.getElementById('problem-changed').value}
+T - ${document.getElementById('troubleshooting-performed').value}
+A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes" : "No"}
+    Exhanged Date: ${document.getElementById('exchange-date').value}
+    Logs Attached: ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
+    Reason Why No Logs Attached: ${document.getElementById('logs-not-attached-reason').value}
+    Screen Shots Attached: ${document.getElementById('screenshots-attached').checked ? "Yes" : "No"}
+    Reason Why No Screenshots: ${document.getElementById('screenshots-attached-reason').value}
+    Extended Period of Inoperability (>1 day): ${document.getElementById('extended-inoperability-check').checked ? "Yes" : "No"}
+    Inoperability Period: ${document.getElementById('inoperability-duration').value}
+    Power Cycle Resolution: ${document.getElementById('power-cycle-resolve').checked ? "Yes" : "No"}
+    Remote Resolution: ${document.getElementById('remote-resolution').checked ? "Yes" : "No"}
+    Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
+    Reason Why Not: ${document.getElementById('current-software-reason').value}
+    Verified Normal Device Functionality: ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
+    Verified Connectivity to Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}`
+            },
+            "internal": {
+                "name": "Internal Notes",
+                "export_type": "copy",
+                "format": `Was Remote Support Provided? ${document.getElementById('remote-support').checked ? "Yes" : "No"}
+Time Spent: ${document.getElementById('remote-time').value}
+Device Module: Network/Connectivity
+Sub Module: N/A*
+
+${document.getElementById('smart-service').checked ? "Zeiss Smart Services customer" : ""}
+
+Contact Made By: ${document.getElementById('request-came-from').value}
+Contact Method: ${document.getElementById('request-source').value}
+
+Point of Contact: ${document.getElementById('local-contact-person').value}
+Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
+${context[0]}
+
+${context[1]}
+
+Error Code Group: ${document.getElementById('error-group').value}
+Error Code: ${document.getElementById('error-code').value}
+Action Code: ${document.getElementById('action-code').value}
+
+${document.getElementById('other-internal-notes').value}`
+            },
+            "interaction": {
+                "name": "Interaction Data",
+                "export_type": "save",
+                "file_ext": ".txt",
+                "format": `Date: ${export_date}
+Instrument: ${getInstrumentModel()}
+Serial Number: ${document.getElementById('serial').value}
+Customer Care Ticket#: ${document.getElementById('cct').value}
+Account Name: ${document.getElementById('account').value}
+Shipping Address: ${document.getElementById('instrument-address').value}
+Local Contact Person: ${document.getElementById('local-contact-person').value}
+Mobile/Office Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
+Issue Description:
+${document.getElementById('description').value}
+Billing Type: ${document.getElementById('billing-type').value}
+Service Contract: ${document.getElementById('service-contract').value}
+
+CCT DESCRIPTION.......................................................:
+${context[0]}
+
+REMOTE CONNECTION.....................................................:
+Zeiss Smart Services: ${document.getElementById('smart-service').checked ? "Yes" : "No"}
+Teleservice: ${document.getElementById('teleservice').checked ? "Yes" : "No"}
+
+TEAMVIEWER............................................................:
+${document.getElementById('teamviewer-info-head1').value}: Username: ${document.getElementById('teamviewer-username1').value} Password: ${document.getElementById('teamviewer-password1').value}
+${document.getElementById('teamviewer-info-head2').value}: Username: ${document.getElementById('teamviewer-username2').value} Password: ${document.getElementById('teamviewer-password2').value}
+${document.getElementById('teamviewer-info-head2').value}: Username: ${document.getElementById('teamviewer-username3').value} Password: ${document.getElementById('teamviewer-password3').value}
+
+REQUEST NOTES.........................................................:
+
+REPORTED INCIDENT:
+  Device Serial Number: ${document.getElementById('serial').value}
+  Device Software Version: ${document.getElementById('device-software-version').value}
+  Archive Mode: ${document.getElementById('oct-archive-mode').value}
+  Windows Version: ${document.getElementById('windows-version').value}
+  Review Station Software Version: ${document.getElementById('review-station-software-version').value}
+  Review Station Archive Mode: ${document.getElementById('review-station-archive-mode').value}
+  Review Station Windows Version: ${document.getElementById('review-station-windows-version').value}
+  Problem Description: ${document.getElementById('problem-description').value}
+  Specific Error Message: ${document.getElementById('error-message-details').value}
+ACTUAL PROBLEM:
+  Description: ${context[1]}
+FREQUENCY OF PROBLEM:
+  Frequency: ${document.getElementById('frequency-selector').value}
+  Details: ${document.getElementById('frequency-problem').value}
+  Problem First Started: ${document.getElementById('problem-started').value}
+  What Changed: ${document.getElementById('problem-changed').value}
+TROUBLESHOOTING PERFORMED:
+  ${document.getElementById('troubleshooting-performed').value}
+ADDITIONAL INFORMATION:
+  Has the device recently been repaired? ${document.getElementById('device-repaired').checked ? "Yes" : "No"}
+  Exhanged Date: ${document.getElementById('exchange-date').value}
+  Are logs attached? ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
+  Screenshots Attached? ${document.getElementById('screenshots-attached').checked ? "Yes" : "No"}
+  Extended period of inoperability (>1 day)? ${document.getElementById('extended-inoperability-check').checked ? "Yes" : "No"}
+  If yes, how long? ${document.getElementById('inoperability-duration').value}
+  Power Cycle Resolve: ${document.getElementById('power-cycle-resolve').checked ? "Yes" : "No"}
+  Remote Resolution? ${document.getElementById('remote-resolution').checked ? "Yes" : "No"}
+
+INTERNAL NOTES........................................................:
+Time Spent: ${document.getElementById('remote-time').value}
+Device Module: Network Connectivity
+Sub Module: N/A*
+
+Error Code Group: ${document.getElementById('error-group').value}
+Error Code: ${document.getElementById('error-code').value}
+Action Code: ${document.getElementById('action-code').value}
+
+Contact Made By: ${document.getElementById('request-came-from').value}
+Contact Method: ${document.getElementById('request-source').value}
+
+Point of Contact: ${document.getElementById('local-contact-person').value}
+Phone Number: ${document.getElementById('phone').value}
+Email Address: ${document.getElementById('email').value}
+${context[2]}
+
+${context[3]}
+
+${document.getElementById('other-internal-notes').value}
+
+Remote Support Provided: ${document.getElementById('remote-support').checked ? "Yes" : "No"}
+
+SOLUTION NOTES........................................................:
+${document.getElementById('solution-notes').value}
+
+Call Type: ${document.getElementById('call-type').value}
+
+TECHNICAL SUPPORT CALL CHECKLIST......................................:
+Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
+Reason Not Running Current Version: ${document.getElementById('current-software-reason').value}
+Verified Normal Device Functionality (if phone fixed): ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
+Verified Connectivity to Office Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}
+Device Hostname: ${document.getElementById('device-hostname').value}
+Devices DHCP or Static IP: ${document.getElementById('device-ip').value}
+Review Station Hostname: ${document.getElementById('review-station-hostname').value}
+Review Station DHCP or Static IP: ${document.getElementById('review-station-ip').value}
+Cirrus HD-OCT/Review Workstation Status: ${document.getElementById('oct-work-station-status').value}
+Cirrus HD-OCT OS Drive Disk Space (C:): ${context[4]}
+Cirrus HD-OCT Data Drive Disk Space (E:): ${context[5]}
+Cirrus HD-OCT Current Archive Label: ${document.getElementById('oct-current-archive-label').value}
+Cirrus HD-OCT Current Archive Description: ${document.getElementById('oct-current-archive-description').value}
+Cirrus HD-OCT Current Archive Path: ${document.getElementById('oct-current-archive-path').value}
+Cirrus HD-OCT Current Archive Mapping: ${document.getElementById('oct-current-archive-mapping').value}
+Cirrus HD-OCT Current Archive Server Hostname: ${document.getElementById('oct-current-archive-server-hostname').value}
+Cirrus HD-OCT Current Archive Server IP: ${document.getElementById('oct-current-archive-server-ip').value}
+Cirrus HD-OCT Old Archive Label: ${document.getElementById('oct-old-archive-label').value}
+Cirrus HD-OCT Old Archive Description: ${document.getElementById('oct-old-archive-description').value}
+Cirrus HD-OCT Old Archive Path: ${document.getElementById('oct-old-archive-path').value}
+Cirrus HD-OCT Old Archive Mapping: ${document.getElementById('oct-old-archive-mapping').value}
+HFA Network Status: ${document.getElementById('hfa-network-status').value}
+HFA DHCP Setting: ${document.getElementById('hfa-dhcp-setting').value}
+HFA Network Drive Configured: ${document.getElementById('hfa-network-drive').value}
+HFA Network Drive Details: ${document.getElementById('hfa-network-drive-details').value}
+HFA Kiosk Mode: ${document.getElementById('hfa-kiosk-mode').value}
+HFA Kiosk Mode Details: ${document.getElementById('hfa-kiosk-mode-details').value}
+IOLMaster Save Raw Data: ${document.getElementById('iolmaster-save-raw-data').value}
+IOLMaster Raw Data Storage Location: ${document.getElementById('iolmaster-raw-data-storage-location').value}
+IOLMaster Disk Space Used: ${document.getElementById('iolmaster-disk-percent').value}% of ${document.getElementById('iolmaster-disk-capacity').value} ${document.getElementById('iolmaster-disk-capacity-units').value}
+IOLMaster Message History: ${document.getElementById('iolmaster-message-history').value}
+IOLMaster Network Adapter State: ${document.getElementById('iolmaster-network-adapter-state').value}
+IOLMaster DHCP: ${document.getElementById('iolmaster-dhcp').value}
+IOLMaster Network Status: ${document.getElementById('iolmaster-network-status').value}
+IOLMaster Network Drive Configured? ${document.getElementById('iolmaster-network-drive-configured').checked ? 'Yes' : 'No'}
+IOLMaster Network Drive Letter: ${document.getElementById('iolmaster-network-drive-letter').value}
+IOLMaster Network Path: ${document.getElementById('iolmaster-network-path').value}
+IOLMaster Cloud Connectivity: ${document.getElementById('iolmaster-cloud-connectivity').value}
+IOLMaster Cloud Details: ${document.getElementById('iolmaster-cloud-details').value}
+IOLMaster DICOM Network: ${document.getElementById('iolmaster-dicom-network').value}
+IOLMaster Station Name: ${document.getElementById('iolmaster-station-name').value}
+IOLMaster Local AE Title: ${document.getElementById('iolmaster-local-ae-title').value}
+IOLMaster Local Port: ${document.getElementById('iolmaster-local-ae-port').value}
+IOLMaster Use Remote DICOM? ${document.getElementById('iolmaster-use-dicom').checked ? 'Yes' : 'No'}
+IOLMaster Remote AET Details: ${document.getElementById('iolmaster-remote-aet-details').value}
+Network Configuration: ${document.getElementById('network-configuration').value}
+
+FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:
+Forum Software Version: ${document.getElementById('forum-software-version').value}
+Forum Windows Version: ${document.getElementById('forum-windows-version').value}
+Forum Server Hostname: ${document.getElementById('forum-server-hostname').value}
+Forum Server IP: ${document.getElementById('forum-server-ip').value}
+Forum Server Settings: ${document.getElementById('forum-server-settings').value}
+Number of Stations: ${document.getElementById('forum-number-of-stations').value}
+Dicom Test Pass: ${document.getElementById('forum-dicom-tests-pass').checked ? "Yes" : "No"}
+Changes to Environment: ${document.getElementById('forum-changes-to-environment').checked ? "Yes" : "No"}
+Affected Devices: ${document.getElementById('forum-affected-devices').value}
+Architecture: ${document.getElementById('forum-architecture').value}
+`
+            },
+            "xml": {
+                "name": "XML",
+                "export_type": "save",
+                "file_ext": ".xml",
+                "format": `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssetInfo xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<assetSubType>undefined</assetSubType>
+<state>import</state>
+<name>snap_savefile</name>
+  <customMetaData>
+    <key>serial</key>
+    <value>${htmlEscape(document.getElementById('serial').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>request-came-from</key>
+    <value>${htmlEscape(document.getElementById('request-came-from').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>request-source</key>
+    <value>${htmlEscape(document.getElementById('request-source').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>instrument</key>
+    <value>${htmlEscape(document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>model</key>
+    <value>${htmlEscape(document.getElementById('model')[document.getElementById('model').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>local-contact-person</key>
+    <value>${htmlEscape(document.getElementById('local-contact-person').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>serial</key>
+    <value>${htmlEscape(document.getElementById('serial').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>phone</key>
+    <value>${htmlEscape(document.getElementById('phone').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>prefer-phone</key>
+    <value>${document.getElementById('prefer-phone').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>email</key>
+    <value>${htmlEscape(document.getElementById('email').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>prefer-email</key>
+    <value>${document.getElementById('prefer-email').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>account</key>
+    <value>${htmlEscape(document.getElementById('account').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>instrument-address</key>
+    <value>${htmlEscape(document.getElementById('instrument-address').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>cct</key>
+    <value>${htmlEscape(document.getElementById('cct').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>svo</key>
+    <value>${htmlEscape(document.getElementById('svo').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>common-call-scenarios</key>
+    <value>${htmlEscape(document.getElementById('common-call-scenarios')[document.getElementById('common-call-scenarios').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>description</key>
+    <value>${htmlEscape(document.getElementById('description').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>billing-type</key>
+    <value>${htmlEscape(document.getElementById('billing-type')[document.getElementById('billing-type').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>service-contract</key>
+    <value>${htmlEscape(document.getElementById('service-contract')[document.getElementById('service-contract').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>include-review-station</key>
+    <value>${document.getElementById('include-review-station').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>add-forum</key>
+    <value>${document.getElementById('add-forum').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>remote-support</key>
+    <value>${document.getElementById('remote-support').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>billing-contact</key>
+    <value>${document.getElementById('billing-contact').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>billing-contact-person</key>
+    <value>${htmlEscape(document.getElementById('billing-contact-person').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>billing-phone</key>
+    <value>${htmlEscape(document.getElementById('billing-phone').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>billing-email</key>
+    <value>${htmlEscape(document.getElementById('billing-email').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>smart-service</key>
+    <value>${document.getElementById('smart-service').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teleservice</key>
+    <value>${document.getElementById('teleservice').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-info-head1</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-info-head1').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-username1</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-username1').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-password1</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-password1').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-info-head2</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-info-head2').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-username2</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-username2').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-password2</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-password2').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-info-head3</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-info-head3').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-username3</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-username3').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>teamviewer-password3</key>
+    <value>${htmlEscape(document.getElementById('teamviewer-password3').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>current-software-version</key>
+    <value>${document.getElementById('current-software-version').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>current-software-reason</key>
+    <value>${htmlEscape(document.getElementById('current-software-reason').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>device-software-version</key>
+    <value>${htmlEscape(document.getElementById('device-software-version').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>windows-version</key>
+    <value>${htmlEscape(document.getElementById('windows-version').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>error-message-details</key>
+    <value>${htmlEscape(document.getElementById('error-message-details').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>device-hostname</key>
+    <value>${htmlEscape(document.getElementById('device-hostname').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>device-ip</key>
+    <value>${htmlEscape(document.getElementById('device-ip').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>network-configuration</key>
+    <value>${htmlEscape(document.getElementById('network-configuration').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>review-station-current-software-version</key>
+    <value>${document.getElementById('review-station-current-software-version').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>review-station-stoftware-version</key>
+    <value>${htmlEscape(document.getElementById('review-station-software-version').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>review-station-archive-mode</key>
+    <value>${htmlEscape(document.getElementById('review-station-archive-mode')[document.getElementById('review-station-archive-mode').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>review-station-windows-version</key>
+    <value>${htmlEscape(document.getElementById('review-station-windows-version').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>review-station-hostname</key>
+    <value>${htmlEscape(document.getElementById('review-station-hostname').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>review-station-ip</key>
+    <value>${htmlEscape(document.getElementById('review-station-ip').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-work-station-status</key>
+    <value>${htmlEscape(document.getElementById('oct-work-station-status')[document.getElementById('oct-work-station-status').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-archive-mode</key>
+    <value>${htmlEscape(document.getElementById('oct-archive-mode')[document.getElementById('oct-archive-mode').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-c-drive-free</key>
+    <value>${htmlEscape(document.getElementById('oct-c-drive-free').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-c-drive-free-size</key>
+    <value>${htmlEscape(document.getElementById('oct-c-drive-free-size')[document.getElementById('oct-c-drive-free-size').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-c-drive-total</key>
+    <value>${htmlEscape(document.getElementById('oct-c-drive-total').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-c-drive-total-size</key>
+    <value>${htmlEscape(document.getElementById('oct-c-drive-total-size')[document.getElementById('oct-c-drive-total-size').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-e-drive-free</key>
+    <value>${htmlEscape(document.getElementById('oct-e-drive-free').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-e-drive-free-size</key>
+    <value>${htmlEscape(document.getElementById('oct-e-drive-free-size')[document.getElementById('oct-e-drive-free-size').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-e-drive-total</key>
+    <value>${htmlEscape(document.getElementById('oct-e-drive-total').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-e-drive-total-size</key>
+    <value>${htmlEscape(document.getElementById('oct-e-drive-total-size')[document.getElementById('oct-e-drive-total-size').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-current-archive-label</key>
+    <value>${htmlEscape(document.getElementById('oct-current-archive-label').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-current-archive-description</key>
+    <value>${htmlEscape(document.getElementById('oct-current-archive-description').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-current-archive-path</key>
+    <value>${htmlEscape(document.getElementById('oct-current-archive-path').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-current-archive-mapping</key>
+    <value>${htmlEscape(document.getElementById('oct-current-archive-mapping').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-current-archive-server-hostname</key>
+    <value>${htmlEscape(document.getElementById('oct-current-archive-server-hostname').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-current-archive-server-ip</key>
+    <value>${htmlEscape(document.getElementById('oct-current-archive-server-ip').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-old-archive-label</key>
+    <value>${htmlEscape(document.getElementById('oct-old-archive-label').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-old-archive-description</key>
+    <value>${htmlEscape(document.getElementById('oct-old-archive-description').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-old-archive-path</key>
+    <value>${htmlEscape(document.getElementById('oct-old-archive-path').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>oct-old-archive-mapping</key>
+    <value>${htmlEscape(document.getElementById('oct-old-archive-mapping').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>hfa-network-status</key>
+    <value>${htmlEscape(document.getElementById('hfa-network-status')[document.getElementById('hfa-network-status').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>hfa-dhcp-setting</key>
+    <value>${htmlEscape(document.getElementById('hfa-dhcp-setting')[document.getElementById('hfa-dhcp-setting').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>hfa-network-drive</key>
+    <value>${htmlEscape(document.getElementById('hfa-network-drive')[document.getElementById('hfa-network-drive').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>hfa-network-drive-details</key>
+    <value>${htmlEscape(document.getElementById('hfa-network-drive-details').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>hfa-kiosk-mode</key>
+    <value>${htmlEscape(document.getElementById('hfa-kiosk-mode')[document.getElementById('hfa-kiosk-mode').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>hfa-kiosk-mode-details</key>
+    <value>${htmlEscape(document.getElementById('hfa-kiosk-mode-details').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-software-version</key>
+    <value>${htmlEscape(document.getElementById('forum-software-version').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-windows-version</key>
+    <value>${htmlEscape(document.getElementById('forum-windows-version').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-server-hostname</key>
+    <value>${htmlEscape(document.getElementById('forum-server-hostname').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-server-ip</key>
+    <value>${htmlEscape(document.getElementById('forum-server-ip').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-server-settings</key>
+    <value>${htmlEscape(document.getElementById('forum-server-settings').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-dicom-tests-pass</key>
+    <value>${document.getElementById('forum-dicom-tests-pass').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-number-of-stations</key>
+    <value>${htmlEscape(document.getElementById('forum-number-of-stations').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-changes-to-environment</key>
+    <value>${document.getElementById('forum-changes-to-environment').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-affected-devices</key>
+    <value>${htmlEscape(document.getElementById('forum-affected-devices').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>forum-architecture</key>
+    <value>${htmlEscape(document.getElementById('forum-architecture').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>verified-normal-functionality</key>
+    <value>${document.getElementById('verified-normal-functionality').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>verified-network-connectivity</key>
+    <value>${document.getElementById('verified-network-connectivity').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>same-as-reported</key>
+    <value>${document.getElementById('same-as-reported').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>actual-problem-description</key>
+    <value>${htmlEscape(document.getElementById('actual-problem-description').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>frequency-selector</key>
+    <value>${htmlEscape(document.getElementById('frequency-selector')[document.getElementById('frequency-selector').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>frequency-problem</key>
+    <value>${htmlEscape(document.getElementById('frequency-problem').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>problem-started</key>
+    <value>${htmlEscape(document.getElementById('problem-started').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>problem-changed</key>
+    <value>${htmlEscape(document.getElementById('problem-changed').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>troubleshooting-performed</key>
+    <value>${htmlEscape(document.getElementById('troubleshooting-performed').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>device-repaired</key>
+    <value>${document.getElementById('device-repaired').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>exchange-date</key>
+    <value>${htmlEscape(document.getElementById('exchange-date').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>logs-attached</key>
+    <value>${document.getElementById('logs-attached').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>logs-not-attached-reason</key>
+    <value>${htmlEscape(document.getElementById('logs-not-attached-reason').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>screenshots-attached</key>
+    <value>${document.getElementById('screenshots-attached').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>screenshots-attached-reason</key>
+    <value>${htmlEscape(document.getElementById('screenshots-attached-reason').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>extended-inoperability-check</key>
+    <value>${document.getElementById('extended-inoperability-check').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>inoperability-duration</key>
+    <value>${htmlEscape(document.getElementById('inoperability-duration').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>power-cycle-resolve</key>
+    <value>${document.getElementById('power-cycle-resolve').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>remote-resolution</key>
+    <value>${document.getElementById('remote-resolution').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>remote-time</key>
+    <value>${htmlEscape(document.getElementById('remote-time').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>error-group</key>
+    <value>${htmlEscape(document.getElementById('error-group')[document.getElementById('error-group').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>error-code</key>
+    <value>${htmlEscape(document.getElementById('error-code')[document.getElementById('error-code').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>action-code</key>
+    <value>${htmlEscape(document.getElementById('action-code')[document.getElementById('action-code').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>other-internal-notes</key>
+    <value>${htmlEscape(document.getElementById('other-internal-notes').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>ci-reject-string</key>
+    <value>${htmlEscape(document.getElementById('ci-reject-string').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>solution-notes</key>
+    <value>${htmlEscape(document.getElementById('solution-notes').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>call-type</key>
+    <value>${htmlEscape(document.getElementById('call-type')[document.getElementById('call-type').selectedIndex].value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-message-history</key>
+    <value>${document.getElementById('iolmaster-message-history').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-save-raw-data</key>
+    <value>${document.getElementById('iolmaster-save-raw-data')[document.getElementById('iolmaster-save-raw-data').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-raw-data-storage-location</key>
+    <value>${document.getElementById('iolmaster-raw-data-storage-location').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-disk-percent</key>
+    <value>${document.getElementById('iolmaster-disk-percent').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-disk-capacity</key>
+    <value>${document.getElementById('iolmaster-disk-capacity').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-disk-capacity-units</key>
+    <value>${document.getElementById('iolmaster-disk-capacity-units')[document.getElementById('iolmaster-disk-capacity-units').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-network-adapter-state</key>
+    <value>${document.getElementById('iolmaster-network-adapter-state')[document.getElementById('iolmaster-network-adapter-state').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-dhcp</key>
+    <value>${document.getElementById('iolmaster-dhcp')[document.getElementById('iolmaster-dhcp').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-network-status</key>
+    <value>${document.getElementById('iolmaster-network-status').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-network-drive-configured</key>
+    <value>${document.getElementById('iolmaster-network-drive-configured').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-network-drive-letter</key>
+    <value>${document.getElementById('iolmaster-network-drive-letter').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-network-path</key>
+    <value>${document.getElementById('iolmaster-network-path').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-cloud-connectivity</key>
+    <value>${document.getElementById('iolmaster-cloud-connectivity')[document.getElementById('iolmaster-cloud-connectivity').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-cloud-details</key>
+    <value>${document.getElementById('iolmaster-cloud-details').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-dicom-network</key>
+    <value>${document.getElementById('iolmaster-dicom-network')[document.getElementById('iolmaster-dicom-network').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-station-name</key>
+    <value>${document.getElementById('iolmaster-station-name').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-local-ae-title</key>
+    <value>${document.getElementById('iolmaster-local-ae-title').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-local-ae-port</key>
+    <value>${document.getElementById('iolmaster-local-ae-port').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-use-dicom</key>
+    <value>${document.getElementById('iolmaster-use-dicom').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>iolmaster-remote-aet-details</key>
+    <value>${document.getElementById('iolmaster-remote-aet-details').value}</value>
+  </customMetaData>
+</AssetInfo>`
+            }
         }
     }
 }    

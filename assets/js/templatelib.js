@@ -41,7 +41,7 @@ function setPreferredComm() {
 
 // Check if EOS form was correctly completed
 function eosPreCheck() {
-    debugmsg(5, 'Executing eosPreCheck');
+    console.log('Executing eosPreCheck');
     if (document.getElementById('eos-instrument-type').value === '' || document.getElementById('eos-instrument-model').value === '') {
         var type_model_msg = 'The instrument and/or model were not selected or could not be found.';
         console.error(type_model_msg);
@@ -54,7 +54,7 @@ function eosPreCheck() {
 
 // Retrieve EoS data from Devices object
 function fetchEosData() {
-    debugmsg(5, 'Retrieving Devices object');
+    console.info('Retrieving Devices object');
     var activeEosModel = Devices.instruments[document.getElementById('eos-instrument-type').value];
     return activeEosModel;
 }
@@ -92,7 +92,7 @@ function eosProcContext(data) {
     } else {
         support_context_str = 'may have modified full support';
     }
-    debugmsg(4, 'eosDate: ' + eosDate);
+    console.log({eosDate});
     output_eos_date = (use_date) ? ', as of ' + eosDate.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"}) + ', ' : ' ';
     agreements_str = (use_date) ? 'All existing service agreements for the ' + model_data.full_name + ' systems were terminated as of ' + eosDate.toLocaleString("en-US", {month: "long", day: "numeric", year: "numeric"}) + ". If you had a prepaid service agreement extending beyond this date, ZEISS has already issued credits accordingly.\n\n" : '';
     end_of_support_notice = output_eos_date + 'ZEISS ' + support_context_str;
@@ -108,6 +108,7 @@ function eosProcContext(data) {
 // Template References (re-usable HTML blobs)
 TRef = {
     "cct_in_crm": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">Create CCT in CRM</a>",
+    "cct": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">CCT</a>",
     "crm": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">CRM</a>"
 }
 

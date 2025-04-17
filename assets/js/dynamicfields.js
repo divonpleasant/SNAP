@@ -63,15 +63,16 @@ function addToggle (toggle_id, toggle_class) {
 // Hide dynamic fields by default
 hideAllDynamicFields();
 // Handle instrument select field
-var instrument_select = document.getElementById("instrument-model");
+var instrument_select = document.getElementById('instrument');
 debugmsg(5, 'Starting selected element: ' + instrument_select.selectedIndex);
-instrument_select.addEventListener("change", function() {
+instrument_select.addEventListener('change', function() {
     hideAllDynamicFields();
     fetchAndAdjustSerialTooltip('Select an Instrument to see serial number tips');
     document.getElementById('serial').disabled = false;
     // reset checkboxes before contextual changes
     document.querySelector('#forum_checkbox').style.display = 'block';
     // change form field visibility based on selection
+    debugmsg(5, 'this[this.selectedIndex].value: ' + this[this.selectedIndex].value);
 	switch (this.selectedIndex) {
         case 0:
             break;
@@ -188,10 +189,10 @@ document.getElementById('billing-type').addEventListener('change', function () {
     debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
     switch (this.options[this.selectedIndex].value) {
         case 'XC':
-            var consoleAlertText = (xc_alert) ? "Sending " : "Not sending (due to settings) ";
+            var consoleAlertText = (so.Settings.alerts.xc.value) ? "Sending " : "Not sending (due to settings) ";
             var alertText = 'Note: Use XC code ONLY IF Remote Fixed AND Billable!';
             console.log(consoleAlertText + 'alert: `' + alertText + '`');
-            (xc_alert) ? alert(alertText) : '';
+            (so.Settings.alerts.xc.value) ? alert(alertText) : '';
             document.getElementById('service-contract').setAttribute('disabled', true);
             break;
         case 'CNTRCT':

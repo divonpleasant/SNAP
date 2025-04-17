@@ -12,7 +12,7 @@ document.getElementById('modalContinue').addEventListener('click', function (eve
     event.preventDefault();
 
     const dateTime = document.getElementById('scheduledDateTime').value;
-    const instrument = document.getElementById('instrument-model').value;
+    const instrument = getInstrumentModel();
     const serial = document.getElementById('serial').value;
     const poc = document.getElementById('local-contact-person').value;
     const account = document.getElementById('account').value;
@@ -77,6 +77,12 @@ SUMMARY:${event.title}
 DTSTART:${dtStart}
 DTEND:${dtEnd}
 DESCRIPTION:${bodyContent.replace(/\n/g, '\\n')}
+BEGIN:VALARM
+TRIGGER:-PT15M
+REPEAT:1
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
 END:VEVENT
 END:VCALENDAR
 `;

@@ -1,32 +1,18 @@
 // Settings support
 function settingsOverlay(event) {
     event.preventDefault();
-    debugmsg(5, 'displaying settings overlay...');
-    // Get existing settings
-    var settings_cookie = document.cookie;
-    debugmsg(5, 'debug_mode: ' + debug_mode);
-    debugmsg(4, 'settings_cookie: ' + settings_cookie);
-    var debugSttng = (getCookie('debugMode') != '') ? getCookie('debugMode') : debug_mode;
-    var debugLvlSttng = (getCookie('debugLevel') != '') ? getCookie('debugLevel') : debug_level;
-    var alrtCpySttng = (getCookie('copyAlert') != '') ? getCookie('copyAlert') : copy_alert;
-    var copyCrmDescrSttng = (getCookie('crmDescription') != '') ? getCookie('crmDescription') : copy_descr;
-    var alrtXcSttng = (getCookie('xcAlert') != '') ? getCookie('xcAlert') : xc_alert;
-    var darkMode = (getCookie('darkMode') != '') ? getCookie('darkMode') : dark_mode;
-    var signEmail = (getCookie('signEmail') != '') ? getCookie('signEmail') : sign_email;
-    debugmsg(5, 'debugSttng: ' + debugSttng);
-    debugmsg(5, 'debugLvlSttng: ' + debugLvlSttng);
-    debugmsg(5, 'alrtCpySttng: ' + alrtCpySttng);
-    debugmsg(5, 'alrtXcSttng: ' + alrtXcSttng);
-    debugmsg(5, 'darkMode: ' + darkMode);
-    debugmsg(5, 'signEmail: ' + signEmail);
-    
-    (alrtCpySttng) ? document.getElementById('alert-on-copy').checked = true : '';
-    (alrtXcSttng) ? document.getElementById('alert-for-xc').checked = true : '';
-    (copyCrmDescrSttng) ? document.getElementById('copy-crm-description').checked = true : '';
-    (debugSttng) ? document.getElementById('debug-toggle').checked = true : '';
-    (darkMode) ? document.getElementById('dark-mode').checked = true : '';
-    (signEmail) ? document.getElementById('sign-email').checked = true : '';
-    document.getElementById('debug-level').getElementsByTagName('option')[debugLvlSttng].selected = 'selected';
+    debugmsg(3, 'Executing settingsOverlay...');
+    // Get existing settings and set form elements appropriately
+    debugmsg(4, 'so.Settings.alerts.copy: ' + so.Settings.alerts.copy.value);
+    debugmsg(4, 'so.Settings.debug.mode: ' + so.Settings.debug.mode.value);
+    debugmsg(4, 'so.Settings.debug.level: ' + so.Settings.debug.level.value);
+    document.getElementById('alert-on-copy').checked = so.Settings.alerts.copy.value;
+    document.getElementById('alert-for-xc').checked = so.Settings.alerts.xc.value;
+    document.getElementById('copy-crm-description').checked = so.Settings.ui.copy_description.value;
+    document.getElementById('debug-toggle').checked = so.Settings.debug.mode.value;
+    document.getElementById('dark-mode').checked = so.Settings.ui.dark_mode.value;
+    document.getElementById('sign-email').checked = so.Settings.user.sign_email.value;
+    document.getElementById('debug-level').getElementsByTagName('option')[so.Settings.debug.level.value].selected = true;
 
     document.getElementById('settings-overlay').style.display = 'flex';
 }
@@ -34,12 +20,13 @@ function settingsOverlay(event) {
 function processSettings(event) {
     event.preventDefault();
     
-    var user_set_alrtCpySttng = (document.getElementById('alert-on-copy').value == 'on') ? 'true' : 'false';
-    var user_set_alrtXcSttng = (document.getElementById('alert-for-xc').value == 'on') ? 'true' : 'false';
-    var user_set_copyCrmDescrSttng = (document.getElementById('copy-crm-description').value == 'on') ? 'true' : 'false';
-    var user_set_debugSttng = (document.getElementById('debug-toggle').value == 'on') ? 'true' : 'false';
-    var user_set_darkModeSttng = (document.getElementById('dark-mode').value == 'on') ? 'true' : 'false';
-    var user_set_signEmailSttng = (document.getElementById('sign-email').value == 'on') ? 'true' : 'false';
+    debugmsg(4, "document.getElementById('alert-on-copy').checked (at time of processSettings execution): " + document.getElementById('alert-on-copy').checked);
+    var user_set_alrtCpySttng = document.getElementById('alert-on-copy').checked;
+    var user_set_alrtXcSttng = document.getElementById('alert-for-xc').checked;
+    var user_set_copyCrmDescrSttng = document.getElementById('copy-crm-description').checked;
+    var user_set_debugSttng = document.getElementById('debug-toggle').checked;
+    var user_set_darkModeSttng = document.getElementById('dark-mode').checked;
+    var user_set_signEmailSttng = document.getElementById('sign-email').checked;
     var user_set_debugLvlSttng = document.getElementById('debug-level').value;
     debugmsg(5, 'user_set_alrtCpySttng: ' + user_set_alrtCpySttng);
     debugmsg(5, 'user_set_alrtXcSttng: ' + user_set_alrtXcSttng);
@@ -55,9 +42,10 @@ function processSettings(event) {
     setCookie('debugMode', user_set_debugSttng, 365);
     setCookie('debugLevel', user_set_debugLvlSttng, 365);
     
-    let cooky = document.cookie;
-    debugmsg(5, 'Cookie check: ' + cooky);
-
+    debugmsg(5, 'Cookie check: ' + document.cookie);
+    
+    startUp(true, true);
+    
     // Hide the overlay after proceeding
     document.getElementById('settings-overlay').style.display = 'none';
 }
