@@ -1,4 +1,4 @@
-const version = '3.1.0';
+const version = '3.1.1';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -92,6 +92,7 @@ function generateSettings() {
                 "default_value": "anonymous",
                 "value": "anonymous",
                 "type": "string",
+                "cookie_key": "usrName",
                 "description": "Arbitrary username string"
             },
             "fullname": {
@@ -99,6 +100,7 @@ function generateSettings() {
                 "default_value": "[Name] [LastName]",
                 "value": "[Name] [LastName]",
                 "type": "string",
+                "cookie_key": "fullName",
                 "description": "First and last name, should match user account in CZM."
             },
             "casual_name": {
@@ -106,6 +108,7 @@ function generateSettings() {
                 "default_value": "",
                 "value": "",
                 "type": "string",
+                "cookie_key": "casName",
                 "description": "This is a derived value from 'fullname' or manually set, so there is no default value. Generally is set to first name of the 'fullname' value."
             },
             "private_inbox": {
@@ -113,6 +116,7 @@ function generateSettings() {
                 "default_value": "declined@zeiss.com",
                 "value": "declined@zeiss.com",
                 "type": "string-email",
+                "cookie_key": "persEmail",
                 "description": "Individual TSE's email address, not for use in templates that are customer-facing. Must be a valid email address."
             },
             "contact_inbox": {
@@ -120,6 +124,7 @@ function generateSettings() {
                 "default_value": "dl.med-usmedtechnicalsupport.us@zeiss.com",
                 "value": "dl.med-usmedtechnicalsupport.us@zeiss.com",
                 "type": "string-email",
+                "cookie_key": "teamEmail",
                 "description": "Customer-facing email address (usually a monitored inbox). Must be a valid email address."
             },
             "email_sig": {
@@ -127,6 +132,7 @@ function generateSettings() {
                 "default_value": "",
                 "value": "",
                 "type": "string",
+                "cookie_key": "emailSig",
                 "description": "Either a user-inputted string or a derived value from various other user information."
             },
             "sign_email": {
@@ -142,6 +148,7 @@ function generateSettings() {
                 "default_value": false,
                 "value": false,
                 "type": "boolean",
+                "cookie_key": "useCustomScr",
                 "description": "Toggle to determine whether to use user-defined scripts in script prompts."
             }
         }
@@ -151,6 +158,7 @@ function generateSettings() {
 const so = new generateSettings();
 
 var final_style = '';
+var user_logged_in = false;
 
 // sb (sandbox) constant should only be defined by the sandbox index file
 function checkTag() {
@@ -173,34 +181,37 @@ function procSettingValues() {
     console.info('Executing procSettingValues...');
     console.info(so.Settings);
     for (let sgroup in so.Settings) {
-        if (sgroup !== 'system' && sgroup !== 'user') {
+        if (sgroup !== 'system') {
             for (let skey in so.Settings[sgroup]) {
                 if (typeof so.Settings[sgroup][skey].cookie_key !== 'undefined') {
                     if (so.Settings[sgroup][skey].type === 'boolean') {
                         so.Settings[sgroup][skey].value = (document.cookie) ? boolCookieValue(getCookie(so.Settings[sgroup][skey].cookie_key)) : so.Settings[sgroup][skey].default_value;
                     } else {
-                        so.Settings[sgroup][skey].value = (document.cookie) ? getCookie(so.Settings[sgroup][skey].cookie_key) : so.Settings[sgroup][skey].default_value;
+                        if (document.cookie) {
+                            so.Settings[sgroup][skey].value = (getCookie(so.Settings[sgroup][skey].cookie_key) !== '') ? getCookie(so.Settings[sgroup][skey].cookie_key) : so.Settings[sgroup][skey].default_value;
+                        } else {
+                            so.Settings[sgroup][skey].value = so.Settings[sgroup][skey].default_value;
+                        }
                     }
                 }
                 //console.log('so.Settings.' + sgroup + '.' + skey + '.value: ' + so.Settings[sgroup][skey].value);
             }
         }
     }
-    if (typeof User !== 'undefined') {
-        for (userdata in User) {
-            //console.log('User.' + userdata + ': ' + User[userdata]);
-            so.Settings.user[userdata].value = User[userdata];
-        }
-    }
-    var name_array = so.Settings.user.fullname.value.split(' ');
-    so.Settings.user.casual_name.value = (so.Settings.user.casual_name.value === '') ? name_array[0] : so.Settings.user.casual_name.default_value;
-    var signature = "-----\n" +
+
+    if (so.Settings.user.username !== 'anonymous') {
+        user_logged_in = true;
+        var name_array = so.Settings.user.fullname.value.split(' ');
+        so.Settings.user.casual_name.value = (so.Settings.user.casual_name.value === '') ? name_array[0] : so.Settings.user.casual_name.value;
+        var signature = "-----\n" +
                     so.Settings.user.fullname.value + "\n" +
                     "Zeiss Technical Support Engineer\n" +
                     "Phone: 800-341-6968\n" +
                     "Email: " + so.Settings.user.contact_inbox.value + "\n\n"
-
-    so.Settings.user.email_sig.value = (so.Settings.user.sign_email.value) ? signature : so.Settings.user.email_sig.default_value;
+        if (so.Settings.user.sign_email.value && so.Settings.user.email_sig.value === '') {
+            so.Settings.user.email_sig.value = signature;
+        }
+    }
 }
 
 function startUp(style_refresh = false, page_reload = false) {
@@ -270,6 +281,7 @@ startUp();
 document.getElementById('copyright-year').innerHTML = utc_year;
 document.getElementById("project-link").href = project_home;
 document.getElementById('pagestyle').setAttribute('href', final_style);
+(user_logged_in) ? document.getElementById('user-account').innerHTML = so.Settings.user.username.value : '';
 
 // LIB FUNCTIONS
 

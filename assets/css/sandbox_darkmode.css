@@ -2698,9 +2698,28 @@ button,
     position: relative;
 }
 
-#account-save-button-align {
+.account-input-wrapper {
+    position: relative;
+    margin: 1em;
+}
+
+.account-input-wrapper>label {
+    text-align: right;
+    font-weight: normal;
+    font-size: 0.7em;
+    background-color: #606a76;
+    padding: 0 5px;
+}
+
+.account-checkbox-align {
+    align-items: right;
+    text-align: right;
+}
+
+.account-button-align {
     align-items: center;
     text-align: center;
+    margin: 4px 1px;
 }
 
 #account-close-overlay {

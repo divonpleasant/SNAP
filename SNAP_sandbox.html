@@ -1006,16 +1006,44 @@
                         <div id="account-overlay-content">
                             <span id="account-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
                             <h3 style="text-align: center">Account</h3>
-                            <input type="text" id="username" name="username" placeholder="Username" /><br />
-                            <input type="text" id="fullname" name="fullname" placeholder="Full Name" /><br />
-                            <input type="text" id="private-email" name="private-email" placeholder="Personal Email Address" /><br />
-                            <input type="text" id="team-email" name="team-email" placeholder="Team Email Address" /><br />
-                            <textarea id="email-signature" rows="3" name="email-signature" placeholder="Custom email signature"></textarea>
-                            <input type="checkbox" id="sign-email-toggle" name="sign-email-toggle">
-                            <label for="sign-email-toggle">Sign Email?</label><br />
-                        </div>
-                        <div id="account-save-button-align">
-                            <button id="account-save">Save</button>
+                            <div class="account-input-wrapper">
+                                <input type="text" id="username" name="username" placeholder="Username" />
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="account-input-wrapper">
+                                <input type="text" id="fullname" name="fullname" placeholder="Full Name" />
+                                <label for="fullname">Full Name</label>
+                            </div>
+                            <div class="account-input-wrapper">
+                                <input type="text" id="casual-name" name="casual-name" placeholder="Casual Name" />
+                                <label for="casual-name">Casual Name</label>
+                            </div>
+                            <div class="account-input-wrapper">
+                                <input type="text" id="private-email" name="private-email" placeholder="Personal Email Address" />
+                                <label for="private-email">Personal Email Address</label>
+                            </div>
+                            <div class="account-input-wrapper">
+                                <input type="text" id="team-email" name="team-email" placeholder="Team Email Address" />
+                                <label for="team-email">Team Email Address</label>
+                            </div>
+                            <div class="account-input-wrapper">
+                                <textarea id="email-signature" style="height: 10em; width: 25em;" name="email-signature" placeholder="Custom email signature"></textarea>
+                                <label for="email-signature">Custom Email Signature</label>
+                            </div>
+                            <div class="account-checkbox-align">
+                                <input type="checkbox" style="align: right" id="sign-email-toggle" name="sign-email-toggle">
+                                <label for="sign-email-toggle">Sign Email?</label><br />
+                            </div>
+                            <div class="account-checkbox-align">
+                                <input type="checkbox" style="align: right" id="custom-scripts-toggle" name="custom-scripts-toggle">
+                                <label for="custom-scripts-toggle">Use Custom Scripts?</label><br />
+                            </div>
+                            <div class="account-button-align">
+                                <button id="account-save">Save</button>
+                            </div>
+                            <div class="account-button-align">
+                                <button id="account-logout">Logout</button>
+                            </div>
                         </div>
                     </div>
                 </div>

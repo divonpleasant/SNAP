@@ -1,7 +1,6 @@
 # SNAP 3.1 TODO
 
-- Add login/user routine to manage user data (v3.1.1)
-- Migrate EOS template to use new Instruments model (v3.1.1)
+- Migrate EOS template to use new Instruments model (v3.1.1+)
 - Migrate more process docs into template, including screenshots/diagrams, especially the overview information sheets for each device (3.1.1+)
 - Figure out how to make sidebar work properly w/ overflow on larger screens (v3.1.1+)
 - Add form history/dates (invisible?) field (v3.1.2+)

@@ -713,7 +713,7 @@ F - ${document.getElementById('frequency-selector').value}
     What Changed?: ${document.getElementById('problem-changed').value}
 T - ${document.getElementById('troubleshooting-performed').value}
 A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes" : "No"}
-    Exhanged Date: ${document.getElementById('exchange-date').value}
+    Service Date: ${document.getElementById('exchange-date').value}
     Logs Attached: ${document.getElementById('logs-attached').checked ? "Yes" : "No"}
     Reason Why No Logs Attached: ${document.getElementById('logs-not-attached-reason').value}
     Screen Shots Attached: ${document.getElementById('screenshots-attached').checked ? "Yes" : "No"}
@@ -779,9 +779,9 @@ Zeiss Smart Services: ${document.getElementById('smart-service').checked ? "Yes"
 Teleservice: ${document.getElementById('teleservice').checked ? "Yes" : "No"}
 
 TEAMVIEWER............................................................:
-${document.getElementById('teamviewer-info-head1').value}: Username: ${document.getElementById('teamviewer-username1').value} Password: ${document.getElementById('teamviewer-password1').value}
-${document.getElementById('teamviewer-info-head2').value}: Username: ${document.getElementById('teamviewer-username2').value} Password: ${document.getElementById('teamviewer-password2').value}
-${document.getElementById('teamviewer-info-head2').value}: Username: ${document.getElementById('teamviewer-username3').value} Password: ${document.getElementById('teamviewer-password3').value}
+${document.getElementById('teamviewer-info-head1').value}: ID: ${document.getElementById('teamviewer-username1').value}
+${document.getElementById('teamviewer-info-head2').value}: ID: ${document.getElementById('teamviewer-username2').value}
+${document.getElementById('teamviewer-info-head2').value}: ID: ${document.getElementById('teamviewer-username3').value}
 
 REQUEST NOTES.........................................................:
 
