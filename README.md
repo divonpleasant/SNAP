@@ -25,13 +25,19 @@ Of particular note, as of this release, SNAP does not have the ability to:
 - Research customer/device support history
 
 ### Set-Up
-As of version 3.1, SNAP does not yet have a deployment/production web server assigned. To use SNAP, you will need to set up a local webserver. We recommend [XAMPP](https://www.apachefriends.org/download.html), a free Apache distribution available for Windows. Note that SNAP 3.1 does not require server-side CGI/scripting support nor does it use a relational database so you can install XAMPP without Perl, PHP (note that if you do choose to install PHP, you should install the most recent version to avoid having your install flagged by IT as being a security vulnerability which requires a manual upgrade), or MySQL.
+As of version 3.1, SNAP does not yet have a deployment/production web server assigned. To use all of SNAP's features, you will need to set up a local webserver. We recommend [XAMPP](https://www.apachefriends.org/download.html), a free Apache distribution available for Windows. Note that SNAP 3.1 does not require server-side CGI/scripting support nor does it use a relational database so you can install XAMPP without Perl, PHP (note that if you do choose to install PHP, you should install the most recent version to avoid having your install flagged by IT as being a security vulnerability which requires a manual upgrade), or MySQL.
 
 Zeiss IT-provided Windows laptops have been reported to come pre-configured with some service that binds to port 80, which is the default Apache port, so you may need to configure Apache to use an alternate port (81 has worked in the past).
 
 We also recommend [GitHub Desktop](https://desktop.github.com/download/), especially if you plan to make code contributions. While not necessary, even users familiar with Git/GitHub may find it simpler to work with than alternatives. For fastest deployments/updates, clone the repo into your configured XAMPP htdocs location.
 
 For specific help setting up SNAP to run on a local webserver, please reach out to paul.hamilton@zeiss.com.
+
+#### Running SNAP Without a Webserver
+As of 3.1, SNAP can still function if accessed via browser as a local file. However, because it is a security risk to write cookies from a local file, the following features are not available when running in this environment:
+
+- User Accounts
+- Settings
 
 ### Versions
 SNAP uses a variant of semantic versioning (see [semver.org](https://semver.org/)) which includes version numbers that indicate MAJOR.MINOR.PATCH sequences. SNAP does not have a published API which RFC-adherent semantic versioning assumes, but uses a similar structure and naming concept.
