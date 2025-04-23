@@ -1179,7 +1179,7 @@ function generateProductData() {
                         "eogs_date": "",
                         "eos_url": "",
                         "model_url": "https://www.zeiss.com/meditec/en/products/perimetry/humphrey-field-analyzer-3.html",
-                        "instr_codes": ["8527"]
+                        "instrument_codes": ["8527"]
                     }
                 }
             },

@@ -1,4 +1,4 @@
-const version = '3.1.1';
+const version = '3.1.2';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -369,9 +369,7 @@ function proc_template_serial(sn) {
     }
     var instrument_str = (getInstrumentModel() === '') ? 'Zeiss instrument' + serial_str : getInstrumentModel() + serial_str;
     var serials_data = [subj_serial, instrument_str, paren_serial];
-    debugmsg(5, 'serials_data[0]: ' + serials_data[0]);
-    debugmsg(5, 'serials_data[1]: ' + serials_data[1]);
-    debugmsg(5, 'serials_data[2]: ' + serials_data[2]);
+    console.debug({serials_data});
     return serials_data;
 }
 var serial_strings = proc_template_serial('');
@@ -429,7 +427,7 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
     if (clipBoarder(clip_string, clipboard_select)) {
         document.getElementById('clipboard-templates').selectedIndex = 0;
     } else {
-        debugmsg(1, 'Error when processing clipboard select (copy to clipboard failed)');
+        console.error('Error when processing clipboard select (copy to clipboard failed)');
     }
 });
 
@@ -444,18 +442,12 @@ function copyTVInfo(field_num) {
 
 // Determine POC communication preferences
 function outputCommunicationPref() {
-    var phone_num = document.getElementById('phone');
-    debugmsg(5, 'phone_num.value: ' + phone_num.value);
-    var ph_exist = (phone_num.value != '') ? true : false;
-    var email_adr = document.getElementById('email');
-    debugmsg(5, 'email_adr.value: ' + email_adr.value);
-    var em_exist = (email_adr.value != '') ? true : false;
-    debugmsg(5, 'ph_exist: ' + ph_exist);
-    debugmsg(5, 'em_exist: ' + em_exist);
+    var ph_exist = (document.getElementById('phone').value !== '') ? true : false;
+    var em_exist = (document.getElementById('email').value !== '') ? true : false;
     var phone_pref = document.getElementById('prefer-phone').checked;
     var email_pref = document.getElementById('prefer-email').checked;
-    debugmsg(5, 'phone_pref: ' + phone_pref);
-    debugmsg(5, 'email_pref: ' + email_pref);
+    console.debug({phone_pref});
+    console.debug({email_pref});
     if (ph_exist && em_exist) {
         var cust_pref_str = 'Customer has no communication preference';
         if (phone_pref && !email_pref) {

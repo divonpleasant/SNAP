@@ -864,6 +864,8 @@ Cirrus HD-OCT Old Archive Label: ${document.getElementById('oct-old-archive-labe
 Cirrus HD-OCT Old Archive Description: ${document.getElementById('oct-old-archive-description').value}
 Cirrus HD-OCT Old Archive Path: ${document.getElementById('oct-old-archive-path').value}
 Cirrus HD-OCT Old Archive Mapping: ${document.getElementById('oct-old-archive-mapping').value}
+Clarus HDCP Setting: ${document.getElementById('clarus-dhcp-setting').value}
+Clarus Network Status: ${document.getElementById('clarus-network-setting').value}
 HFA Network Status: ${document.getElementById('hfa-network-status').value}
 HFA DHCP Setting: ${document.getElementById('hfa-dhcp-setting').value}
 HFA Network Drive Configured: ${document.getElementById('hfa-network-drive').value}
@@ -1195,6 +1197,14 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>oct-old-archive-mapping</key>
     <value>${htmlEscape(document.getElementById('oct-old-archive-mapping').value)}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-dhcp-setting</key>
+    <value>${document.getElementById('clarus-dhcp-setting')[document.getElementById('clarus-dhcp-setting').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-network-setting</key>
+    <value>${document.getElementById('clarus-network-setting')[document.getElementById('clarus-network-setting').selectedIndex].value}</value>
   </customMetaData>
   <customMetaData>
     <key>hfa-network-status</key>
