@@ -8,7 +8,7 @@ Browser support:
              configured below.
 */
 $('input, textarea, select').on('focus keyup input change keydown paste', function () {
-    this.style.backgroundColor = (dark_mode) ? '#244a86' : '#e6f2ff';
+    this.style.backgroundColor = (so.Settings.ui.dark_mode.value) ? '#244a86' : '#e6f2ff';
 });
 
 $('input, textarea, select').on('blur', function () {
@@ -545,10 +545,12 @@ function handleEosModel(manual_switch) {
 
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
-document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
+// TODO: Replace this listener with one that works with the new instrument/model main form split
+//document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
 document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
 
-function activateProcess () {
+function activateProcess() {
+    debugmsg(4, 'Executing activateProcess...');
     // Prevent the default action (which is following the link)
     event.preventDefault();
     proc_template_id = event.srcElement.id.substr(15,);
@@ -562,25 +564,46 @@ function activateProcess () {
     document.getElementById('prompt').style.display = 'flex';
     document.getElementById('prompt-tail').style.display = 'none';
 }
-function manualActivateProcess (proc_type) {
+function manualActivateProcess(proc_type, proc_section, proc_location) {
+    debugmsg(4, 'Executing manualActivateProcess...');
+    debugmsg(4, 'proc_type: ' + proc_type);
+    debugmsg(4, 'proc_section: ' + proc_section);
+    debugmsg(4, 'proc_location: ' + proc_location);
     var proc_context = new Array;
-    var proc_location = findProcessText(proc_type);
     const pt = new generateTemplates(proc_context);
-    var proc_text = pt.templates.process[proc_template_id].general[proc_location];
+    var proc_text = pt.templates.process[proc_type][proc_section][proc_location];
     document.getElementById('prompt-text').innerHTML = proc_text;
     document.getElementById('prompt').style.display = 'flex';
     document.getElementById('prompt-tail').style.display = 'none';
 }
+
+function displayProcessMessage(msg_txt) {
+    document.getElementById('prompt-text').innerHTML = msg_txt;
+    document.getElementById('prompt-content').classList.add('system-message');
+    document.getElementById('prompt').style.display = 'flex';
+    document.getElementById('prompt-tail').style.display = 'none';
+    
+}
+
 function updateDescription () {
     debugmsg(4, 'Executing updateDescription...');
-    (document.getElementById('prompt').style.display == 'flex') ? manualActivateProcess('call-types') : '';
-    var proc_id = document.getElementById('common-call-types').options[document.getElementById('common-call-types').selectedIndex].value;
+    var proc_id = document.getElementById('common-call-scenarios').options[document.getElementById('common-call-scenarios').selectedIndex].value;
+    var proc_data = proc_id.split('_', 2);
+    var proc_section = proc_data[0];
+    var proc_location = proc_data[1];
     debugmsg(4, 'proc_id: ' + proc_id);
+    debugmsg(4, 'proc_data: ' + proc_data);
+    debugmsg(4, 'proc_section: ' + proc_section);
+    debugmsg(4, 'proc_location: ' + proc_location);
+    (document.getElementById('prompt').style.display === 'flex') ? manualActivateProcess('call-scenarios', proc_section, proc_location) : '';
     var existing_description = document.getElementById('description').value.split('. ');
     (existing_description.length <= 1) ? document.getElementById('description').innerHTML = '' : '';
     debugmsg(4, 'existing_description: ' + existing_description);
     var descr_txt = '';
-    switch (proc_id) {
+    switch (proc_location) {
+        case 'canadian-customer':
+            descr_txt = 'Assisted Canadian Customer.';
+            break;
         case 'delivery-doa':
             descr_txt = 'Delivery DOA.';
             break;
@@ -590,6 +613,9 @@ function updateDescription () {
         case 'pm-request':
         case 'proaim-pm-request':
             descr_txt = 'PM Request.';
+            break;
+        case 'recertification':
+            descr_txt = 'Recertification.';
             break;
         case 'review-station-software-install':
             descr_txt = 'RS Software Install.';
@@ -603,12 +629,17 @@ function updateDescription () {
     }
     document.getElementById('description').insertAdjacentHTML('afterbegin', descr_txt);
 }
-function findProcessText(proc_type) {
-    var template_label = 'default';
+function findProcessText(proc_type, template_label = 'default') {
+    debugmsg(4, 'Executing findProcessText...');
+    var template_el = '';
     switch (proc_type) {
+        case 'call-scenarios':
+            template_el = document.getElementById('common-call-scenarios');
+            debugmsg(4, 'template_el.selectedIndex: ' + template_el.selectedIndex);
+            template_label = template_el.options[template_el.selectedIndex].value;
+            break;
         case 'call-types':
-            console.log(document.getElementById('common-call-types'));
-            var template_el = document.getElementById('common-call-types');
+            template_el = document.getElementById('call-type');
             debugmsg(4, 'template_el.selectedIndex: ' + template_el.selectedIndex);
             template_label = template_el.options[template_el.selectedIndex].value;
             break;
@@ -616,7 +647,18 @@ function findProcessText(proc_type) {
             break;
     }
     debugmsg(4, 'template_label: ' + template_label);
-    return (template_label === '') ? 'default' : template_label;
+    if (template_label.includes('_')) {
+        debugmsg(4, 'Determining unsectioned template label');
+        var label_data = template_label.split('_', 2);
+        var label_section = label_data[0];
+        var label_label = label_data[1];
+        debugmsg(4, 'label_data: ' + label_data);
+        debugmsg(4, 'label_section: ' + label_section);
+        debugmsg(4, 'label_label: ' + label_label);
+        return label_label;
+    } else {
+        return (template_label === '') ? 'default' : template_label;
+    }
 }
 
 function activateScript () {
@@ -639,7 +681,8 @@ function activateScript () {
     document.getElementById('prompt-tail').style.display = 'inline';
 }
 function findScriptText(script_type) {
-    var subsection = (use_custom_scripts) ? 'user' : 'default';
+    //var subsection = (use_custom_scripts) ? 'user' : 'default';
+    var subsection = (so.Settings.user.use_custom_scripts.value) ? 'user' : 'default';
     var template_label = '';
     switch (script_type) {
         case 'greeting':
@@ -665,6 +708,9 @@ function findScriptText(script_type) {
                     break;
             }
             break;
+        case 'wrap-up':
+            template_label = 'standard';
+            break;
         default:
             break;
     }
@@ -673,12 +719,14 @@ function findScriptText(script_type) {
     return locations;
 }
 function closeScript() {
+    document.getElementById('prompt-content').classList.remove('system-message');
     document.getElementById('prompt').style.display = 'none';
 }
 
-if (sandbox) {
-    document.getElementById('common-call-types').addEventListener('change', updateDescription);
-    document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
-    document.getElementById('script-prompt-greeting').addEventListener('click', activateScript);
-    document.getElementById('prompt-close').addEventListener('click', closeScript);
-}
+document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
+document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
+document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
+document.getElementById('process-prompt-clipboard-templates').addEventListener('click', activateProcess);
+document.getElementById('script-prompt-greeting').addEventListener('click', activateScript);
+document.getElementById('script-prompt-wrap-up').addEventListener('click', activateScript);
+document.getElementById('prompt-close').addEventListener('click', closeScript);

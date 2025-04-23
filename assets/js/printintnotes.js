@@ -49,7 +49,7 @@ ${document.getElementById('other-internal-notes').value}`;
 
     // Copy data to clipboard
     navigator.clipboard.writeText(processedData).then(function() {
-        (copy_alert) ? alert('Internal Notes copied to clipboard!') : '';
+        (so.Settings.alerts.copy.value) ? alert('Internal Notes copied to clipboard!') : '';
     }).catch(function(err) {
         alert('Failed to copy data to clipboard: ', err);
     });

@@ -1,6 +1,6 @@
 # SNAP
 
-## Script and Note Automation Process v3.0
+## Script and Note Automation Process v3.1
 
 [SNAP](https://github.com/divonpleasant/SNAP) is intended to aid Zeiss Technical Support Engineers in managing data gathered during interactions, and helps guide TSEs through their calls.
 
@@ -15,7 +15,7 @@ SNAP's core features include:
 - Offering TSEs easy access to common reference material
 
 ### Use Cases and Notes
-*Please Note:* SNAP is not inteded to replace our standard CRM/ticketing system. It is a call flow guide and information retention tool meant to interact smoothly with the normal ticket creation process. That does not mean you should expect to ignore CRM until the end of the call or post-create tickets from the SNAP export data exclusively. In testing, SNAP has been most effective as a side-by-side utility with CRM in one browser window and SNAP in another.
+*Please Note:* SNAP is not inteded to replace our standard CRM/ticketing system. It is a call flow guide, process and troubleshooting reference, and information retention tool meant to interact smoothly with the normal ticket creation process. That does not mean you should expect to ignore CRM until the end of the call or post-create tickets from the SNAP export data exclusively. In testing, SNAP has been most effective as a side-by-side utility with CRM in one browser window and SNAP in another.
 
 Of particular note, as of this release, SNAP does not have the ability to:
 
@@ -23,6 +23,21 @@ Of particular note, as of this release, SNAP does not have the ability to:
 - Verify or update point of contact details
 - Review or confirm warranty or contract details
 - Research customer/device support history
+
+### Set-Up
+As of version 3.1, SNAP does not yet have a deployment/production web server assigned. To use all of SNAP's features, you will need to set up a local webserver. We recommend [XAMPP](https://www.apachefriends.org/download.html), a free Apache distribution available for Windows. Note that SNAP 3.1 does not require server-side CGI/scripting support nor does it use a relational database so you can install XAMPP without Perl, PHP (note that if you do choose to install PHP, you should install the most recent version to avoid having your install flagged by IT as being a security vulnerability which requires a manual upgrade), or MySQL.
+
+Zeiss IT-provided Windows laptops have been reported to come pre-configured with some service that binds to port 80, which is the default Apache port, so you may need to configure Apache to use an alternate port (81 has worked in the past).
+
+We also recommend [GitHub Desktop](https://desktop.github.com/download/), especially if you plan to make code contributions. While not necessary, even users familiar with Git/GitHub may find it simpler to work with than alternatives. For fastest deployments/updates, clone the repo into your configured XAMPP htdocs location.
+
+For specific help setting up SNAP to run on a local webserver, please reach out to paul.hamilton@zeiss.com.
+
+#### Running SNAP Without a Webserver
+As of 3.1, SNAP can still function if accessed via browser as a local file. However, because it is a security risk to write cookies from a local file, the following features are not available when running in this environment:
+
+- User Accounts
+- Settings
 
 ### Versions
 SNAP uses a variant of semantic versioning (see [semver.org](https://semver.org/)) which includes version numbers that indicate MAJOR.MINOR.PATCH sequences. SNAP does not have a published API which RFC-adherent semantic versioning assumes, but uses a similar structure and naming concept.
@@ -34,14 +49,17 @@ SNAP uses a variant of semantic versioning (see [semver.org](https://semver.org/
 #### Version History and Roadmap
 
 ##### Current & In-Development
-- MINOR Version 3.1.X - Development milestone for post-release enhancements.
-- MINOR Version 3.0.X - Beta release version. Initial deployment.
+- MINOR Version 3.3.X - Development milestone for post-release enhancements.
+- MINOR Version 3.2.X - Beta release version. Initial deployment.
+- MINOR Version 3.1.X - Data models and deployment testing.
 
 ##### Roadmap
+- MINOR Version 3.4.X - Development milestone integrating wider user feedback.
 - MAJOR Version 4.0.X - Stable release.
-- MINOR Version 3.2.X - Development milestone integrating wider user feedback.
+- MAJOR Version 5.0.X - SAP/CRM API-integrated release.
 
 ##### History
+- MINOR Version 3.0.X - Expanding featureset.
 - MAJOR Version 3.X.X - Code opened for collaboration.
 - MAJOR Version 2.X.X - Alpha version following presentation to stakeholders.
 - MAJOR Version 1.X.X - Initial development version.
