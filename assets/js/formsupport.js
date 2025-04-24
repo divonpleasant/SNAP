@@ -628,6 +628,7 @@ function updateDescription () {
             break;
     }
     document.getElementById('description').insertAdjacentHTML('afterbegin', descr_txt);
+    document.getElementById('problem-description').value = document.getElementById('description').value;
 }
 function findProcessText(proc_type, template_label = 'default') {
     debugmsg(4, 'Executing findProcessText...');
@@ -730,3 +731,8 @@ document.getElementById('process-prompt-clipboard-templates').addEventListener('
 document.getElementById('script-prompt-greeting').addEventListener('click', activateScript);
 document.getElementById('script-prompt-wrap-up').addEventListener('click', activateScript);
 document.getElementById('prompt-close').addEventListener('click', closeScript);
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('description').addEventListener('input', function() {
+        document.getElementById('problem-description').value = document.getElementById('description').value;
+    });
+});
