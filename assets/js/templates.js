@@ -1379,6 +1379,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${htmlEscape(document.getElementById('call-type')[document.getElementById('call-type').selectedIndex].value)}</value>
   </customMetaData>
   <customMetaData>
+    <key>scratch-notes</key>
+    <value>${document.getElementById('scratch-notes').value}</value>
+  </customMetaData>
+  <customMetaData>
     <key>iolmaster-message-history</key>
     <value>${document.getElementById('iolmaster-message-history').value}</value>
   </customMetaData>
