@@ -724,6 +724,18 @@ function closeScript() {
     document.getElementById('prompt').style.display = 'none';
 }
 
+function crossChargeAutoUpdate() {
+    if (document.getElementById('billing-type').value === 'B' && document.getElementById('remote-resolution').checked && document.getElementById('call-type').value === 'remote-service') {
+        console.log('crossChargeAutoUpdate ... Updating Billing Type to XC for Remote Fix (Remote Service call type and Remote resolution? checked)');
+        document.getElementById('billing-type').value = 'XC';
+        // Update to use templates.system.alerts.remote-service-billing-type once alerting function is implemented
+        (so.Settings.alerts.xc.value) ? alert('Remote Service/Remote Resolution for Billable customers should use Billing Type XC') : '';
+    } else if (document.getElementById('billing-type').value === 'XC' && (!document.getElementById('remote-resolution').checked || document.getElementById('call-type').value !== 'remote-service')) {
+        console.log('crossChargeAutoUpdate ... Changing XC to B because call type or remote resolution checkbox do not meet the XC criteria');
+        document.getElementById('billing-type').value = 'B';
+    }
+}
+
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
 document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
@@ -736,3 +748,5 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('problem-description').value = document.getElementById('description').value;
     });
 });
+document.getElementById('call-type').addEventListener('change', crossChargeAutoUpdate);
+document.getElementById('remote-resolution').addEventListener('change', crossChargeAutoUpdate);

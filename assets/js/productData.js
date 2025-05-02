@@ -3497,7 +3497,7 @@ function generateProductData() {
                         "model_number": "150",
                         "full_name": "VISUREF 150",
                         "launch_date": "",
-                        "supported": true,
+                        "supported": false,
                         "required_escalation": false,
                         "eos_date": "12-01-2023",
                         "eogs_date": "",

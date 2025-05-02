@@ -93,15 +93,19 @@ function checkModelSerial(icode, m_id, skey) {
                     debugmsg(4, 'checkModelSerial model_serial found ...');
                     if (checkProductHasSubcategory(products.pdata.instruments[icode].models[m_id].model_serials, skey)) {
                         debugmsg(4, 'checkModelSerial model_serials found for ' + skey + ' ...');
-                        debugmsg(4, 'returning: products.pdata.instruments[' + icode + '].models[m_id].model_serials[skey]: ' + products.pdata.instruments[icode].models[m_id].model_serials[skey]);
+                        debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models[m_id].model_serials[skey]: ' + products.pdata.instruments[icode].models[m_id].model_serials[skey]);
                         return products.pdata.instruments[icode].models[m_id].model_serials[skey];
                     } else {
                         debugmsg(4, 'checkModelSerial could not find model_serials for ' + skey + ' ...');
+                        debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
+        return products.pdata.instruments[icode].models.serial[skey];
                         return '';
                     }
                 } else {
-                    debugmsg(4, 'checkModelSerial could not find model_serials for instrument ' + icode + ' and model ' + m_id + ' ...');
-                    return '';
+                    debugmsg(4, 'checkModelSerial could not find model_serials for instrument ' + icode + ' and model ' + m_id + ' ... using instrument generic data');
+                    debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
+                    return products.pdata.instruments[icode].models.serial[skey];
+                    //return '';
                 }
                 break;
             case 'software':
@@ -114,17 +118,6 @@ function checkModelSerial(icode, m_id, skey) {
         console.warn("checkModelSerial :: prod_type '" + prod_type + "' could not be evaluated, no model_serials returned.");
         return '';
     }
-    /*
-    if (typeof products.pdata.instruments[icode].models[m_id].model_serials[skey] !== 'undefined') {
-        debugmsg(5, 'checkModelSerial model_serial found ...');
-        debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models[m_id].model_serials[skey]: ' + products.pdata.instruments[icode].models[m_id].model_serials[skey]);
-        return products.pdata.instruments[icode].models[m_id].model_serials[skey];
-    } else {
-        debugmsg(5, 'checkModelSerial model_serial NOT found ...');
-        debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
-        return products.pdata.instruments[icode].models.serial[skey];
-    }
-    */
 }
 
 function checkProductType(product) {
@@ -134,11 +127,12 @@ function checkProductType(product) {
             if (typeof products.pdata.software[product] === 'undefined') {
                 return false;
             } else {
-                debugmsg(4, 'products.pdata.software[' + product + '] was not undefined (' + products.pdata.software[product] + '), returning value: software');
+                debugmsg(4, 'products.pdata.software[' + product + '] was not undefined, returning value: software');
+                debugmsg(5, 'products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
                 return 'software';
             }
         } else {
-            debugmsg(4, 'products.pdata.instruments[' + product + '] was not undefined (' + products.pdata.instruments[product] + '), returning value: instrument');
+            debugmsg(4, 'products.pdata.instruments[' + product + '] was not undefined, returning value: instrument');debugmsg(5, 'products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
             return 'instrument';
         }
     } catch (e) {
@@ -148,10 +142,10 @@ function checkProductType(product) {
 }
 
 function checkProductHasSubcategory(product_obj, category_to_check) {
-    debugmsg(4, "checkProductHasSubcategory ... \nproduct_obj: " + product_obj + "\ncategory_to_check: " + category_to_check);
+    debugmsg(4, "checkProductHasSubcategory ... \nproduct_obj: " + JSON.stringify(product_obj) + "\ncategory_to_check: " + JSON.stringify(category_to_check));
     try {
         if (typeof product_obj !== 'undefined') {
-            debugmsg(4, 'product_obj[caetegory_to_check]: ' + product_obj[category_to_check]);
+            debugmsg(4, 'product_obj[caetegory_to_check]: ' + JSON.stringify(product_obj[category_to_check]));
             return (typeof product_obj[category_to_check] === 'undefined' || product_obj[category_to_check] === '') ? false : true;
         } else {
             return false;
@@ -309,7 +303,7 @@ function filterOnKey(data_obj, key_to_eval, value_to_filter, reverse = false, in
 }
 
 function populateSelectField(field_id, processed_data_obj, name_key, value_key, empty_first = false, id_key = '') {
-    debugmsg(5, "populateSelectField ...\nfield_id: " + field_id + "\nprocessed_data_obj: " + JSON.stringify(processed_data_obj) + "\nname_key: " + name_key + "\nvalue_key: " + value_key + "\nempty_first: " + empty_first);
+    debugmsg(4, "populateSelectField ...\nfield_id: " + field_id + "\nprocessed_data_obj: " + JSON.stringify(processed_data_obj) + "\nname_key: " + name_key + "\nvalue_key: " + value_key + "\nempty_first: " + empty_first);
     pop_field = document.getElementById(field_id);
     (empty_first) ? enableAndReset(pop_field, 1) : '';
     for (item in processed_data_obj) {
@@ -320,9 +314,30 @@ function populateSelectField(field_id, processed_data_obj, name_key, value_key, 
     }
 }
 
-function populateInstrumentField(i_list) {
+function checkSupportEndDateAndStatus(instr_obj) {
+    for (m in instr_obj) {
+        if (m !== 'serial' && m !== 'meta') {
+            if (instr_obj[m].eos_date !== '') {
+                var set_eos_date = new Date(instr_obj[m].eos_date);
+                //console.log(`Checking ${set_eos_date.getTime()} (EoS date) is less than ${curr_date.getTime()} (current date)...`);
+                if (set_eos_date.getTime() >= curr_date.getTime()) {
+                    if (!instr_obj[m].supported) {
+                        console.warn(`Note: The 'supported' boolean for ${instr_obj[m].full_name} is false, but the configured End of Service date (${instr_obj[m].eos_date}) has not yet passed. Verify if supported value should be updated in productData.js`);
+                    }
+                } else {
+                    if (instr_obj[m].supported) {
+                        console.warn(`Note: The 'supported' boolean for ${instr_obj[m].full_name} is true, but the configured End of Service date (${instr_obj[m].eos_date}) has passed. Verify if supported value should be updated in productData.js`);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function populateInstrumentField(i_list, is_hardware = true) {
     for (i in i_list) {
         debugmsg(5, 'i_list[' + i + ']: ' + JSON.stringify(i_list[i]));
+        (is_hardware) ? checkSupportEndDateAndStatus(i_list[i].models) : '';
         document.getElementById('instrument').add(new Option(i_list[i].product.short_name, i_list[i].product.short_name, document.getElementById('instrument').options[document.getElementById('instrument').length - 1]));
         document.querySelectorAll('#instrument option')[document.getElementById('instrument').length - 1].id = i_list[i].product.identifier;
     }
@@ -352,7 +367,7 @@ debugmsg(5, 'active_instruments: ' + JSON.stringify(active_instruments));
 debugmsg(5, 'inactive_instruments: ' + JSON.stringify(inactive_instruments));
 debugmsg(5, 'active_software: ' + JSON.stringify(active_software));
 populateInstrumentField(active_instruments);
-populateInstrumentField(active_software);
+populateInstrumentField(active_software, false);
 document.getElementById('instrument').add(new Option('– Unsupported –', ''));
 //console.log(document.getElementById('instrument').options[document.getElementById('instrument').length - 1]);
 document.getElementById('instrument').options[document.getElementById('instrument').length - 1].style.cssText = 'font-style: italic';
@@ -383,8 +398,8 @@ document.getElementById('instrument').addEventListener('change', function() {
     } else {
         model_data = retrieveDataSet('models', products.pdata.instruments[selected_inst_id]);
     }
-    var eos_filtered_data = filterOnKey(model_data, 'eos_date', '');
-    var unsupported_data = filterOnKey(model_data, 'eos_date', '', true);
+    var eos_filtered_data = filterOnKey(model_data, 'supported', true);
+    var unsupported_data = filterOnKey(model_data, 'supported', false);
     debugmsg(5, 'eos_filtered_data: ' + JSON.stringify(eos_filtered_data));
     delete unsupported_data['serial'];
     debugmsg(5, 'unsupported_data: ' + JSON.stringify(unsupported_data));

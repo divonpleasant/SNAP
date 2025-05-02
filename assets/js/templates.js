@@ -184,6 +184,40 @@ Reference any Customer Care Ticket number you were provided and, if applicable, 
 Regards,
 ${so.Settings.user.email_sig.value}`
             },
+            "po-policy-parts": {
+                "name": "Parts Purchase Order Policy",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": "Purchase Order Policy",
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
+Thank you for your interest in Carl Zeiss Meditec products. You are receiving this message because you have requested parts/supplies for an instrument, and you would like to use a Purchase Order prior to payment.
+
+It is a Carl Zeiss Meditec policy that we receive a hard copy of your Purchase Order prior to shipping of parts. The Credit Manager has sole authority to waive this policy under special circumstances.
+
+To avoid delays, all Purchase Orders must include the following information:
+
+  - Vendor Name/Address:
+    Carl Zeiss Meditec USA Inc
+    PO Box 10285
+    Pasadena, CA 91189-2585
+  - Purchase Order Number (a number you choose)
+  - Shipping Address (where we are to ship the item)
+  - Billing Address (where we should send the invoice; we cannot process the order without your bill-to address)
+  - Purchase Order Date
+  - Customer Contact Name and Telephone Number
+  - Part Number
+  - Price of Part
+  - Delivery Preference (ground, 3-Day, 2-Day, or overnight)
+  - Terms: Net 30
+
+Fax your Purchase Order to: 925-448-3912
+Or email to: c.osparts@zeiss.com
+
+If you have any questions, please contact Customer Service at 877-486-7473
+
+NOTE: This message is not to be used as your Purchase Order. Please provide the information on your letterhead, if you do not have a formal Purchase Order. And please provide a PO number (whatever number you want, for example: PO #03042017)`
+            },
             "proaim-request": {
                 "name": "PROAIM Request",
                 "recipient": "serviceoperationsadmin.med.us@zeiss.com",
@@ -693,6 +727,9 @@ Several key fields can be selected to be automatically copied into the clipboard
 [${document.getElementById('teamviewer-info-head3').value}] ... ID: ${document.getElementById('teamviewer-username3').value}  PW: ${document.getElementById('teamviewer-password3').value}`
         },
         "system": {
+            "alerts": {
+                "remote-service-billing-type": "Remote Service/Remote Resolution for Billable customers should use Billing Type XC"
+            }
         },
         "hint": {
         },
