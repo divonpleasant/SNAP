@@ -45,6 +45,6 @@ function populateData(form, xmlDom) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    debugmsg(4, 'DOMContentLoaded Listener triggered... ');
+    console.log('DOMContentLoaded Listener triggered... ');
     document.querySelector('[type=file]').onchange = changeFile;
 });
