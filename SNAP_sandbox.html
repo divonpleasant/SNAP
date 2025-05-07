@@ -12,7 +12,8 @@
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
     </head>
     <body class="is-preload">
-        <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" target="_blank"><i class="fa-solid fa-plus"></i></a>]</span></div>
+        <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" target="_blank"><i class="fa-solid fa-plus"></i></a>]</span></span></div>
+        <div id="systembox"><span id="systembox-contents">System messages</span><span class="sb-x"><a href="#" id="hide-sys-box">X</a></div>
 
         <!-- Wrapper -->
             <div id="wrapper">
@@ -66,41 +67,41 @@
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Point of Contact Name" />
-                                    <div class="label-left">Point of Contact (POC) Name</div>
+                                    <div class="label-left">Point of Contact (POC) Name <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('local-contact-person').value, 'POC Name')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall tooltip">
                                     <input type="text" name="serial" id="serial" placeholder="Serial Number" />
                                     <span id="serial-tooltip" class="sn-tooltiptext">Select an Instrument to see serial number tips</span>
-                                    <div class="label-right">Serial Number <span class="script-scroll"><a style="border-bottom: none;" href="#" onclick="manualActivateProcess('serial-numbers', 'general', 'not-found')"><i id="process-prompt-serial-numbers" class="fa-solid fa-circle-info"></i></a></span></div>
+                                    <div class="label-right">Serial Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('serial').value, 'Serial Number')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a class="field-copy" href="#" onclick="manualActivateProcess('serial-numbers', 'general', 'not-found')"><i id="process-prompt-serial-numbers" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="phone" id="phone" placeholder="Phone Number" style="float: left; width: 70%; margin-right: 20px;" />
                                     <input type="checkbox" name="prefer-phone" id="prefer-phone" style="float: left; width: 30%; align: right;" />
                                     <label for="prefer-phone" style="font-size: 0.8em;">Preferred</label>
-                                    <div class="label-left">POC Phone Number</div>
+                                    <div class="label-left">POC Phone Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('phone').value, 'POC Phone Number')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="email" id="email" placeholder="Email" style="float: left; width: 70%; margin-right: 20px;" />
                                     <input type="checkbox" name="prefer-email" id="prefer-email" style="float: left; width: 30%; align: right;" />
                                     <label for="prefer-email" style="font-size: 0.8em;">Preferred</label>
-                                    <div class="label-right">POC Email</div>
+                                    <div class="label-right">POC Email <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('email').value, 'POC Email Address')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="account" id="account" placeholder="Account Name" />
-                                    <div class="label-left">Account Name</div>
+                                    <div class="label-left">Account Name <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('account').value, 'Account Name')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall tooltip">
                                     <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
                                     <span class="tooltiptext">If address shows CZMI, <br />ask customer where and <br />when they purchased the instrument</span>
-                                    <div class="label-right">Instrument/Shipping Address</div>
+                                    <div class="label-right">Instrument/Shipping Address <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('instrument-address').value, 'Instrument Address')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
-                                    <div class="label-left">CCT Number</div>
+                                    <div class="label-left">CCT Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('cct').value, 'CCT Number')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="svo" id="svo" placeholder="Service Order #" />
-                                    <div class="label-right">SVO Number</div>
+                                    <div class="label-right">SVO Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('svo').value, 'SVO Number')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-12">
                                     <select name="common-call-scenarios" id="common-call-scenarios">
@@ -199,20 +200,32 @@
                                         <tr>
                                             <td>
                                                 <input type="text" name="teamviewer-info-head1" id="teamviewer-info-head1" class="teamviewer-info-head" value="Instrument" />
-                                                <input type="text" name="teamviewer-username1" id="teamviewer-username1" placeholder="TeamViewer ID" />
-                                                <input type="text" name="teamviewer-password1" id="teamviewer-password1" placeholder="Password" />
+                                                <div class="teamviewer-info">
+                                                    <input type="text" name="teamviewer-username1" class="teamviewer-info" id="teamviewer-username1" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username1').value, `${document.getElementById('teamviewer-info-head1').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                </div>
+                                                <div class="teamviewer-info">
+                                                    <input type="text" name="teamviewer-password1" class="teamviewer-info" id="teamviewer-password1" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password1').value, `${document.getElementById('teamviewer-info-head1').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
+                                                </div>
                                                 <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info1" onclick="copyTVInfo('1')">Copy This TV Info</a></span>
                                             </td>
                                             <td class="review-station-field">
                                                 <input type="text" name="teamviewer-info-head2" id="teamviewer-info-head2" class="teamviewer-info-head" value="Review Station" />
-                                                <input type="text" name="teamviewer-username2" id="teamviewer-username2" placeholder="TeamViewer ID" />
-                                                <input type="text" name="teamviewer-password2" id="teamviewer-password2" placeholder="Password" />
+                                                <div class="teamviewer-info">
+                                                    <input type="text" name="teamviewer-username2" class="teamviewer-info" id="teamviewer-username2" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                </div>
+                                                <div class="teamviewer-info">
+                                                    <input type="text" name="teamviewer-password2" class="teamviewer-info" id="teamviewer-password2" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                </div>
                                                 <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info2" onclick="copyTVInfo('2')">Copy This TV Info</a></span>
                                             </td>
                                             <td class="forum-field">
                                                 <input type="text" name="teamviewer-info-head3" id="teamviewer-info-head3" class="teamviewer-info-head" value="FORUM" />
-                                                <input type="text" name="teamviewer-username3" id="teamviewer-username3" placeholder="TeamViewer ID" />
-                                                <input type="text" name="teamviewer-password3" id="teamviewer-password3" placeholder="Password" />
+                                                <div class="teamviewer-info">
+                                                    <input type="text" name="teamviewer-username3" class="teamviewer-info" id="teamviewer-username3" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                </div>
+                                                <div class="teamviewer-info">
+                                                    <input type="text" name="teamviewer-password3" class="teamviewer-info" id="teamviewer-password3" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                </div>
                                                 <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info3" onclick="copyTVInfo('3')">Copy This TV Info</a></span>
                                             </td>
                                         </tr>
@@ -829,7 +842,7 @@
                                     <div class="label-right">Solution Notes</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <a href="#wrap-up" id="copy-solution" class="button primary small" onclick="clipBoarder(document.getElementById('solution-notes').value)">Copy Solution Notes</a>
+                                    <a href="#wrap-up" id="copy-solution" class="button primary small" onclick="clipBoarder(document.getElementById('solution-notes').value, 'Solution Notes')">Copy Solution Notes</a>
                                     <a href="#export" id="schedulecall" class="button primary small">Schedule Call Back</a>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
@@ -865,7 +878,7 @@
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" id="instrument-code" name="instrument-code" />
-                                    <div class="label-right">Instrument Code</div>
+                                    <div class="label-right">Instrument Code <a href="#export" class="field-copy" onclick="clipBoarder(document.getElementById('instrument-code').value, 'Instrument Code')"><i class="fa-regular fa-copy"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <a href="#export" id="exportall" class="button primary small" onclick="copyCrmData('interaction')">Export Interaction</a>
@@ -1191,7 +1204,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                                     <ul class="fa-ul">
                                         <!--<li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/vision-care/us/eye-care-professionals/support/expert-support.html#contact-1068772829" target="_blank">Expert Support Contact Form</a></li>-->
                                         <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/meditec/en/c/cyber-security.html" target="_blank">Zeiss Cyber Security Information</a></li>
-                                        <li><span class="fa-li"><i class="fa-regular fa-file"></i></span><a href="assets/documents/Global_Product_Complaint_Form.pdf">Global Product Complaint Form</a></li>
+                                        <li><span class="fa-li"><i class="fa-regular fa-file"></i></span><a href="assets/documents/Global_Product_Complaint_Form.pdf" target="_blank">Global Product Complaint Form</a></li>
                                         <li><span class="fa-li"><i class="fa-regular fa-file"></i></span><a href="assets/documents/Service_Contract_Rep_Coverage_Areas_Map.pdf" target="_blank">Service Contract Representatives Map</a></li>
                                         <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FCZMUI%5FDublin%5FSupport%5FDirectory%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">CZMUI Dublin Support Directory</a></li>
                                         <li class="tooltip"><strong>Canada Tech Support</strong><span>1-800-387-0138<br />Local Number: 1-416-443-0138<a href="mailto:service_canada@zeiss.com">service_canada@zeiss.com</a></span></li>

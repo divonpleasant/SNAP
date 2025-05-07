@@ -252,9 +252,9 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
 <strong>Subject:</strong> ${t.templates.email[template_id].subject}<br />
 ${t.templates.email[template_id].body}`;
         navigator.clipboard.writeText(html_text_email).then(function() {
-            (so.Settings.alerts.copy.value) ? alert('Email text copied to clipboard!') : '';
+            (so.Settings.alerts.copy.value) ? updateSystemBox('Email text copied to clipboard!') : '';
         }).catch(function(err) {
-            alert('Failed to copy data to clipboard: ', err);
+            updateSystemBox('Failed to copy data to clipboard: ', err);
         });
         debugmsg(2, "'Copied text to clipboard: '" + html_text_email + "'");
 

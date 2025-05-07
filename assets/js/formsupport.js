@@ -17,16 +17,6 @@ $('input, textarea, select').on('blur', function () {
     }
 });
 
-// Clear the background color on Reset and scroll to top
-document.getElementById('resetButton').addEventListener('click', function () {
-    document.querySelectorAll('input[type="text"], textarea, select').forEach(function (input) {
-        input.style.backgroundColor = '';
-    });
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-});
-
 //----- FUNCTIONS -----//
 // Generic function to enable target select field and clear previously generated options
 function enableAndReset(targetElement, defaultOptionsLength) {
@@ -720,8 +710,22 @@ function findScriptText(script_type) {
     return locations;
 }
 function closeScript() {
+    event.preventDefault();
     document.getElementById('prompt-content').classList.remove('system-message');
     document.getElementById('prompt').style.display = 'none';
+}
+
+function callTypeEval() {
+    crossChargeAutoUpdate();
+    switch (document.getElementById('call-type')[document.getElementById('call-type').selectedIndex].value) {
+        case 'remote-service':
+            if (document.getElementById('error-group').selectedIndex === 0 || document.getElementById('error-code').selectedIndex === 0 || document.getElementById('action-code').selectedIndex === 0) {
+                updateSystemBox('Make sure to set Error Group, Error Code, and Action Code when setting Call Type to Remote Service.');
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 function crossChargeAutoUpdate() {
@@ -729,11 +733,29 @@ function crossChargeAutoUpdate() {
         console.log('crossChargeAutoUpdate ... Updating Billing Type to XC for Remote Fix (Remote Service call type and Remote resolution? checked)');
         document.getElementById('billing-type').value = 'XC';
         // Update to use templates.system.alerts.remote-service-billing-type once alerting function is implemented
-        (so.Settings.alerts.xc.value) ? alert('Remote Service/Remote Resolution for Billable customers should use Billing Type XC') : '';
+        (so.Settings.alerts.xc.value) ? updateSystemBox('Remote Service/Remote Resolution for Billable customers should use Billing Type XC') : '';
     } else if (document.getElementById('billing-type').value === 'XC' && (!document.getElementById('remote-resolution').checked || document.getElementById('call-type').value !== 'remote-service')) {
         console.log('crossChargeAutoUpdate ... Changing XC to B because call type or remote resolution checkbox do not meet the XC criteria');
         document.getElementById('billing-type').value = 'B';
     }
+}
+
+function hideSystemBox() {
+    event.preventDefault();
+    document.getElementById('systembox').classList.remove('showbox');
+    return true;
+}
+
+function toggleSystemBox() {
+    event.preventDefault();
+    document.getElementById('systembox').classList.toggle('showbox');
+    return true;
+}
+
+function updateSystemBox(msg = '...') {
+    document.getElementById('systembox-contents').innerHTML = msg;
+    document.getElementById('systembox').classList.add('showbox');
+    return true;
 }
 
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
@@ -748,5 +770,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('problem-description').value = document.getElementById('description').value;
     });
 });
-document.getElementById('call-type').addEventListener('change', crossChargeAutoUpdate);
-document.getElementById('remote-resolution').addEventListener('change', crossChargeAutoUpdate);
+document.getElementById('call-type').addEventListener('change', callTypeEval);
+document.getElementById('remote-resolution').addEventListener('change', callTypeEval);
+document.getElementById('hide-sys-box').addEventListener('click', hideSystemBox);
+document.getElementById('notifications-toggle').addEventListener('click', toggleSystemBox);
