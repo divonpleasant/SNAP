@@ -2865,14 +2865,94 @@ input.teamviewer-info-head {
     color: #fff;
 }
 
+.teamviewer-info {
+    max-width: 85%;
+    margin: 2px;
+}
+.teamviewer-info input {
+    display: inline;
+}
+.teamviewer-copy-icon {
+    text-decoration: none;
+    border: 0;
+    margin: 0 0 0 0.5em;
+}
+
+.field-copy {
+    border: 0px;
+    text-decoration: none;
+    color: #b4c0ca;
+}
+
+.copy-tv-info {
+    font-size: 0.6em;
+    margin: 0 0 0 1.5em;
+}
+
 #topnav {
     font-size: 0.8em;
     padding: 15px;
+    border-radius: 0 0 0 5px;
     position: fixed;
     top: 0px;
     right: 0px;
     background: #606a76;
     z-index: 999;
+    box-shadow: 5px 6px 5px #17191c;
+}
+
+#systembox {
+    font-size: 0.8.em;
+    padding: 25px 10px 10px;
+    max-width: 40%;
+    margin: 3px;
+    border-radius: 5px;
+    position: fixed;
+    top: -3px;
+    right: 0px;
+    background: #32373e;
+    z-index: 998;
+    transition: top 2s cubic-bezier(0.25,1,0.25,1) 400ms, background 2s;
+}
+
+#systembox span {
+    font-size: 0.8em;
+    color: #f2f5f8;
+    margin: 0px;
+    display: block;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+#systembox span.sb-x {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    font-size: 0.8em;
+    color: #f2f5f8;
+    display: none;
+}
+
+#systembox.showbox span {
+    display: block;
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+}
+
+#systembox.showbox span.sb-x {
+    display: block;
+}
+
+#systembox span.sb-x a {
+    color: #6ab0e2;
+    font-weight: bold;
+    text-decoration: none !important;
+    border: 0px !important;
+}
+
+#systembox.showbox {
+    top: 30px;
+    background: #6ab0e2;
 }
 
 .script-scroll {
@@ -2939,8 +3019,4 @@ input.teamviewer-info-head {
     bottom: 6px;
     left: 40px;
     z-index: 997;
-}
-
-.copy-tv-info {
-    font-size: 0.6em;
 }

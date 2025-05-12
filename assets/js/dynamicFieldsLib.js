@@ -233,7 +233,7 @@ function populateICField() {
             }
             debugmsg(4, 'ic_output: ' + ic_output);
         }
-        document.getElementById('instrument-code').value = ic_output;
+        document.getElementById('instrument-code').value = ic_output.trimEnd();
     }
 }
 
@@ -429,9 +429,9 @@ document.getElementById('billing-type').addEventListener('change', function () {
     switch (this.options[this.selectedIndex].value) {
         case 'XC':
             var consoleAlertText = (so.Settings.alerts.xc.value) ? "Sending " : "Not sending (due to settings) ";
-            var alertText = 'Note: Use XC code ONLY IF Remote Fixed AND Billable!';
+            var alertText = 'Note: Use XC code <em>only if</em> Remote Fixed <em>and</em> Billable!';
             console.log(consoleAlertText + 'alert: `' + alertText + '`');
-            (so.Settings.alerts.xc.value) ? alert(alertText) : '';
+            (so.Settings.alerts.xc.value) ? updateSystemBox(alertText) : '';
             document.getElementById('service-contract').setAttribute('disabled', true);
             break;
         case 'CNTRCT':

@@ -1,4 +1,4 @@
-const version = '3.1.4';
+const version = '3.1.5';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -316,10 +316,16 @@ function debugmsg(level, output) {
 }
 
 function clipBoarder(text_to_clip, clip_label) {
+    if (text_to_clip === '') {
+        var empty_txt_clip = 'No text to copy for ' + clip_label;
+        console.warn('clipBoarder: ' + empty_txt_clip);
+        updateSystemBox(empty_txt_clip);
+        return false;
+    }
     navigator.clipboard.writeText(text_to_clip).then(function() {
-        (so.Settings.alerts.copy.value) ? alert(clip_label + ' copied to clipboard!') : '';
+        (so.Settings.alerts.copy.value) ? updateSystemBox(clip_label + ' copied to clipboard') : '';
     }).catch(function(err) {
-        alert('Failed to copy ' + clip_label + ' to clipboard: ', err);
+        updateSystemBox('Failed to copy ' + clip_label + ' to clipboard: ' + err);
         console.error(err);
         return false;
     });
@@ -375,13 +381,26 @@ function proc_template_serial(sn) {
 var serial_strings = proc_template_serial('');
 
 // Handle Reset button
-const resetFunc = document.getElementById('resetButton');
-resetFunc.addEventListener('click', () => {
+/*
+Note: there are additional resetButton actions taken in:
+    stopwatch.js
+*/
+document.getElementById('resetButton').addEventListener('click', function () {
+    document.getElementById('snap-form').reset();
+    // Update all field bg colors
+    document.querySelectorAll('input[type="text"], textarea, select').forEach(function (input) {
+        input.style.backgroundColor = '';
+    });
+    // Reset everything
     curr_date = new Date();
     hideAllDynamicFields();
-    // clear console if using 'Developer' debug level
+    hideSystemBox();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Clear console if using 'Developer' debug level
     (so.Settings.debug.console_clear.value) ? console.clear() : '';
+    // Re-run startup to establish everything again
     startUp(true);
+    document.getElementById('instrument').selectedIndex = 0;
 })
 
 // Handle Clipboard Template select box
@@ -389,32 +408,40 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
     var clipboard_select = document.getElementById('clipboard-templates').value;
     var context = [];
     var use_templ = false;
+    var cliboard_title = 'Unspecified';
     switch (clipboard_select) {
         case 'cct-description':
             clip_string = procCctDescription();
+            clipboard_title = 'CCT Description';
             break;
         case 'ci-rejection':
             context[0] = document.getElementById('ci-reject-string').value;
             use_templ = true;
+            clipboard_title = 'CI Rejection';
             break;
         case 'deferred-billing':
             use_templ = true;
+            clipboard_title = 'Deferred Billing';
             break;
         case 'instrument-code':
             clip_string = document.getElementById('instrument-code').value;
+            clipboard_title = 'Instrument Code';
             break;
         case 'serial-number':
             clip_string = document.getElementById('serial').value;
+            clipboard_title = 'Serial Number';
             break;
         case 'zip-code':
             if (document.getElementById('instrument-address').value !== '') {
                 clip_string = document.getElementById('instrument-address').value.split(' ').at(-1).split('-')[0];
+                clipboard_title = 'ZIP Code';
             } else {
                 clip_string = '';
             }
             break;
         case 'teamviewer-info-all':
             use_templ = true;
+            clipboard_title = 'TeamViewer Info (all)';
             break;
         default:
             break;
@@ -424,7 +451,7 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
         const ct = new generateTemplates(context);
         clip_string = ct.templates.clipboard[clipboard_select];
     }
-    if (clipBoarder(clip_string, clipboard_select)) {
+    if (clipBoarder(clip_string, clipboard_title)) {
         document.getElementById('clipboard-templates').selectedIndex = 0;
     } else {
         console.error('Error when processing clipboard select (copy to clipboard failed)');

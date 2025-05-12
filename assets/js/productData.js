@@ -510,7 +510,7 @@ function generateProductData() {
                         "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
-                        "eogs_date": "",
+                        "eogs_date": "08-01-2024",
                         "eos_url": "",
                         "instrument_codes": ["8708"]
                     },
@@ -1647,7 +1647,7 @@ function generateProductData() {
                         "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
-                        "eogs_date": "",
+                        "eogs_date": "03-30-2030",
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["8523"]
