@@ -157,6 +157,9 @@ function checkProductHasSubcategory(product_obj, category_to_check) {
 
 // Create new productData object
 const products = new generateProductData();
+console.log(`productData loaded...
+  Schema: v${products.pdata.schema_version}
+    Data: v${products.pdata.data_version}`);
 
 // Functions to work with the productData object
 const default_sn_tt = 'Select an Instrument and/or Model to see serial number tips';
