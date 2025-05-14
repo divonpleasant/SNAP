@@ -1,4 +1,4 @@
-const version = '3.1.5';
+const version = '3.1.6';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -178,8 +178,8 @@ function checkTag() {
 checkTag();
 
 function procSettingValues() {
-    console.info('Executing procSettingValues...');
-    console.info(so.Settings);
+    console.debug('Executing procSettingValues...');
+    console.debug(so.Settings);
     for (let sgroup in so.Settings) {
         if (sgroup !== 'system') {
             for (let skey in so.Settings[sgroup]) {
@@ -271,7 +271,7 @@ simple_date = ${simple_date}
 stylesheet: ${final_style}
 `;
     console.log(startup_message);
-    (so.Settings.debug.mode.value) ? console.log(debug_message) : '';
+    (so.Settings.debug.mode.value) ? console.log(debug_message) : console.debug(debug_message);
     
     (page_reload) ? window.location.reload() : '';
 }
@@ -410,6 +410,10 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
     var use_templ = false;
     var cliboard_title = 'Unspecified';
     switch (clipboard_select) {
+        case 'address-change':
+            clip_string = address_change_data;
+            clipboard_title = 'Address Change Data';
+            break;
         case 'cct-description':
             clip_string = procCctDescription();
             clipboard_title = 'CCT Description';

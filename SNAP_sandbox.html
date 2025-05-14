@@ -72,7 +72,7 @@
                                 <div class="col-6 col-12-xsmall tooltip">
                                     <input type="text" name="serial" id="serial" placeholder="Serial Number" />
                                     <span id="serial-tooltip" class="sn-tooltiptext">Select an Instrument to see serial number tips</span>
-                                    <div class="label-right">Serial Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('serial').value, 'Serial Number')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a class="field-copy" href="#" onclick="manualActivateProcess('serial-numbers', 'general', 'not-found')"><i id="process-prompt-serial-numbers" class="fa-solid fa-circle-info"></i></a></span></div>
+                                    <div class="label-right">Serial Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('serial').value, 'Serial Number')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a href="#" class="info-button" onclick="manualActivateProcess('serial-numbers', 'general', 'not-found')"><i id="process-prompt-serial-numbers" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="phone" id="phone" placeholder="Phone Number" style="float: left; width: 70%; margin-right: 20px;" />
@@ -93,7 +93,7 @@
                                 <div class="col-6 col-12-xsmall tooltip">
                                     <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
                                     <span class="tooltiptext">If address shows CZMI, <br />ask customer where and <br />when they purchased the instrument</span>
-                                    <div class="label-right">Instrument/Shipping Address <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('instrument-address').value, 'Instrument Address')"><i class="fa-regular fa-copy"></i></a></div>
+                                    <div class="label-right">Instrument/Shipping Address <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('instrument-address').value, 'Instrument Address')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a class="info-button" href="#" onclick="manualActivateProcess('instrument-address', 'general', 'info')"><i id="process-prompt-instrument-address" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
@@ -117,7 +117,7 @@
                                         <option value="general_spare-parts">Spare Parts</option>
                                     </select>
                                     
-                                    <div class="label-right">Call Scenario <span class="script-scroll"><a style="border-bottom: none;" href="#top"><i id="process-prompt-call-scenarios" class="fa-solid fa-circle-info"></i></a></span></div>
+                                    <div class="label-right">Call Scenario <span class="script-scroll"><a class="info-button" href="#top"><i id="process-prompt-call-scenarios" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-12">
                                     <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
@@ -214,7 +214,7 @@
                                                     <input type="text" name="teamviewer-username2" class="teamviewer-info" id="teamviewer-username2" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
                                                 </div>
                                                 <div class="teamviewer-info">
-                                                    <input type="text" name="teamviewer-password2" class="teamviewer-info" id="teamviewer-password2" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                    <input type="text" name="teamviewer-password2" class="teamviewer-info" id="teamviewer-password2" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
                                                 </div>
                                                 <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info2" onclick="copyTVInfo('2')">Copy This TV Info</a></span>
                                             </td>
@@ -224,7 +224,7 @@
                                                     <input type="text" name="teamviewer-username3" class="teamviewer-info" id="teamviewer-username3" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
                                                 </div>
                                                 <div class="teamviewer-info">
-                                                    <input type="text" name="teamviewer-password3" class="teamviewer-info" id="teamviewer-password3" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                    <input type="text" name="teamviewer-password3" class="teamviewer-info" id="teamviewer-password3" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
                                                 </div>
                                                 <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info3" onclick="copyTVInfo('3')">Copy This TV Info</a></span>
                                             </td>
@@ -856,7 +856,7 @@
                                         <option value="spare-part-order">Spare Part Order</option>
                                         
                                     </select>
-                                    <div class="label-right">Call Type <span class="script-scroll"><a style="border-bottom: none;" href="#wrap-up"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
+                                    <div class="label-right">Call Type <span class="script-scroll"><a class="info-button" href="#wrap-up"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-12">
                                     <hr />
@@ -888,6 +888,7 @@
                                 <div class="col-6 col-12-xsmall">
                                     <select name="clipboard-templates" id="clipboard-templates">
                                         <option value="">&mdash; Select a Clipboard Preset &mdash;</option>
+                                        <option value="address-change">Address Change Data</option>
                                         <option value="cct-description">CCT Description</option>
                                         <option value="ci-rejection">Critical Incident Rejection</option>
                                         <option value="deferred-billing">Deferred Billing</option>
@@ -896,7 +897,7 @@
                                         <option value="teamviewer-info-all">TeamViewer Info</option>
                                         <option value="zip-code">Zip Code</option>
                                     </select>
-                                    <div class="label-left">Clipboard Templates <span class="script-scroll"><a style="border-bottom: none;" href="#export"><i id="process-prompt-clipboard-templates" class="fa-solid fa-circle-info"></i></a></span></div>
+                                    <div class="label-left">Clipboard Templates <span class="script-scroll"><a class="info-button" href="#export"><i id="process-prompt-clipboard-templates" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                             </div>
                         </form>
@@ -913,6 +914,55 @@
                             <input type="text" id="compliance-id" name="compliance-id" placeholder="Enter Compliance ID (From Details)"><br />
                             <input type="text" id="account-id" name="account-id" placeholder="Account ID"><br />
                             <button id="compliance-check-proceed" onclick="manualOpenEmailTemplate('compliance-check', true)">Continue</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Address Change Overlay -->
+                    <div id="address-change-overlay" class="overlay" style="display: none;">
+                        <div id="address-change-overlay-content" class="overlay-content">
+                            <span id="address-change-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('address-change');">&times;</a></span> <!-- X button to close -->
+                            <h3 style="text-align: center">Address Change Information</h3>
+                            <div class="overlay-input-wrapper">
+                                <input type="text" id="current-site-address" name="current-site-address" placeholder="Instrument/Shipping Address" disabled />
+                                <label for="current-site-address">Current Site Address</label>
+                            </div>
+                            <div class="overlay-input-wrapper">
+                                <input type="text" id="new-site-address" name="new-site-address" placeholder="New Site Address" />
+                                <label for="new-site-address">New Site Address</label>
+                            </div>
+                            <div class="overlay-input-wrapper">
+                                <input type="text" id="new-site-address-phone" name="new-site-address-phone" placeholder="New Location Phone Number" />
+                                <label for="new-site-address-phone">New Location Phone Number</label>
+                            </div>
+                            <div id="billing-address-change" class="overlay-toggle-off">
+                                <div class="overlay-input-wrapper">
+                                    <input type="text" id="current-billing-address" name="current-billing-address" placeholder="Current Billing/Account Address" />
+                                    <label for="current-billing-address">Current Billing/Account Address</label>
+                                </div>
+                                <div class="overlay-input-wrapper">
+                                    <input type="text" id="new-billing-address" name="new-billing-address" placeholder="New Billing/Account Address" />
+                                    <label for="new-billing-address">New Billing/Account Address</label>
+                                </div>
+                            </div>
+                            <div class="overlay-input-wrapper">
+                                <select id="address-change-reason-list" name="address-change-reason-list">
+                                    <option value="">&mdash; Reason for Change &mdash;</option>
+                                    <option value="acquisition">Acquisition/New Parent Company</option>
+                                    <option value="instrument-move">Instrument Moved</option>
+                                    <option value="instrument-sold">Instrument Sold/Owner Change</option>
+                                    <option value="new-satellite">New Satellite Office</option>
+                                    <option value="relocation">Practice Relocation</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <label for="address-change-reason-list">Reason for Change</label>
+                                <textarea rows="3" id="address-change-reason" name="address-change-reason" placeholder="Reason for address change" style="display: none"></textarea>
+                                <label for="address-change-reason">Change Reason Details</label>
+                            </div>
+                            <input type="checkbox" id="site-change" name="site-change">
+                            <label for="site-change">Change Site Address</label><br />
+                            <input type="checkbox" id="billing-change" name="billing-change">
+                            <label for="billing-change">Change Billing Address</label><br />
+                            <button id="address-change-proceed">Save</button>
                         </div>
                     </div>
 
@@ -1034,42 +1084,42 @@
                         <div id="account-overlay-content">
                             <span id="account-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
                             <h3 style="text-align: center">Account</h3>
-                            <div class="account-input-wrapper">
+                            <div class="overlay-input-wrapper">
                                 <input type="text" id="username" name="username" placeholder="Username" />
                                 <label for="username">Username</label>
                             </div>
-                            <div class="account-input-wrapper">
+                            <div class="overlay-input-wrapper">
                                 <input type="text" id="fullname" name="fullname" placeholder="Full Name" />
                                 <label for="fullname">Full Name</label>
                             </div>
-                            <div class="account-input-wrapper">
+                            <div class="overlay-input-wrapper">
                                 <input type="text" id="casual-name" name="casual-name" placeholder="Casual Name" />
                                 <label for="casual-name">Casual Name</label>
                             </div>
-                            <div class="account-input-wrapper">
+                            <div class="overlay-input-wrapper">
                                 <input type="text" id="private-email" name="private-email" placeholder="Personal Email Address" />
                                 <label for="private-email">Personal Email Address</label>
                             </div>
-                            <div class="account-input-wrapper">
+                            <div class="overlay-input-wrapper">
                                 <input type="text" id="team-email" name="team-email" placeholder="Team Email Address" />
                                 <label for="team-email">Team Email Address</label>
                             </div>
-                            <div class="account-input-wrapper">
+                            <div class="overlay-input-wrapper">
                                 <textarea id="email-signature" style="height: 10em; width: 25em;" name="email-signature" placeholder="Custom email signature"></textarea>
                                 <label for="email-signature">Custom Email Signature</label>
                             </div>
-                            <div class="account-checkbox-align">
+                            <div class="overlay-checkbox-align">
                                 <input type="checkbox" style="align: right" id="sign-email-toggle" name="sign-email-toggle">
                                 <label for="sign-email-toggle">Sign Email?</label><br />
                             </div>
-                            <div class="account-checkbox-align">
+                            <div class="overlay-checkbox-align">
                                 <input type="checkbox" style="align: right" id="custom-scripts-toggle" name="custom-scripts-toggle">
                                 <label for="custom-scripts-toggle">Use Custom Scripts?</label><br />
                             </div>
-                            <div class="account-button-align">
+                            <div class="overlay-button-align">
                                 <button id="account-save">Save</button>
                             </div>
-                            <div class="account-button-align">
+                            <div class="overlay-button-align">
                                 <button id="account-logout">Logout</button>
                             </div>
                         </div>
@@ -1086,6 +1136,7 @@
                             </header>
                             <ul>
                                 <li><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SitePages/Zeiss-Technical-Support-Processes.aspx" target="_blank">Technical Support Process Docs</a></li>
+                                <li><a href="#" onclick="manualOverlay('address-change')" id="address-change">Address Change</a></li>
                                 <li>
                                     <span class="opener">End of Support</span>
                                     <ul class="fa-ul">

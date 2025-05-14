@@ -546,7 +546,7 @@ To create a Task-Task:
 <ol>
     <li>Get serial number from customer, and verify Account in ${TRef.crm} is PROAIM
         <ul>
-            <li>If account is <em>not</em> PROAIM (i.e. billing code 920487), <a href="" onclick="manualActivateProcess('create-a-task')">create a Task</a> to update the account with the description: "Please update Billing Account to PROAIM Medical - Account ID: 920487"</li>
+            <li>If account is <em>not</em> PROAIM (i.e. billing code 920487), <a href="#" onclick="manualActivateProcess('crm', 'tasks', 'create-task-task')">create a Task</a> to update the account with the description: "Please update Billing Account to PROAIM Medical - Account ID: 920487"</li>
             <li>If the Point of Contact is not found in ${TRef.crm}, <strong>DO NOT</strong> add them to the PROAIM Medical account. Use the "Create Contact for Site" option to add them to the site/ship-to account. TSEs should not add contacts to the PROAIM Medical account (ID 920487)</li>
         </ul>
     </li>
@@ -644,6 +644,34 @@ To create a Task-Task:
     <li>Use <a href="#" onclick="manualOverlay('parts-order')">Parts Order</a> email template</li>
     <li>If customer wants multiples of a part, enter the part number and description multiple times</li>
 </ol>`
+                }
+            },
+            "instrument-address": {
+                "general": {
+                    "info": `<h1>Instrument/Shipping Address</h1>
+<p><strong><em>SNAP's Instrument/Shipping Address field should always reflect the current address as listed in CRM (Installed Base, Street/No field) at time of initial call!</em></strong></p>
+<p><strong>Always</strong> verify the Installed Base's Street Address field with the customer. It is important we maintain an accurate record of customer addresses, particularly the shipping or instrument address.</p>
+<p>If, during verification, the customer indicates their address has changed or the device has been relocated, use the <a href="#" onclick="manualActivateProcess('instrument-address', 'general', 'change')">Address Change process</a> to update the data in ${TRef.crm}.</p>`,
+                    "change": `<h1>Changing Customer Addresses</h1>
+<p>Incorrect/unverified addresses can lead to service delays if an FSE is dispatched to the wrong location. If the Ship-To address in ${TRef.crm} does not match the customer's information during verification, you must work with Service Operations Administration (SOA) to get the address updated.</p>
+<p>Occasionally, it is also necessary to update a customer's billing or account address. In either case, the process is the same:</p>
+<ol>
+    <li>Use the <a href="#" onclick="manualOverlay('address-change')">Address Change Form</a> and complete all fields with updated information</li>
+    <li>Ensure the following fields on the SNAP Work Form are filled out: POC Name, POC Phone Number, POC Email, Instrument/Shipping Address (should be copied from CRM, will be reflected in Current Site Address field on the <a href="#" onclick="manualOverlay('address-change')">Change Form</a>)</li>
+    <li><a href="#" onclick="manualActivateProcess('crm', 'tasks', 'create-task-task')">Create a Task</a> using the Address Change Task Template</li>
+</ol>`,
+                    "change-task": `Change ${context[0]} Address${context[1]}${context[2]}
+Customer POC Info:
+    Name: ${document.getElementById('local-contact-person').value}
+    Phone: ${document.getElementById('phone').value}
+    Email: ${document.getElementById('email').value}
+
+Reason for Change:
+    ${context[3]}
+
+${context[4]}
+${context[5]}
+`
                 }
             },
             "serial-numbers": {

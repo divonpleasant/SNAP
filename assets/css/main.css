@@ -2480,6 +2480,42 @@ button,
     border: 0px;
 }
 
+.overlay-toggle-off {
+    display: none;
+}
+.overlay-toggle-on {
+    display: block;
+    margin: 5px 0;
+}
+.overlay-toggle-on input {
+    width: 100%;
+}
+.overlay-input-wrapper {
+    position: relative;
+    margin: 1em;
+}
+
+.overlay-input-wrapper>label {
+    color: #778592;
+    text-align: right;
+    font-weight: normal;
+    font-size: 0.7em;
+    padding: 0 5px;
+}
+
+.overlay-checkbox-align {
+    align-items: right;
+    text-align: right;
+}
+
+.overlay-button-align {
+    align-items: center;
+    text-align: center;
+    margin: 4px 1px;
+}
+#current-site-address {
+    background-color: #d3d3d3;
+}
   #fse-update-overlay {
     position: fixed;
     top: 0;
@@ -2617,30 +2653,6 @@ button,
     border-radius: 10px;
     text-align: left;
     position: relative;
-}
-
-.account-input-wrapper {
-    position: relative;
-    margin: 1em;
-}
-
-.account-input-wrapper>label {
-    text-align: right;
-    font-weight: normal;
-    font-size: 0.7em;
-    background-color: white;
-    padding: 0 5px;
-}
-
-.account-checkbox-align {
-    align-items: right;
-    text-align: right;
-}
-
-.account-button-align {
-    align-items: center;
-    text-align: center;
-    margin: 4px 1px;
 }
 
 #account-close-overlay {
@@ -2810,6 +2822,10 @@ input.teamviewer-info-head {
     color: #b4c0ca;
 }
 
+.info-button {
+    border: 0px;
+}
+
 .copy-tv-info {
     font-size: 0.6em;
     margin: 0 0 0 1.5em;
@@ -2916,6 +2932,16 @@ input.teamviewer-info-head {
     color: inherit;
     font-size: 1.5em;
     font-weight: bold;
+}
+#prompt-content h2 {
+    color: inherit;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+}
+#prompt-content ul,ol {
+    margin-bottom: .4em;
+    padding-left: 2em;                     
 }
 .close-x {
     position: absolute;

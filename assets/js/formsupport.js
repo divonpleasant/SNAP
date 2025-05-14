@@ -758,6 +758,107 @@ function updateSystemBox(msg = '...') {
     return true;
 }
 
+function addressChangeHandleOtherReason() {
+    if (document.getElementById('address-change-reason-list')[document.getElementById('address-change-reason-list').selectedIndex].value === 'other') {
+        document.getElementById('address-change-reason').style.display = 'flex';
+    } else {
+        document.getElementById('address-change-reason').style.display = 'none';
+    }
+}
+
+function handleBillingAddressChange() {
+    (document.getElementById('billing-change').checked) ? document.getElementById('billing-address-change').classList.replace('overlay-toggle-off', 'overlay-toggle-on') : document.getElementById('billing-address-change').classList.replace('overlay-toggle-on', 'overlay-toggle-off');
+}
+
+function handleAddressChange() {
+    console.debug('Executing handleAddressChange...');
+    manualCloseOverlay('address-change');
+    if (!document.getElementById('site-change').checked && !document.getElementById('billing-change').checked) {
+        var requirement_msg = 'You must specify at least one address type (instrument/shipping or billing) to update'
+        updateSystemBox(requirement_msg);
+        console.warn('handleAddressChange WARN: ' + requirement_msg);
+        return false;
+    }
+    var change_task_type_line = '';
+    var subject_account_name = (document.getElementById('account').value !== '') ? ' for ' + document.getElementById('account').value : '';
+    var site_string = `New Site Address:
+    ${document.getElementById('new-site-address').value}
+    Location Phone: ${document.getElementById('new-site-address-phone').value}
+Previous Site Address:
+    ${document.getElementById('current-site-address').value}`;
+    var billing_string = `New Billing Address:
+    ${document.getElementById('new-billing-address').value}
+Previous Billing Address:
+    ${document.getElementById('current-billing-address').value}`;
+    var serial_string = ' (' + document.getElementById('model')[document.getElementById('model').selectedIndex].value + ' S/N ' + document.getElementById('serial').value + ')';
+    var incl_serial = '';
+    var final_site = '';
+    var final_bill = '';
+    if (document.getElementById('site-change').checked && !document.getElementById('billing-change').checked) {
+        change_task_type_line = 'Instrument/Shipping';
+        incl_serial = serial_string;
+        final_site = site_string;
+    } else if (!document.getElementById('site-change').checked && document.getElementById('billing-change').checked) {
+        change_task_type_line = 'Billing';
+        final_bill = billing_string;
+    } else if (document.getElementById('site-change').checked && document.getElementById('billing-change').checked) {
+        change_task_type_line = 'Shipping & Billing';
+        incl_serial = serial_string;
+        final_site = site_string;
+        final_bill = billing_string;
+    }
+    var change_reason = '';
+    switch (document.getElementById('address-change-reason-list')[document.getElementById('address-change-reason-list').selectedIndex].value) {
+        case 'acquisition':
+            change_reason = 'Acquisition/New Parent Company';
+            break;
+        case 'instrument-move':
+            change_reason = 'Instrument Moved';
+            break;
+        case 'instrument-sold':
+            change_reason = 'Instrument Sold/Owner Change';
+            break;
+        case 'new-satellite':
+            change_reason = 'New Satellite Office';
+            break;
+        case 'relocation':
+            change_reason = 'Practice Relocation';
+            break;
+        case 'other':
+            if (document.getElementById('address-change-reason').value === '') {
+                console.warn('Change reason cannot be undefined');
+                return false;
+            } else {
+                change_reason = document.getElementById('address-change-reason').value;
+            }
+            break;
+        case '':
+        default:
+            console.warn('Change reason cannot be undefined');
+            return false;
+    }
+    var account_context = [change_task_type_line, incl_serial, subject_account_name, change_reason, final_site, final_bill];
+    const act = new generateTemplates(account_context);
+    console.debug(act.templates.process['instrument-address'].general['change-task']);
+    var output = act.templates.process['instrument-address'].general['change-task'];
+    clipBoarder(output, 'Address Change data');
+    return output;
+}
+
+function checkPhoneFormat() {
+    console.log('Executing checkPhoneFormat...');
+    var input_ph = document.getElementById('phone').value;
+    var cleaned = ('' + input_ph).replace(/\D/g, '');
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})(\d+)?$/);
+    if (match) {
+        console.log('match[5]: ' + match[5]);
+        var ext = (typeof match[5] === 'undefined') ? '' : ' x' + match[5];
+        document.getElementById('phone').value = [match[2], '-', match[3], '-', match[4], ext].join('');
+    } else {
+        console.warn('Could not update POC Phone Number formatting');
+    }
+}
+
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
 document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
@@ -774,3 +875,14 @@ document.getElementById('call-type').addEventListener('change', callTypeEval);
 document.getElementById('remote-resolution').addEventListener('change', callTypeEval);
 document.getElementById('hide-sys-box').addEventListener('click', hideSystemBox);
 document.getElementById('notifications-toggle').addEventListener('click', toggleSystemBox);
+document.getElementById('address-change-reason-list').addEventListener('change', addressChangeHandleOtherReason);
+document.getElementById('billing-change').addEventListener('change', handleBillingAddressChange);
+document.getElementById('instrument-address').addEventListener('input', function() {
+    document.getElementById('current-site-address').value = document.getElementById('instrument-address').value;
+});
+var address_change_data = '';
+document.getElementById('address-change-proceed').addEventListener('click', function() {
+    var change_result = handleAddressChange();
+    address_change_data = (change_result) ? change_result : '';
+});
+document.getElementById('phone').addEventListener('change', checkPhoneFormat);

@@ -41,11 +41,11 @@
     is added, the required format for a data item is changed, or any data item 
     is removed.
 */
-debugmsg(2, 'Loading productData.js...');
+console.log('Loading productData.js...');
 function generateProductData() {
-    debugmsg(5, 'Executing generateProductData...');
+    console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.0.0",
+        "data_version": "1.1.3",
         "schema_version": "8.1",
         "eos_primary_reference": "https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html",
         "instruments": {
@@ -312,12 +312,12 @@ function generateProductData() {
                         "exemptions": ["serial"]
                     },
                     "serial": {
-                        "format": "No serial number information available yet.",
+                        "format": "<model>-<sequence>",
                         "example": "",
                         "software_location": "",
                         "hardware_location": "",
                         "prefix_format": "",
-                        "sequence_format": ""
+                        "sequence_format": "4+ digits"
                     },
                     "500": {
                         "model_serials": {},
@@ -384,7 +384,7 @@ function generateProductData() {
                             "format": "<model>-<sequence>",
                             "example": "9000-1234",
                             "software_location": "",
-                            "hardware_location": "",
+                            "hardware_location": "Right side of instrument, to left of connectors",
                             "prefix_format": "9000-",
                             "sequence_format": "4 digits"
                         },
@@ -1003,6 +1003,7 @@ function generateProductData() {
                         "model_serials": {
                             "format": "740i-<sequence number>",
                             "example": "740i-1234",
+                            "prefix_format": "740i-",
                             "sequence_format": "4+ digits"
                         },
                         "subsets": {},
@@ -1021,6 +1022,7 @@ function generateProductData() {
                         "model_serials": {
                             "format": "750i-<sequence number>",
                             "example": "750i-1234",
+                            "prefix_format": "750i-",
                             "sequence_format": "4+ digits"
                         },
                         "subsets": {},
@@ -1206,12 +1208,12 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
+                        "format": "[1,9]<sequence>",
+                        "example": "1234567",
+                        "software_location": "Settings > System Information",
+                        "hardware_location": "Below chinrest",
                         "prefix_format": "",
-                        "sequence_format": ""
+                        "sequence_format": "6+ digits"
                     },"3": {
                         "model_serials": {},
                         "subsets": {},
@@ -1241,7 +1243,10 @@ function generateProductData() {
                         "instrument_codes": ["9202"]
                     },
                     "500": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "example": "9206123456",
+                            "hardware_location": "Directly below chinrest"
+                        },
                         "subsets": {},
                         "model_number": "500",
                         "full_name": "IOLMaster 500",
@@ -1255,7 +1260,10 @@ function generateProductData() {
                         "instrument_codes": ["9206"]
                     },
                     "700": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "example": "912345678",
+                            "hardware_location": "Below chinrest, or on patient side offset to left or right"
+                        },
                         "subsets": {},
                         "model_number": "700",
                         "full_name": "IOLMaster 700",
@@ -2213,19 +2221,19 @@ function generateProductData() {
                     "serial": {
                         "format": "<model>-<sequence>",
                         "example": "",
-                        "software_location": "",
+                        "software_location": "Help > About",
                         "hardware_location": "",
-                        "prefix_format": "PL",
-                        "sequence_format": ""
+                        "prefix_format": "PE",
+                        "sequence_format": "4+ digits"
                     },
                     "9000": {
                         "model_serials": {
-                            "format": "PL9000-<sequence>",
-                            "example": "PL9000-1234",
-                            "software_location": "",
+                            "format": "PE9000-<sequence>",
+                            "example": "PE9000-12345",
+                            "software_location": "Help > About",
                             "hardware_location": "Back of instrument above the computer access panel",
-                            "prefix_format": "PL9000-",
-                            "sequence_format": "4+ digits"
+                            "prefix_format": "PE9000-",
+                            "sequence_format": "5+ digits"
                         },
                         "subsets": {},
                         "model_number": "9000",
@@ -2417,12 +2425,12 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "",
+                        "format": "<sequence>",
                         "example": "",
                         "software_location": "",
                         "hardware_location": "",
                         "prefix_format": "",
-                        "sequence_format": ""
+                        "sequence_format": "6-7 digits"
                     },
                     "10": {
                         "model_serials": {},
@@ -2516,7 +2524,12 @@ function generateProductData() {
                         "instrument_codes": []
                     },
                     "115": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "format": "<sequence>",
+                            "example": "1234567",
+                            "hardware_location": "Below chinrest",
+                            "sequence_format": "6-7 digits"
+                        },
                         "subsets": {},
                         "model_number": "115 classic",
                         "full_name": "SL 115 classic",
@@ -2529,7 +2542,12 @@ function generateProductData() {
                         "instrument_codes": []
                     },
                     "120": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "format": "<sequence>",
+                            "example": "1234567",
+                            "hardware_location": "Below chinrest",
+                            "sequence_format": "6-7 digits"
+                        },
                         "subsets": {},
                         "model_number": "120",
                         "full_name": "SL 120",
@@ -2542,7 +2560,12 @@ function generateProductData() {
                         "instrument_codes": []
                     },
                     "130": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "format": "<sequence>",
+                            "example": "1234567",
+                            "hardware_location": "Below chinrest",
+                            "sequence_format": "6-7 digits"
+                        },
                         "subsets": {},
                         "model_number": "130",
                         "full_name": "SL 130",
@@ -2568,7 +2591,12 @@ function generateProductData() {
                         "instrument_codes": []
                     },
                     "220": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "format": "<sequence>",
+                            "example": "1234567",
+                            "hardware_location": "Below chinrest",
+                            "sequence_format": "6-7 digits"
+                        },
                         "subsets": {},
                         "model_number": "220",
                         "full_name": "SL 220",
@@ -2582,7 +2610,12 @@ function generateProductData() {
                         "instrument_codes": []
                     },
                     "800": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "format": "<sequence>",
+                            "example": "1234567890",
+                            "hardware_location": "On top of vertical lift assembly, swing SL arm right or left to view",
+                            "sequence_format": "10 digits"
+                        },
                         "subsets": {},
                         "model_number": "800",
                         "full_name": "SL 800",
@@ -3100,6 +3133,7 @@ function generateProductData() {
                     "yag3": {
                         "model_serials": {
                             "format": "[9,10]<sequence>",
+                            "hardware_location": "On console box (with large red button), possibly on bottom",
                             "example": "1012345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -3163,7 +3197,7 @@ function generateProductData() {
                         "format": "No serial number information available yet.",
                         "example": "",
                         "software_location": "",
-                        "hardware_location": "",
+                        "hardware_location": "Back of device, at the bottom just above cord",
                         "prefix_format": "",
                         "sequence_format": ""
                     },
@@ -3531,18 +3565,17 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
+                        "format": "<date_code><sequence>",
+                        "example": "1120123456789",
                         "software_location": "",
-                        "hardware_location": "",
+                        "hardware_location": "Inside battery compartment",
                         "prefix_format": "",
-                        "sequence_format": ""
+                        "sequence_format": "<date_code> is two digit calendar week plus two digit year of manufacture; <sequence> is 8-9 alphanumeric"
                     },
                     "100": {
                         "model_serials": {
-                            "format": "<sequence>",
-                            "example": "9012345A6789",
-                            "prefix_format": "",
+                            "format": "<date_code><sequence>",
+                            "example": "192012345A678",
                             "sequence_format": "9-12 alphanumeric"
                         },
                         "subsets": {},
