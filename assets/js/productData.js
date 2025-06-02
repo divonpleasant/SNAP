@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.1.3",
+        "data_version": "1.1.6",
         "schema_version": "8.1",
         "eos_primary_reference": "https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html",
         "instruments": {
@@ -2534,7 +2534,7 @@ function generateProductData() {
                         "model_number": "115 classic",
                         "full_name": "SL 115 classic",
                         "launch_date": "",
-                        "supported": false,
+                        "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
                         "eogs_date": "",
@@ -2552,7 +2552,7 @@ function generateProductData() {
                         "model_number": "120",
                         "full_name": "SL 120",
                         "launch_date": "",
-                        "supported": false,
+                        "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
                         "eogs_date": "",
@@ -2570,7 +2570,7 @@ function generateProductData() {
                         "model_number": "130",
                         "full_name": "SL 130",
                         "launch_date": "",
-                        "supported": false,
+                        "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
                         "eogs_date": "",
@@ -2601,7 +2601,7 @@ function generateProductData() {
                         "model_number": "220",
                         "full_name": "SL 220",
                         "launch_date": "",
-                        "supported": false,
+                        "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
                         "eogs_date": "",
@@ -2620,7 +2620,7 @@ function generateProductData() {
                         "model_number": "800",
                         "full_name": "SL 800",
                         "launch_date": "",
-                        "supported": false,
+                        "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
                         "eogs_date": "",
@@ -3016,7 +3016,7 @@ function generateProductData() {
                         "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
-                        "eogs_date": "",
+                        "eogs_date": "10-01-2025",
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["9315"]
@@ -3035,7 +3035,7 @@ function generateProductData() {
                         "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
-                        "eogs_date": "",
+                        "eogs_date": "10-01-2025",
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["9316"]
@@ -3345,7 +3345,7 @@ function generateProductData() {
             "visupac": {
                 "product": {
                     "name": "VISUPAC",
-                    "short_name": "VisuPAC",
+                    "short_name": "VisuPac",
                     "identifier": "visupac",
                     "class": "",
                     "description": "",

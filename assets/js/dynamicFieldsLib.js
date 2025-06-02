@@ -414,6 +414,7 @@ document.getElementById('instrument').addEventListener('change', function() {
     }
     populateSelectField('model', eos_filtered_data, 'full_name', 'full_name', clear_field, 'model_number');
     fetchAndRevealDynamicFields(selected_inst_id);
+    updateReferenceBoxContents('instrument');
 }, false);
 
 // Handle model select field
@@ -467,6 +468,135 @@ archive_select.addEventListener('change', function() {
             break;
     }
 }, false);
+
+function addHoursToDate(date, hours) {
+    return new Date(date.getTime() + hours * 3600000);
+}
+
+function mapZipCodeToTimeZone(zip) {
+    if (zip === '' || typeof zip === 'undefined' || zip === false) {
+        return false;
+    }
+    let ac = new generateTimeZoneData();
+    var tzones = Object.keys(ac.tz);
+    console.debug(JSON.stringify(tzones));
+    var cust_tzone = '';
+    for (var z = 0; z < tzones.length; z++) {
+        if (ac.tz[tzones[z]].zipcodes.includes(zip)) {
+            console.log('Customer Time Zone is: ' + ac.tz[tzones[z]].id);
+            cust_tzone = ac.tz[tzones[z]].id;
+            break;
+        } else {
+            console.debug('Zip Code ' + zip + ' is not in ' + ac.tz[tzones[z]].name);
+        }
+    }
+    console.debug({cust_tzone});
+    return (cust_tzone !== '') ? cust_tzone : false;
+}
+
+function checkEndOfBusiness(date, ctz) {
+    console.debug('Executing checkEndOfBusiness...');
+    console.debug({date});
+    console.debug({ctz});
+    var adjusted_day = date.getDay().toLocaleString('en-US', { timeZone: ctz });
+    console.debug({adjusted_day});
+    if (adjusted_day === '6' || adjusted_day === '0') {
+        return 'weekend';
+    } else {
+        var adjusted_time = date.getHours().toLocaleString('en-US', { timeZone: ctz, hour12: false, timeStyle: 'short' });
+        console.debug({adjusted_time});
+        var remaining_sla_time = 17 - adjusted_time;
+        console.debug({remaining_sla_time});
+        return (remaining_sla_time <= 0) ? 'eob:' + Math.abs(remaining_sla_time) : false;
+    }
+}
+
+function roundFifteenMinutes(m, h) {
+    console.debug('Executing roundFifteenMinutes...');
+    min = (((m + 7.5)/15 | 0) * 15) % 60;
+    hrs = (((m/105 + .5) | 0) + h) % 24;
+    return hrs + ":" + min;
+}
+
+// Handle FSS select field
+document.getElementById('fss-name').addEventListener('change', function() {
+    console.debug('Handling eventListener for fss-name change event...');
+    var selected_fss = document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value;
+    console.debug('selected_fss: ' + selected_fss);
+    const personnel = new generatePersonnelData();
+    var fss_data = personnel.people.fss[selected_fss];
+    console.debug(JSON.stringify(fss_data));
+    var fss_contact_string = fss_data.name + ' (' + fss_data.email + ')';
+    console.debug({fss_contact_string});
+    var customer_time_zone = mapZipCodeToTimeZone(calculateZipCode());
+    console.debug({customer_time_zone});
+    d = new Date();
+    // determine sla to use
+    var sla = (document.getElementById('is_pm').checked) ? so.Settings.process.fse_pm_sla.value : so.Settings.process.fse_sla.value;
+    console.debug({sla});
+    var sla_date = addHoursToDate(d, sla);
+    console.debug({sla_date});
+    console.debug(sla_date.toLocaleString('en-US', { timeZone: customer_time_zone }));
+    var fss_context = [];
+    var eob_status = checkEndOfBusiness(sla_date, customer_time_zone);
+    console.debug({eob_status});
+    if (eob_status === false) {
+        console.log('SLA is within normal business hours');
+        cutoff_time = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
+        console.debug({cutoff_time});
+        fss_context.push(cutoff_time + ' today');
+    } else if (eob_status.match(/^eob/)) {
+        console.log('SLA is past EOB');
+        var eob_results = eob_status.split(':');
+        var sla_overrun = (parseInt(eob_results[1]) + 8); // Assuming the average clinic opening hour is 8:00 am
+        console.debug({sla_overrun});
+        fss_context.push(sla_overrun + ':00 tomorrow');
+    } else if (eob_status === 'weekend') {
+        console.log('SLA is past EOB and extends into weekend');
+        fss_context.push('10:00 Monday'); // Setting a reasonable post-weekend window
+    } else {
+        console.error('checkEndOfBusiness function returned a non-valid result: ' + eob_status);
+    }
+    for (let fc = 0; fc < fss_context.length; fc++) {
+        console.debug(fss_context[fc]);
+    }
+    fss_context.push(fss_contact_string);
+    const fsst = new generateTemplates(fss_context);
+    var cust_note_fss_text = fsst.templates.system.customer_notes.fss_contact;
+    console.debug({cust_note_fss_text});
+    var cn_sep = (document.getElementById('customer-notes').value === '') ? '' : "\n";
+    console.debug({cn_sep});
+    var final_fss_str = cn_sep + cust_note_fss_text;
+    console.debug({final_fss_str});
+    document.getElementById('customer-notes').value += final_fss_str;
+});
+
+function toggleFieldMenu(menu) {
+    var current_display = document.getElementById(menu).style.display;
+    console.debug({current_display});
+    document.getElementById(menu).style.display = (current_display === 'none' || current_display === '') ? 'flex' : 'none';
+}
+
+function commonActionToField(a_id, field) {
+    var action_data = (a_id === '0000') ? '' : document.getElementById(a_id).innerHTML;
+    console.debug({action_data});
+    //var line_break = (document.getElementById(field).value === '') ? '' : "\n"
+    var line_break = "\n";
+    document.getElementById(field).value += line_break + "  • " + action_data;
+}
+
+function expandNav() {
+    console.debug('Executing expandNav...');
+    if (document.getElementById('toggle-exp-nav').innerHTML === 'Expand') {
+        document.querySelectorAll('.expanded-nav').forEach(a=>a.style.display = 'block');
+        document.getElementById('toggle-exp-nav').innerHTML = 'Collapse';
+    } else if (document.getElementById('toggle-exp-nav').innerHTML === 'Collapse') {
+        document.querySelectorAll('.expanded-nav').forEach(a=>a.style.display = 'none');
+        document.getElementById('toggle-exp-nav').innerHTML = 'Expand';
+    } else {
+        console.warn('expandNav :: Unexpected condition reached, please report this to the admins');
+    }
+}
 
 addToggle('add-forum', 'forum');
 addToggle('remote-support', 'remote-support');

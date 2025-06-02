@@ -575,21 +575,40 @@ function displayProcessMessage(msg_txt) {
     
 }
 
+function pmToggle(state = false) {
+    console.debug("Executing pmToggle ...\n  state: " + state);
+    document.getElementById('is_pm').checked = state; 
+    
+    var auto_fields = ['frequency-problem', 'logs-not-attached-reason', 'screenshots-attached-reason'];
+    if (state) {
+        document.getElementById('same-as-reported').checked = true;
+        document.getElementById('frequency-selector').selectedIndex = 5;
+        for (let aa = 0; aa < auto_fields.length; aa++) {
+            document.getElementById(auto_fields[aa]).value = 'PM Request';
+        }
+    } else {
+        for (let aa = 0; aa < auto_fields.length; aa++) {
+            (document.getElementById(auto_fields[aa]).value === 'PM Request') ? document.getElementById(auto_fields[aa]).value = '' : '';
+        }
+    }
+}
+
 function updateDescription () {
-    debugmsg(4, 'Executing updateDescription...');
+    console.debug('Executing updateDescription...');
     var proc_id = document.getElementById('common-call-scenarios').options[document.getElementById('common-call-scenarios').selectedIndex].value;
     var proc_data = proc_id.split('_', 2);
     var proc_section = proc_data[0];
     var proc_location = proc_data[1];
-    debugmsg(4, 'proc_id: ' + proc_id);
-    debugmsg(4, 'proc_data: ' + proc_data);
-    debugmsg(4, 'proc_section: ' + proc_section);
-    debugmsg(4, 'proc_location: ' + proc_location);
+    console.debug({proc_id});
+    console.debug({proc_data});
+    console.debug({proc_section});
+    console.debug({proc_location});
     (document.getElementById('prompt').style.display === 'flex') ? manualActivateProcess('call-scenarios', proc_section, proc_location) : '';
     var existing_description = document.getElementById('description').value.split('. ');
     (existing_description.length <= 1) ? document.getElementById('description').innerHTML = '' : '';
-    debugmsg(4, 'existing_description: ' + existing_description);
+    console.debug({existing_description});
     var descr_txt = '';
+    pmToggle();
     switch (proc_location) {
         case 'canadian-customer':
             descr_txt = 'Assisted Canadian Customer.';
@@ -603,6 +622,7 @@ function updateDescription () {
         case 'pm-request':
         case 'proaim-pm-request':
             descr_txt = 'PM Request.';
+            pmToggle(true);
             break;
         case 'recertification':
             descr_txt = 'Recertification.';
@@ -717,11 +737,16 @@ function closeScript() {
 
 function callTypeEval() {
     crossChargeAutoUpdate();
+    document.querySelectorAll('.fss-details').forEach(a=>a.style.display = 'none');
     switch (document.getElementById('call-type')[document.getElementById('call-type').selectedIndex].value) {
         case 'remote-service':
             if (document.getElementById('error-group').selectedIndex === 0 || document.getElementById('error-code').selectedIndex === 0 || document.getElementById('action-code').selectedIndex === 0) {
                 updateSystemBox('Make sure to set Error Group, Error Code, and Action Code when setting Call Type to Remote Service.');
             }
+            break;
+        case 'onsite-fix':
+            document.querySelectorAll('.fss-details').forEach(a=>a.style.display = 'block');
+            updateSystemBox('Please select the appropriate FSS');
             break;
         default:
             break;
@@ -742,6 +767,7 @@ function crossChargeAutoUpdate() {
 
 function hideSystemBox() {
     event.preventDefault();
+    console.debug('Executing hideSystemBox...');
     document.getElementById('systembox').classList.remove('showbox');
     return true;
 }
@@ -859,6 +885,49 @@ function checkPhoneFormat() {
     }
 }
 
+function openReferenceBox(location_ref) {
+    console.log("Executing openReferenceBox... \nlocation_ref: " + location_ref);
+    // EXAMPLE: $("#reference-contents").load("assets/data/reference/products/oct/overview.html");
+    updateReferenceBoxContents(location_ref);
+    document.getElementById('reference-box').style.display = 'grid';
+}
+
+function updateReferenceBoxContents(location_ref, direct_link = '') {
+    console.log("Executing updateReferenceBoxContents... \nlocation_ref: " + location_ref + "\ndirect_link: " + direct_link);
+    // cache prevention
+    var qparam = Date.now();
+    var base_path = 'assets/data/reference/'
+    var context_location = '';
+    var path_location = '';
+    switch (location_ref) {
+        case 'instrument':
+            context_location = 'products/' + document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id;
+            path_location = (context_location === 'products/') ? 'default/index' : path_location + '/index';
+            console.debug('context_location: ' + context_location);
+            console.debug('path_location: ' + path_location);
+            break;
+        case 'direct':
+            base_path = direct_link;
+            context_location = '';
+            path_location = '';
+            break;
+        default:
+            break;
+    }
+    var final_path = base_path + context_location + path_location;
+    console.debug('final_path: ' + final_path);
+    var final_contents = final_path + '.html?q=' + qparam;
+    var final_nav = final_path + '-NAV.html?q=' + qparam;
+    console.debug('final_contents: ' + final_contents);
+    console.debug('final_nav: ' + final_nav);
+    $("#reference-contents").load(final_contents);
+    $("#reference-nav").load(final_nav);
+}
+
+function closeReferenceBox() {
+    document.getElementById('reference-box').style.display = 'none';
+}
+
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
 document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
@@ -866,6 +935,7 @@ document.getElementById('process-prompt-clipboard-templates').addEventListener('
 document.getElementById('script-prompt-greeting').addEventListener('click', activateScript);
 document.getElementById('script-prompt-wrap-up').addEventListener('click', activateScript);
 document.getElementById('prompt-close').addEventListener('click', closeScript);
+document.getElementById('reference-close').addEventListener('click', closeReferenceBox);
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('description').addEventListener('input', function() {
         document.getElementById('problem-description').value = document.getElementById('description').value;
