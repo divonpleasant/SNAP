@@ -1,16 +1,39 @@
-<script>
-    var on_link = products.pdata.instruments[document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id].support.onenote_link;
-    var on_title = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value;
-</script>
+<h1 id="product-head"></h1>
 <table>
-    <thead>
-        <tr>
-            <th>OneNote Link</th>
-        </tr>
-    </thead>
     <tbody>
         <tr>
-            <td><a href="" onclick="location.href=on_link;return false;" target="_blank">OneNote</a></td> <!--FIX LINK NAME AND WINDOW TARGET-->
+            <th>Device Class</th>
+            <td><span id="product-class"></span></td>
+        </tr>
+        <tr>
+            <th>Modality</th>
+            <td><span id="product-modality"></span></td>
+        </tr>
+        <tr>
+            <th>OneNote Link</th>
+            <td><span id="one-note-link"></span></td>
+        </tr>
+        <tr>
+            <th>Product Link</th>
+            <td><span id="product-link"></span></td>
         </tr>
     </tbody>
 </table>
+<script>
+    var prod_title = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value;
+    var prod_id = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id
+    var on_link = products.pdata.instruments[prod_id].support.onenote_link;
+    var prod_class = products.pdata.instruments[prod_id].product.class;
+    var prod_mod = products.pdata.instruments[prod_id].product.modality;
+    var prod_link = products.pdata.instruments[prod_id].product.url;
+    
+    var header_link_markup = `<a href="#reftop" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/${prod_id}/index')">${prod_title}</a> Quick Reference`;
+    console.debug({header_link_markup});
+    var on_link_markup = `<a href="${on_link}" target="_blank">${prod_title} OneNote</a>`;
+    var prod_link_markup = `<a href="${prod_link}" target="_blank">${prod_title} Zeiss Page</a>`;
+    document.getElementById('product-head').innerHTML = header_link_markup;
+    document.getElementById('product-class').innerHTML = (prod_class !== '') ? prod_class : 'Not available';
+    document.getElementById('product-modality').innerHTML = (prod_mod !== '') ? prod_mod : 'Not available';
+    document.getElementById('one-note-link').innerHTML = (on_link !== '') ? on_link_markup : 'Not available';
+    document.getElementById('product-link').innerHTML = (prod_link !== '') ? prod_link_markup : 'Not available';
+</script>
