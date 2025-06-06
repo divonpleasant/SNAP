@@ -1,4 +1,4 @@
-const version = '3.1.6';
+const version = '3.1.7';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -68,6 +68,24 @@ function generateSettings() {
                 "type": "boolean",
                 "cookie_key": "copyCrmDescrSttng",
                 "description": "Toggles whether or not to copy a derived sample CRM description string (assembled from the serial number, billing type, and first sentence of the problem description) when an export operation is executed."
+            }
+        },
+        "process": {
+            "fse_sla": {
+                "name": "Field Service Break/Fix SLA",
+                "default_value": 4,
+                "value": 4,
+                "type": "numeric",
+                "cookie_key": "fseSlaBreakFix",
+                "description": "Sets the duration of the SLA for how long a customer should expect to wait for a scheduling call from a Field Service Engineer for a break/fix dispatch."
+            },
+            "fse_pm_sla": {
+                "name": "Field Service PM SLA",
+                "default_value": 48,
+                "value": 48,
+                "type": "numeric",
+                "cookie_key": "fseSlaPM",
+                "description": "Sets the duration of the SLA for how long a customer should expect to wait for a scheduling call from a Field Service Engineer for a preventative maintenance dispatch."
             }
         },
         "system": {
@@ -403,6 +421,16 @@ document.getElementById('resetButton').addEventListener('click', function () {
     document.getElementById('instrument').selectedIndex = 0;
 })
 
+function calculateZipCode(use_unknown = false) {
+    if (document.getElementById('instrument-address').value !== '') {
+        var zc = document.getElementById('instrument-address').value.split(' ').at(-1).split('-')[0];
+        return zc;
+    } else {
+        console.warn('No address populated in Instrument/Shipping Address field, cannot calculate Zip Code; default is ET');
+        return (use_unknown) ? '00100' : false;
+    }
+}
+
 // Handle Clipboard Template select box
 document.getElementById('clipboard-templates').addEventListener('change', () => {
     var clipboard_select = document.getElementById('clipboard-templates').value;
@@ -437,7 +465,8 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
             break;
         case 'zip-code':
             if (document.getElementById('instrument-address').value !== '') {
-                clip_string = document.getElementById('instrument-address').value.split(' ').at(-1).split('-')[0];
+                var zip = calculateZipCode();
+                clip_string = (zip) ? zip : '00000';
                 clipboard_title = 'ZIP Code';
             } else {
                 clip_string = '';

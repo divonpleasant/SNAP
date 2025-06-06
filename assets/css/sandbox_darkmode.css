@@ -5,17 +5,17 @@ Transition Guide (from default/main/light mode):
 #0f2db3 -> #8daac8 ... Zeiss Blue to Zeiss Light Blue (links, horizontal rules, arrows, buttons, misc ui elements)
 #ffffff -> #32373e ... White to Zeiss Dark Gray (page background)
 #ffffff -> #606a76 ... White to Zeiss Medium Gray (overlay background)
-#778592 -> #b4c0ca ... Zeiss Darkest Gray to Zeiss Light Gray (body text)
-#4e565f -> #dce3e9 ... Zeiss Medium Gray to Zeiss Lightest Gray (headers text, labels, select field options)
+#778592 -> #b4c0ca ... Zeiss Medium Gray to Zeiss Light Gray (body text, previous)
+#32373e -> #b4c0ca ... Zeiss Ultradark Gray to Zeiss Light Gray (body text, current)
+#4e565f -> #dce3e9 ... Zeiss Dark Gray to Zeiss Ultralight Gray (headers text, labels, select field options)
+#6ab0e2 -> #244a86 ... Zeiss Sky Blue to Zeiss Aqua (reference box)
 rgba(141, 170, 200, 0.75) -> rgba(220, 227, 233, 0.75) ... Pale Blue to Zeiss Medium Gray (form field backgrounds)
 
 */
 
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
-
-
-
+@import url(frutiger.css);
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -104,7 +104,8 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #b4c0ca;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family:"ZEISS-Frutiger", Helvetica, Arial, sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65; }
@@ -2318,6 +2319,7 @@ button,
       -ms-transition: color 0.2s ease-in-out;
       transition: color 0.2s ease-in-out;
       text-decoration: none;
+      font-family: "Roboto Slab", serif;
       -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
       position: relative; }
       #menu ul a.opener:before, #menu ul span.opener:before {
@@ -2719,6 +2721,7 @@ button,
     right: 15px;
     font-size: 34px;
 }
+
 #eos-overlay {
     position: fixed;
     top: 0;
@@ -2743,6 +2746,36 @@ button,
     text-align: center;
 }
 #eos-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+}
+
+#hidden-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#hidden-overlay-content {
+    background-color: #606a76;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+}
+#hidden-submit-button-align {
+    align-items: center;
+    text-align: center;
+}
+#hidden-close-overlay {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -2844,6 +2877,9 @@ button,
 .billing-field {
 }
 .billing-contact-field {
+}
+.fss-details {
+    display: none;
 }
 
 input.teamviewer-info-head {
@@ -3012,4 +3048,252 @@ input.teamviewer-info-head {
     bottom: 6px;
     left: 40px;
     z-index: 997;
+}
+
+#reference-box {
+    font-family:"ZEISS-Frutiger", Helvetica, Arial, sans-serif;
+    background: #244a86;
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    margin: 5px;
+    width: 80%;
+    max-height: 66%;
+    border-radius: 5px;
+    z-index: 996;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #244a86 #8daac8;
+    box-shadow: 5px 6px 5px #17191c;
+}
+#reference-box .close-x {
+    font: inherit;
+    position: fixed;
+    top: 30%;
+    left: 5px;
+    font-size: 34px;
+    color: #244a86;
+    width: 35px;
+}
+#reference-box h1, h2, h3, h4, h5, h6, p, span, div {
+    font-family:"ZEISS-Frutiger", Helvetica, Arial, sans-serif;
+}
+#reference-nav {
+    font: inherit;
+    font-color: #c6daf2;
+    /* background: #008bd0; */
+    background: #244a86;
+    position: fixed;
+    left: 81%;
+    top: 35%;
+    width: 15%;
+    height: 60%;
+    float: right;
+    padding: 15px;
+    border-style: solid;
+    /* border-color: #c6daf2; */
+    border-color: #8daac8;
+    border-width: 0 0 3px 0;
+    border-radius: 5px;
+    margin: 5px;
+    z-index: 997;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #244a86 #8daac8;
+    box-shadow: 5px 6px 5px #17191c;
+}
+#reference-nav ul {
+    margin-bottom: 0;
+}
+#reference-nav .expanded-nav
+}
+#reference-nav-controls {
+    border: 1px solid red;
+    position: absolute;
+    bottom: 0px;
+    width: 90%;
+    text-align: right;
+}
+#reference-contents {
+    font: inherit;
+    background: #244a86;
+    padding: 15px;
+    font-size: 1em;
+    width: 100%;
+    float: left;
+    min-height: 100%;
+    border-width: 0 1px 0 0;
+}
+.reference-main {
+    height: 100%;
+    min-height: 100%;
+    margin: 0 0 500;
+}
+
+#reference-contents h1 {
+    font-size: 2.25em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#reference-contents h2 {
+    font-family: "Roboto Slab", serif;
+    font-size: 1.95em;
+    font-weight: bold;
+    margin: 0 0 0.25em;
+}
+#reference-contents h3 {
+    font-family: "Roboto Slab", serif;
+    font-size: 1.85em;
+    font-weight: bold;
+    margin: 0 0 0.25em;
+}
+#reference-contents h4 {
+    font-family: "Roboto Slab", serif;
+    font-size: 1.55em;
+    font-weight: bold;
+    margin: 0 0 0.25em;
+}
+#reference-contents h5 {
+    font-family: "Roboto Slab", serif;
+    font-size: 1.35em;
+    font-weight: bold;
+    margin: 0 0 0.25em;
+}
+#reference-contents h6 {
+    font-family: "Roboto Slab", serif;
+    font-size: 1.15em;
+    font-weight: bold;
+    margin: 0 0 0.25em;
+}
+#reference-contents p {
+    margin: 0 0 0.75em;
+}
+#reference-contents div.section-break {
+    clear: both;
+}
+#reference-contents .img-r {
+    float: right;
+    margin-left: 10px;
+}
+#reference-contents .img-r img {
+    display: block;
+    margin-left: auto;
+}
+#reference-contents .img-l {
+    float: left;
+    margin-right: 10px;
+}
+#reference-contents .img-l img {
+    display: block;
+    margin-right: auto;
+}
+#reference-contents .img-c img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 99%;
+}
+#reference-contents .caption {
+    clear: right;
+    text-align: right;
+    font-size: 0.75em;
+    display: block;
+    margin: 1px 1em 2em;
+    font-style: italic;
+}
+#reference-contents .caption-l {
+    text-align: left;
+    font-size: 0.75em;
+    display: block;
+    margin: 1px 0 2em 2px;
+    font-style: italic;
+}
+#reference-contents td.middle {
+    vertical-align: middle
+}
+#reference-contents .status-cell {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+#reference-contents div.green-status {
+    border: 1px solid black;
+    /*box-shadow: 0 3px 3px 0 #8daac8;*/
+    background-color: green;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+}
+#reference-contents div.yellow-status {
+    border: 1px solid black;
+    background-color: yellow;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+}
+#reference-contents div.red-status {
+    border: 1px solid black;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+}
+#reference-contents code {
+    font-family: "Andale Mono", AndaleMono, monospace;
+    background-color: #32373e;
+    color: #fff;
+}
+
+.field-menu-toggle {
+    font-size: 1.2em;
+}
+.field-menu-toggle a {
+    border: 0;
+    text-decoration: none;
+}
+.field-menu {
+    display: none;
+    position: absolute;
+    max-width: 40%;
+    max-height: 400px;
+}
+.field-menu-contents {
+    padding: 10px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #244a86 #8daac8;
+    background-color: #4c6bb1;
+    z-index: 995;
+    border-radius: 5px;
+}
+.field-menu ul li {
+    font-family: 'ZEISS-Frutiger';
+    color: #8daac8;
+    list-style: none;
+    border: 1px solid #8daac8;
+    border-radius: 5px;
+    background-color: #244a86;
+    padding: 4px 6px;
+    margin: 0 0 2px -10px;
+}
+.field-menu ul li a {
+    cursor: pointer;
+    border: none;
+}
+.field-menu-tail {
+    color: #4c6bb1;
+    position: absolute;
+    top: -10px;
+    right: 25px;
+    z-index: 994;
 }

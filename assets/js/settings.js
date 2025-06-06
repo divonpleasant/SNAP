@@ -13,6 +13,8 @@ function settingsOverlay(event) {
     document.getElementById('dark-mode').checked = so.Settings.ui.dark_mode.value;
     document.getElementById('sign-email').checked = so.Settings.user.sign_email.value;
     document.getElementById('debug-level').getElementsByTagName('option')[so.Settings.debug.level.value].selected = true;
+    document.getElementById('fse-sla').value = so.Settings.process.fse_sla.value;
+    document.getElementById('pm-sla').value = so.Settings.process.fse_pm_sla.value;
 
     document.getElementById('settings-overlay').style.display = 'flex';
 }
@@ -28,6 +30,8 @@ function processSettings(event) {
     var user_set_darkModeSttng = document.getElementById('dark-mode').checked;
     var user_set_signEmailSttng = document.getElementById('sign-email').checked;
     var user_set_debugLvlSttng = document.getElementById('debug-level').value;
+    var user_set_fseSlaBreakFix = document.getElementById('fse-sla').value;
+    var user_set_fseSlaPM = document.getElementById('pm-sla').value;
     debugmsg(5, 'user_set_alrtCpySttng: ' + user_set_alrtCpySttng);
     debugmsg(5, 'user_set_alrtXcSttng: ' + user_set_alrtXcSttng);
     debugmsg(5, 'user_set_copyCrmDescrSttng: ' + user_set_copyCrmDescrSttng);
@@ -41,6 +45,8 @@ function processSettings(event) {
     setCookie('signEmail', user_set_signEmailSttng, 365);
     setCookie('debugMode', user_set_debugSttng, 365);
     setCookie('debugLevel', user_set_debugLvlSttng, 365);
+    setCookie('fseSlaBreakFix', user_set_fseSlaBreakFix, 365);
+    setCookie('fseSlaPM', user_set_fseSlaPM, 365);
     
     debugmsg(5, 'Cookie check: ' + document.cookie);
     

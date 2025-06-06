@@ -49,28 +49,27 @@ SNAP uses a variant of semantic versioning (see [semver.org](https://semver.org/
 #### Version History and Roadmap
 
 ##### Current & In-Development
-- MINOR Version 3.3.X - Development milestone for post-release enhancements.
-- MINOR Version 3.2.X - Beta release version. Initial deployment.
-- MINOR Version 3.1.X - Data models and deployment testing.
+- PATCH Versions 3.1.3+ - Integrating beta user feedback, expanding process/reference data.
 
 ##### Roadmap
-- MINOR Version 3.4.X - Development milestone integrating wider user feedback.
-- MAJOR Version 4.0.X - Stable release.
-- MAJOR Version 5.0.X - SAP/CRM API-integrated release.
+- MINOR Version 3.2.0 - Initial deployment to hosted server.
+- MINOR Version 3.3.0 - Development milestone for process/reference data vetting.
+- MAJOR Version 4.0.0 - Stable release.
+- MAJOR Version 5.0.0 - SAP/CRM API-integrated release.
 
 ##### History
-- MINOR Version 3.0.X - Expanding featureset.
-- MAJOR Version 3.X.X - Code opened for collaboration.
-- MAJOR Version 2.X.X - Alpha version following presentation to stakeholders.
-- MAJOR Version 1.X.X - Initial development version.
-
+- MAJOR Version 1.0.0 - Initial development version.
+- MAJOR Version 2.0.0 - Alpha version following presentation to stakeholders.
+- MAJOR Version 3.0.0 - Code opened for collaboration.
+- PATCH Versions 3.0.1+ - Expanding featureset.
+- MINOR Version 3.1.0 - Data models release.
+- PATCH Version 3.1.2 - Beta release version.
 
 ## Contacts and Contributors
 ### Author
 Divon Pleasant (divon.pleasant@zeiss.com)
 
 ### Data/Verbiage Contributors
-- Andrew Yu (andrew.yu@zeiss.com)
 - Natasha French (natasha.french@zeiss.com)
 
 ### Code Contributors
@@ -78,5 +77,6 @@ Divon Pleasant (divon.pleasant@zeiss.com)
 
 ### Consulting Contributors
 - Calvin Carter (calvin.carter@zeiss.com)
+- Andrew Yu (andrew.yu@zeiss.com)
 
 Please help make SNAP better by sending bug reports and feature requests to us on [GitHub](https://github.com/divonpleasant/SNAP/issues)!

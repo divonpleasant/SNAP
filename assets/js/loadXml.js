@@ -3,17 +3,20 @@ function readFile(event) {
     var parser = new DOMParser();
     var xmlDoc = parser.parseFromString(event.target.result, 'text/xml');
     populateData(form, xmlDoc);
+    console.debug({event});
 }
 
+var loadedFile = '';
 function changeFile() {
     var file = document.getElementById('upload').files[0];
-    debugmsg(5, 'file: ' + JSON.stringify(file));
+    loadedFile = file;
+    console.debug('file: ' + JSON.stringify(file));
     var reader = new FileReader();
     reader.addEventListener('load', readFile);
-    debugmsg(5, 'file typecheck: ' + typeof(file));
+    console.debug('file typecheck: ' + typeof(file));
     reader.readAsText(file);
     reader.onload = function() {
-        debugmsg(5, 'reader.result: ' + reader.result);
+        (so.Settings.debug.level >= 5) ? console.debug('reader.result: ' + reader.result) : '';
     };
 }
 
@@ -39,6 +42,7 @@ function populateData(form, xmlDom) {
                 (map[input.name]) ? input.dispatchEvent(change_event) : '';
             }
         }
+        updateSystemBox('Successfully imported ' + loadedFile.name);
     } catch (e) {
         console.error(e);
     }

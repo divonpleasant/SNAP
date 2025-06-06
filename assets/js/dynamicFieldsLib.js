@@ -322,7 +322,7 @@ function checkSupportEndDateAndStatus(instr_obj) {
         if (m !== 'serial' && m !== 'meta') {
             if (instr_obj[m].eos_date !== '') {
                 var set_eos_date = new Date(instr_obj[m].eos_date);
-                //console.log(`Checking ${set_eos_date.getTime()} (EoS date) is less than ${curr_date.getTime()} (current date)...`);
+                // console.debug(`Checking ${set_eos_date.getTime()} (EoS date) is less than ${curr_date.getTime()} (current date)...`);
                 if (set_eos_date.getTime() >= curr_date.getTime()) {
                     if (!instr_obj[m].supported) {
                         console.warn(`Note: The 'supported' boolean for ${instr_obj[m].full_name} is false, but the configured End of Service date (${instr_obj[m].eos_date}) has not yet passed. Verify if supported value should be updated in productData.js`);
@@ -339,7 +339,7 @@ function checkSupportEndDateAndStatus(instr_obj) {
 
 function populateInstrumentField(i_list, is_hardware = true) {
     for (i in i_list) {
-        debugmsg(5, 'i_list[' + i + ']: ' + JSON.stringify(i_list[i]));
+        // console.debug('i_list[' + i + ']: ' + JSON.stringify(i_list[i]));
         (is_hardware) ? checkSupportEndDateAndStatus(i_list[i].models) : '';
         document.getElementById('instrument').add(new Option(i_list[i].product.short_name, i_list[i].product.short_name, document.getElementById('instrument').options[document.getElementById('instrument').length - 1]));
         document.querySelectorAll('#instrument option')[document.getElementById('instrument').length - 1].id = i_list[i].product.identifier;
@@ -353,26 +353,25 @@ debugmsg(5, 'Starting selected element: ' + document.getElementById('instrument'
 // First, populate the field
 var instruments_list_obj = retrieveDataSet('instruments', products.pdata, false);
 var software_list_obj = retrieveDataSet('software', products.pdata, false);
-debugmsg(5, 'instruments_list_obj: ' + JSON.stringify(instruments_list_obj));
-debugmsg(5, 'software_list_obj: ' + JSON.stringify(software_list_obj));
 let active_instruments = {};
 let inactive_instruments = {};
 let active_software = {};
 for (inst in instruments_list_obj) {
-    debugmsg(5, 'instruments_list_obj[' + inst + ']: ' + JSON.stringify(instruments_list_obj[inst]));
+    // console.debug('instruments_list_obj[' + inst + ']: ' + JSON.stringify(instruments_list_obj[inst]));
     (instruments_list_obj[inst].support.active_models) ? active_instruments[inst] = instruments_list_obj[inst] : inactive_instruments[inst] = instruments_list_obj[inst];
 }
 for (sw in software_list_obj) {
-    debugmsg(5, 'software_list_obj[' + sw + ']: ' + JSON.stringify(software_list_obj[sw]));
+    // console.debug('software_list_obj[' + sw + ']: ' + JSON.stringify(software_list_obj[sw]));
     (software_list_obj[sw].support.active_items) ? active_software[sw] = software_list_obj[sw] : '';
 }
-debugmsg(5, 'active_instruments: ' + JSON.stringify(active_instruments));
-debugmsg(5, 'inactive_instruments: ' + JSON.stringify(inactive_instruments));
-debugmsg(5, 'active_software: ' + JSON.stringify(active_software));
+/*
+console.debug('active_instruments: ' + JSON.stringify(active_instruments));
+console.debug('inactive_instruments: ' + JSON.stringify(inactive_instruments));
+console.debug('active_software: ' + JSON.stringify(active_software));
+*/
 populateInstrumentField(active_instruments);
 populateInstrumentField(active_software, false);
 document.getElementById('instrument').add(new Option('– Unsupported –', ''));
-//console.log(document.getElementById('instrument').options[document.getElementById('instrument').length - 1]);
 document.getElementById('instrument').options[document.getElementById('instrument').length - 1].style.cssText = 'font-style: italic';
 populateInstrumentField(inactive_instruments);
 
@@ -387,15 +386,15 @@ document.getElementById('instrument').addEventListener('change', function() {
     document.querySelector('#forum-checkbox').style.display = 'block';
     // change form field visibility based on selection
     var tooltip = generateTooltipText(selected_inst_id);
-    debugmsg(4, 'tooltip: ' + tooltip);
+    console.debug({tooltip});
     fetchAndAdjustSerialTooltip(tooltip);
     var model_data = {};
     if (typeof products.pdata.instruments[selected_inst_id] === 'undefined') {
-        debugmsg(4, 'Cannot find index ' + selected_inst_id + ' in products list, checking if product is software...');
+        console.debug('Cannot find index ' + selected_inst_id + ' in products list, checking if product is software...');
         if (typeof products.pdata.software[selected_inst_id] === 'undefined') {
-            debugmsg(1, 'ERROR: instrument and software index both undefined, cannot populate Model/Version field');
+            console.error('ERROR: instrument and software index both undefined, cannot populate Model/Version field');
         } else {
-            debugmsg(5, 'products.pdata.software[' + selected_inst_id + ']: ' + products.pdata.software[selected_inst_id]);
+            console.debug('products.pdata.software[' + selected_inst_id + ']: ' + products.pdata.software[selected_inst_id]);
             model_data = retrieveDataSet('versions', products.pdata.software[selected_inst_id]);
         }
     } else {
@@ -403,9 +402,7 @@ document.getElementById('instrument').addEventListener('change', function() {
     }
     var eos_filtered_data = filterOnKey(model_data, 'supported', true);
     var unsupported_data = filterOnKey(model_data, 'supported', false);
-    debugmsg(5, 'eos_filtered_data: ' + JSON.stringify(eos_filtered_data));
     delete unsupported_data['serial'];
-    debugmsg(5, 'unsupported_data: ' + JSON.stringify(unsupported_data));
     if (Object.keys(unsupported_data).length > 0) {
         populateSelectField('model', unsupported_data, 'full_name', 'full_name', true, 'model_number');
         document.getElementById('model').add(new Option("– Unsupported –", ''), document.getElementById('model').options[1]);
@@ -414,6 +411,7 @@ document.getElementById('instrument').addEventListener('change', function() {
     }
     populateSelectField('model', eos_filtered_data, 'full_name', 'full_name', clear_field, 'model_number');
     fetchAndRevealDynamicFields(selected_inst_id);
+    updateReferenceBoxContents('instrument');
 }, false);
 
 // Handle model select field
@@ -467,6 +465,135 @@ archive_select.addEventListener('change', function() {
             break;
     }
 }, false);
+
+function addHoursToDate(date, hours) {
+    return new Date(date.getTime() + hours * 3600000);
+}
+
+function mapZipCodeToTimeZone(zip) {
+    if (zip === '' || typeof zip === 'undefined' || zip === false) {
+        return false;
+    }
+    let ac = new generateTimeZoneData();
+    var tzones = Object.keys(ac.tz);
+    console.debug(JSON.stringify(tzones));
+    var cust_tzone = '';
+    for (var z = 0; z < tzones.length; z++) {
+        if (ac.tz[tzones[z]].zipcodes.includes(zip)) {
+            console.log('Customer Time Zone is: ' + ac.tz[tzones[z]].id);
+            cust_tzone = ac.tz[tzones[z]].id;
+            break;
+        } else {
+            console.debug('Zip Code ' + zip + ' is not in ' + ac.tz[tzones[z]].name);
+        }
+    }
+    console.debug({cust_tzone});
+    return (cust_tzone !== '') ? cust_tzone : false;
+}
+
+function checkEndOfBusiness(date, ctz) {
+    console.debug('Executing checkEndOfBusiness...');
+    console.debug({date});
+    console.debug({ctz});
+    var adjusted_day = date.getDay().toLocaleString('en-US', { timeZone: ctz });
+    console.debug({adjusted_day});
+    if (adjusted_day === '6' || adjusted_day === '0') {
+        return 'weekend';
+    } else {
+        var adjusted_time = date.getHours().toLocaleString('en-US', { timeZone: ctz, hour12: false, timeStyle: 'short' });
+        console.debug({adjusted_time});
+        var remaining_sla_time = 17 - adjusted_time;
+        console.debug({remaining_sla_time});
+        return (remaining_sla_time <= 0) ? 'eob:' + Math.abs(remaining_sla_time) : false;
+    }
+}
+
+function roundFifteenMinutes(m, h) {
+    console.debug('Executing roundFifteenMinutes...');
+    min = (((m + 7.5)/15 | 0) * 15) % 60;
+    hrs = (((m/105 + .5) | 0) + h) % 24;
+    return hrs + ":" + min;
+}
+
+// Handle FSS select field
+document.getElementById('fss-name').addEventListener('change', function() {
+    console.debug('Handling eventListener for fss-name change event...');
+    var selected_fss = document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value;
+    console.debug('selected_fss: ' + selected_fss);
+    const personnel = new generatePersonnelData();
+    var fss_data = personnel.people.fss[selected_fss];
+    console.debug(JSON.stringify(fss_data));
+    var fss_contact_string = fss_data.name + ' (' + fss_data.email + ')';
+    console.debug({fss_contact_string});
+    var customer_time_zone = mapZipCodeToTimeZone(calculateZipCode());
+    console.debug({customer_time_zone});
+    d = new Date();
+    // determine sla to use
+    var sla = (document.getElementById('is_pm').checked) ? so.Settings.process.fse_pm_sla.value : so.Settings.process.fse_sla.value;
+    console.debug({sla});
+    var sla_date = addHoursToDate(d, sla);
+    console.debug({sla_date});
+    console.debug(sla_date.toLocaleString('en-US', { timeZone: customer_time_zone }));
+    var fss_context = [];
+    var eob_status = checkEndOfBusiness(sla_date, customer_time_zone);
+    console.debug({eob_status});
+    if (eob_status === false) {
+        console.log('SLA is within normal business hours');
+        cutoff_time = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
+        console.debug({cutoff_time});
+        fss_context.push(cutoff_time + ' today');
+    } else if (eob_status.match(/^eob/)) {
+        console.log('SLA is past EOB');
+        var eob_results = eob_status.split(':');
+        var sla_overrun = (parseInt(eob_results[1]) + 8); // Assuming the average clinic opening hour is 8:00 am
+        console.debug({sla_overrun});
+        fss_context.push(sla_overrun + ':00 tomorrow');
+    } else if (eob_status === 'weekend') {
+        console.log('SLA is past EOB and extends into weekend');
+        fss_context.push('10:00 Monday'); // Setting a reasonable post-weekend window
+    } else {
+        console.error('checkEndOfBusiness function returned a non-valid result: ' + eob_status);
+    }
+    for (let fc = 0; fc < fss_context.length; fc++) {
+        console.debug(fss_context[fc]);
+    }
+    fss_context.push(fss_contact_string);
+    const fsst = new generateTemplates(fss_context);
+    var cust_note_fss_text = fsst.templates.system.customer_notes.fss_contact;
+    console.debug({cust_note_fss_text});
+    var cn_sep = (document.getElementById('customer-notes').value === '') ? '' : "\n";
+    console.debug({cn_sep});
+    var final_fss_str = cn_sep + cust_note_fss_text;
+    console.debug({final_fss_str});
+    document.getElementById('customer-notes').value += final_fss_str;
+});
+
+function toggleFieldMenu(menu) {
+    var current_display = document.getElementById(menu).style.display;
+    console.debug({current_display});
+    document.getElementById(menu).style.display = (current_display === 'none' || current_display === '') ? 'flex' : 'none';
+}
+
+function commonActionToField(a_id, field) {
+    var action_data = (a_id === '0000') ? '' : document.getElementById(a_id).innerHTML;
+    console.debug({action_data});
+    //var line_break = (document.getElementById(field).value === '') ? '' : "\n"
+    var line_break = "\n";
+    document.getElementById(field).value += line_break + "  • " + action_data;
+}
+
+function expandNav() {
+    console.debug('Executing expandNav...');
+    if (document.getElementById('toggle-exp-nav').innerHTML === 'Expand') {
+        document.querySelectorAll('.expanded-nav').forEach(a=>a.style.display = 'block');
+        document.getElementById('toggle-exp-nav').innerHTML = 'Collapse';
+    } else if (document.getElementById('toggle-exp-nav').innerHTML === 'Collapse') {
+        document.querySelectorAll('.expanded-nav').forEach(a=>a.style.display = 'none');
+        document.getElementById('toggle-exp-nav').innerHTML = 'Expand';
+    } else {
+        console.warn('expandNav :: Unexpected condition reached, please report this to the admins');
+    }
+}
 
 addToggle('add-forum', 'forum');
 addToggle('remote-support', 'remote-support');
