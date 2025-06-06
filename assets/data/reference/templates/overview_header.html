@@ -1,0 +1,16 @@
+<script>
+    var on_link = products.pdata.instruments[document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id].support.onenote_link;
+    var on_title = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value;
+</script>
+<table>
+    <thead>
+        <tr>
+            <th>OneNote Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a href="" onclick="location.href=on_link;return false;" target="_blank">OneNote</a></td> <!--FIX LINK NAME AND WINDOW TARGET-->
+        </tr>
+    </tbody>
+</table>

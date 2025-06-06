@@ -322,7 +322,7 @@ function checkSupportEndDateAndStatus(instr_obj) {
         if (m !== 'serial' && m !== 'meta') {
             if (instr_obj[m].eos_date !== '') {
                 var set_eos_date = new Date(instr_obj[m].eos_date);
-                //console.log(`Checking ${set_eos_date.getTime()} (EoS date) is less than ${curr_date.getTime()} (current date)...`);
+                // console.debug(`Checking ${set_eos_date.getTime()} (EoS date) is less than ${curr_date.getTime()} (current date)...`);
                 if (set_eos_date.getTime() >= curr_date.getTime()) {
                     if (!instr_obj[m].supported) {
                         console.warn(`Note: The 'supported' boolean for ${instr_obj[m].full_name} is false, but the configured End of Service date (${instr_obj[m].eos_date}) has not yet passed. Verify if supported value should be updated in productData.js`);
@@ -339,7 +339,7 @@ function checkSupportEndDateAndStatus(instr_obj) {
 
 function populateInstrumentField(i_list, is_hardware = true) {
     for (i in i_list) {
-        debugmsg(5, 'i_list[' + i + ']: ' + JSON.stringify(i_list[i]));
+        // console.debug('i_list[' + i + ']: ' + JSON.stringify(i_list[i]));
         (is_hardware) ? checkSupportEndDateAndStatus(i_list[i].models) : '';
         document.getElementById('instrument').add(new Option(i_list[i].product.short_name, i_list[i].product.short_name, document.getElementById('instrument').options[document.getElementById('instrument').length - 1]));
         document.querySelectorAll('#instrument option')[document.getElementById('instrument').length - 1].id = i_list[i].product.identifier;
@@ -353,26 +353,25 @@ debugmsg(5, 'Starting selected element: ' + document.getElementById('instrument'
 // First, populate the field
 var instruments_list_obj = retrieveDataSet('instruments', products.pdata, false);
 var software_list_obj = retrieveDataSet('software', products.pdata, false);
-debugmsg(5, 'instruments_list_obj: ' + JSON.stringify(instruments_list_obj));
-debugmsg(5, 'software_list_obj: ' + JSON.stringify(software_list_obj));
 let active_instruments = {};
 let inactive_instruments = {};
 let active_software = {};
 for (inst in instruments_list_obj) {
-    debugmsg(5, 'instruments_list_obj[' + inst + ']: ' + JSON.stringify(instruments_list_obj[inst]));
+    // console.debug('instruments_list_obj[' + inst + ']: ' + JSON.stringify(instruments_list_obj[inst]));
     (instruments_list_obj[inst].support.active_models) ? active_instruments[inst] = instruments_list_obj[inst] : inactive_instruments[inst] = instruments_list_obj[inst];
 }
 for (sw in software_list_obj) {
-    debugmsg(5, 'software_list_obj[' + sw + ']: ' + JSON.stringify(software_list_obj[sw]));
+    // console.debug('software_list_obj[' + sw + ']: ' + JSON.stringify(software_list_obj[sw]));
     (software_list_obj[sw].support.active_items) ? active_software[sw] = software_list_obj[sw] : '';
 }
-debugmsg(5, 'active_instruments: ' + JSON.stringify(active_instruments));
-debugmsg(5, 'inactive_instruments: ' + JSON.stringify(inactive_instruments));
-debugmsg(5, 'active_software: ' + JSON.stringify(active_software));
+/*
+console.debug('active_instruments: ' + JSON.stringify(active_instruments));
+console.debug('inactive_instruments: ' + JSON.stringify(inactive_instruments));
+console.debug('active_software: ' + JSON.stringify(active_software));
+*/
 populateInstrumentField(active_instruments);
 populateInstrumentField(active_software, false);
 document.getElementById('instrument').add(new Option('– Unsupported –', ''));
-//console.log(document.getElementById('instrument').options[document.getElementById('instrument').length - 1]);
 document.getElementById('instrument').options[document.getElementById('instrument').length - 1].style.cssText = 'font-style: italic';
 populateInstrumentField(inactive_instruments);
 
@@ -387,15 +386,15 @@ document.getElementById('instrument').addEventListener('change', function() {
     document.querySelector('#forum-checkbox').style.display = 'block';
     // change form field visibility based on selection
     var tooltip = generateTooltipText(selected_inst_id);
-    debugmsg(4, 'tooltip: ' + tooltip);
+    console.debug({tooltip});
     fetchAndAdjustSerialTooltip(tooltip);
     var model_data = {};
     if (typeof products.pdata.instruments[selected_inst_id] === 'undefined') {
-        debugmsg(4, 'Cannot find index ' + selected_inst_id + ' in products list, checking if product is software...');
+        console.debug('Cannot find index ' + selected_inst_id + ' in products list, checking if product is software...');
         if (typeof products.pdata.software[selected_inst_id] === 'undefined') {
-            debugmsg(1, 'ERROR: instrument and software index both undefined, cannot populate Model/Version field');
+            console.error('ERROR: instrument and software index both undefined, cannot populate Model/Version field');
         } else {
-            debugmsg(5, 'products.pdata.software[' + selected_inst_id + ']: ' + products.pdata.software[selected_inst_id]);
+            console.debug('products.pdata.software[' + selected_inst_id + ']: ' + products.pdata.software[selected_inst_id]);
             model_data = retrieveDataSet('versions', products.pdata.software[selected_inst_id]);
         }
     } else {
@@ -403,9 +402,7 @@ document.getElementById('instrument').addEventListener('change', function() {
     }
     var eos_filtered_data = filterOnKey(model_data, 'supported', true);
     var unsupported_data = filterOnKey(model_data, 'supported', false);
-    debugmsg(5, 'eos_filtered_data: ' + JSON.stringify(eos_filtered_data));
     delete unsupported_data['serial'];
-    debugmsg(5, 'unsupported_data: ' + JSON.stringify(unsupported_data));
     if (Object.keys(unsupported_data).length > 0) {
         populateSelectField('model', unsupported_data, 'full_name', 'full_name', true, 'model_number');
         document.getElementById('model').add(new Option("– Unsupported –", ''), document.getElementById('model').options[1]);

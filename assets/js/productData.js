@@ -29,7 +29,7 @@
     (or sub) revision level whenever making a modification to an existing or 
     established data item (provided that modification is committed to the 
     source repository). Whenever a new (in-schema) data item is added or 
-    removed, the minor revision number should be iterated.
+    removed (or moved), the minor revision number should be iterated.
     The major version should only be iterated whenever a release version of 
     the software is packaged, and/or the data has been given a vetting pass by 
     a designated data handler.
@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.1.6",
+        "data_version": "1.2.6",
         "schema_version": "8.1",
         "eos_primary_reference": "https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html",
         "instruments": {
@@ -123,7 +123,7 @@ function generateProductData() {
                     "name": "Acuitus",
                     "short_name": "Acuitus",
                     "identifier": "acuitus",
-                    "class": "Auto-Refractor Keratometer",
+                    "class": "Auto-Refractor",
                     "description": "",
                     "url": "",
                     "modality": "AR"
@@ -679,7 +679,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "No serial number information available yet.",
+                        "format": "",
                         "example": "",
                         "software_location": "",
                         "hardware_location": "",
@@ -875,8 +875,8 @@ function generateProductData() {
             },
             "gdx": {
                 "product": {
-                    "name": "GDx",
-                    "short_name": "GDx",
+                    "name": "GDX",
+                    "short_name": "GDX",
                     "identifier": "gdx",
                     "class": "",
                     "description": "",
@@ -903,11 +903,17 @@ function generateProductData() {
                         "prefix_format": "GDX",
                         "sequence_format": "4+ digits"
                     },
-                    "vcc": {
+                    "gdx": {
                         "model_serials": {},
-                        "subsets": {},
-                        "model_number": "VCC",
-                        "full_name": "GDX VCC",
+                        "subsets": {
+                            "vcc": {
+                                "label": "VCC",
+                                "designation": "ADD-ON",
+                                "designation_description": "Variable Corneal Compensator"
+                            }
+                        },
+                        "model_number": "GDX",
+                        "full_name": "GDX",
                         "launch_date": "",
                         "supported": false,
                         "required_escalation": false,
@@ -916,18 +922,18 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["8801"]
-                    },
+                    }
                 }
             },
             "hark": {
                 "product": {
-                    "name": "Hark",
-                    "short_name": "Hark",
+                    "name": "Humphrey Auto-Refractor and Keratometer",
+                    "short_name": "HARK",
                     "identifier": "hark",
                     "class": "",
-                    "description": "",
+                    "description": "Auto-Refractor and Keratometer acquired from Humphrey",
                     "url": "",
-                    "modality": ""
+                    "modality": "AR"
                 },
                 "support": {
                     "active_models": false,
@@ -982,7 +988,7 @@ function generateProductData() {
                 "support": {
                     "active_models": true,
                     "team": "perimetry",
-                    "onenote_link": ""
+                    "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28HFA3%20ALL%20MODELS.one%7C41994B2F-AC33-4B1C-AAED-181045CC14C4%2F%29"
                 },
                 "models": {
                     "meta": {
@@ -1198,7 +1204,7 @@ function generateProductData() {
                 "support": {
                     "active_models": true,
                     "team": "refractive",
-                    "onenote_link": ""
+                    "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28IOLMASTER%20700.one%7C9D82B692-F67F-4FE4-ACC7-BE726F16E193%2F%29"
                 },
                 "models": {
                     "meta": {
@@ -1275,38 +1281,6 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["9208"]
-                    }
-                }
-            },
-            "iort": {
-                "product": {
-                    "name": "IORT",
-                    "short_name": "IORT",
-                    "identifier": "iort",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": ""
-                },
-                "support": {
-                    "active_models": false,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "alpha",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
                     }
                 }
             },
@@ -1412,39 +1386,6 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["6409"]
-                    }
-                }
-            },
-            "lensometer": {
-                "product": {
-                    "name": "Lensometer",
-                    "short_name": "Lensometer",
-                    "identifier": "lensometer",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": "",
-                    "instrument_codes": []
-                },
-                "support": {
-                    "active_models": false,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "alpha",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
                     }
                 }
             },
@@ -1629,7 +1570,7 @@ function generateProductData() {
                         },
                         "subsets": {},
                         "model_number": "715",
-                        "full_name": "Matrix FDT 715",
+                        "full_name": "Matrix 715",
                         "launch_date": "",
                         "supported": false,
                         "required_escalation": false,
@@ -1819,82 +1760,6 @@ function generateProductData() {
                         "model_url": "",
                         "instrument_codes": []
                     },
-                    "lumera300": {
-                        "model_serials": {
-                            "format": "6137<sequence>",
-                            "example": "6137101234",
-                            "prefix_format": "6137",
-                            "sequence_format": "6+ digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Lumera 300",
-                        "full_name": "OPMI Lumera 300",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6137"]
-                    },
-                    "lumerai": {
-                        "model_serials": {
-                            "format": "6633<sequence>",
-                            "example": "6633123456",
-                            "prefix_format": "6633",
-                            "sequence_format": "6+ digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Lumera i",
-                        "full_name": "OPMI Lumera i",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6216"]
-                    },
-                    "lumerat": {
-                        "model_serials": {
-                            "format": "6215<sequence>",
-                            "example": "6215123456",
-                            "prefix_format": "6215",
-                            "sequence_format": "6+ digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Lumera T",
-                        "full_name": "OPMI Lumera T",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6215"]
-                    },
-                    "lumera700": {
-                        "model_serials": {
-                            "format": "6634<sequence>",
-                            "example": "6634101234",
-                            "prefix_format": "6634",
-                            "sequence_format": "6+ digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Lumera 700",
-                        "full_name": "OPMI Lumera 700",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6217", "7210"]
-                    },
                     "neuro": {
                         "model_serials": {},
                         "subsets": {},
@@ -1908,101 +1773,6 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["6202"]
-                    },
-                    "pico": {
-                        "model_serials": {
-                            "format": "6<sequence>",
-                            "example": "6123456789",
-                            "prefix_format": "6",
-                            "sequence_format": "9 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Pico",
-                        "full_name": "OPMI Pico",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6030"]
-                    },
-                    "pentero": {
-                        "model_serials": {
-                            "format": "4<sequence>",
-                            "example": "412345",
-                            "prefix_format": "4",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Pentero",
-                        "full_name": "OPMI Pentero Complete",
-                        "launch_date": "",
-                        "supported": false,
-                        "required_escalation": false,
-                        "eos_date": "09-01-2016",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6211"]
-                    },
-                    "pentero800": {
-                        "model_serials": {
-                            "format": "66417<sequence>",
-                            "example": "6641712345",
-                            "prefix_format": "66417",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Pentero 800",
-                        "full_name": "OPMI Pentero 800",
-                        "launch_date": "",
-                        "supported": false,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6222"]
-                    },
-                    "pentero800s": {
-                        "model_serials": {
-                            "format": "6410<sequence>",
-                            "example": "6410123456",
-                            "prefix_format": "6410",
-                            "sequence_format": "6 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Pentero 800 S",
-                        "full_name": "Pentero 800 S",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6410"]
-                    },
-                    "pentero900": {
-                        "model_serials": {
-                            "format": "6637<sequence>",
-                            "example": "6637123456",
-                            "prefix_format": "6637",
-                            "sequence_format": "6 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Pentero 900",
-                        "full_name": "Pentero 900",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["6219"]
                     },
                     "sensera": {
                         "model_serials": {},
@@ -2209,7 +1979,7 @@ function generateProductData() {
                 "support": {
                     "active_models": true,
                     "team": "",
-                    "onenote_link": ""
+                    "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28PLEX%20ELITE.one%7CAA7BC3EE-23B6-42DB-B5E5-A61A27EEDF53%2F%29"
                 },
                 "models": {
                     "meta": {
@@ -2297,39 +2067,6 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["6407"]
-                    }
-                }
-            },
-            "quietist": {
-                "product": {
-                    "name": "Quietist",
-                    "short_name": "Quietist",
-                    "identifier": "quietist",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": "",
-                    "instrument_codes": []
-                },
-                "support": {
-                    "active_models": false,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "alpha",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
                     }
                 }
             },
@@ -2668,7 +2405,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "oct",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2719,7 +2456,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2753,38 +2490,6 @@ function generateProductData() {
                     }
                 }
             },
-            "tonometer": {
-                "product": {
-                    "name": "Tonometer",
-                    "short_name": "Tonometer",
-                    "identifier": "tonometer",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": ""
-                },
-                "support": {
-                    "active_models": false,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "alpha",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
-                    }
-                }
-            },
             "trion": {
                 "product": {
                     "name": "VISULAS Trion",
@@ -2797,7 +2502,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2831,38 +2536,6 @@ function generateProductData() {
                     }
                 }
             },
-            "vcc": {
-                "product": {
-                    "name": "VCC",
-                    "short_name": "VCC",
-                    "identifier": "vcc",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": ""
-                },
-                "support": {
-                    "active_models": false,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "alpha",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
-                    }
-                }
-            },
             "visante": {
                 "product": {
                     "name": "Visante",
@@ -2876,7 +2549,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "oct",
                     "onenote_link": ""
                 },
                 "models": {
@@ -3050,13 +2723,12 @@ function generateProductData() {
                     "class": "",
                     "description": "",
                     "url": "",
-                    "modality": "",
-                    "instrument_codes": ["9148", "9149"]
+                    "modality": ""
                 },
                 "support": {
                     "active_models": true,
                     "team": "",
-                    "onenote_link": ""
+                    "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28YAG%20-%20LASERS%20ALL%20MODELS.one%7C58705FD2-9FFA-4C5C-9B84-2C6C8E71E107%2F%29"
                 },
                 "models": {
                     "meta": {
@@ -3342,134 +3014,6 @@ function generateProductData() {
                     }
                 }
             },
-            "visupac": {
-                "product": {
-                    "name": "VISUPAC",
-                    "short_name": "VisuPac",
-                    "identifier": "visupac",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": "XC",
-                    "instrument_codes": []
-                },
-                "support": {
-                    "active_models": true,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "numeric",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
-                    },
-                    "431": {
-                        "model_serials": {
-                            "format": "9750<sequence>",
-                            "example": "975012345",
-                            "prefix_format": "9750",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "431",
-                        "full_name": "VisuPac 431",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9402"]
-                    },
-                    "450": {
-                        "model_serials": {
-                            "format": "[79,80]<sequence>",
-                            "example": "791234",
-                            "prefix_format": "",
-                            "sequence_format": "4 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "450",
-                        "full_name": "VisuPac 450",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9403"]
-                    },
-                    "451": {
-                        "model_serials": {
-                            "format": "975<sequence>",
-                            "example": "97512345",
-                            "prefix_format": "975",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "451",
-                        "full_name": "VisuPac 451HR",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9403"]
-                    },
-                    "471": {
-                        "model_serials": {
-                            "format": "9750<sequence>",
-                            "example": "97501234",
-                            "prefix_format": "9750",
-                            "sequence_format": "4 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "471",
-                        "full_name": "VisuPac 471",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9404"]
-                    },
-                    "481": {
-                        "model_serials": {
-                            "format": "[9,10]<sequence>",
-                            "example": "1012345",
-                            "prefix_format": "",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "481",
-                        "full_name": "VisuPac 481",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": false,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9405"]
-                    }
-                }
-            },
             "visuref": {
                 "product": {
                     "name": "VISUREF",
@@ -3478,8 +3022,7 @@ function generateProductData() {
                     "class": "",
                     "description": "",
                     "url": "",
-                    "modality": "AR",
-                    "instrument_codes": []
+                    "modality": "AR"
                 },
                 "support": {
                     "active_models": true,
@@ -3591,115 +3134,6 @@ function generateProductData() {
                         "instrument_codes": ["9708"]
                     }
                 }
-            },
-            "yag": {
-                "product": {
-                    "name": "YAG",
-                    "short_name": "YAG",
-                    "identifier": "yag",
-                    "class": "",
-                    "description": "",
-                    "url": "",
-                    "modality": "",
-                    "alias_reference": "visulas"
-                },
-                "support": {
-                    "active_models": true,
-                    "team": "",
-                    "onenote_link": ""
-                },
-                "models": {
-                    "meta": {
-                        "sort_method": "alpha",
-                        "exemptions": [
-                            "serial"
-                        ]
-                    },
-                    "serial": {
-                        "format": "No serial number information available yet.",
-                        "example": "",
-                        "software_location": "",
-                        "hardware_location": "",
-                        "prefix_format": "",
-                        "sequence_format": ""
-                    },
-                    "combi": {
-                        "model_serials": {
-                            "format": "[9,10]<sequence>",
-                            "example": "1012345",
-                            "prefix_format": "",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Combi",
-                        "full_name": "VisuLas Combi",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": true,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9138"]
-                    },
-                    "2": {
-                        "model_serials": {
-                            "format": "[8,9]<sequence>",
-                            "example": "812345",
-                            "prefix_format": "",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Yag II",
-                        "full_name": "VisuLas Yag II",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": true,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9105"]
-                    },
-                    "2plus": {
-                        "model_serials": {
-                            "format": "[8,9]<sequence>",
-                            "example": "912345",
-                            "prefix_format": "",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Yag II Plus",
-                        "full_name": "VisuLas Yag II Plus Complete",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": true,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9106"]
-                    },
-                    "3": {
-                        "model_serials": {
-                            "format": "[9,10]<sequence>",
-                            "example": "1012345",
-                            "prefix_format": "",
-                            "sequence_format": "5 digits"
-                        },
-                        "subsets": {},
-                        "model_number": "Yag III",
-                        "full_name": "VisuLas Yag III",
-                        "launch_date": "",
-                        "supported": true,
-                        "required_escalation": true,
-                        "eos_date": "",
-                        "eogs_date": "",
-                        "eos_url": "",
-                        "model_url": "",
-                        "instrument_codes": ["9137"]
-                    }
-                }
             }
         },
         "software": {
@@ -3777,9 +3211,9 @@ function generateProductData() {
                         ]
                     },
                     "asset_id": {
-                        "format": "UNIVERSAL_ASSET_ID_FORMAT_STRING",
-                        "example": "UNIVERSAL_ASSET_ID_EXAMPLE_STRING",
-                        "software_location": "UNIVERSAL_ASSET_ID_LOCATION_IN_SOFTWARE_STRING"
+                        "format": "",
+                        "example": "",
+                        "software_location": ""
                     },
                     "4.4.0": {
                         "subsets": {},
@@ -3803,6 +3237,44 @@ function generateProductData() {
                     }
                 }
             },
+            "visupac": {
+                "product": {
+                    "name": "VISUPAC",
+                    "short_name": "VisuPac",
+                    "identifier": "visupac",
+                    "class": "",
+                    "description": "Fundus camera driver",
+                    "url": ""
+                },
+                "support": {
+                    "active_items": true,
+                    "team": "imaging",
+                    "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28VISUPAC.one%7CF890E709-A816-4D02-9D55-60DBE8EAB186%2F%29"
+                },
+                "versions": {
+                    "meta": {
+                        "sort_method": "numeric",
+                        "exemptions": [
+                            "asset_id"
+                        ]
+                    },
+                    "asset_id": {
+                        "format": "",
+                        "example": "",
+                        "software_location": ""
+                    },
+                    "4.5.4": {
+                        "subsets": {},
+                        "version_number": "4.5.4",
+                        "full_name": "VisuPac 4.5.4",
+                        "launch_date": "",
+                        "supported": true,
+                        "eos_date": "",
+                        "eogs_date": "",
+                        "eos_url": ""
+                    }
+                }
+            }
         }
     }
 }
