@@ -1,6 +1,12 @@
 <div class="reference-main">
     <a name="reftop"></a>
-    <h1><a href="#reftop" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/cirrus-oct/index')">Cirrus HD-OCT</a> Quick Reference</h1>
+    <div id="overview-header-include">
+        <script>
+            var qparam = Date.now();
+            $('#overview-header-include').load('assets/data/reference/templates/overview_header.html?qparam=' + qparam);
+        </script>
+    </div>
+    <h1>Software Overview</h1>
     <h2>Models 500/5000/6000</h2>
     <p>The Cirrus HD-OCT is a non-contact, high resolution tomographic and biomicroscopic imaging device intended for in-vivo viewing, axial cross-sectional, and three-dimensional imaging of anterior and posterior ocular structures. The results are analyzed and compared to a database of age-related normal eyes to determine the variance from normal eye tissue.</p>
     <p>The Cirrus HD-OCT is a computerized instrument that acquires and analyzes cross-sectional and three-dimensional tomograms of the eye using spectral domain optical coherence tomography (SD-OCT).</p>

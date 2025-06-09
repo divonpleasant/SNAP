@@ -3018,12 +3018,23 @@ input.teamviewer-info-head {
 #reference-nav .expanded-nav
 }
 #reference-nav-controls {
-    border: 1px solid red;
-    position: absolute;
-    bottom: 0px;
-    width: 90%;
-    text-align: right;
 }
+.collapse {
+    font-size: 0.75em;
+    position: sticky;
+    bottom: 0px;
+    width: 100%;
+    text-align: right;
+    z-index: 998;
+    border-width: 1px 0 0 0;
+    border-color: #fff;
+}
+.collapse a {
+    border: 0px;
+    text-decoration: underline;
+    background: #6ab0e2;
+}
+
 #reference-contents {
     font: inherit;
     background: #6ab0e2;
