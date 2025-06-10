@@ -2764,6 +2764,25 @@ function generateProductData() {
                         "model_url": "",
                         "instrument_codes": ["9138"]
                     },
+                    "yag": {
+                        "model_serials": {
+                            "format": "[8,9]<sequence>",
+                            "example": "812345",
+                            "prefix_format": "",
+                            "sequence_format": "5 digits"
+                        },
+                        "subsets": {},
+                        "model_number": "Yag",
+                        "full_name": "VisuLas Yag",
+                        "launch_date": "",
+                        "supported": true,
+                        "required_escalation": true,
+                        "eos_date": "",
+                        "eogs_date": "",
+                        "eos_url": "",
+                        "model_url": "",
+                        "instrument_codes": ["9148"]
+                    },
                     "yag2": {
                         "model_serials": {
                             "format": "[8,9]<sequence>",
