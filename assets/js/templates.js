@@ -372,7 +372,7 @@ ${so.Settings.user.email_sig.value}`
             "greeting": {
                 "default": {
                     "queue": "Hello! Thank you for calling Zeiss Technical Support. May I have the serial number of your instrument, please?",
-                    "callback": `Hello! This is ${so.Settings.user.casual_name.value} from Zeiss Technical Support, returning a call for assistance with a Zeiss instrument, service, or software.`,
+                    "callback": `Hello! This is ${so.Settings.user.casual_name.value} from Zeiss Technical Support, returning a call for assistance. Can you please tell me which Zeiss instrument, service, or software you were calling about?`,
                     "voicemail": `Hello, this is ${so.Settings.user.casual_name.value} calling from Zeiss Technical Support. ${(document.getElementById('local-contact-person').value !== '') ? 'This message is for ' + document.getElementById('local-contact-person').value + '. ' : ''}Sorry to have missed you.`,
                     "outgoing": `Hello! This is ${so.Settings.user.casual_name.value} calling from Zeiss Technical Support.${(document.getElementById('local-contact-person').value !== '') ? "I'm trying to reach " + document.getElementById('local-contact-person').value + ", please." : ''}`
                 },
@@ -757,6 +757,9 @@ Several key fields can be selected to be automatically copied into the clipboard
         "system": {
             "alerts": {
                 "remote-service-billing-type": "Remote Service/Remote Resolution for Billable customers should use Billing Type XC"
+            },
+            "customer_notes": {
+                "fss_contact": `If the Field Service Engineer (FSE) has not reached out to schedule your appointment by ${context[0]}, please contact our Field Service Dispatch Inquiries team (fieldservicedispatchinquiries.med.us@zeiss.com) and include the Field Service Supervisor (FSS) ${context[1]} for a status update. Please be sure to reference your ticket number${(document.getElementById('cct').value !== '') ? ' (' + document.getElementById('cct').value + ') ' : ' '}and device serial number${(document.getElementById('serial').value !== '') ? ' (' + document.getElementById('serial').value + ') ' : ' '}to expedite the status inquiry.`
             }
         },
         "hint": {
@@ -790,7 +793,10 @@ A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes
     Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
     Reason Why Not: ${document.getElementById('current-software-reason').value}
     Verified Normal Device Functionality: ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
-    Verified Connectivity to Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}`
+    Verified Connectivity to Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}
+
+Notes for Customer:
+${document.getElementById('customer-notes').value}`
             },
             "internal": {
                 "name": "Internal Notes",
@@ -878,6 +884,8 @@ ADDITIONAL INFORMATION:
   If yes, how long? ${document.getElementById('inoperability-duration').value}
   Power Cycle Resolve: ${document.getElementById('power-cycle-resolve').checked ? "Yes" : "No"}
   Remote Resolution? ${document.getElementById('remote-resolution').checked ? "Yes" : "No"}
+CUSTOMER NOTES:
+  ${document.getElementById('customer-notes').value}
 
 INTERNAL NOTES........................................................:
 Time Spent: ${document.getElementById('remote-time').value}
@@ -955,6 +963,24 @@ IOLMaster Local AE Title: ${document.getElementById('iolmaster-local-ae-title').
 IOLMaster Local Port: ${document.getElementById('iolmaster-local-ae-port').value}
 IOLMaster Use Remote DICOM? ${document.getElementById('iolmaster-use-dicom').checked ? 'Yes' : 'No'}
 IOLMaster Remote AET Details: ${document.getElementById('iolmaster-remote-aet-details').value}
+ATLAS Network Status: ${document.getElementById('atlas-network-status').value}
+ATLAS Network Adapter Status: ${document.getElementById('atlas-network-adapter-status').value}
+ATLAS Domain: ${document.getElementById('atlas-domain').value}
+ATLAS Wireless Network: ${document.getElementById('atlas-wireless-network').value}
+ATLAS Using DHCP? ${document.getElementById('atlas-dhcp').checked ? 'Yes' : 'No'}
+ATLAS Mapped Drive Details: ${document.getElementById('atlas-mapped-drive').value}
+ATLAS FORUM Message: ${document.getElementById('atlas-forum-message').value}
+ATLAS DICOM Network: ${document.getElementById('atlas-dicom-network').value}
+ATLAS Local AE Station Name: ${document.getElementById('atlas-local-ae-station-name').value}
+ATLAS Local AE Title: ${document.getElementById('atlas-local-ae-title').value}
+ATLAS Local AE Port: ${document.getElementById('atlas-local-port').value}
+ATLAS Remote MWL AE Title: ${document.getElementById('atlas-remote-mwl-ae-title').value}
+ATLAS Remote MWL AE Host: ${document.getElementById('atlas-remote-mwl-ae-host').value}
+ATLAS Remote MWL AE Port: ${document.getElementById('atlas-remote-mwl-ae-port').value}
+ATLAS Remote Storage AE Title: ${document.getElementById('atlas-remote-storage-ae-title').value}
+ATLAS Remote Storage AE Host: ${document.getElementById('atlas-remote-storage-ae-host').value}
+ATLAS Remote Storage AE Port: ${document.getElementById('atlas-remote-storage-ae-port').value}
+ATLAS Remote AE Additional Info: ${document.getElementById('atlas-remote-ae-additional-info').value}
 Network Configuration: ${document.getElementById('network-configuration').value}
 
 FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:
@@ -1412,6 +1438,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${document.getElementById('remote-resolution').checked}</value>
   </customMetaData>
   <customMetaData>
+    <key>customer-notes</key>
+    <value>${document.getElementById('customer-notes').value}</value>
+  </customMetaData>
+  <customMetaData>
     <key>remote-time</key>
     <value>${htmlEscape(document.getElementById('remote-time').value)}</value>
   </customMetaData>
@@ -1526,6 +1556,82 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>iolmaster-remote-aet-details</key>
     <value>${document.getElementById('iolmaster-remote-aet-details').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-network-status</key>
+    <value>${document.getElementById('atlas-network-status')[document.getElementById('atlas-network-status').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-network-adapter-status</key>
+    <value>${document.getElementById('atlas-network-adapter-status')[document.getElementById('atlas-network-adapter-status').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-domain</key>
+    <value>${document.getElementById('atlas-domain').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-wireless-network</key>
+    <value>${document.getElementById('atlas-wireless-network').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-dhcp</key>
+    <value>${document.getElementById('atlas-dhcp').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-mapped-drive</key>
+    <value>${document.getElementById('atlas-mapped-drive').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-forum-message</key>
+    <value>${document.getElementById('atlas-forum-message').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-dicom-network</key>
+    <value>${document.getElementById('atlas-dicom-network')[document.getElementById('atlas-dicom-network').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-local-ae-station-name</key>
+    <value>${document.getElementById('atlas-local-ae-station-name').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-local-ae-title</key>
+    <value>${document.getElementById('atlas-local-ae-title').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-local-port</key>
+    <value>${document.getElementById('atlas-local-port').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-mwl-ae-title</key>
+    <value>${document.getElementById('atlas-remote-mwl-ae-title').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-storage-ae-title</key>
+    <value>${document.getElementById('atlas-remote-storage-ae-title').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-mwl-ae-host</key>
+    <value>${document.getElementById('atlas-remote-mwl-ae-host').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-storage-ae-host</key>
+    <value>${document.getElementById('atlas-remote-storage-ae-host').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-mwl-ae-port</key>
+    <value>${document.getElementById('atlas-remote-mwl-ae-port').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-storage-ae-port</key>
+    <value>${document.getElementById('atlas-remote-storage-ae-port').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>atlas-remote-ae-additional-info</key>
+    <value>${document.getElementById('atlas-remote-ae-additional-info').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>fss-name</key>
+    <value>${document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value}</value>
   </customMetaData>
 </AssetInfo>`
             }

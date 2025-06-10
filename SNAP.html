@@ -9,8 +9,12 @@
         <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
     </head>
     <body class="is-preload">
-        <div id="topnav"><span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" target="_blank"><i class="fa-solid fa-plus"></i></a>]</span></span></div>
-        <div id="systembox"><span id="systembox-contents">System messages</span><span class="sb-x"><a href="#" id="hide-sys-box">X</a></div>
+        <div id="topnav">
+            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" target="_blank"><i class="fa-solid fa-plus"></i></a>]</span></span>
+        </div>
+        <div id="systembox">
+            <span id="systembox-contents">System messages</span><span class="sb-x"><a href="#" id="hide-sys-box">X</a>
+        </div>
 
         <!-- Wrapper -->
             <div id="wrapper">
@@ -54,7 +58,7 @@
                                         <option value="">&mdash; Instrument Type &mdash;</option>
                                         <option style="font-style: italic" value="">&ndash; Actively Supported &ndash;</option>
                                     </select>
-                                    <div class="label-left">Instrument/Product</div>
+                                    <div class="label-left">Instrument/Product <a href="#" class="info-button" onclick="openReferenceBox('instrument')"><i id="reference-prompt-instrument" class="fa-solid fa-circle-info"></i></a></div>
                                 </div>
                                 <div class="col-6 col-12-xsmall tooltip">
                                     <select name="model" id="model">
@@ -409,7 +413,7 @@
                                 <div class="col-12 clarus-field">
                                     <h5>Clarus Checklist</h5>
                                 </div>
-                                <div class="col-6 col-12-xsmall hfa-field">
+                                <div class="col-6 col-12-xsmall clarus-field">
                                     <select name="clarus-dhcp-setting" id="clarus-dhcp-setting">
                                         <option value="">&mdash; DHCP Setting &mdash;</option>
                                         <option value="Enabled">Enabled</option>
@@ -417,7 +421,7 @@
                                     </select>
                                     <div class="label-right">DHCP Setting</div>
                                 </div>
-                                <div class="col-6 col-12-xsmall hfa-field">
+                                <div class="col-6 col-12-xsmall clarus-field">
                                     <select name="clarus-network-status" id="clarus-network-status">
                                         <option value="">&mdash; Network Status &mdash;</option>
                                         <option value="Connected">Connected</option>
@@ -586,7 +590,92 @@
                                 <!-- Atlas Instrument-Specific -->
                                 <div class="col-12 atlas-field">
                                     <h5>ATLAS Checklist</h5>
-                                    <p><em>Instrument checklist is not yet available.</em></p>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <select name="atlas-network-status" id="atlas-network-status">
+                                        <option value="">&mdash; Network Status &mdash;</option>
+                                        <option value="Enabled">Enabled</option>
+                                        <option value="Disabled">Disabled</option>
+                                    </select>
+                                    <div class="label-left">Network Status</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <select name="atlas-network-adapter-status" id="atlas-network-adapter-status">
+                                        <option value="">&mdash; Network Adapter Status &mdash;</option>
+                                        <option value="Enabled">Enabled</option>
+                                        <option value="Disabled">Disabled</option>
+                                    </select>
+                                    <div class="label-right">Network Adapter Status</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-domain" id="atlas-domain" placeholder="Domain" />
+                                    <div class="label-left">Domain</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-wireless-network" id="atlas-wireless-network" placeholder="Wireless Network" />
+                                    <div class="label-right">Wireless Network</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="checkbox" id="atlas-dhcp" name="atlas-dhcp">
+                                    <label for="atlas-dhcp">DHCP?</label>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field"></div>
+                                <div class="col-12 atlas-field">
+                                    <input type="text" name="atlas-mapped-drive" id="atlas-mapped-drive" placeholder="Drive Letter; Network Path; Format; Drive Space, etc" />
+                                    <div class="label-right">Mapped Drive</div>
+                                </div>
+                                <div class="col-12 atlas-field">
+                                    <textarea rows="3" name="atlas-forum-message" id="atlas-forum-message" placeholder="FORUM Message"></textarea>
+                                    <div class="label-right">FORUM Message</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <select name="atlas-dicom-network" id="atlas-dicom-network">
+                                        <option value="">&mdash; DICOM Network &mdash;</option>
+                                        <option value="None">None</option>
+                                        <option value="FORUM">FORUM</option>
+                                        <option value="DICOM EMR">DICOM EMR</option>
+                                    </select>
+                                    <div class="label-left">DICOM Network</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-local-ae-station-name" id="atlas-local-ae-station-name" placeholder="Local AE Station" />
+                                    <div class="label-right">Local AE Station Name</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-local-ae-title" id="atlas-local-ae-title" placeholder="Local AE Title" />
+                                    <div class="label-left">Local AE Title</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-local-port" id="atlas-local-port" placeholder="Local Port" />
+                                    <div class="label-right">Local Port</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-remote-mwl-ae-title" id="atlas-remote-mwl-ae-title" placeholder="Remote MWL AE Title" />
+                                    <div class="label-left">Remote MWL AE Title</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-remote-storage-ae-title" id="atlas-remote-storage-ae-title" placeholder="Remote Storage AE Title" />
+                                    <div class="label-right">Remote Storage AE Title</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-remote-mwl-ae-host" id="atlas-remote-mwl-ae-host" placeholder="Remote MWL AE Host" />
+                                    <div class="label-left">Remote MWL AE Host</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-remote-storage-ae-host" id="atlas-remote-storage-ae-host" placeholder="Remote Storage AE Host" />
+                                    <div class="label-right">Remote Storage AE Host</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-remote-mwl-ae-port" id="atlas-remote-mwl-ae-port" placeholder="Remote MWL AE Port" />
+                                    <div class="label-left">Remote MWL AE Port</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall atlas-field">
+                                    <input type="text" name="atlas-remote-storage-ae-port" id="atlas-remote-storage-ae-port" placeholder="Remote Storage AE Port" />
+                                    <div class="label-right">Remote Storage AE Port</div>
+                                </div>
+                                <div class="col-12 atlas-field">
+                                    <textarea name="atlas-remote-ae-additional-info" id="atlas-remote-ae-additional-info" placeholder="Remote AE Additional Info" rows="3"></textarea>
+                                    <div class="label-right">Remote AE Additional Info</div>
                                 </div>
 
                                 <!-- Stratus Instrument-Specific -->
@@ -700,8 +789,39 @@
                                     <div class="label-right">What Changed?</div>
                                 </div>
                                 <div class="col-12">
+                                    <a name="troubleshooting-actions-performed"></a>
                                     <h5>Troubleshooting/Actions Performed</h5>
                                     <textarea name="troubleshooting-performed" id="troubleshooting-performed" placeholder="Troubleshooting/Actions Performed" rows="6"></textarea>
+                                    <span id="activate-common-actions" class="field-menu-toggle"><a href="#troubleshooting-actions-performed" onclick="toggleFieldMenu('common-actions-container');"><i class="fa-solid fa-person-digging"></i></a></span>
+                                    <div id="common-actions-container" class="field-menu">
+                                        <span class="field-menu-tail"><i class="fa-solid fa-caret-up fa-2xl"></i></span>
+                                        <div class="field-menu-contents">
+                                            <ul>
+                                                <li><a id="0000" onclick="commonActionToField('0000', 'troubleshooting-performed')">(Blank line)</a></li>
+                                                <li><a id="0001" onclick="commonActionToField('0001', 'troubleshooting-performed')">Not Applicable</a></li>
+                                                <li><a id="0002" onclick="commonActionToField('0002', 'troubleshooting-performed')">Advised customer about automatic payment link sent after service is completed</a></li>
+                                                <li><a id="0003" onclick="commonActionToField('0003', 'troubleshooting-performed')">Advised customer ongoing process may take some time to complete</a></li>
+                                                <li><a id="0004" onclick="commonActionToField('0004', 'troubleshooting-performed')">Archive process started</a></li>
+                                                <li><a id="0005" onclick="commonActionToField('0005', 'troubleshooting-performed')">Customer gave written/verbal approval to move forward with service request</a></li>
+                                                <li><a id="0006" onclick="commonActionToField('0006', 'troubleshooting-performed')">Customer provided access to the instrument/review station/Forum server*</a></li>
+                                                <li><a id="0007" onclick="commonActionToField('0007', 'troubleshooting-performed')">Customer requested a quote</a></li>
+                                                <li><a id="0008" onclick="commonActionToField('0008', 'troubleshooting-performed')">Customer will call back after discussing with management</a></li>
+                                                <li><a id="0009" onclick="commonActionToField('0009', 'troubleshooting-performed')">Customer will submit purchase order (PO) for payment</a></li>
+                                                <li><a id="0010" onclick="commonActionToField('0010', 'troubleshooting-performed')">Diagnostics performed, see Internal Notes for details</a></li>
+                                                <li><a id="0011" onclick="commonActionToField('0011', 'troubleshooting-performed')">Emailed Parts team with part number and included customer's contact information</a></li>
+                                                <li><a id="0012" onclick="commonActionToField('0012', 'troubleshooting-performed')">Emailed software download link and instructions for installation to the customer</a></li>
+                                                <li><a id="0013" onclick="commonActionToField('0013', 'troubleshooting-performed')">Field service engineer (FSE) dispatch is required</a></li>
+                                                <li><a id="0014" onclick="commonActionToField('0014', 'troubleshooting-performed')">Gathered logs and/or networking information</a></li>
+                                                <li><a id="0015" onclick="commonActionToField('0015', 'troubleshooting-performed')">Informed customer the FSE will call to schedule onsite appointment</a></li>
+                                                <li><a id="0016" onclick="commonActionToField('0016', 'troubleshooting-performed')">Instructed customer not to turn off instrument</a></li>
+                                                <li><a id="0017" onclick="commonActionToField('0017', 'troubleshooting-performed')">Performed the de-archive process</a></li>
+                                                <li><a id="0018" onclick="commonActionToField('0018', 'troubleshooting-performed')">Provided the preventative maintenance (PM) billable flat rate to the customer</a></li>
+                                                <li><a id="0019" onclick="commonActionToField('0019', 'troubleshooting-performed')">Provided the minimum billable flat rate to the customer</a></li>
+                                                <li><a id="0020" onclick="commonActionToField('0020', 'troubleshooting-performed')">Scheduled follow-up call</a></li>
+                                                <li><a id="0021" onclick="commonActionToField('0021', 'troubleshooting-performed')">Sent email to appropriate team(s)</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Additional Information</h5>
@@ -743,6 +863,10 @@
                                     <label for="remote-resolution">Remote resolution?</label>
                                 </div>
                                 <div class="col-12">
+                                    <h5>Customer Notes</h5>
+                                    <textarea name="customer-notes" id="customer-notes" placeholder="Notes for Customer" rows="4"></textarea>
+                                </div>
+                                <div class="col-12">
                                     <a class="anchor" name="copyrafta"></a>
                                     <a href="#copyrafta" id="printrafta" class="button primary small" onclick="copyCrmData('rafta')">Copy Request Notes</a>
                                     <hr />
@@ -780,12 +904,14 @@
                                     </select>
                                     <div class="label-right">Error Group</div>
                                 </div>
+                                <div class="col-6 col-12-xsmall"></div>
                                 <div class="col-6 col-12-xsmall">
                                     <select name="error-code" id="error-code" disabled>
                                         <option value="">&mdash; Error Code &mdash;</option>
                                     </select>
-                                    <div class="label-left">Error Code</div>
+                                    <div class="label-right">Error Code</div>
                                 </div>
+                                <div class="col-6 col-12-xsmall"></div>
                                 <div class="col-6 col-12-xsmall">
                                     <select name="action-code" id="action-code">
                                         <option value="">&mdash; Action Code &mdash;</option>
@@ -855,6 +981,25 @@
                                     </select>
                                     <div class="label-right">Call Type <span class="script-scroll"><a class="info-button" href="#wrap-up"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
+                                <div class="col-6 col-12-xsmall fss-details">
+                                    &nbsp;
+                                </div>
+                                <div class="col-6 col-12-xsmall fss-details">
+                                    <select name="fss-name" id="fss-name">
+                                        <option value="">&mdash; Field Service Supervisor &mdash;</option>
+                                        <option value="arguello-robert">Robert Arguello</option>
+                                        <option value="bowman-aubrey">Aubrey Bowman</option>
+                                        <option value="briggs-skyler">Skyler Briggs</option>
+                                        <option value="dalton-brent">Brent Dalton</option>
+                                        <option value="dixon-mike">Mike Dixon</option>
+                                        <option value="maynard-jeff">Jeff Maynard</option>
+                                        <option value="pigford-kevin">Kevin Pigford</option>
+                                        <option value="sbai-sidi">Sidi Sbai</option>
+                                        <option value="sichter-nathan">Nathan Sichter</option>
+                                        <option value="stokes-jeff">Jeff Stokes</option>
+                                        <option value="toth-richard">Richard Toth</option>
+                                    </select>
+                                </div>
                                 <div class="col-12">
                                     <hr />
                                 </div>
@@ -880,7 +1025,6 @@
                                 <div class="col-6 col-12-xsmall">
                                     <a href="#export" id="exportall" class="button primary small" onclick="copyCrmData('interaction')">Export Interaction</a>
                                     <a href="#export" id="save-xml" class="button primary small" onclick="copyCrmData('xml')">Save as XML</a>
-                                    <input id="resetButton" type="reset" class="button primary small">
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <select name="clipboard-templates" id="clipboard-templates">
@@ -895,6 +1039,9 @@
                                         <option value="zip-code">Zip Code</option>
                                     </select>
                                     <div class="label-left">Clipboard Templates <span class="script-scroll"><a class="info-button" href="#export"><i id="process-prompt-clipboard-templates" class="fa-solid fa-circle-info"></i></a></span></div>
+                                </div>
+                                <div class="col-12">
+                                    <input id="resetButton" type="reset" class="button primary small">
                                 </div>
                             </div>
                         </form>
@@ -1038,7 +1185,7 @@
                     <!-- Schedule Callback Overlay -->
                     <div id="schedule-overlay" style="display: none;">
                         <div id="schedule-overlay-content">
-                            <span id="schedule-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                            <span id="schedule-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('schedule')">&times;</a></span> <!-- X button to close -->
                             <h3>Select Date and Time</h3>
                             <input type="datetime-local" id="scheduledDateTime" required /><br />
                             <button id="modalContinue">Continue</button>
@@ -1048,7 +1195,7 @@
                     <!-- Settings Overlay -->
                     <div id="settings-overlay" style="display: none;">
                         <div id="settings-overlay-content">
-                            <span id="settings-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                            <span id="settings-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('settings')">&times;</a></span> <!-- X button to close -->
                             <h3 style="text-align: center">User Settings</h3>
                             <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
                             <label for="alert-on-copy">Alert on Copy?</label><br />
@@ -1060,6 +1207,10 @@
                             <label for="dark-mode">Dark Mode?</label><br />
                             <input type="checkbox" id="sign-email" name="sign-email">
                             <label for="sign-email">Sign Outgoing Email?</label><br />
+                            <input type="text" id="fse-sla" name="fse-sla" />
+                            <label for="fse-sla">Break-Fix SLA (hours)</label>
+                            <input type="text" id="pm-sla" name="pm-sla" />
+                            <label for="pm-sla">Preventative Maintenance SLA (hours)</label>
                             <input type="checkbox" id="debug-toggle" name="debug-toggle">
                             <label for="debug-toggle">Use Debug Mode?</label><br />
                             <select name="debug-level" id="debug-level">
@@ -1079,7 +1230,7 @@
                     <!-- Account Overlay -->
                     <div id="account-overlay" style="display: none;">
                         <div id="account-overlay-content">
-                            <span id="account-close-overlay" style="cursor: pointer;">&times;</span> <!-- X button to close -->
+                            <span id="account-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('account')">&times;</a></span> <!-- X button to close -->
                             <h3 style="text-align: center">Account</h3>
                             <div class="overlay-input-wrapper">
                                 <input type="text" id="username" name="username" placeholder="Username" />
@@ -1119,6 +1270,17 @@
                             <div class="overlay-button-align">
                                 <button id="account-logout">Logout</button>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden Fields Overlay -->
+                    <div id="hidden-overlay" style="display: none;">
+                        <div id="hidden-overlay-content">
+                            <span id="hidden-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('hidden')">&times;</a></span> <!-- X button to close -->
+                            <h3>Hidden Fields</h3>
+                            <input type="checkbox" id="is_pm" name="is_pm">
+                            <label for="is_pm">Is Preventative Maintenance?</label><br />
+                            <!-- <button id="modalContinue">Continue</button> -->
                         </div>
                     </div>
                 </div>
@@ -1258,6 +1420,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                                         <li class="tooltip"><strong>Canada Tech Support</strong><span>1-800-387-0138<br />Local Number: 1-416-443-0138<a href="mailto:service_canada@zeiss.com">service_canada@zeiss.com</a></span></li>
                                         <li class="tooltip"><strong>Parts Team</strong><span>Menu: Option 5, option 1<br />Direct Line: 1-844-352-2965<br />Queue: USDQB02_STS_Queue_Spare Parts<a href="mailto:c.osparts@zeiss.com">c.osparts@zeiss.com</a></span></li>
                                         <li class="tooltip"><strong>Vision Team</strong><span>(Clarifye, VisuConsult, VisuLyze, VisuPhor, VisuPlan, i.Profiler, i.Terminal 2)<br />Technical Support: 1-877-226-6632<br />Menu: Option 4<br />Customer Service: 1-866-586-5467<br />Queue: USDQB02_STS_Queue_Spare Parts<a href="mailto:vts-na@zeiss.com">vts-na@zeiss.com</a></span></li>
+                                        <li class="tooltip"><strong>Microscopy</strong><span>(Axio, LSM 700/800)<br />Customer Service: 1-800-233-2343<br />Fax: 1-914-681-7465<a href="mailto:support.microscopy.us@zeiss.com">support.microscopy.us@zeiss.com</a></span></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -1273,6 +1436,11 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                     </div>
                 </div>
             </div>
+        <div id="reference-box">
+            <span id="reference-close" class="close-x" style="cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-xs"></i></span> <!-- X button to close -->
+            <div id="reference-contents"></div>
+            <div id="reference-nav"></div>
+        </div>
         <div id="prompt">
             <div id="prompt-content">
                 <span id="prompt-close" class="close-x" style="cursor: pointer;"><i class="fa-solid fa-circle-xmark fa-xs"></i></span> <!-- X button to close -->
@@ -1292,6 +1460,8 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/account.js"></script>
             <script src="assets/js/templates.js"></script>
             <script src="assets/js/productData.js"></script>
+            <script src="assets/js/personnelData.js"></script>
+            <script src="assets/js/timeZoneData.js"></script>
             <script src="assets/js/copyCrmData.js"></script>
             <script src="assets/js/stopwatch.js"></script>
             <script src="assets/js/formSupport.js"></script>

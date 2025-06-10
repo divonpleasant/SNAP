@@ -5,7 +5,6 @@
 This document is meant to provide notes, guidelines, and warnings for potential code contributors. The information here is not meant to imply 100% up-to-the-minute status details on the state of the code or the stability of any deployment. Hopefully it will help orient anyone interested in contributing to the project and encourage others to help build SNAP into the best TSE-support tool it can be.
 
 ## KEY POINTS
-# DEVELOPER GUIDE
 
 A few things to keep in mind when contributing to SNAP:
 
@@ -15,7 +14,7 @@ A few things to keep in mind when contributing to SNAP:
     1. If you have extensive experience in web development (particularly Javascript), we'd love to leverage your experience to make SNAP the best it can be. Please reach out to the code owner to arrange a thorough code review.
 1. As of 3.1 there are two versions of the main index page that exist side-by-side with very minor distinctions. The SANDBOX version has its own HTML doc and CCS file. This will change in future versions to something more elegant, for the time being make sure if you intend to change the HTML or CSS, test it first in SANDBOX and then migrate the change to SNAP.html in your next commit/PR.
     1. You can limit the impact of code changes by limiting your testing to the sandbox envrionment: 
-        `if (sb) { /* do something in sandbox only ... */ }`
+        `if (sandbox) { /* do something in sandbox only ... */ }`
     1. If you make changes to SNAP.html directly, you must backport those changes to SNAP_sandbox.html as well or your PR will be rejected.
     1. Use SANDBOX for testing CSS changes as well. Don't forget to include all changes in the *_darkmode.css files (the darkmode css files have a conversion guide at the top to help with styling).
 1. SNAP 3.1 has implemented a templating system for Zeiss instrument data and various text blobs to be merged with various form data.

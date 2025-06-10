@@ -1,0 +1,691 @@
+<div class="reference-main">
+    <a name="reftop"></a>
+    <div id="overview-header-include">
+        <script>
+            var qparam = Date.now();
+            $('#overview-header-include').load('assets/data/reference/templates/overview_header.html?qparam=' + qparam);
+        </script>
+    </div>
+    <h1>Software Overview</h1>
+    <h2>Models 500/5000/6000</h2>
+    <p>The Cirrus HD-OCT is a non-contact, high resolution tomographic and biomicroscopic imaging device intended for in-vivo viewing, axial cross-sectional, and three-dimensional imaging of anterior and posterior ocular structures. The results are analyzed and compared to a database of age-related normal eyes to determine the variance from normal eye tissue.</p>
+    <p>The Cirrus HD-OCT is a computerized instrument that acquires and analyzes cross-sectional and three-dimensional tomograms of the eye using spectral domain optical coherence tomography (SD-OCT).</p>
+    <div class="img-c">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_500_parts_diagram.png" />
+        <span class="caption">Exterior hardware components, labeled. Pictured: Cirrus HD-OCT model 500 with powered table</span>
+    </div>
+    <p>In low-coherence interferometry, light is sent along two optical paths, one being the sample path (into the eye) and the other the reference path of the interferometer. The light source is an 840 nm super luminescent light-emitting diode (SLD). Light returning from the sample and reference paths is combined and introduced to the detector, which is a spectrometer in SD-OCT.</p>
+    <p>Different Cirrus HD-OCT models use different technologies to create the image: All models include a CCD video camera to monitor the exterior eye and assist with scan alignment.</p>
+    <ul>
+        <li>Models 5000/6000 include a Line Scanning Ophthalmo-scope (LSO)</li>
+        <li>Model 500 uses the OCT beam to create the retinal image</li>
+    </ul>
+    <p class="highlight">Cirrus OCT devices run on Microsoft Windows 10 (current) and Windows 7 (previous). The Windows environment is not limited, normal Windows connectivity and troubleshooting steps will be used during support interactions.</p>
+    <h5><i style="color: #fdbb08" class="fa-solid fa-triangle-exclamation"></i> Changes to Hardware or Software <i style="color: #fdbb08" class="fa-solid fa-triangle-exclamation"></i></h5>
+    <p>The Cirrus HD-OCT is a <strong><em>medical device</em></strong>. The software and hardware were designed in accordance with U.S., European, and other international medical device standards intended to protect clinicians, users, and patients from potential harm caused by mechanical, diagnostic, or therapeutic failures.</p>
+    <p>Customers are not meant to modify the hardware or software beyond the documented configurations listed in the user manual (IFU). Doing so can void the warranty, expose patients to harm, and force Zeiss to require an expensive recertification process to ensure the device meets all required standards.</p>
+    <p>Emphasize to customers whenever relevant that the device may have an interface similar to and behave in some cases like a commodity desktop PC, but <strong>it is not at all a standard personal computer</strong> and should never be treated as such.</p>
+    <a name="software-overview"></a>
+    <h2>Software Overview</h2>
+    <p>Zeiss pre-installs all software necessary to operate the CIRRUS500/5000. Software updates (with installation instructions) may be provided on USB flash drive. CIRRUS 500/5000/6000 software has the following modes:
+    <ul>
+        <li><a href="#patient-screen">Patient ID Screen</a></li>
+        <li><a href="#protocol-screen">Protocol and History Screen</a></li>
+        <li><a href="#acquire-screen">Acquire Screen</a></li>
+        <li><a href="#quality-screen">Check Scan Quality Screen</a></li>
+        <li><a href="#analysis-screen">Analysis and Report Screen</a></li>
+    </ul>
+    <div class="img-c">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_software_11.5_overview.png" />
+        <span class="caption">Software (11.5.X) User Interface</span>
+    </div>
+    <a name="toolbar-menus"></a>
+    <h3>Toolbar/Menus</h3>
+    <div class="img-r">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_software_11.5_toolbar_menus.png" />
+        <span class="caption">Toolbar with menu options as an Operator user</span>
+    </div>
+    <p>Each Cirrus HD-OCT software (11.5.X, 11.7.X) screen has a consistent toolbar with several menus. The contents of the menus are context-specific, the options within each menu varies depending on <a href="#work-area">Work Area</a> location, configuration, logged-in user account, etc.</p>
+    <a name="records-menu"></a>
+    <h4>Records Menu</h4>
+    <p>The Records menu is different for instruments configured for <a href="#native-records-menu">Native Archive</a> and <a href="#dicom-records-menu">DICOM Archive</a>.</p>
+    <a name="native-records-menu"></a>
+    <h5>Native Archive Mode Records Menu</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="10" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_native_records_menu.png" /></td>
+                <td><strong>Retrieve Archived Exams...</strong></td>
+                <td>Retrieve selected exams from the archive</td>
+            </tr>
+            <tr>
+                <td><strong>Archive Now...</strong>
+                <td>Archive all unarchived exams</td>
+            </tr>
+            <tr>
+                <td><strong>Clear Archived Exams</strong></td>
+                <td>Clear exams to free additional disk space</td>
+            </tr>
+            <tr>
+                <td><strong>Archive Management</strong></td>
+                <td>Create archive locations and set default parameters</td>
+            </tr>
+            <tr>
+                <td><strong>Preferences...</strong></td>
+                <td>Various user preferences. See <a href="#preferences">Preferences</a></td>
+            </tr>
+            <tr>
+                <td><strong>Search Worklist Patients...</strong></td>
+                <td>Open the <strong>Modality Worklist</strong> to set parameters for patient search through DICOM worklist server</td>
+            </tr>
+            <tr>
+                <td><strong>Import Exams...</strong></td>
+                <td>Open <strong>Import Options</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Export Exams...</strong></td>
+                <td>Open <strong>Export Options</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Print Patient list...</strong></td>
+                <td>Print the patient list currently displayed</td>
+            </tr>
+            <tr>
+                <td><strong>Print Today's Patient list...</strong></td>
+                <td>Print the patient list on the View Today's Patients tab</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="dicom-records-menu"></a>
+    <h5>DICOM Mode Records Menu</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="10" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_dicom_records_menu.png" /></td>
+                <td><strong>Clear Archived Exams</strong></td>
+                <td>Clear exams to free additional disk space</td>
+            </tr>
+            <tr>
+                <td><strong>Preferences...</strong></td>
+                <td>Various user preferences. See <a href="#preferences">Preferences</a></td>
+            </tr>
+            <tr>
+                <td><strong>DICOM Archive</strong></td>
+                <td>Allow patient record archive through the DICOM server</td>
+            </tr>
+            <tr>
+                <td><strong>DICOM Retrieve</strong></td>
+                <td>Allow patient records retrieval through the DICOM server</td>
+            </tr>
+            <tr>
+                <td><strong>Search Worklist Patients...</strong></td>
+                <td>Open the <strong>Modality Worklist</strong> to set parameters for patient search through DICOM worklist server</td>
+            </tr>
+            <tr>
+                <td><strong>Import Exams...</strong></td>
+                <td>Open <strong>Import Options</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Export Exams...</strong></td>
+                <td>Open <strong>Export Options</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Print Patient list...</strong></td>
+                <td>Print the patient list currently displayed</td>
+            </tr>
+            <tr>
+                <td><strong>Print Today's Patient list...</strong></td>
+                <td>Print the patient list on the View Today's Patients tab</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="preferences"></a>
+    <h5>Preferences</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>Preference Label</th>
+                <th>Description</th>
+                <th>Screen/Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="middle"><a name="pref-archive"></a><strong>Archive/Synchronize</strong></td>
+                <td class="middle">During instrument startup or shutdown, prompts user to archive exams and clear data (if checked).</td>
+                <td style="align: center"><div class="img-c"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_preferences-archive_synchronize.png" /></div></td>
+            </tr>
+            <tr>
+                <td class="middle"><a name="pref-dicom"></a><strong>DICOM Archive</strong></td>
+                <td class="middle">Disable <strong>Auto-Query</strong> (DICOM Mode) or <strong>Auto-Archive</strong> (Native/Archive Mode).</td>
+                <td style="align: center"><div class="img-c"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_preferences-dicom_archive.png" /></div></td>
+            </tr>
+            <tr>
+                <td class="middle"><a name="pref-display"></a><strong>Display Options</strong></td>
+                <td class="middle">Change display settings, including default patient landing page.</td>
+                <td style="align: center"><div class="img-c"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_preferences-display_options.png" /></div></td>
+            </tr>
+            <tr>
+                <td class="middle"><a name="pref-ipv4"></a><strong>IPv4/IPv6</strong></td>
+                <td class="middle">Select Internet protocol.</td>
+                <td style="align: center"><div class="img-c"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_preferences-ipv4_ipv6.png" /></div></td>
+            </tr>
+            <tr>
+                <td class="middle"><a name="pref-pm"></a><strong>Preventative Maintenance</strong></td>
+                <td class="middle">Enable/Disable PM reminders, set reminder interval, or reset PM reminder.</td>
+                <td style="align: center"><div class="img-c"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_preferences-preventative_maintenance.png" /></div></td>
+            </tr>
+            <tr>
+                <td class="middle"><a name="pref-analysis"></a><strong>Preferred Analysis</strong></td>
+                <td class="middle">Toggle analysis preference, and re-order analysis types in <a href="#acquire-screen">Acquire</a>.</td>
+                <td style="align: center"><div class="img-c"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_preferences-preferred_analysis.png" /></div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="edit-menu"></a>
+    <h4>Edit Menu</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_edit_menu.png" /></td>
+                <td><strong>Patient Record</strong></td>
+                <td>View or edit a patient's record</td>
+            </tr>
+            <tr>
+                <td><strong>Merge Two Patients...</strong></td>
+                <td>Combine duplicate patient records</td>
+            </tr>
+            <tr>
+                <td><strong>Delete Patient</strong></td>
+                <td>Delete selected patient record</td>
+            </tr>
+            <tr>
+                <td><strong>Move Scan...</strong></td>
+                <td>Move a scan from one patient record to another patient record</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="tools-menu"></a>
+    <h4>Tools Menu</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="10" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_tools_menu.png" /></td>
+                <td><strong>Live Fundus Overlay</strong></td>
+                <td>Enable overlay display. If disabled, the bounding box is visible, but not the horizontal and vertical slice locations</td>
+            </tr>
+            <tr>
+                <td><strong>Colored OCT</strong></td>
+                <td>Enable color OCT images display</td>
+            </tr>
+            <tr>
+                <td><strong>Inverted Gray scale for Raster</strong></td>
+                <td>Change black pixels to white and white to black on grayscale raster scans</td>
+            </tr>
+            <tr>
+                <td><strong>Live OCT Center Lines</strong></td>
+                <td>Enable a vertical center line display on OCT images</td>
+            </tr>
+            <tr>
+                <td><strong>Auto Repeat</strong></td>
+                <td>Set automatic adjustment of the ocular lens and chinrest to the previous settings for the same patient, eye, and acquisition function</td>
+            </tr>
+            <tr>
+                <td><strong>Tracking</strong></td>
+                <td>Enable FastTrac for all scans</td>
+            </tr>
+            <tr>
+                <td><strong>Print Configuration...</strong></td>
+                <td>Set printout options for Macular Thickness, ONH, and (HD 5 Line) Raster, and Macula multi-slice parameters</td>
+            </tr>
+            <tr>
+                <td><strong>Scan Organizer</strong></td>
+                <td>Show or hide available scans, or change scan order</td>
+            </tr>
+            <tr>
+                <td><strong>Export Audit Log File...</strong></td>
+                <td>Export log file</td>
+            </tr>
+            <tr>
+                <td><strong>Options</strong></td>
+                <td>Various options. See <a href="#options">Options</a></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a name="options"></a>
+    <h4>Options Sub-Menu</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="5" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_options_submenu.png" /></td>
+                <td><strong>Categories...</strong></td>
+                <td>Create, edit, or delete categories for patient records and search</td>
+            </tr>
+            <tr>
+                <td><strong>Institution Edit...</strong></td>
+                <td>Add organization name and/or logo to reports (<em>must be logged in as Administrator user</em>)</td>
+            </tr>
+            <tr>
+                <td><strong>Equipment Edit...</strong></td>
+                <td>Create a station name for the instrument, create a DICOM AE Title, and view other equipment information (<em>must be logged in as Administrator user</em>)</td>
+            </tr>
+            <tr>
+                <td><strong>Users...</strong></td>
+                <td>Create, edit, or delete staff/user accounts (<em>must be logged in as Administrator user</em>)</td>
+            </tr>
+            <tr>
+                <td><strong>Select Database...</strong><br />(<em>Review Station only</em>)</td>
+                <td>Switch to a different instrument database</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="help-menu"></a>
+    <h4>Help Menu</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="6" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_help_menu.png" /></td>
+                <td><strong>Keyboard Mouse Shortcuts...</strong></td>
+                <td>Display a categorized list of keyboard shortcut keys and mouse functions</td>
+            </tr>
+            <tr>
+                <td><strong>On-line Manual</strong></td>
+                <td>Open the Cirrus HD-OCT user manual (IFU) PDF</td>
+            </tr>
+            <tr>
+                <td><strong>License Registration...</strong></td>
+                <td>Register a license. See <a href="#licensing">Licensing</a></td>
+            </tr>
+            <tr>
+                <td><strong>View Licenses...</strong></td>
+                <td>Display a list of Cirrus HD-OCT licenses</td>
+            </tr>
+            <tr>
+                <td><strong>Service Support...</strong></td>
+                <td>Technical Support tools and options. See <a href="#service-support">Service Support</a></td>
+            </tr>
+            <tr>
+                <td><strong>About...</strong></td>
+                <td>Display About dialog, providing software version information. See <a href="#about-dialog">About Dialog</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a name="service-support"></a>
+    <h5>Service Support</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>Menu</th>
+                <th>Option</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="10" style="vertical-align: top; width: 20%"><img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_service_support_submenu.png" /></td>
+                <td><strong>Teleservice</strong></td>
+                <td>Launch the Teleservice remote support application</td>
+            </tr>
+            <tr>
+                <td><strong>Logfile Collector</strong></td>
+                <td>Create a compressed archive of all relevant log files</td>
+            </tr>
+            <tr>
+                <td><strong>Diagnostic Package</strong></td>
+                <td>Send diagnostic information via Remote Service Platform (RSP). Requires RSP installation and configuration</td>
+            </tr>
+            <tr>
+                <td><strong>Screen Recording</strong></td>
+                <td>Create a video screen capture for diagnostic review</td>
+            </tr>
+        </tbody>
+    </table>
+    <a name="about-dialog"></a>
+    <h5>About Dialog</h5>
+    <div class="img-l">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_about_dialog.png" />
+        <span class="caption">About Cirrus HD-OCT dialog box. Includes device serial number, software version, subcomponent versions, as well as copyright information</span>
+    </div>
+    <p>The About dialog is displayed when About... is selected from the <a href="#help-menu">Help menu</a>. It is most commonly referenced to find the instrument serial number for devices with functioning Cirrus HD-OCT software, and for determining the current software version.</p>
+
+    <div class="section-break"></div>
+    <a name="licensing"></a>
+    <h3>Licensing</h3>
+    <p>Licensing support within the Cirrus HD-OCT application is managed through two menus: the License Registration menu, and the View Licensed Features function (accessed via View Licenses... <a href="#help-menu">Help Menu</a> option).</p>
+    <div class="img-r">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_license_registration_submenu.png" />
+        <span class="caption">License Registration Sub-menu listing all possible licenses</span>
+    </div>
+    <h5>Notable Licenses</h5>
+    <p>While Cirrus HD-OCT has many available licensed product offerings, several are key for Tech Support Engineering.</p>
+    <ul>
+        <li><strong>Cirrus 6.0 Software Upgrade - Plus</strong><br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget lacus non dolor ullamcorper semper. Proin sollicitudin, lectus in molestie convallis, sem tortor accumsan ex, nec volutpat turpis mauris quis ligula. Sed elementum enim metus, ac aliquam turpis volutpat non. Suspendisse vitae pellentesque nisl. Maecenas id mattis arcu. Sed velit massa, laoreet at eros vitae, pellentesque consequat elit. Sed nec dui lobortis, convallis risus sed, ultricies erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dui orci, tincidunt in dignissim posuere, pellentesque rhoncus mauris. In feugiat lobortis ipsum luctus varius.</li>
+        <li><strong>Cirrus 6.0 Software Upgrade - Plus (Light)</strong><br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget lacus non dolor ullamcorper semper. Proin sollicitudin, lectus in molestie convallis, sem tortor accumsan ex, nec volutpat turpis mauris quis ligula. Sed elementum enim metus, ac aliquam turpis volutpat non. Suspendisse vitae pellentesque nisl. Maecenas id mattis arcu. Sed velit massa, laoreet at eros vitae, pellentesque consequat elit. Sed nec dui lobortis, convallis risus sed, ultricies erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dui orci, tincidunt in dignissim posuere, pellentesque rhoncus mauris. In feugiat lobortis ipsum luctus varius.</li>
+        <li><strong>AngioPlex OCT Angiography</strong><br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget lacus non dolor ullamcorper semper. Proin sollicitudin, lectus in molestie convallis, sem tortor accumsan ex, nec volutpat turpis mauris quis ligula. Sed elementum enim metus, ac aliquam turpis volutpat non. Suspendisse vitae pellentesque nisl. Maecenas id mattis arcu. Sed velit massa, laoreet at eros vitae, pellentesque consequat elit. Sed nec dui lobortis, convallis risus sed, ultricies erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dui orci, tincidunt in dignissim posuere, pellentesque rhoncus mauris. In feugiat lobortis ipsum luctus varius.</li>
+        <li><strong>Anterior Segment Imaging - Premier</strong><br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget lacus non dolor ullamcorper semper. Proin sollicitudin, lectus in molestie convallis, sem tortor accumsan ex, nec volutpat turpis mauris quis ligula. Sed elementum enim metus, ac aliquam turpis volutpat non. Suspendisse vitae pellentesque nisl. Maecenas id mattis arcu. Sed velit massa, laoreet at eros vitae, pellentesque consequat elit. Sed nec dui lobortis, convallis risus sed, ultricies erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dui orci, tincidunt in dignissim posuere, pellentesque rhoncus mauris. In feugiat lobortis ipsum luctus varius.</li>
+    </ul>
+    <div class="section-break"></div>
+    <h5>View Licensed Features</h5>
+    <div class="img-l">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_view_licensed_features.png" />
+        <span class="caption-l">View Licensed Features dialog, showing available features and licensing statuses</span>
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_license_registration_utility.png" />
+        <span class="caption-l">License Registration Utility, sample featuring Anterior Segment Imaging - Premier</span>
+    </div>
+    <p>View Licensed Features allows users to identify which available features have currently registered licenses, indicated by the status "Licensed".</p>
+    <p>Licenses with the status "Not Licensed" have not been registered with Zeiss and the Cirrus HD-OCT software may be operating with limited capabilities. If a license is expected to be active and registered, its status can be verified with the <a href="https://swl.zeiss.com/" target="_blank">Software Licensing management tool</a> (sometimes referred to as Thales). Activated licenses' registration status can be checked on the <a href="https://activation.zeiss.com/med/Instruments">Licensing Portal</a>.</p>
+    <div class="section-break"></div>
+    <a name="patient-navigation"></a>
+    <h3>Navigation Bar</h3>
+    <div class="img-c">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_navigation_bar.png" />
+        <span class="caption">Navigation bar located along the bottom of the screen on the right side<br />
+        From the highlighted options, this screen is <a href="#patient-screen">Patient ID</a></span>
+    </div>
+    <p>The Navigation Bar features the buttons used to change screens.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Button</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID Patient</td>
+                <td>Open <a href="#patient-screen">Patient ID</a> screen (default tab determined by Display Options <a href="#preferences">Preferences</a>)</td>
+            </tr>
+            <tr>
+                <td>Protocols</td>
+                <td>Open <a href="#protocol-screen">Protocols</a> screen</td>
+            </tr>
+            <tr>
+                <td>Acquire</td>
+                <td>Open <a href="#acquire-screen">Scan Acquisition</a> screen (when patient is selected)</td>
+            </tr>
+            <tr>
+                <td>Analyze</td>
+                <td>Open <a href="#analysis-screen">Image Analysis</a> screen (when patient is selected)</td>
+            </tr>
+            <tr>
+                <td>Finish</td>
+                <td>Exit the current screen and open the prior screen (from Acquire or Analyze)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a name="status-indicator"></a>
+    <h3>Status Indicator</h3>
+    <p>Mousing over the status indicator will pop up a details box with text explaining the current status. The details text may reference DICOM connectivity, archive volume status, hard drive state or capacity information, firmware check or background diagnostics results, plus many others.
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Indication</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="status-cell"><div class="green-status"></div></td>
+                <td><strong>OK</strong> (Normal)</td>
+                <td>The instrument is functioning properly</td>
+            </tr>
+            <tr>
+                <td class="status-cell"><div class="yellow-status"></div></td>
+                <td><strong>Warning</strong></td>
+                <td>The instrument is operational, but one or more problems exist</td>
+            </tr>
+            <tr>
+                <td class="status-cell"><div class="red-status"></div></td>
+                <td><strong>Critical</strong></td>
+                <td>One or more serious problems exists which restricts the use of the instrument</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a name="screens"></a>
+    <h3>Software Screens</h3>
+    <p>The Cirrus HD-OCT software has five primary screen types.</p>
+    <div class="img-c">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_screens_overview.png" usemap="#screens-map" />
+        <map name="screens-map">
+            <area target="" alt="Patient Screen" title="Patient Screen" href="#patient-screen" coords="332,10,4,267" shape="rect">
+            <area target="" alt="Protocol and History Screen" title="Protocol and History Screen" href="#protocol-screen" coords="621,263,624,98,910,95,909,113,953,114,952,63,908,65,910,78,621,78,621,13,338,10,337,265" shape="poly">
+            <area target="" alt="Acquire Screen" title="Acquire Screen" href="#acquire-screen" coords="333,531,5,277" shape="rect">
+            <area target="" alt="Check Scan Quality Screen" title="Check Scan Quality Screen" href="#quality-screen" coords="621,278,338,278,337,531,623,532,622,502,911,500,911,508,953,509,951,466,911,465,910,479,622,474" shape="poly">
+            <area target="" alt="Analysis and Reports Screen" title="Analysis and Reports Screen" href="#analysis-screen" coords="624,169,958,431" shape="rect">
+        </map>
+        <span class="caption">The principal user interface screens of the Cirrus HD-OCT software package</span>
+    </div>
+    <a name="patient-screen"></a>
+    <h4>1. Patient ID Screen</h4>
+    <p>Search, select, or add a patient. This is the default application screen. Default tab selection is configurable by <a href="#pref-display">Display Options</a> in <a href="#preferences">Preferences</a>.</p> 
+    <a name="protocol-screen"></a>
+    <h4>2. Protocol and History Screen</h4>
+    <p>This screen displays the most popular scans for the selected protocol.</p>
+    <a name="acquire-screen"></a>
+    <h4>3. Acquire Screen</h4>
+    <p>Primary technician screen, where scans are acquired for the selected patient.</p>
+    <p>The acquire screen is comprised of four quadrants, each displaying a specialized view of the patient.</p>
+    <div class="img-r">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_iris_camera.png" />
+        <span class="caption">Iris Camera view, showcasing the Brightness/Contrast settings dialog</span>
+    </div>
+    <a name="iris-camera"></a>
+    <h5>Iris Camera</h5>
+    <p>The Iris Camera featured in the top left quadrant of the Acquire Screen, shows an exterior image of the patient's eye. It is used for aligning the scan with the patient's pupil in order to get a clear view into the lens to the retina. The brightness/contrast settings are of particular note because they have been the source of numerous customer calls. When these settings are adjusted too far, the Iris Camera can appear distorted and potentially unusable. The brightness/contrast settings button is sometimes referred to as the "Magic Wand" due to the original appearance of the icon:</p>
+    <a name="magic-wand"></a>
+    <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_magic_wand_icon-transparent.png" />
+    <span class="caption-l">"Magic Wand" icon</span>
+    <p>Many issues with the Iris Camera can be resolved by clicking the "Reset" button (backwards pointing arrow) which returns the brightness/contrast settings to their factory defaults.</p>
+    <div class="section-break"></div>
+    <a name="lslo-camera"></a>
+    <h5>LSLO Camera</h5>
+    <div class="img-c">
+        <img src="/SNAP/SNAP/images/reference/oct/cirrus_hd-oct_lslo_camera-brightness-settings.png" />
+        <span class="caption">LSLO (LSO) Camera view. Pictured (left to right): normal settings, brightness settings too low, and over-saturated settings</span>
+    </div>
+    <p>Also called the LSO camera, the Line-Scanning Laser Ophthalmoscope (LSLO) featured in the bottom left quadrant of the Acquire Screen, displays an image of the patient's retina as viewed through the corneal lens into the pupil.</p>
+    <p>Similarly to the <a href="#iris-camera">Iris Camera</a>, the "<a href="magic-wand">Magic Wand</a>" or brightness/contrast settings can often be the cause for customer calls. Using the reset button or adjusting settings closer to factory default can often resolve these complaints.</p>
+    <div class="section-break"></div>
+    <a name="oct-scan"></a>
+    <h5>OCT Scan Windows</h5>
+    <div class="img-r">
+        <img src="images/reference/oct/cirrus_hd-oct_oct_scan_window.png" />
+        <span class="caption">OCT Scan showing normal scan detail</span>
+        <img src="images/reference/oct/cirrus_hd-oct_oct_scan_window-static.png" />
+        <span class="caption">OCT Scan heavily obscured with "green-yellow" static as a result of improper settings</span>
+    </div>
+    <p>The OCT Scan windows cover the rightmost quadrants (top and bottom) and display the OCT tomogram, or similar scan views depending on the exam protocol selected. As with the <a href="#iris-camera">Iris Camera</a> and <a href="#lslo-camera">LSLO Camera</a>, the brigtness and contrast settings can have an adverse effect on the technician's ability to take a quality scan. The "<a href="#magic-wand">Magic Wand</a>" or brightness/contrast settings menu can help resolve these issues, particularly if returned to the factory settings.</p>
+    <div class="section-break"></div>
+    <a name="quality-screen"></a>
+    <h4>4. Check Scan Quality Screen</h4>
+    <p>Following a scan acquisition, this screen allows a technician to assess the scan's quality and determine whether to save or retake the scan.</p>
+    <a name="analysis-screen"></a>
+    <h4>5. Analysis and Reports Screen</h4>
+    <p>From this screen, technicians, clinicians, or doctors can review, adjust, annotate, and assess scan results.</p>
+
+    <a name="data-management"></a>
+    <h3>Data Management</h3>
+    <p>The Cirrus HD-OCT saves data locally (to the Data disk, or E:\ drive). Zeiss strongly recommends customers archive data to a netowrk file server or a network attached storage (NAS) device, ideally with some type of data redundancy (e.g. RAID-1). It is possible to use an external hard drive for archiving data as well, but this is not recommended by Zeiss due to the relatively high failure rate of commodity external drives and configuration challenges when using review software.</p>
+    <h4>Native Archive vs DICOM Archive</h4>
+    <p>In addition to the <strong>Native</strong> archive, you can purchase a license for <a href="#reftop" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/forum/index')">Forum</a> that connects directly to a DICOM network which allows you to:<p>
+    <ul>
+        <li>Save your data to a DICOM-compatible system automatically</li>
+        <li>Archive your data on a DICOM-compatible system automatically</li>
+        <li>Connect all Zeiss instruments to a DICOM-compatible network</li>
+    </ul>
+    <p>The following table explains the differences between using the <strong>Native</strong> or <strong>DICOM</strong> data archiving.</p>
+    <table>
+        <thead>
+            <tr>
+                <th width="33%">&nbsp;</th>
+                <th width="33%">Native Archiving</th>
+                <th width="33%">DICOM Archiving</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Export DICOM EPDF Reports</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td>Access DICOM Modality Worklist (MWL)</td>
+                <td>YES</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td>Connect Multiple Zeiss Instruments</td>
+                <td>NO</td>
+                <td>YES</td>
+            </tr>
+            <tr>
+                <td>Access Cirrus HD-OCT Review Software</td>
+                <td>YES<br />Instrument review software</td>
+                <td>YES<br />Local database review software through Forum DICOM archive (with either Forum Floating licensing or Node-Locked licensing)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="key-data"</a>
+    <h3>Key Data</h3>
+    <a name="passwords"></a>
+    <h4>Passwords</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Account Type</th>
+                <th>User Account</th>
+                <th>Default Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Windows</td>
+                <td>Administrator</td>
+                <td><code>tomography</code></td>
+            </tr>
+            <tr>
+                <td>Windows (also Calibration Enabler)</td>
+                <td>Tech Support</td>
+                <td><code>eyelid</code></td>
+            </tr>
+            <tr>
+                <td>Windows</td>
+                <td>Zeiss</td>
+                <td><code>November171846</code></td>
+            </tr>
+            <tr>
+                <td>Windows</td>
+                <td>Zeiss Admin</td>
+                <td><code>November171846</code></td>
+            </tr>
+            
+            <tr>
+                <td>Cirrus HD-OCT Application</td>
+                <td>admin</td>
+                <td><code>November171846</code> or <code>November171846!</code></td>
+            </tr>
+            <tr>
+                <td>Cirrus HD-OCT Application</td>
+                <td>Cirrus Operator</td>
+                <td><code>&nbsp;</code> (no password) or <code>0000</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <a name="ip-addresses"></a>
+    <h4>IP Addresses</h4>
+    <p>The Cirrus HD-OCT PC module and the microcontroller communicate via an internal network. The assigned static IP address is 
+critical to instrument functionality and <strong>must not</strong> be changed. It is even labeled "DO NOT CHANGE". Despite this, it often gets changed by customer or IT. Always verify the internal NIC IP if the device does not pass the Start-Up Check.</p>
+    <p>The customer or their IT group should configure the External Network according to their standard addressing. When possible, encourage customers to use static IPs, particularly if they are using review station software or configuring DICOM using IP addresses to prevent DHCP lease renewals from breaking connectivity.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>IP Address</th>
+                <th>Network/Interface</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>192.168.52.100</td>
+                <td>Internal IP (Network Connection 2)</td>
+            </tr>
+            <tr>
+                <td>192.168.52.1</td>
+                <td>Microcontroller</td>
+            </tr>
+            <tr>
+                <td>&lt;configured&gt;</td>
+                <td>External Network</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <a name="troubleshooting-guide"></a>
+    <h2>Troubleshooting Guide &amp; Common Issues</h2>
+    <a name="image-scan-quality"></a>
+    <h3>Image or Scan Quality Issues</h3>
+    <a name="clean-lens"></a>
+    <p>The Ocular Lens (also called the Main Lens or Patient Lens) housed in the Imaging Aperture should be cleaned regularly. The lens is easily compromised by contact with eyebrows, noses, fingers, foreheads and can become greasy or embedded with dust. If not cleaned properly according to the instructions provided in the user manual (IFU), it can streak. The lens has a protective coating which can also start to peel, crack, or flake away.</p>
+    <p><i style="color: #fdbb08" class="fa-solid fa-triangle-exclamation"></i> Always verify the Ocular Lens is clean! <i style="color: #fdbb08" class="fa-solid fa-triangle-exclamation"></i> Customers will often insist the lens is cleaned regularly without verification.</p>
+    <a name="verify-clean-lens"></a>
+    <h4>Verifing Lens Cleanliness</h4>
+    <p>Any image or scan quality complaints should be followed up with questions regarding the cleanliness of the lens. Don't take a customer's word for it, with the application open and on the <a href="#acquire-screen">Acquire Screen</a>, check the <a href="#iris-camera">Iris Camera</a> while the customer shines a flashlight onto the lens. This can often reveal missed spots, peeling lens coating, or embedded dust, all of which can result in poor scan quality, artifacts on scans, or <a href="#low-signal-strength">low signal strength</a> issues.</p>
+    <a name="startup-issues"></a>
+    <h3>Start-Up Issues</h3>
+    
+</div>
