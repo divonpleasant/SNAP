@@ -306,13 +306,16 @@ function filterOnKey(data_obj, key_to_eval, value_to_filter, reverse = false, in
 }
 
 function populateSelectField(field_id, processed_data_obj, name_key, value_key, empty_first = false, id_key = '') {
-    debugmsg(4, "populateSelectField ...\nfield_id: " + field_id + "\nprocessed_data_obj: " + JSON.stringify(processed_data_obj) + "\nname_key: " + name_key + "\nvalue_key: " + value_key + "\nempty_first: " + empty_first);
+    console.debug("populateSelectField ...\nfield_id: " + field_id + "\nprocessed_data_obj: " + JSON.stringify(processed_data_obj) + "\nname_key: " + name_key + "\nvalue_key: " + value_key + "\nempty_first: " + empty_first + "\nid_key: " + id_key);
     pop_field = document.getElementById(field_id);
     (empty_first) ? enableAndReset(pop_field, 1) : '';
     for (item in processed_data_obj) {
+        console.debug({item});
         pop_field.add(new Option(processed_data_obj[item][name_key], processed_data_obj[item][value_key]), pop_field.options[1]);
         if (id_key !== '') {
             document.querySelectorAll('#' + field_id + ' option')[1].id = processed_data_obj[item][id_key];
+        } else {
+            document.querySelectorAll('#' + field_id + ' option')[1].id = item;
         }
     }
 }
@@ -404,12 +407,14 @@ document.getElementById('instrument').addEventListener('change', function() {
     var unsupported_data = filterOnKey(model_data, 'supported', false);
     delete unsupported_data['serial'];
     if (Object.keys(unsupported_data).length > 0) {
-        populateSelectField('model', unsupported_data, 'full_name', 'full_name', true, 'model_number');
+        //populateSelectField('model', unsupported_data, 'full_name', 'full_name', true, 'model_number');
+        populateSelectField('model', unsupported_data, 'full_name', 'full_name', true);
         document.getElementById('model').add(new Option("– Unsupported –", ''), document.getElementById('model').options[1]);
         document.getElementById('model').add(new Option(' ', ''), document.getElementById('model').options[1]);
         clear_field = false;
     }
-    populateSelectField('model', eos_filtered_data, 'full_name', 'full_name', clear_field, 'model_number');
+    //populateSelectField('model', eos_filtered_data, 'full_name', 'full_name', clear_field, 'model_number');
+    populateSelectField('model', eos_filtered_data, 'full_name', 'full_name', clear_field);
     fetchAndRevealDynamicFields(selected_inst_id);
     updateReferenceBoxContents('instrument');
 }, false);

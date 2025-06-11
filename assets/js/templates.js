@@ -759,7 +759,7 @@ Several key fields can be selected to be automatically copied into the clipboard
                 "remote-service-billing-type": "Remote Service/Remote Resolution for Billable customers should use Billing Type XC"
             },
             "customer_notes": {
-                "fss_contact": `If the Field Service Engineer (FSE) has not reached out to schedule your appointment by ${context[0]}, please contact our Field Service Dispatch Inquiries team (fieldservicedispatchinquiries.med.us@zeiss.com) and include the Field Service Supervisor (FSS) ${context[1]} for a status update. Please be sure to reference your ticket number${(document.getElementById('cct').value !== '') ? ' (' + document.getElementById('cct').value + ') ' : ' '}and device serial number${(document.getElementById('serial').value !== '') ? ' (' + document.getElementById('serial').value + ') ' : ' '}to expedite the status inquiry.`
+                "fss_contact": `If the Field Service Engineer (FSE) has not reached out to schedule your appointment by ${context[0]}, please contact our Field Service Dispatch Inquiries team (fieldservicedispatchinquiries.med.us@zeiss.com) for a status update. Please be sure to reference your ticket number${(document.getElementById('cct').value !== '') ? ' (' + document.getElementById('cct').value + ') ' : ' '}and device serial number${(document.getElementById('serial').value !== '') ? ' (' + document.getElementById('serial').value + ') ' : ' '}to expedite the status inquiry.`
             }
         },
         "hint": {
