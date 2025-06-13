@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.2.6",
+        "data_version": "1.3.0",
         "schema_version": "8.1",
         "eos_primary_reference": "https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html",
         "instruments": {
