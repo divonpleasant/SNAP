@@ -9,6 +9,7 @@ function closeOverlay(event) {
     debugmsg(5, 'Executing closeOverlay::' + overlay_id);
     document.getElementById(overlay_id).style.display = 'none';
 }
+var n2w = new T2W('EN_US');
 
 function openEmailTemplate(event) {
     // Prevent the default action (which is following the link)
@@ -43,7 +44,7 @@ function openEmailTemplate(event) {
             device_context.push('Dispatch a Field Service Engineer (FSE)');
             device_context.push('');
             device_context.push((document.getElementById('cct').value !== '') ? `(# ${document.getElementById('cct').value}) ` : '');
-            device_context.push('eight (8)');
+            device_context.push(n2w.toWords(Number(so.Settings.process.fse_sla.value)) + ' (' + so.Settings.process.fse_sla.value + ')');
             device_context.push('hours');
             template_id = 'billing-request';
             break;
@@ -63,8 +64,8 @@ function openEmailTemplate(event) {
             device_context.push('Dispatch a Field Service Engineer (FSE)');
             device_context.push(' per instrument');
             device_context.push((document.getElementById('cct').value !== '') ? `(# ${document.getElementById('cct').value}) ` : '');
-            device_context.push('four (4)');
-            device_context.push('days');
+            device_context.push(n2w.toWords(Number(so.Settings.process.fse_pm_sla.value)) + ' (' + so.Settings.process.fse_pm_sla.value + ')');
+            device_context.push('hours');
             template_id = 'billing-request';
             break;
         case 'visumax':
@@ -124,7 +125,7 @@ function manualCloseOverlay(o_id) {
 }
 function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Self-identify for debugging
-    debugmsg(1, 'Executing openEmailTemplate::' + template_id);
+    debugmsg(1, 'Manually executing openEmailTemplate::' + template_id);
     (closeOL) ? manualCloseOverlay(template_id) : '';
     // Find correct template and perform any context-relevant actions
     var device_context = [];
@@ -148,7 +149,7 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             device_context.push('Dispatch a Field Service Engineer (FSE)');
             device_context.push('');
             device_context.push((document.getElementById('cct').value !== '') ? `(# ${document.getElementById('cct').value}) ` : '');
-            device_context.push('eight (8)');
+            device_context.push(n2w.toWords(Number(so.Settings.process.fse_sla.value)) + ' (' + so.Settings.process.fse_sla.value + ')');
             device_context.push('hours');
             template_id = 'billing-request';
             break;
@@ -167,8 +168,8 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             device_context.push('Dispatch a Field Service Engineer (FSE)');
             device_context.push(' per instrument');
             device_context.push((document.getElementById('cct').value !== '') ? `(# ${document.getElementById('cct').value}) ` : '');
-            device_context.push('four (4)');
-            device_context.push('days');
+            device_context.push(n2w.toWords(Number(so.Settings.process.fse_pm_sla.value)) + ' (' + so.Settings.process.fse_pm_sla.value + ')');
+            device_context.push('hours');
             template_id = 'billing-request';
             break;
         case 'proaim-pm-request':
@@ -194,8 +195,9 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             device_context = [];
             break;
     }
+    console.debug({device_context});
     const t = new generateTemplates(device_context);
-    debugmsg(5, 'template_id: ' + template_id);
+    console.debug({template_id});
     debugmsg(4, 'Using template: ' + t.templates.email[template_id].name);
 
     // Construct the mailto link

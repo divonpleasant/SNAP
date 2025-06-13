@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.2.6",
+        "data_version": "1.3.0",
         "schema_version": "8.1",
         "eos_primary_reference": "https://www.zeiss.com/meditec/us/service/important-product-lifecycle-notifications.html",
         "instruments": {
@@ -2763,6 +2763,25 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["9138"]
+                    },
+                    "yag": {
+                        "model_serials": {
+                            "format": "[8,9]<sequence>",
+                            "example": "812345",
+                            "prefix_format": "",
+                            "sequence_format": "5 digits"
+                        },
+                        "subsets": {},
+                        "model_number": "Yag",
+                        "full_name": "VisuLas Yag",
+                        "launch_date": "",
+                        "supported": true,
+                        "required_escalation": true,
+                        "eos_date": "",
+                        "eogs_date": "",
+                        "eos_url": "",
+                        "model_url": "",
+                        "instrument_codes": ["9148"]
                     },
                     "yag2": {
                         "model_serials": {

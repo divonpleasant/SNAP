@@ -591,7 +591,7 @@ To create a Task-Task:
         </ol>
     </li>
     <li>Copy the new CCT number into the CCT field.
-    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-request')">PROAIM Service Call</a> email template to send request to Service Ops</li>
+    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-service-request')">PROAIM Service Call</a> email template to send request to Service Ops</li>
     <li>Mark the CCT as Complete</li>
 </ol>`,
                     "recertification": `<h1>Recertification</h1>
@@ -713,7 +713,100 @@ If a serial number provided by the customer does not return any results:
 <p>Some devices are not field-servicable (VisuRef, for example) and can only be serviced via in-house repair. ${TRef.cct_in_crm} as normal, set the Call Type to 'Inhouse Repair', and leave the ticket In Process. Assign the CCT to: Sayed Haschemi, the local In-House Repair (IHR) contact person.</p>
 <p>Inform the customer that IHR will follow up with them within 24 hours with pricing, packaging, and shipment information.`,
                     "onsite-fix": `<h1>Onsite Fix</h1>
-<p>The Onsite Fix call type is used whenever a Service Order is generated to dispatch a Field Service Engineer (FSE).</p>`,
+<p>The Onsite Fix call type is used whenever a Service Order is generated to dispatch a Field Service Engineer (FSE). There are two distinct types of onsite/dispatch requests: <a href="#billable-field-service-dispatch">billable</a> and <a href="#contract-field-service-dispatch">contracted</a>.</p>
+<a name="dispatch-ticket-procedure"></a>
+<h2>Dispatch Ticket Procedure</h2>
+<ul>
+    <li>Verify <a href="#dispatch-request-categories">type of dispatch</a>: either <a href="#contract-field-service-dispatch">contracted</a> or <a href="#billable-field-service-dispatch">billable</a></li>
+    <li>If <a href="#billable-field-service-dispatch">bilalble</a>, confirm the billing contact</li>
+    <li>If <a href="#billable-field-service-dispatch">billable</a>, first <a href="#secure-payment-information">verify payment method</a> with the Billing Contact. If the customer is not ready to confirm payment details:
+        <ul>
+            <li>Proceed with <a href="#create-cct-and-svo">CCT creation</a>, but <strong>do not</strong> generate an SVO</li>
+            <li>Use the <a href="#deferred-billing">deferred billing</a> verbiage in the solution notes</li>
+            <li>Close the CCT</li>
+        </ul>
+    </li>
+    <li>Once the billing contact has confirmed payment method or the dispatch is verified to be contracted, <a href="#create-cct-and-svo">create a CCT and a dispatch SVO</a></li>
+    <li>Leave the CCT open until the onsite is complete</li>
+    <li>Periodically check the SVO status; FSEs will close the SVO and generate a 95* SVO containing the Field Summary Report (FSR) describing the work done to repair the instrument</li>
+    <li>Use the details from the FSR to fill in the solution notes on the CCT</li>
+    <li>Mark the CCT as 'completed'</li>
+</ul>
+<a name="create-cct-and-svo"></a>
+<h3>Create Onsite-Fix CCT and SVO</h3>
+<ol>
+    <li>Gather as much information as possible to assist the Field Service Engineer (FSE), including log files, screenshots/videos of the issues and error messages</li>
+    <li>Verify the Shipping/Instrument address (<em>if the address is not verified, the FSE could end up in the wrong location; if an address change Task is necessary, ensure it is submitted before the SVO </em>)</li>
+    <li>Complete the SNAP form, noting all troubleshooting activities and details, and&mdash;if the customer is billable&mdash;make sure to complete the Billing Contact fields</li>
+    <li>Create a new ${TRef.cct}:
+        <ul>
+            <li>Call Type: Onsite fix</li>
+            <li>Call Type Details: Onsite fix</li>
+            <li>Complete Request Notes; Internal Notes; attach any logs, screenshots, or other details to aid the FSE</li>
+        </ul>
+    </li>
+    <li>Set Status/Priorit to "In Progress"</li>
+    <li>Save the CCT</li>
+    <li>Create a dispatch SVO:
+        <ul>
+            <li>From the open CCT in ${TRef.crm}, click the "Create Follow-Up" button along the top</li>
+            <li>Most relevant data is automatically collected from the CCT to the stub SVO</li>
+            <li>Click "Save"</li>
+        </ul>
+    </li>
+    <li>The CCT's Stauts/Priority will be automatically adjusted to "In Process with Follow-Up"</li>
+    <li>Provide the customer with the CCT number (and, optionally, the SVO number)</li>
+    <li>Inform customer that their FSE should be reaching out within four (4) business hours to schedule their appointment</li>
+    <li>You may also provide them with the <a href="mailto:fieldservicedispatchinquiries.med.us@zeiss.com">fieldservicedispatchinquiries.med.us@zeiss.com</a> email address for self-service FSE status updates</li>
+</ol>
+<a name="dispatch-request-categories"></a>
+<h2>Dispatch Request Categories</h2>
+<p>Onsite Fix calls fall under two classifications:</p>
+<ol>
+    <li>If the device cited in the ${TRef.cct} is under warranty or is covered by a service contract (W, AD, BPA, CO, or PRM billing codes), the dispatch is <strong><a href="#contract-field-service-dispatch">contracted</a></strong></li>
+    <li>If the device cited in the ${TRef.cct}'s warranty has expired and they do not have a qualifying service contract (note that the PR and PRT contract codes do not outright cover break/fix service calls), the dispatch is <strong><a href="#billable-field-service-dispatch">billable</a></strong></li>
+</ol>
+<a name="billable-field-service-dispatch"></a>
+<h2>Billable Field Service Dispatch</h2>
+<p>If a customer's instrument is not covered by warranty or an active (it will display in CRM as 'released') service contract, the billing code is 'B' and the customer is responsible for payment to cover the dispatched Field Service Engineer's (FSE) travel, parts, and labor. Note that Tech Support <em>does not</em> handle payment processing, nor do we have much insight on the costs/estimates of onsite service calls. Do be aware that customers will ask for pricing information frequently when faced with the proposition of billable onsite service.</p>
+<p>Tech Support Engineers <em>can</em> provide the current hourly travel and labor rate ($330/hour as of mid-2025) and should generally advise customers that two hours round trip travel and one hour minimum travel are the bare minimum necessary for an FSE onsite. Parts for medical devices can vary widely in cost, but can easily reach into $1,000+ territory depending on the device and the component.
+<a name="secure-payment-information"></a>
+<h3>Secure Payment Information</h3>
+<p>Before an FSE can be dispatched to a billable customer, they must provide payment information. Note that this information must be provided by the Billing Contact, unless they are an invoiced customer. This confirmation can come in one of four forms:</p>
+<ol>
+    <li>Verbal confirmation of <a href="#cc-payments">Credit Card</a> payment</li>
+    <li>Written confirmation of <a href="#cc-payments">Credit Card</a> payment</li>
+    <li>Submitted not-to-exceed (NTE) <a href="#po-payments">purchase order (PO)</a></li>
+    <li><a href="#invoice-payments">Invoice processing</a> (limited to select customers and some account management firms, see below)</li>
+</ol>
+<a name="cc-payments"></a>
+<h4>Credit Card Payments</h4>
+<p>Customers can confirm either verbally (over the phone) or in writing (generally via email, especially when using the <a href="#" onclick="manualOpenEmailTemplate('billing-request')">PO Authorization</a> email template) that they would like to handle payment via credit card. Credit card processing is handled by the FSE, through an Adyn Link sent to the customer's billing contact after the service is completed.</p>
+<a name="po-payments"></a>
+<h4>Purchase Order Payments</h4>
+<p>Purchase Order payments require a customer to generate a minimum billable purchase order document legally binding them to transfer funds to cover the service rendered. This PO must be processed by Service Operations Admin (SOA) in order to generate the dispatch SVO for the FSE onsite visit. Purchase Order payments cannot be processed over the phone, and the easiest means to confirm the customer's PO is to send the billing contact the PO information included in the <a href="#" onclick="manualOpenEmailTemplate('billing-request')">PO Authorization</a> email template.</p>
+<p>If a customer wishes to pay via PO, the PO must be received <em>before</em> the SVO can be generated. In most cases the PO is sent to <a href="mailto:billableservicerequest@zeiss.com">billableservicerequest@zeiss.com</a> or forwarded to SOA and that team creates the SVO.</p>
+<p><strong>NOTE:</strong> the minimum billable amount cited in the PO Auth template should not be misconstrued or misrepresented as an estimate or quote. It is merely an NTE amount required to process the order and dispatch the engineer.</p>
+<a name="invoice-payments"></a>
+<h4>Invoice Payments</h4>
+<p>Select large accounts are invoiced monthly for all services rendered. These include accounts flagged as "VIP" (a pop-up window should display when confirming the account information and the VIP checkbox will be checked on the CCT creation screen in ${TRef.crm}). These accounts do not require payment method confirmation and can be dispatched as if they were contracted; invoicing will be handled by the accounts receivable group.</p>
+<h4>Payment Not Ready</h4>
+<p>In some cases, a customer will acknowledge their instrument requires onsite repair, but either the billing contact is not available or they need a little time to discuss the matter with a doctor or corporate entity to approve the service. In these cases, follow the <a href="#dispatch-ticket-procedure">normal procedure</a> and use the <a href="#deferred-billing">deferred billing</a> option.</p>
+<a name="contract-field-service-dispatch"></a>
+<h2>Contract or Warrantied Field Service Dispatch</h2>
+<p>If a customer's instrument is still under warranty or they have purchased an applicable service contract, you may create the dispatch ticket without any additional verification on the customer's part.</p>
+<a name="verifying-contract-applicability"></a>
+<h3>Verifying Contract Applicability</h3>
+<p>Note that CRM will not necessarily prevent an SVO dispatch ticket from being created even if the SVO type is not covered by the customer's active service contract. In particular, customers with an OPTIME PREVENT contract are not covered for break/fix service onsites. If OPTIME PREVENT customers are requesting onsite service for anything <em>other</em> than an annual preventative maintenance, treat that case as if they were a billable customer.</p>
+<a name="contract-timing"></a>
+<h3>Contract Timing</h3>
+<p>Billable customers who unexpectedly require onsite service can often find themselves in a situation where they had considered a service contract and for one reason or another failed to complete the contract process before the need arose. Customers will also occasionally inquire about the relative cost of a service contract as opposed to the billable rate of an onsite visit.</p>
+<p>Encourage customers who are considering finalizing a service contract to do so <em>before</em> generating an onsite service ticket. A CCT cannot have a service contract retroactively applied, so the service status as of ticket creation is effectively immutable. Provide customers with the contact information for their <a href="assets/documents/Service_Contract_Rep_Coverage_Areas_Map.pdf" target="_blank">Service Contract Representative</a> before creating a ticket if the customer has <em>any</em> questions or concerns about their service level.</p>
+<a name="generate-confirm-svo"></a>
+<h3>Generate or Confirm Dispatch SVO</h3>
+<p>Once the customer has confirmed the payment method, the <a href="#create-cct-and-svo">process steps</a> to create a ${TRef.cct} and an accompanying SVO are essentially the same as for service contract dispatches, unless the customer is paying via Purchase Order.</p>
+<p>PO-paying customers should email their PO to the SOA group via <a href="mailto:billableservicerequest@zeiss.com">billableservicerequest@zeiss.com</a> or, they may reply to the <a href="#" onclick="manualOpenEmailTemplate('billing-request')">PO Authorization</a> email directly, in which case Tech Support is expected to forward the PO and any relevant information to the Billable Service Request inbox. Once SOA receives and processes the PO, they will generate a new SVO based on your CCT (or, if the CCT is closed, they generally clone the closed CCT and create the SVO from that).</p>
+`,
                     "phone-fix": `<h1>Phone Fix</h1>
 <p>The Phone Fix call type is used for most calls that are resolved without an FSE dispatch or remote access to a customer instrument or system. It is also the catch-all for various process-based ticket handling scenarios such as PROAIM service requests, scheduled callback discussions, status inquiries, etc.</p>`,
                     "remote-service": `<h1>Remote Service</h1>
@@ -759,7 +852,7 @@ Several key fields can be selected to be automatically copied into the clipboard
                 "remote-service-billing-type": "Remote Service/Remote Resolution for Billable customers should use Billing Type XC"
             },
             "customer_notes": {
-                "fss_contact": `If the Field Service Engineer (FSE) has not reached out to schedule your appointment by ${context[0]}, please contact our Field Service Dispatch Inquiries team (fieldservicedispatchinquiries.med.us@zeiss.com) and include the Field Service Supervisor (FSS) ${context[1]} for a status update. Please be sure to reference your ticket number${(document.getElementById('cct').value !== '') ? ' (' + document.getElementById('cct').value + ') ' : ' '}and device serial number${(document.getElementById('serial').value !== '') ? ' (' + document.getElementById('serial').value + ') ' : ' '}to expedite the status inquiry.`
+                "fss_contact": `If the Field Service Engineer (FSE) has not reached out to schedule your appointment by ${context[0]}, please contact our Field Service Dispatch Inquiries team (fieldservicedispatchinquiries.med.us@zeiss.com) for a status update. Please be sure to reference your ticket number${(document.getElementById('cct').value !== '') ? ' (' + document.getElementById('cct').value + ') ' : ' '}and device serial number${(document.getElementById('serial').value !== '') ? ' (' + document.getElementById('serial').value + ') ' : ' '}to expedite the status inquiry.`
             }
         },
         "hint": {
