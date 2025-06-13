@@ -1,6 +1,7 @@
 <div class="reference-main">
     <a name="reftop"></a>
     <h1><a href="#reftop" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/cirrus-oct/index')">Cirrus HD-OCT</a> Troubleshooting Guide &amp; Common Issues</h1>
+
     <a name="image-scan-quality"></a>
     <h2>Image or Scan Quality Issues</h2>
     <a name="clean-lens"></a>
@@ -10,6 +11,7 @@
     <a name="verify-clean-lens"></a>
     <h3>Verifing Lens Cleanliness</h3>
     <p>Any image or scan quality complaints should be followed up with questions regarding the cleanliness of the lens. Don't take a customer's word for it, with the application open and on the <a href="#acquire-screen">Acquire Screen</a>, check the <a href="#iris-camera">Iris Camera</a> while the customer shines a flashlight onto the lens. This can often reveal missed spots, peeling lens coating, or embedded dust, all of which can result in poor scan quality, artifacts on scans, or <a href="#low-signal-strength">low signal strength</a> issues.</p>
+
     <a name="log-files"></a>
     <h2>Collecting and Analyzing OCT Log Files</h2>
     <a name="log-location"></a>
@@ -28,14 +30,30 @@
     <ul>
         <li>All log files are named 'Datelog_YYYYMMDD.txt' where YYYY is the four-digit year, MM is the two-digit month, and DD is the two-digit day</li>
     </ul>
+
     <a name="startup-issues"></a>
     <h2>Start-Up Issues</h2>
-    <a name="not-powering-up"></a>
+    <a name="instrument-not-powering-up"></a>
     <h3>Instrument Won't Power Up</h3>
-    <p>Most of our devices get power through the power table they sit on. If the device does not power up:</p>
+    <a name="basic-power-on-troubleshooting"></a>
+    <h4>Basic Power Troubleshooting</h4>
+    <ul>
+        <li>Check and reseat instrument and table power cords (see <a href="#check-table-function">Check Table Function</a>), ensuring cords are well seated and are in good condition, i.e. not worn, frayed, or crimped</li>
+        <li>Remove power cable from any surge protectors, power strips, battery backups, or the like and plug directly into a wall outlet</li>
+        <li>Check or test outlet for power coming from outlet</li>
+        <li>Ensure instrument power issues are not related to overheating: check top fan filter is clean and ensure all air vents are not blocked</li>
+    </ul>
+    <a name="fse-power-troubleshooting"></a>
+    <h5>Power Troubleshooting Requiring Onsite Visit (FSE)</h5>
+    <p>Field Service Engineers (FSEs) can perform additional power on issue troubleshooting:</p>
+    <ul>
+        <li>Check table fuses</li>
+        <li>Check PC module fuses (applies to CMY2014 computer only)</li>
+        <li><a href="#corneal-lens-replacement">Verify power to the optics module/corneal lens</a> (especially if the lens was recently replaced</li>
+    </ul>
     <a name="check-table-function"></a>
     <h4>Check Table Function</h4>
-    <p>The power table only draws current when being adjusted (up or down), otherwise all power flows to the outlet.</p>
+    <p>Most of our devices get power through the power table they sit on. The power table only draws current when being adjusted (up or down), otherwise all power flows to the outlet.</p>
     <p><strong>Does the table go up and/or down?</strong></p>
     <table>
         <thead>
@@ -60,7 +78,7 @@
     <a name="corneal-lens-replacement"></a>
     <h4>Verify Recent Corneal Lens Replacement</h4>
     <p>If the corneal lens (patient module lens) was recently replaced, the unit may not power on if the optics module connection board (triangle board) is not supplying power to the lens. Verify if a recent onsite repair was performed and whether the lens was replaced/modified/adjusted. It may require a follow-up onsite to ensure the lens power is properly seated.</p>
-    <a href="6000-power-on-blank-screen"></a>
+    <a name="6000-power-on-blank-screen"></a>
     <h4>Cirrus 6000 Won't Power Up or Blank/Black Screen After Power On</h4>
     <p>First generation configurations of the Cirrus 6000's external monitor have a hidden/invisible/touch power button on the underside of the bezel on the lower right hand side. It is common for this button to be pressed by accident.</p>
     <p><strong>Symptoms:</strong></p>
@@ -85,7 +103,73 @@
         <span class="caption">Cirrus HD-OCT Model 6000 Bezel underside, showing touch control buttons including the power button (circled in green)</span>
     </div>
     <p>Have the customer reach under the bezel and tap the indentation furthest to the right. This is the "invisible" power switch. It should illuminate the LED and power on the display, restoring proper usage.</p>
-    <p><strong>NOTE:</strong> The display was replaced in later revisions with one featuring mechanical control buttons, including the power switch, which are tactile and less prone to inadvertent toggling.</p>
+
+    <div class="section-break"></div>
+    <a name="application-start-up"></a>
+    <h2>Application Start-Up Issues</h2>
+    <p>The Cirrus HD-OCT application should launch automatically on boot, though some customers may have configured their Windows settings to boot to the desktop instead. In most cases, the Windows Desktop appears briefly after start-up before the OCT application launches. <em>Technicians should be trained not to manually launch the OCT application via the taskbar or desktop icon when the application is configured to launch automatically</em>. Doing so can cause issues with the application and database processes.</p>
+    <a name="start-up-check-does-not-pass"></a>
+    <h3>Start-Up Check Does Not Pass</h3>
+    <div class="img-r">
+        <img src="images/reference/oct/cirrus_hd-oct_start-up_check_error.png" />
+        <span class="caption">OCT Start-Up Check screen displaying an Instrument error with standard error message</span>
+    </div>
+    <p>The Cirrus HD-OCT application performs a set of evaluations each time it is launched, confirming access to the local database, available disk space on the PC module's system and data disk partitions, available archive volume storage space (if the software is configured to run in archive mode), presence of key files, and the health of the instrument's scanning and operation hardware components.</p>
+    <p>If any of these checks fails, the software will display an error and may prevent the instrument from acquiring scans, analyzing previous patient data, or in some cases completing the application's launch.</p>
+    <a name="start-up-check-database-errors"></a>
+    <h4>Database Check Errors</h4>
+    <p>TBD...</p>
+    <a name="start-up-check-disk-errors"></a>
+    <h4>Disk Storage Space Errors</h4>
+    <p>TBD...</p>
+    <a name="start-up-chceck-file-errors"></a>
+    <h4>Installation Files Errors</h4>
+    <p>TBD...</p>
+    <a name="start-up-check-instrument-errors"></a>
+    <h4>Instrument Check Errors</h4>
+    <p>When the Instrument self-check fails, a common error message is:</p>
+    <blockquote>Errors were detected in the Cirrus HD-OCT scanning module. You can not acquire or review scans until the problem is corrected. Please contact Carl Zeiss Meditec Customer Service for assistance.</blockquote>
+    <p><strong>Action Steps</strong></p>
+    <ul>
+        <li>Reboot the instrument, performing <a href="#hard-reboot">hard reboot</a> if necessary</li>
+        <li>Click the <strong>Details</strong> button to see a dialog box containing more information about the specific error</li>
+    </ul>
+    <h5>Instrument Check Errors and Recommendations</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>Error Message</th>
+                <th>Recommendation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><em>"Object reference not set to an instance of an object"</em> or <em>"FW initialization failed, most likely controller is disconnected"</em></td>
+                <td><p>If <strong>Help &gt; About</strong> reports <strong>?</strong> for Firmare <em>and</em> FPGA, confirm network adapter (used for the internal communication of the instrument) is both enabled and set to a static IP address of <code>192.168.52.100</code></p>
+                <p>If problem persists, it may indicate a failed microcontroller board, a bad ethernet port on the motherboard, or a faulty network cable between the microcontroller and the motherboard.</p></td>
+            </tr>
+            <tr>
+                <td><em>"Object reference not set to an instance of an object"</em></td>
+                <td>If <strong>Help &gt; About</strong> reports <strong>?</strong> for framegrabber board, reinstall the Coreco driver. If the problem still persists, then it may indicate a failed framegrabber board.</td>
+            </tr>
+            <tr>
+                <td><em>"Galvo test failed"</em> (for X, Y and/or L galvo)</td>
+                <td>May indicate a failed galvo and/or galvo driver board, framegrabber board, or microcontroller.</td>
+            </tr>
+            <tr>
+                <td><em>"Power supply out of range"</em> (for one or more voltage power supplies)</td>
+                <td>May indicate a failed power supply, DC power conversion board, or microcontroller.</td>
+            </tr>
+            <tr>
+                <td><em>"OCT camera initialization failure. Camera pixel clock is not detected"</em></td>
+                <td><a href="#" onclick="manualActivateProcess('call-types', 'general', 'onsite-fix')">FSE dispatch</a>: Field engineer should check for loose power connection between the OCT camera and the optics module connection board. If the problem persists, it may indicate a failed spectrometer.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    
     <p>&nbsp;</p>
     <div class="section-break"></div>
     <div class="img-r">

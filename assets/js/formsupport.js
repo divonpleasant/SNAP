@@ -555,10 +555,10 @@ function activateProcess() {
     document.getElementById('prompt-tail').style.display = 'none';
 }
 function manualActivateProcess(proc_type, proc_section, proc_location) {
-    debugmsg(4, 'Executing manualActivateProcess...');
-    debugmsg(4, 'proc_type: ' + proc_type);
-    debugmsg(4, 'proc_section: ' + proc_section);
-    debugmsg(4, 'proc_location: ' + proc_location);
+    console.info('Executing manualActivateProcess...');
+    console.debug({proc_type});
+    console.debug({proc_section});
+    console.debug({proc_location});
     var proc_context = new Array;
     const pt = new generateTemplates(proc_context);
     var proc_text = pt.templates.process[proc_type][proc_section][proc_location];
