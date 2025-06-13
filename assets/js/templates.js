@@ -591,7 +591,7 @@ To create a Task-Task:
         </ol>
     </li>
     <li>Copy the new CCT number into the CCT field.
-    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-request')">PROAIM Service Call</a> email template to send request to Service Ops</li>
+    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-service-request')">PROAIM Service Call</a> email template to send request to Service Ops</li>
     <li>Mark the CCT as Complete</li>
 </ol>`,
                     "recertification": `<h1>Recertification</h1>

@@ -125,7 +125,7 @@ function manualCloseOverlay(o_id) {
 }
 function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Self-identify for debugging
-    debugmsg(1, 'Executing openEmailTemplate::' + template_id);
+    debugmsg(1, 'Manually executing openEmailTemplate::' + template_id);
     (closeOL) ? manualCloseOverlay(template_id) : '';
     // Find correct template and perform any context-relevant actions
     var device_context = [];
@@ -195,8 +195,9 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             device_context = [];
             break;
     }
+    console.debug({device_context});
     const t = new generateTemplates(device_context);
-    debugmsg(5, 'template_id: ' + template_id);
+    console.debug({template_id});
     debugmsg(4, 'Using template: ' + t.templates.email[template_id].name);
 
     // Construct the mailto link
