@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title id="page-title">SNAP Audit</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <link id="pagestyle" rel="stylesheet" href="assets/css/audit.css" />
+        <script src="https://kit.fontawesome.com/d98e09f1e2.js" crossorigin="anonymous"></script>
+        <script src="assets/js/productData.js"></script>
+        <script src="assets/js/auditlib.js"></script>
+    </head>
+    <body class="stretch">
+        <div id="wrapper">
+            <div class="wrapped">
+                <div class="box">
+                    <div id="sidebar">
+                        <a name="sidebar-top"></a>
+                        <h2>Choose Audit Type</h2>
+                        <a href="#top" onclick="displayAuditReview('productData')">Product Data Audit</a>
+                    </div>
+                    <div id="main">
+                        <a name="top"></a>
+                        <h1>S.N.A.P. Audit Page</h1>
+                        <div class="info">
+                            <p><strong>Notes for Auditors:</strong></p>
+                            <ul>
+                                <li>Each discrete data point can be marked in one of two ways: <code>flagged</code> or <code>comment</code></li>
+                                <li>Flag data points that are <em>wholly</em> inaccurate (e.g. "supported: true" when it should be "supported: false")</li>
+                                <li>Comment data points that require additional context such as typos ("short_name: Cirris HD-OCT" instead of "short_name: Cirrus HD-OCT"), updates ("eos_date was recently set for this coming October"), or questions ("Is this phone number format acceptable?")</li>
+                                <li>Empty data values are not considered incorrect ('flagged') <em>unless</em> they are top-level or identifying (i.e. a product's model name or a user's last name); use 'comment' instead to provide the expected value</li>
+                            </ul>
+                        </div>
+                        <form id="audit-form" method="post" action="#">
+                            <h2 id="audit-title"></h2>
+                            <div id="metadata"></div>
+                            <div id="audit"></div>
+                            <button id="audit_submit" type="button" value="Submit" disabled>Submit Audit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
