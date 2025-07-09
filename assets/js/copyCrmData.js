@@ -51,11 +51,10 @@ function cleanData(t_data) {
     return processed_data;
 }
 
-function exportToFile(clean_data, extension) {
+function exportToFile(clean_data, extension, filename = 'export') {
     var blob = new Blob([clean_data], { type: 'text/plain' });
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    var filename = 'export';
     if (document.getElementById('serial').value != '') {
         filename = document.getElementById('serial').value;
     } else if (document.getElementById('cct').value != '') {

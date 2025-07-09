@@ -90,7 +90,7 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #32373e;
-  font-family: "Open Sans", sans-serif;
+  font-family:"ZEISS-Frutiger", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65; }
@@ -1978,13 +1978,15 @@ button,
   background-color: #f2f5f8;
   font-size: 0.9em;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #b4c0ca #ffffff;
   width: 26em; }
   #sidebar h2 {
     font-size: 1.38889em; }
   #sidebar > .inner {
     padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
     position: fixed;
-    overflow-y:auto;
+    overflow-y: auto;
     height: 100%;
     width: 26em; }
     #sidebar > .inner > * {

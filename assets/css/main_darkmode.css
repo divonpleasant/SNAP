@@ -104,8 +104,7 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #b4c0ca;
-  /* font-family: "Open Sans", sans-serif; */
-  font-family:"ZEISS-Frutiger", Helvetica, Arial, sans-serif;
+  font-family:"ZEISS-Frutiger", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65; }
@@ -1994,23 +1993,16 @@ button,
   background-color: #606a76;
   font-size: 0.9em;
   position: relative;
-  /* sidebar scrolling prototype
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  max-height: 110vh !important;
-  overflow-y: auto !important;
-  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #8daac8 #32373e;
-  scroll-margin-left: 4px;
-  */
   width: 26em; }
   #sidebar h2 {
     font-size: 1.38889em; }
   #sidebar > .inner {
     padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
-    position: relative;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
     width: 26em; }
     #sidebar > .inner > * {
       border-bottom: solid 2px rgba(220, 227, 233, 0.75);
