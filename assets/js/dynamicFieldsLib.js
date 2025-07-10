@@ -584,7 +584,7 @@ function commonActionToField(a_id, field) {
     console.debug({action_data});
     //var line_break = (document.getElementById(field).value === '') ? '' : "\n"
     var line_break = "\n";
-    document.getElementById(field).value += line_break + "  • " + action_data;
+    document.getElementById(field).value += line_break + "    • " + action_data;
 }
 
 function expandNav() {

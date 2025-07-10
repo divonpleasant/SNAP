@@ -114,18 +114,16 @@ function openEmailTemplate(event) {
    the migration is complete.
 */
 function manualOverlay(o_id) {
-    debugmsg(4, 'Manually executing showOverlay::'+ o_id);
+    console.debug('Manually executing showOverlay::' + o_id);
     document.getElementById(o_id + '-overlay').style.display = 'flex';
 }
 function manualCloseOverlay(o_id) {
-    debugmsg(4, 'o_id: ' + o_id);
-    //o_id = o_id.substr(0, o_id.length - 8);
-    debugmsg(4, 'Manually executing closeOverlay::'+ o_id);
+    console.debug('Manually executing closeOverlay::' + o_id);
     document.getElementById(o_id + '-overlay').style.display = 'none';
 }
 function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Self-identify for debugging
-    debugmsg(1, 'Manually executing openEmailTemplate::' + template_id);
+    console.debug('Manually executing openEmailTemplate::' + template_id);
     (closeOL) ? manualCloseOverlay(template_id) : '';
     // Find correct template and perform any context-relevant actions
     var device_context = [];
@@ -198,7 +196,7 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     console.debug({device_context});
     const t = new generateTemplates(device_context);
     console.debug({template_id});
-    debugmsg(4, 'Using template: ' + t.templates.email[template_id].name);
+    console.debug('Using template: ' + t.templates.email[template_id].name);
 
     // Construct the mailto link
     var mailto_link = 'mailto:' + encodeURIComponent(t.templates.email[template_id].recipient) + '?';
@@ -206,6 +204,7 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     for (copy_type of ['cc', 'bcc']) {
         if (t.templates.email[template_id][copy_type].length > 0) {
             var addresses = t.templates.email[template_id][copy_type].join(';');
+            console.debug({addresses});
             var enc_add = encodeURIComponent(addresses);
             mailto_link = (firstarg) ? mailto_link + copy_type + '=' + enc_add : mailto_link + '&' + copy_type + '=' + enc_add;
             firstarg = (firstarg) ? false : false;
@@ -220,8 +219,8 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
         }
     }
 
-    debugmsg(5, 'mailto_link: ' + mailto_link);
-    debugmsg(4, 'mailto_link.length: ' + mailto_link.length);
+    console.debug({mailto_link});
+    console.debug('mailto_link.length: ' + mailto_link.length);
     
     /*
         Google Chrome has a limitation where it will silently refuse to open a 
@@ -250,7 +249,8 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
         as possible.
     */
     if (mailto_link.length > 2034) {
-        var html_text_email = `<strong>To:</strong> ${addresses}<br />
+        var html_text_email = `<strong>To:</strong> ${t.templates.email[template_id].recipient}<br />
+<strong>CC/BCC:</strong> ${addresses}<br />
 <strong>Subject:</strong> ${t.templates.email[template_id].subject}<br />
 ${t.templates.email[template_id].body}`;
         navigator.clipboard.writeText(html_text_email).then(function() {
@@ -258,10 +258,10 @@ ${t.templates.email[template_id].body}`;
         }).catch(function(err) {
             updateSystemBox('Failed to copy data to clipboard: ', err);
         });
-        debugmsg(2, "'Copied text to clipboard: '" + html_text_email + "'");
+        console.log("'Copied text to clipboard: '" + html_text_email + "'");
 
         displayProcessMessage(`The current template, "${t.templates.email[template_id].name}", when combined with the appropriate form data, exceeds the maximum template length for certain browsers by ${mailto_link.length - 2034} characters.<br />The following text has been copied to the clipboard instead, which can be manually pasted into a new email document from your mail client:<br /><br />
-${html_text_email}`);
+<pre class="console">${html_text_email}</pre>`);
     } else {
         // Open the mailto link
         try {
