@@ -72,6 +72,33 @@ Please advise on how I may proceed.
 Regards,
 ${so.Settings.user.email_sig.value}`
             },
+            "customer-summary": {
+                "name": "Customer Ticket Summary",
+                "recipient": `${document.getElementById('email').value}`,
+                "cc": [],
+                "bcc": [`${so.Settings.user.private_inbox.value}`, `${document.getElementById('billing-email').value}`],
+                "subject": `[CCT #${document.getElementById('cct').value}] ${procCctDescription()}`,
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
+
+Thank you for reaching out to CZMI Technical Support.${(document.getElementById('cct').value !== '') ? ' We have opened Customer Care Ticket (CCT) #' + document.getElementById('cct').value + ' to document your request: "' + procCctDescription(true) + '." ' : ' '}This ticket has been associated with ${(document.getElementById('model').selectedIndex !== 0) ? document.getElementById('model').value : 'device or asset'} using serial number ${document.getElementById('serial').value}. Please be prepared to supply this serial number${(document.getElementById('cct').value !== '') ? ' and your CCT number ' : ' '}with any correspondence regarding the request.
+
+Your Zeiss Technical Support representative today was ${so.Settings.user.casual_name.value}.
+
+INTERACTION SUMMARY
+Full Request Description: ${document.getElementById('description').value}
+${(document.getElementById('same-as-reported').checked) ? '' : 'Root Cause: ' + document.getElementById('actual-problem-description').value}
+${(document.getElementById('frequency-selector').selectedIndex !== 0) ? 'Occurrence Frequency: ' + document.getElementById('frequency-selector').value : ''}
+${(document.getElementById('frequency-problem').value !== '') ? '    Details: ' + document.getElementById('frequency-problem').value + "\n": ''}${(document.getElementById('problem-started').value !== '') ? '    Started: ' + document.getElementById('problem-started').value + "\n" : ''}${(document.getElementById('problem-changed').value !== '') ? '    What Changed? ' + document.getElementById('problem-changed').value + "\n" : ''}
+${(document.getElementById('troubleshooting-performed').value !== '') ? 'Troubleshooting Steps Taken: ' + document.getElementById('troubleshooting-performed').value : ''}
+${(document.getElementById('customer-notes').value !== '') ? 'Additional Notes: ' + document.getElementById('customer-notes').value : ''}
+
+${(document.getElementById('solution-notes').value !== '') ? 'Solution: ' + document.getElementById('solution-notes').value : ''}${(document.getElementById('call-type').value === 'onsite-fix') ? 'Your ticket with an associated field service dispatch will remain open until the onsite visit is completed. The dispatch order number is ' + document.getElementById('svo').value + '.' : ''}${(document.getElementById('call-type').value === 'phone-fix') ? 'Your ticket was categorized as "handled via phone," and the ticket may be closed or marked as "complete" for record-keeping purposes. Do continue to reference CCT number ' + document.getElementById('cct').value + ' in any future interactions regarding this issue until CZMI Tech Support provides an updated ticket number.' : ''}${(document.getElementById('call-type').value === 'remote-service') ? 'Your ticket involved remote service (TeamViewer, Teleservice, Zeiss Smart Services, etc). Please note that some remote service requests may incur a billable charge for customers whose Zeiss products are not covered under warranty or an active service contract. Your Tech Support Engineer will inform you of any charges prior to taking billable actions.' : ''}${(document.getElementById('call-type').value === 'spare-part-order') ? "Your request for the following parts:\n    " + document.getElementById('part-list').value + "\nWas forwarded to the CZMI Parts department for processing. If there is an associated charge, the Parts team will reach out to you via phone or email within one (1) business day for payment processing. Otherwise, parts orders will be processed and shipped in the order received." : ''}
+
+Thank you for being a Zeiss customer!
+
+Regards,
+${so.Settings.user.email_sig.value}`
+            },
             "end-of-support": {
                 "name": "End of Support Explanation",
                 "recipient": `${document.getElementById('email').value}`,
@@ -886,10 +913,7 @@ A - Device Repaired: ${document.getElementById('device-repaired').checked ? "Yes
     Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
     Reason Why Not: ${document.getElementById('current-software-reason').value}
     Verified Normal Device Functionality: ${document.getElementById('verified-normal-functionality').checked ? "Yes" : "No"}
-    Verified Connectivity to Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}
-
-Notes for Customer:
-${document.getElementById('customer-notes').value}`
+    Verified Connectivity to Network/Shares: ${document.getElementById('verified-network-connectivity').checked ? "Yes" : "No"}`
             },
             "internal": {
                 "name": "Internal Notes",

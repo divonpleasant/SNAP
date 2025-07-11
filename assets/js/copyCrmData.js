@@ -9,29 +9,34 @@ function useActualDescription() {
 }
 
 /* Process CCT Description */
-function procCctDescription () {
-	if (document.getElementById('billing-type').value == "CNTRCT") {
-		bt = document.getElementById('service-contract').value;
-	} else {
-		bt = document.getElementById('billing-type').value;
-	}
-	var serialnum = document.getElementById('serial').value;
-	var raw_description = document.getElementById('description').value;
-    debugmsg(5, 'serialnum: ' + serialnum);
-    debugmsg(5, 'serialnum.length: ' + serialnum.length);
+function procCctDescription (descr_only = false) {
+    if (document.getElementById('billing-type').value == "CNTRCT") {
+        bt = document.getElementById('service-contract').value;
+    } else {
+        bt = document.getElementById('billing-type').value;
+    }
+    var serialnum = document.getElementById('serial').value;
+    var raw_description = document.getElementById('description').value;
+    console.debug({serialnum});
+    console.debug('serialnum.length: ' + serialnum.length);
     if (document.getElementById('instrument').value === 'FORUM' && serialnum === '') {
         serialnum = 'FORUM';
     }
-    debugmsg(5, 'bt: ' + bt);
-    debugmsg(5, 'bt.length: ' + bt.length);
+    console.debug({bt});
+    console.debug('bt.length: ' + bt.length);
     var prefix_len = serialnum.length + bt.length;
-    debugmsg(5, 'prefix_len: ' + prefix_len);
+    console.debug({prefix_len});
     var avail_chars = 40 - prefix_len; // tested description field in CRM for 40 characters total
-	var desc_arr = raw_description.split(".");
-	var description = desc_arr[0].substring(0, avail_chars);
-	var cct_descr = serialnum + " " + bt + " " + description;
-	debugmsg(4, 'cct_descr: ' + cct_descr);
-    return cct_descr;
+    var desc_arr = raw_description.split(".");
+    var description = desc_arr[0].substring(0, avail_chars);
+    if (descr_only) {
+        console.debug({descr_only});
+        return description;
+    } else {
+        var cct_descr = serialnum + " " + bt + " " + description;
+        console.debug({cct_descr});
+        return cct_descr;
+    }
 }
 
 /*
