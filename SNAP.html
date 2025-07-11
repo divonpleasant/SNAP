@@ -51,7 +51,7 @@
                                     </select>
                                     <div class="label-right">Request Source</div>
                                 </div>
-                                
+
                                 <!-- Instrument Information -->
                                 <div class="col-6 col-12-xsmall">
                                     <select name="instrument" id="instrument">
@@ -117,7 +117,7 @@
                                         <option value="general_review-station-software-install">Review Station Software Installation</option>
                                         <option value="general_spare-parts">Spare Parts</option>
                                     </select>
-                                    
+
                                     <div class="label-right">Call Scenario <span class="script-scroll"><a class="info-button" href="#top"><i id="process-prompt-call-scenarios" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-12">
@@ -187,7 +187,7 @@
                                 <div class="col-12 remote-support-field">
                                     <h4>Remote Support</h4>
                                 </div>
-                                
+
                                 <div class="col-6 col-12-xsmall remote-support-field">
                                     <input type="checkbox" id="smart-service" name="smart-service">
                                     <label for="smart-service">Zeiss Smart Services?</label>
@@ -951,10 +951,10 @@
                                     <div class="label-right">Other Internal Notes</div>
                                 </div>
                                 <div class="col-12">
-                                    <a href="#internal" id="printintnotes" class="button primary small" onclick="copyCrmData('internal')">Copy Internal Notes</a> 
+                                    <a href="#internal" id="printintnotes" class="button primary small" onclick="copyCrmData('internal')">Copy Internal Notes</a>
                                     <hr />
                                 </div>
-                                
+
                                 <!-- Call Wrap-Up -->
                                 <a class="anchor" name="wrap-up"></a>
                                 <div class="col-12">
@@ -978,7 +978,7 @@
                                         <!-- <option value="prev-maintenance">Prev. Maintenance</option> -->
                                         <option value="remote-service">Remote Service</option>
                                         <option value="spare-part-order">Spare Part Order</option>
-                                        
+
                                     </select>
                                     <div class="label-right">Call Type <span class="script-scroll"><a class="info-button" href="#wrap-up"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
@@ -1044,247 +1044,250 @@
                                 <div class="col-12">
                                     <input id="resetButton" type="reset" class="button primary small">
                                 </div>
+
+                                <!-- Overlays -->
+                                <div id="overlays">
+                                    <!-- Compliance Check Overlay -->
+                                    <div id="compliance-check-overlay" class="overlay" style="display: none;">
+                                        <div id="compliance-check-overlay-content" class="overlay-content">
+                                            <span id="compliance-check-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('compliance-check');">&times;</a></span> <!-- X button to close -->
+                                            <h3 style="text-align: center">Enter Compliance Check Information</h3>
+                                            <input type="text" id="compliance-id" name="compliance-id" placeholder="Enter Compliance ID (From Details)"><br />
+                                            <input type="text" id="account-id" name="account-id" placeholder="Account ID"><br />
+                                            <button id="compliance-check-proceed" onclick="manualOpenEmailTemplate('compliance-check', true)">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Address Change Overlay -->
+                                    <div id="address-change-overlay" class="overlay" style="display: none;">
+                                        <div id="address-change-overlay-content" class="overlay-content">
+                                            <span id="address-change-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('address-change');">&times;</a></span> <!-- X button to close -->
+                                            <h3 style="text-align: center">Address Change Information</h3>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="current-site-address" name="current-site-address" placeholder="Instrument/Shipping Address" disabled />
+                                                <label for="current-site-address">Current Site Address</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="new-site-address" name="new-site-address" placeholder="New Site Address" />
+                                                <label for="new-site-address">New Site Address</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="new-site-address-phone" name="new-site-address-phone" placeholder="New Location Phone Number" />
+                                                <label for="new-site-address-phone">New Location Phone Number</label>
+                                            </div>
+                                            <div id="billing-address-change" class="overlay-toggle-off">
+                                                <div class="overlay-input-wrapper">
+                                                    <input type="text" id="current-billing-address" name="current-billing-address" placeholder="Current Billing/Account Address" />
+                                                    <label for="current-billing-address">Current Billing/Account Address</label>
+                                                </div>
+                                                <div class="overlay-input-wrapper">
+                                                    <input type="text" id="new-billing-address" name="new-billing-address" placeholder="New Billing/Account Address" />
+                                                    <label for="new-billing-address">New Billing/Account Address</label>
+                                                </div>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <select id="address-change-reason-list" name="address-change-reason-list">
+                                                    <option value="">&mdash; Reason for Change &mdash;</option>
+                                                    <option value="acquisition">Acquisition/New Parent Company</option>
+                                                    <option value="instrument-move">Instrument Moved</option>
+                                                    <option value="instrument-sold">Instrument Sold/Owner Change</option>
+                                                    <option value="new-satellite">New Satellite Office</option>
+                                                    <option value="relocation">Practice Relocation</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                                <label for="address-change-reason-list">Reason for Change</label>
+                                                <textarea rows="3" id="address-change-reason" name="address-change-reason" placeholder="Reason for address change" style="display: none"></textarea>
+                                                <label for="address-change-reason">Change Reason Details</label>
+                                            </div>
+                                            <input type="checkbox" id="site-change" name="site-change">
+                                            <label for="site-change">Change Site Address</label><br />
+                                            <input type="checkbox" id="billing-change" name="billing-change">
+                                            <label for="billing-change">Change Billing Address</label><br />
+                                            <button id="address-change-proceed">Save</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- End of Support Overlay -->
+                                    <div id="end-of-support-overlay" class="overlay" style="display: none;">
+                                        <div id="eos-overlay-content" class="overlay-content">
+                                            <span id="eos-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('end-of-support');">&times;</a></span> <!-- X button to close -->
+                                            <h3 style="text-align: center">Enter EoS Instrument Information</h3>
+                                            <select name="eos-instrument-type" id="eos-instrument-type">
+                                                <option value="">&mdash; Instrument &mdash;</option>
+                                                <option value="acuitus">Acuitus Auto Refractor</option>
+                                                <option value="atlas">ATLAS</option>
+                                                <option value="cirrus-oct">Cirrus HD-OCT</option>
+                                                <option value="cirrus-photo">Cirrus Photo</option>
+                                                <option value="ct">Corneal Topographer (CT)</option>
+                                                <option value="clarus">Clarus</option>
+                                                <option value="fundus-camera">Fundus Camera</option>
+                                                <option value="hfa">Humphrey Field Analyzer (HFA)</option>
+                                                <option value="iolmaster">IOLMaster</option>
+                                                <option value="matrix">Matrix</option>
+                                                <option value="oct">OCT</option>
+                                                <option value="slit-lamp">Slit Lamps (SL)</option>
+                                                <option value="stratus">Stratus</option>
+                                                <option value="visante">Visante OCT</option>
+                                                <option value="visucam">Visucam</option>
+                                                <option value="visupac">Visupac</option>
+                                            </select><br />
+                                            <select name="eos-instrument-model" id="eos-instrument-model">
+                                                <option value="">&mdash; Model &mdash;</option>
+                                            </select><br />
+                                            <div id="eos-submit-button-align">
+                                                <button id="eos-proceed" onclick="manualOpenEmailTemplate('end-of-support', true)">Continue</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FSE Update Request Overlay -->
+                                    <div id="fse-update-overlay" class="overlay" style="display: none;">
+                                        <div id="fse-update-overlay-content" class="overlay-content">
+                                            <span id="fse-update-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('fse-update');">&times;</a></span> <!-- X button to close -->
+                                            <h3>Enter SVO Information</h3>
+                                            <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br />
+                                            <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br />
+                                            <button id="fse-update-proceed" onclick="manualOpenEmailTemplate('fse-update', true)">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Parts Order Overlay -->
+                                    <div id="parts-order-overlay" class="overlay" style="display: none;">
+                                        <div id="parts-order-overlay-content" class="overlay-content tooltip">
+                                            <span id="parts-order-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('parts-order')">&times;</a></span> <!-- X button to close -->
+                                            <h3>Enter Parts Order Information</h3>
+                                            <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Fuses)"><br />
+                                            <span class="parts-tooltip"><textarea rows="4" id="part-list" name="part-list" placeholder="PART_DESC_01;PART_ID_01&#10;PART_DESC_02;PART_ID_02"></textarea><span class="parts-req-tooltiptext">Semicolon-separated list of part descriptions and part numbers.<br />Input one part entry per line.<br />Example:<br />FUSE 6.3A/250VAC 5X20MM TYPE T;000000-1211-851<br /></span></span><br />
+                                            <input type="checkbox" id="foc" name="foc">
+                                            <label for="foc">Free of Charge?</label><br />
+                                            <select name="delivery-type" id="delivery-type">
+                                                <option value="">&mdash; Delivery Type &mdash;</option>
+                                                <option value="Overnight">Overnight</option>
+                                                <option value="Ground">Ground</option>
+                                            </select><br />
+                                            <button id="parts-order-proceed" onclick="manualOpenEmailTemplate('parts-order', true)">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- PM Service Ops (Contract) Overlay -->
+                                    <div id="soa-contract-pm-overlay" class="overlay" style="display: none;">
+                                        <div id="soa-contract-pm-overlay-content" class="overlay-content">
+                                            <span id="soa-contract-pm-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('soa-contract-pm')">&times;</a></span> <!-- X button to close -->
+                                            <h3>Enter Contract Number</h3>
+                                            <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
+                                            <button id="soa-contract-pm-proceed" onclick="manualOpenEmailTemplate('soa-contract-pm', true)">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Schedule Callback Overlay -->
+                                    <div id="schedule-overlay" style="display: none;">
+                                        <div id="schedule-overlay-content">
+                                            <span id="schedule-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('schedule')">&times;</a></span> <!-- X button to close -->
+                                            <h3>Select Date and Time</h3>
+                                            <input type="datetime-local" id="scheduledDateTime" required /><br />
+                                            <button id="modalContinue">Continue</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Settings Overlay -->
+                                    <div id="settings-overlay" style="display: none;">
+                                        <div id="settings-overlay-content">
+                                            <span id="settings-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('settings')">&times;</a></span> <!-- X button to close -->
+                                            <h3 style="text-align: center">User Settings</h3>
+                                            <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
+                                            <label for="alert-on-copy">Alert on Copy?</label><br />
+                                            <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
+                                            <label for="alert-for-xc">Alert for XC?</label><br />
+                                            <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
+                                            <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
+                                            <input type="checkbox" id="dark-mode" name="dark-mode">
+                                            <label for="dark-mode">Dark Mode?</label><br />
+                                            <input type="checkbox" id="sign-email" name="sign-email">
+                                            <label for="sign-email">Sign Outgoing Email?</label><br />
+                                            <input type="text" id="fse-sla" name="fse-sla" />
+                                            <label for="fse-sla">Break-Fix SLA (hours)</label>
+                                            <input type="text" id="pm-sla" name="pm-sla" />
+                                            <label for="pm-sla">Preventative Maintenance SLA (hours)</label>
+                                            <input type="checkbox" id="debug-toggle" name="debug-toggle">
+                                            <label for="debug-toggle">Use Debug Mode?</label><br />
+                                            <select name="debug-level" id="debug-level">
+                                                <option value="0">&mdash; Debug Level &mdash;</option>
+                                                <option value="1">Level 1 (Overview)</option>
+                                                <option value="2">Level 2 (Troubleshooting)</option>
+                                                <option value="3">Level 3 (Errors)</option>
+                                                <option value="4">Level 4 (Debugging)</option>
+                                                <option value="5">Level 5 (Developer)</option>
+                                            </select><br />
+                                            <div id="setting-save-button-align">
+                                                <button id="settings-save">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Account Overlay -->
+                                    <div id="account-overlay" style="display: none;">
+                                        <div id="account-overlay-content">
+                                            <span id="account-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('account')">&times;</a></span> <!-- X button to close -->
+                                            <h3 style="text-align: center">Account</h3>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="username" name="username" placeholder="Username" />
+                                                <label for="username">Username</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="fullname" name="fullname" placeholder="Full Name" />
+                                                <label for="fullname">Full Name</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="casual-name" name="casual-name" placeholder="Casual Name" />
+                                                <label for="casual-name">Casual Name</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="private-email" name="private-email" placeholder="Personal Email Address" />
+                                                <label for="private-email">Personal Email Address</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <input type="text" id="team-email" name="team-email" placeholder="Team Email Address" />
+                                                <label for="team-email">Team Email Address</label>
+                                            </div>
+                                            <div class="overlay-input-wrapper">
+                                                <textarea id="email-signature" style="height: 10em; width: 25em;" name="email-signature" placeholder="Custom email signature"></textarea>
+                                                <label for="email-signature">Custom Email Signature</label>
+                                            </div>
+                                            <div class="overlay-checkbox-align">
+                                                <input type="checkbox" style="align: right" id="sign-email-toggle" name="sign-email-toggle">
+                                                <label for="sign-email-toggle">Sign Email?</label><br />
+                                            </div>
+                                            <div class="overlay-checkbox-align">
+                                                <input type="checkbox" style="align: right" id="custom-scripts-toggle" name="custom-scripts-toggle">
+                                                <label for="custom-scripts-toggle">Use Custom Scripts?</label><br />
+                                            </div>
+                                            <div class="overlay-button-align">
+                                                <button id="account-save">Save</button>
+                                            </div>
+                                            <div class="overlay-button-align">
+                                                <button id="account-logout">Logout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hidden Fields Overlay -->
+                                    <div id="hidden-overlay" style="display: none;">
+                                        <div id="hidden-overlay-content">
+                                            <span id="hidden-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('hidden')">&times;</a></span> <!-- X button to close -->
+                                            <h3>Hidden Fields</h3>
+                                            <input type="checkbox" id="is_pm" name="is_pm">
+                                            <label for="is_pm">Is Preventative Maintenance?</label><br />
+                                            <!-- <button id="modalContinue">Continue</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </form>
                     </div>
                 </div>
                 
-                <!-- Overlays -->
-                <div id="overlays">
-                    <!-- Compliance Check Overlay -->
-                    <div id="compliance-check-overlay" class="overlay" style="display: none;">
-                        <div id="compliance-check-overlay-content" class="overlay-content">
-                            <span id="compliance-check-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('compliance-check');">&times;</a></span> <!-- X button to close -->
-                            <h3 style="text-align: center">Enter Compliance Check Information</h3>
-                            <input type="text" id="compliance-id" name="compliance-id" placeholder="Enter Compliance ID (From Details)"><br />
-                            <input type="text" id="account-id" name="account-id" placeholder="Account ID"><br />
-                            <button id="compliance-check-proceed" onclick="manualOpenEmailTemplate('compliance-check', true)">Continue</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Address Change Overlay -->
-                    <div id="address-change-overlay" class="overlay" style="display: none;">
-                        <div id="address-change-overlay-content" class="overlay-content">
-                            <span id="address-change-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('address-change');">&times;</a></span> <!-- X button to close -->
-                            <h3 style="text-align: center">Address Change Information</h3>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="current-site-address" name="current-site-address" placeholder="Instrument/Shipping Address" disabled />
-                                <label for="current-site-address">Current Site Address</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="new-site-address" name="new-site-address" placeholder="New Site Address" />
-                                <label for="new-site-address">New Site Address</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="new-site-address-phone" name="new-site-address-phone" placeholder="New Location Phone Number" />
-                                <label for="new-site-address-phone">New Location Phone Number</label>
-                            </div>
-                            <div id="billing-address-change" class="overlay-toggle-off">
-                                <div class="overlay-input-wrapper">
-                                    <input type="text" id="current-billing-address" name="current-billing-address" placeholder="Current Billing/Account Address" />
-                                    <label for="current-billing-address">Current Billing/Account Address</label>
-                                </div>
-                                <div class="overlay-input-wrapper">
-                                    <input type="text" id="new-billing-address" name="new-billing-address" placeholder="New Billing/Account Address" />
-                                    <label for="new-billing-address">New Billing/Account Address</label>
-                                </div>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <select id="address-change-reason-list" name="address-change-reason-list">
-                                    <option value="">&mdash; Reason for Change &mdash;</option>
-                                    <option value="acquisition">Acquisition/New Parent Company</option>
-                                    <option value="instrument-move">Instrument Moved</option>
-                                    <option value="instrument-sold">Instrument Sold/Owner Change</option>
-                                    <option value="new-satellite">New Satellite Office</option>
-                                    <option value="relocation">Practice Relocation</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <label for="address-change-reason-list">Reason for Change</label>
-                                <textarea rows="3" id="address-change-reason" name="address-change-reason" placeholder="Reason for address change" style="display: none"></textarea>
-                                <label for="address-change-reason">Change Reason Details</label>
-                            </div>
-                            <input type="checkbox" id="site-change" name="site-change">
-                            <label for="site-change">Change Site Address</label><br />
-                            <input type="checkbox" id="billing-change" name="billing-change">
-                            <label for="billing-change">Change Billing Address</label><br />
-                            <button id="address-change-proceed">Save</button>
-                        </div>
-                    </div>
-
-                    <!-- End of Support Overlay -->
-                    <div id="end-of-support-overlay" class="overlay" style="display: none;">
-                        <div id="eos-overlay-content" class="overlay-content">
-                            <span id="eos-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('end-of-support');">&times;</a></span> <!-- X button to close -->
-                            <h3 style="text-align: center">Enter EoS Instrument Information</h3>
-                            <select name="eos-instrument-type" id="eos-instrument-type">
-                                <option value="">&mdash; Instrument &mdash;</option>
-                                <option value="acuitus">Acuitus Auto Refractor</option>
-                                <option value="atlas">ATLAS</option>
-                                <option value="cirrus-oct">Cirrus HD-OCT</option>
-                                <option value="cirrus-photo">Cirrus Photo</option>
-                                <option value="ct">Corneal Topographer (CT)</option>
-                                <option value="clarus">Clarus</option>
-                                <option value="fundus-camera">Fundus Camera</option>
-                                <option value="hfa">Humphrey Field Analyzer (HFA)</option>
-                                <option value="iolmaster">IOLMaster</option>
-                                <option value="matrix">Matrix</option>
-                                <option value="oct">OCT</option>
-                                <option value="slit-lamp">Slit Lamps (SL)</option>
-                                <option value="stratus">Stratus</option>
-                                <option value="visante">Visante OCT</option>
-                                <option value="visucam">Visucam</option>
-                                <option value="visupac">Visupac</option>
-                            </select><br />
-                            <select name="eos-instrument-model" id="eos-instrument-model">
-                                <option value="">&mdash; Model &mdash;</option>
-                            </select><br />
-                            <div id="eos-submit-button-align">
-                                <button id="eos-proceed" onclick="manualOpenEmailTemplate('end-of-support', true)">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FSE Update Request Overlay -->
-                    <div id="fse-update-overlay" class="overlay" style="display: none;">
-                        <div id="fse-update-overlay-content" class="overlay-content">
-                            <span id="fse-update-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('fse-update');">&times;</a></span> <!-- X button to close -->
-                            <h3>Enter SVO Information</h3>
-                            <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br />
-                            <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br />
-                            <button id="fse-update-proceed" onclick="manualOpenEmailTemplate('fse-update', true)">Continue</button>
-                        </div>
-                    </div>
-
-                    <!-- Parts Order Overlay -->
-                    <div id="parts-order-overlay" class="overlay" style="display: none;">
-                        <div id="parts-order-overlay-content" class="overlay-content tooltip">
-                            <span id="parts-order-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('parts-order')">&times;</a></span> <!-- X button to close -->
-                            <h3>Enter Parts Order Information</h3>
-                            <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Fuses)"><br />
-                            <span class="parts-tooltip"><textarea rows="4" id="part-list" name="part-list" placeholder="PART_DESC_01;PART_ID_01&#10;PART_DESC_02;PART_ID_02"></textarea><span class="parts-req-tooltiptext">Semicolon-separated list of part descriptions and part numbers.<br />Input one part entry per line.<br />Example:<br />FUSE 6.3A/250VAC 5X20MM TYPE T;000000-1211-851<br /></span></span><br />
-                            <input type="checkbox" id="foc" name="foc">
-                            <label for="foc">Free of Charge?</label><br />
-                            <select name="delivery-type" id="delivery-type">
-                                <option value="">&mdash; Delivery Type &mdash;</option>
-                                <option value="Overnight">Overnight</option>
-                                <option value="Ground">Ground</option>
-                            </select><br />
-                            <button id="parts-order-proceed" onclick="manualOpenEmailTemplate('parts-order', true)">Continue</button>
-                        </div>
-                    </div>
-
-                    <!-- PM Service Ops (Contract) Overlay -->
-                    <div id="soa-contract-pm-overlay" class="overlay" style="display: none;">
-                        <div id="soa-contract-pm-overlay-content" class="overlay-content">
-                            <span id="soa-contract-pm-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('soa-contract-pm')">&times;</a></span> <!-- X button to close -->
-                            <h3>Enter Contract Number</h3>
-                            <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
-                            <button id="soa-contract-pm-proceed" onclick="manualOpenEmailTemplate('soa-contract-pm', true)">Continue</button>
-                        </div>
-                    </div>
-
-                    <!-- Schedule Callback Overlay -->
-                    <div id="schedule-overlay" style="display: none;">
-                        <div id="schedule-overlay-content">
-                            <span id="schedule-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('schedule')">&times;</a></span> <!-- X button to close -->
-                            <h3>Select Date and Time</h3>
-                            <input type="datetime-local" id="scheduledDateTime" required /><br />
-                            <button id="modalContinue">Continue</button>
-                        </div>
-                    </div>
-
-                    <!-- Settings Overlay -->
-                    <div id="settings-overlay" style="display: none;">
-                        <div id="settings-overlay-content">
-                            <span id="settings-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('settings')">&times;</a></span> <!-- X button to close -->
-                            <h3 style="text-align: center">User Settings</h3>
-                            <input type="checkbox" id="alert-on-copy" name="alert-on-copy">
-                            <label for="alert-on-copy">Alert on Copy?</label><br />
-                            <input type="checkbox" id="alert-for-xc" name="alert-for-xc">
-                            <label for="alert-for-xc">Alert for XC?</label><br />
-                            <input type="checkbox" id="copy-crm-description" name="copy-crm-description">
-                            <label for="copy-crm-description">Copy CRM Description on Export?</label><br />
-                            <input type="checkbox" id="dark-mode" name="dark-mode">
-                            <label for="dark-mode">Dark Mode?</label><br />
-                            <input type="checkbox" id="sign-email" name="sign-email">
-                            <label for="sign-email">Sign Outgoing Email?</label><br />
-                            <input type="text" id="fse-sla" name="fse-sla" />
-                            <label for="fse-sla">Break-Fix SLA (hours)</label>
-                            <input type="text" id="pm-sla" name="pm-sla" />
-                            <label for="pm-sla">Preventative Maintenance SLA (hours)</label>
-                            <input type="checkbox" id="debug-toggle" name="debug-toggle">
-                            <label for="debug-toggle">Use Debug Mode?</label><br />
-                            <select name="debug-level" id="debug-level">
-                                <option value="0">&mdash; Debug Level &mdash;</option>
-                                <option value="1">Level 1 (Overview)</option>
-                                <option value="2">Level 2 (Troubleshooting)</option>
-                                <option value="3">Level 3 (Errors)</option>
-                                <option value="4">Level 4 (Debugging)</option>
-                                <option value="5">Level 5 (Developer)</option>
-                            </select><br />
-                            <div id="setting-save-button-align">
-                                <button id="settings-save">Save</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Account Overlay -->
-                    <div id="account-overlay" style="display: none;">
-                        <div id="account-overlay-content">
-                            <span id="account-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('account')">&times;</a></span> <!-- X button to close -->
-                            <h3 style="text-align: center">Account</h3>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="username" name="username" placeholder="Username" />
-                                <label for="username">Username</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="fullname" name="fullname" placeholder="Full Name" />
-                                <label for="fullname">Full Name</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="casual-name" name="casual-name" placeholder="Casual Name" />
-                                <label for="casual-name">Casual Name</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="private-email" name="private-email" placeholder="Personal Email Address" />
-                                <label for="private-email">Personal Email Address</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <input type="text" id="team-email" name="team-email" placeholder="Team Email Address" />
-                                <label for="team-email">Team Email Address</label>
-                            </div>
-                            <div class="overlay-input-wrapper">
-                                <textarea id="email-signature" style="height: 10em; width: 25em;" name="email-signature" placeholder="Custom email signature"></textarea>
-                                <label for="email-signature">Custom Email Signature</label>
-                            </div>
-                            <div class="overlay-checkbox-align">
-                                <input type="checkbox" style="align: right" id="sign-email-toggle" name="sign-email-toggle">
-                                <label for="sign-email-toggle">Sign Email?</label><br />
-                            </div>
-                            <div class="overlay-checkbox-align">
-                                <input type="checkbox" style="align: right" id="custom-scripts-toggle" name="custom-scripts-toggle">
-                                <label for="custom-scripts-toggle">Use Custom Scripts?</label><br />
-                            </div>
-                            <div class="overlay-button-align">
-                                <button id="account-save">Save</button>
-                            </div>
-                            <div class="overlay-button-align">
-                                <button id="account-logout">Logout</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Hidden Fields Overlay -->
-                    <div id="hidden-overlay" style="display: none;">
-                        <div id="hidden-overlay-content">
-                            <span id="hidden-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('hidden')">&times;</a></span> <!-- X button to close -->
-                            <h3>Hidden Fields</h3>
-                            <input type="checkbox" id="is_pm" name="is_pm">
-                            <label for="is_pm">Is Preventative Maintenance?</label><br />
-                            <!-- <button id="modalContinue">Continue</button> -->
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Sidebar -->
                 <div id="sidebar">
