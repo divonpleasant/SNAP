@@ -253,7 +253,8 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
 <strong>CC/BCC:</strong> ${addresses}<br />
 <strong>Subject:</strong> ${t.templates.email[template_id].subject}<br />
 ${t.templates.email[template_id].body}`;
-        navigator.clipboard.writeText(html_text_email).then(function() {
+        //navigator.clipboard.writeText(html_text_email).then(function() {
+        navigator.clipboard.writeText(t.templates.email[template_id].body).then(function() {
             (so.Settings.alerts.copy.value) ? updateSystemBox('Email text copied to clipboard!') : '';
         }).catch(function(err) {
             updateSystemBox('Failed to copy data to clipboard: ', err);

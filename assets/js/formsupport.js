@@ -928,6 +928,15 @@ function closeReferenceBox() {
     document.getElementById('reference-box').style.display = 'none';
 }
 
+function populateTimeZone() {
+    console.log('Executing populateTimeZone ...');
+    var zip = calculateZipCode(true);
+    var tz = (zip) ? mapZipCodeToTimeZone(zip) : false;
+    console.debug({tz});
+    document.getElementById('customer-time-zone').value = (tz[0]) ? tz[0] : '';
+    document.getElementById('cust-tz').innerHTML = (tz[0]) ? 'Customer is ' + tz[1] + ' (' + tz[2] + '): ' + localizeOffset(tz[4]) : '';
+}
+
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
 document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
@@ -956,3 +965,4 @@ document.getElementById('address-change-proceed').addEventListener('click', func
     address_change_data = (change_result) ? change_result : '';
 });
 document.getElementById('phone').addEventListener('change', checkPhoneFormat);
+document.getElementById('instrument-address').addEventListener('change', populateTimeZone);

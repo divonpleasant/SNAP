@@ -4,9 +4,12 @@ function generateTimeZoneData() {
     this.tz = {
         "et": {
             "name": "Eastern Time",
+            "short_name": "ET",
             "id": "America/New_York",
             "daylight_savings": {
                 "applies": true,
+                "dst_active": ["2024-03-10", "2025-03-09", "2026-03-08", "2027-03-14", "2028-03-12", "2029-03-11"],
+                "dst_inactive": ["2024-11-03", "2025-11-02", "2026-11-01", "2027-11-07", "2028-11-05", "2029-11-04"],
                 "standard_name": "Eastern Standard Time",
                 "standard_offset": "-5",
                 "standard_code": "EST",
@@ -18,9 +21,12 @@ function generateTimeZoneData() {
         },
         "ct": {
             "name": "Central Time",
+            "short_name": "CT",
             "id": "America/Chicago",
             "daylight_savings": {
                 "applies": true,
+                "dst_active": ["2024-03-10", "2025-03-09", "2026-03-08", "2027-03-14", "2028-03-12", "2029-03-11"],
+                "dst_inactive": ["2024-11-03", "2025-11-02", "2026-11-01", "2027-11-07", "2028-11-05", "2029-11-04"],
                 "standard_name": "Central Standard Time",
                 "standard_offset": "-6",
                 "standard_code": "CST",
@@ -32,9 +38,12 @@ function generateTimeZoneData() {
         },
         "mt": {
             "name": "Mountain Time",
+            "short_name": "MT",
             "id": "America/Denver",
             "daylight_savings": {
                 "applies": true,
+                "dst_active": ["2024-03-10", "2025-03-09", "2026-03-08", "2027-03-14", "2028-03-12", "2029-03-11"],
+                "dst_inactive": ["2024-11-03", "2025-11-02", "2026-11-01", "2027-11-07", "2028-11-05", "2029-11-04"],
                 "standard_name": "Mountain Standard Time",
                 "standard_offset": "-7",
                 "standard_code": "MST",
@@ -46,9 +55,12 @@ function generateTimeZoneData() {
         },
         "pt": {
             "name": "Pacific Time",
+            "short_name": "PT",
             "id": "America/Los_Angeles",
             "daylight_savings": {
                 "applies": true,
+                "dst_active": ["2024-03-10", "2025-03-09", "2026-03-08", "2027-03-14", "2028-03-12", "2029-03-11"],
+                "dst_inactive": ["2024-11-03", "2025-11-02", "2026-11-01", "2027-11-07", "2028-11-05", "2029-11-04"],
                 "standard_name": "Pacific Standard Time",
                 "standard_offset": "-8",
                 "standard_code": "PST",
@@ -60,6 +72,7 @@ function generateTimeZoneData() {
         },
         "mst": {
             "name": "Mountain Standard Time",
+            "short_name": "MST",
             "id": "America/Phoenix",
             "daylight_savings": {
                 "applies": false,
@@ -71,6 +84,7 @@ function generateTimeZoneData() {
         },
         "hst": {
             "name": "Hawaii Time",
+            "short_name": "HST",
             "id": "Pacific/Honolulu",
             "daylight_savings": {
                 "applies": false,
@@ -84,10 +98,13 @@ function generateTimeZoneData() {
             "zipcodes": ['96700', '96701', '96702', '96703', '96704', '96705', '96706', '96707', '96708', '96709', '96710', '96711', '96712', '96713', '96714', '96715', '96716', '96717', '96718', '96719', '96720', '96721', '96722', '96723', '96724', '96725', '96726', '96727', '96728', '96729', '96730', '96731', '96732', '96733', '96734', '96735', '96736', '96737', '96738', '96739', '96740', '96741', '96742', '96743', '96744', '96745', '96746', '96747', '96748', '96749', '96750', '96751', '96752', '96753', '96754', '96755', '96756', '96757', '96758', '96759', '96760', '96761', '96762', '96763', '96764', '96765', '96766', '96767', '96768', '96769', '96770', '96771', '96772', '96773', '96774', '96775', '96776', '96777', '96778', '96779', '96780', '96781', '96782', '96783', '96784', '96785', '96786', '96787', '96788', '96789', '96790', '96791', '96792', '96793', '96794', '96795', '96796', '96797', '96798', '96799', '96800', '96801', '96802', '96803', '96804', '96805', '96806', '96807', '96808', '96809', '96810', '96811', '96812', '96813', '96814', '96815', '96816', '96817', '96818', '96819', '96820', '96821', '96822', '96823', '96824', '96825', '96826', '96827', '96828', '96829', '96830', '96831', '96832', '96833', '96834', '96835', '96836', '96837', '96838', '96839', '96840', '96841', '96842', '96843', '96844', '96845', '96846', '96847', '96848', '96849', '96850', '96851', '96852', '96853', '96854', '96855', '96856', '96857', '96858', '96859', '96860', '96861', '96862', '96863', '96864', '96865', '96866', '96867', '96868', '96869', '96870', '96871', '96872', '96873', '96874', '96875', '96876', '96877', '96878', '96879', '96880', '96881', '96882', '96883', '96884', '96885', '96886', '96887', '96888', '96889', '96890', '96891', '96892', '96893', '96894', '96895', '96896', '96897', '96898', '96899']
         },
         "akdt": {
-            "name": "Alaska Standard Time",
+            "name": "Alaska Time",
+            "short_name": "AKT",
             "id": "America/Anchorage",
             "daylight_savings": {
                 "applies": true,
+                "dst_active": ["2024-03-10", "2025-03-09", "2026-03-08", "2027-03-14", "2028-03-12", "2029-03-11"],
+                "dst_inactive": ["2024-11-03", "2025-11-02", "2026-11-01", "2027-11-07", "2028-11-05", "2029-11-04"],
                 "standard_name": "Alaska Standard Time",
                 "standard_offset": "-9",
                 "standard_code": "AKST",
@@ -99,6 +116,7 @@ function generateTimeZoneData() {
         },
         "chst": {
             "name": "Chamorro Standard Time",
+            "short_name": "ChST",
             "id": "Pacific/Guam",
             "daylight_savings": {
                 "applies": false,
@@ -110,6 +128,7 @@ function generateTimeZoneData() {
         },
         "chut": {
             "name": "Chuuk Time",
+            "short_name": "CHUT",
             "id": "Pacific/Chuuk",
             "daylight_savings": {
                 "applies": false,
@@ -121,6 +140,7 @@ function generateTimeZoneData() {
         },
         "kost": {
             "name": "Kosrae Time",
+            "short_name": "KOST",
             "id": "Pacific/Kosrae",
             "daylight_savings": {
                 "applies": false,
@@ -132,6 +152,7 @@ function generateTimeZoneData() {
         },
         "pont": {
             "name": "Pohnpei Standard Time",
+            "short_name": "PONT",
             "id": "Pacific/Guadalcanal",
             "daylight_savings": {
                 "applies": false,
@@ -143,6 +164,7 @@ function generateTimeZoneData() {
         },
         "mht": {
             "name": "Marshall Islands Time",
+            "short_name": "MHT",
             "id": "Pacific/Majuro",
             "daylight_savings": {
                 "applies": false,
@@ -153,10 +175,13 @@ function generateTimeZoneData() {
             "zipcodes": ['96960', '96970']
         },
         "ast": {
-            "name": "Atlantic Standard Time",
+            "name": "Atlantic Time",
+            "short_name": "AT",
             "id": "America/Puerto_Rico",
             "daylight_savings": {
                 "applies": true,
+                "dst_active": ["2024-03-10", "2025-03-09", "2026-03-08", "2027-03-14", "2028-03-12", "2029-03-11"],
+                "dst_inactive": ["2024-11-03", "2025-11-02", "2026-11-01", "2027-11-07", "2028-11-05", "2029-11-04"],
                 "standard_name": "Atlantic Standard Time",
                 "standard_offset": "-4",
                 "standard_code": "AST",

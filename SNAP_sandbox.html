@@ -1192,6 +1192,7 @@
                             <span id="schedule-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('schedule')">&times;</a></span> <!-- X button to close -->
                             <h3>Select Date and Time</h3>
                             <input type="datetime-local" id="scheduledDateTime" required /><br />
+                            <span id="cust-tz"></span><br /><br />
                             <button id="modalContinue">Continue</button>
                         </div>
                     </div>
@@ -1284,6 +1285,8 @@
                             <h3>Hidden Fields</h3>
                             <input type="checkbox" id="is_pm" name="is_pm">
                             <label for="is_pm">Is Preventative Maintenance?</label><br />
+                            <input type="text" id="customer-time-zone" name="customer-time-zone">
+                            <label for="customer-time-zone">Customer's Time Zone</label><br />
                             <!-- <button id="modalContinue">Continue</button> -->
                         </div>
                     </div>
@@ -1433,7 +1436,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                         <!-- Footer -->
                         <footer id="footer">
                             <p class="settings"><i class="fa-solid fa-gear" style="color: #778592"></i> <a id="settings" href="#">Settings</a> | <i class="fa-solid fa-folder-open" style="color: #778592"></i> <label class="settings-label"><input type="file" id="upload">Load Saved XML</label></p>
-                            <p><i class="fa-solid fa-clipboard-check"></i> <a href="audit.html">Audit Data Source(s)</a></p>
+                            <p class="settings"><i class="fa-solid fa-clipboard-check" style="color: #778592"></i> <a href="audit.html">Audit Data Source(s)</a></p>
                             <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
                             <div id="zeiss-logo"><img src="images/zeiss-logo-rgb.png" /></div>
                         </footer>
@@ -1460,6 +1463,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/browser.min.js"></script>
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/numbers2words.min.js"></script>
+            <script src="assets/js/timeZoneData.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
             <script src="assets/js/settings.js"></script>
@@ -1467,7 +1471,6 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/templates.js"></script>
             <script src="assets/js/productData.js"></script>
             <script src="assets/js/personnelData.js"></script>
-            <script src="assets/js/timeZoneData.js"></script>
             <script src="assets/js/copyCrmData.js"></script>
             <script src="assets/js/stopwatch.js"></script>
             <script src="assets/js/formSupport.js"></script>
