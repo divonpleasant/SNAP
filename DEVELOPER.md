@@ -33,18 +33,18 @@ SNAP has a few semi-informal naming conventions. If your commits/merges don't ad
 
 ### HTML
 
-  * *IDs:* Element IDs are generally not abbreviated (unless there is a common technical, Zeiss-, or TSE acronym such as "PM") and separated by a hyphen. We try to keep them on the short side, as long as they are easily understood.
-  *  * _Good Examples:_ desktop-ip-address; carrier-pigeon-number; fse-dispatch-time
-  *  * _Bad Examples:_ cust-no (better: customer-number); percentage_of_value (better: percentage-of-value); number-of-zombies-destroyed-in-first-round (better: zombies-destroyed-first)
-  * *File Names:* Underscore-separated, letters lowercase unless referencing SNAP (e.g. SNAP.html, SNAP_sandbox.html). The shorter the better, as long as the purpose of the file is easily discernible from the name.
-  *  * _Good Examples:_ SNAP_data.html; reports.html; bike_show.html
-  *  * _Bad Examples:_ cncrt_att.html (better: concert_attendance.html); UTILITY.html (better: utility.html); List%20of%20ip%20ADDRESSES_.html (better: ip_addresses.html)
+  * **IDs:** Element IDs are generally not abbreviated (unless there is a common technical, Zeiss-, or TSE acronym such as "PM") and separated by a hyphen. We try to keep them on the short side, as long as they are easily understood.
+    * _Good Examples:_ desktop-ip-address; carrier-pigeon-number; fse-dispatch-time
+    * _Bad Examples:_ cust-no (better: customer-number); percentage_of_value (better: percentage-of-value); number-of-zombies-destroyed-in-first-round (better: zombies-destroyed-first)
+  * **File Names:** Underscore-separated, letters lowercase unless referencing SNAP (e.g. SNAP.html, SNAP_sandbox.html). The shorter the better, as long as the purpose of the file is easily discernible from the name.
+    * _Good Examples:_ SNAP_data.html; reports.html; bike_show.html
+    * _Bad Examples:_ cncrt_att.html (better: concert_attendance.html); UTILITY.html (better: utility.html); List%20of%20ip%20ADDRESSES_.html (better: ip_addresses.html)
 
 ### JAVASCRIPT
 
-  * *Variables:* All lower case, underscore separated, descriptive without being overly long, some abbreviations acceptable. Avoid labeling variables with the expected variable type.
-  *  * _Good Examples:_ tse_status; email_address; port_no
-  *  * _Bad Examples:_ UNDERvalued-fin-c-am (better: undervalued_financial_collection_amt); CoStMsg (better: color_status_msg); array_of_values_resulting_from_output_of_processing_function (better: output_values)
-  * *Functions:* Functions use "camel case" (no word separation, each word other than the first is capitalized), should be descriptive without being verbose, use abbreviations sparingly. It is highly recommended that you run a search before creating a new function to ensure a similar or similarly-named function doesn't already exist.
-  *  * _Good Examples:_ generateCartList; updateTimeZone; processUserInput
-  *  * _Bad Examples:_ hide_unused-FORM-element (better: hideUnusedFormElement); cA (better: catchAll); accept_user_input_and_validate_data_for_pii (better: validateUserInput)
+  * **Variables:** All lower case, underscore separated, descriptive without being overly long, some abbreviations acceptable. Avoid labeling variables with the expected variable type.
+    * _Good Examples:_ tse_status; email_address; port_no
+    * _Bad Examples:_ UNDERvalued-fin-c-am (better: undervalued_financial_collection_amt); CoStMsg (better: color_status_msg); array_of_values_resulting_from_output_of_processing_function (better: output_values)
+  * **Functions:** Functions use "camel case" (no word separation, each word other than the first is capitalized), should be descriptive without being verbose, use abbreviations sparingly. It is highly recommended that you run a search before creating a new function to ensure a similar or similarly-named function doesn't already exist.
+    * _Good Examples:_ generateCartList; updateTimeZone; processUserInput
+    * _Bad Examples:_ hide_unused-FORM-element (better: hideUnusedFormElement); cA (better: catchAll); accept_user_input_and_validate_data_for_pii (better: validateUserInput)
