@@ -949,6 +949,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('description').addEventListener('input', function() {
         document.getElementById('problem-description').value = document.getElementById('description').value;
     });
+    document.getElementById('svo').addEventListener('input', function() {
+        document.getElementById('svo-ticket').value = document.getElementById('svo').value;
+    });
 });
 document.getElementById('call-type').addEventListener('change', callTypeEval);
 document.getElementById('remote-resolution').addEventListener('change', callTypeEval);
