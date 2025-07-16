@@ -54,7 +54,7 @@
                                     </select>
                                     <div class="label-right">Request Source</div>
                                 </div>
-                                
+
                                 <!-- Instrument Information -->
                                 <div class="col-6 col-12-xsmall">
                                     <select name="instrument" id="instrument">
@@ -120,7 +120,7 @@
                                         <option value="general_review-station-software-install">Review Station Software Installation</option>
                                         <option value="general_spare-parts">Spare Parts</option>
                                     </select>
-                                    
+
                                     <div class="label-right">Call Scenario <span class="script-scroll"><a class="info-button" href="#top"><i id="process-prompt-call-scenarios" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
                                 <div class="col-12">
@@ -190,7 +190,7 @@
                                 <div class="col-12 remote-support-field">
                                     <h4>Remote Support</h4>
                                 </div>
-                                
+
                                 <div class="col-6 col-12-xsmall remote-support-field">
                                     <input type="checkbox" id="smart-service" name="smart-service">
                                     <label for="smart-service">Zeiss Smart Services?</label>
@@ -957,7 +957,7 @@
                                     <a href="#internal" id="printintnotes" class="button primary small" onclick="copyCrmData('internal')">Copy Internal Notes</a> 
                                     <hr />
                                 </div>
-                                
+
                                 <!-- Call Wrap-Up -->
                                 <a class="anchor" name="wrap-up"></a>
                                 <div class="col-12">
@@ -981,7 +981,6 @@
                                         <!-- <option value="prev-maintenance">Prev. Maintenance</option> -->
                                         <option value="remote-service">Remote Service</option>
                                         <option value="spare-part-order">Spare Part Order</option>
-                                        
                                     </select>
                                     <div class="label-right">Call Type <span class="script-scroll"><a class="info-button" href="#wrap-up"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                                 </div>
@@ -1051,7 +1050,7 @@
                         </form>
                     </div>
                 </div>
-                
+
                 <!-- Overlays -->
                 <div id="overlays">
                     <!-- Compliance Check Overlay -->
@@ -1064,7 +1063,7 @@
                             <button id="compliance-check-proceed" onclick="manualOpenEmailTemplate('compliance-check', true)">Continue</button>
                         </div>
                     </div>
-                    
+
                     <!-- Address Change Overlay -->
                     <div id="address-change-overlay" class="overlay" style="display: none;">
                         <div id="address-change-overlay-content" class="overlay-content">
@@ -1192,6 +1191,7 @@
                             <span id="schedule-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('schedule')">&times;</a></span> <!-- X button to close -->
                             <h3>Select Date and Time</h3>
                             <input type="datetime-local" id="scheduledDateTime" required /><br />
+                            <span id="cust-tz"></span><br /><br />
                             <button id="modalContinue">Continue</button>
                         </div>
                     </div>
@@ -1276,14 +1276,16 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Hidden Fields Overlay -->
                     <div id="hidden-overlay" style="display: none;">
                         <div id="hidden-overlay-content">
                             <span id="hidden-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('hidden')">&times;</a></span> <!-- X button to close -->
                             <h3>Hidden Fields</h3>
-                            <input type="checkbox" id="is_pm" name="is_pm">
-                            <label for="is_pm">Is Preventative Maintenance?</label><br />
+                            <input type="checkbox" id="is-pm" name="is-pm">
+                            <label for="is-pm">Is Preventative Maintenance?</label><br />
+                            <input type="text" id="customer-time-zone" name="customer-time-zone">
+                            <label for="customer-time-zone">Customer's Time Zone</label><br />
                             <!-- <button id="modalContinue">Continue</button> -->
                         </div>
                     </div>
@@ -1433,7 +1435,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
                         <!-- Footer -->
                         <footer id="footer">
                             <p class="settings"><i class="fa-solid fa-gear" style="color: #778592"></i> <a id="settings" href="#">Settings</a> | <i class="fa-solid fa-folder-open" style="color: #778592"></i> <label class="settings-label"><input type="file" id="upload">Load Saved XML</label></p>
-                            <p><i class="fa-solid fa-clipboard-check"></i> <a href="audit.html">Audit Data Source(s)</a></p>
+                            <p class="settings"><i class="fa-solid fa-clipboard-check" style="color: #778592"></i> <a href="audit.html">Audit Data Source(s)</a></p>
                             <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
                             <div id="zeiss-logo"><img src="images/zeiss-logo-rgb.png" /></div>
                         </footer>
@@ -1460,6 +1462,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/browser.min.js"></script>
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/numbers2words.min.js"></script>
+            <script src="assets/js/timeZoneData.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
             <script src="assets/js/settings.js"></script>
@@ -1467,7 +1470,6 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/templates.js"></script>
             <script src="assets/js/productData.js"></script>
             <script src="assets/js/personnelData.js"></script>
-            <script src="assets/js/timeZoneData.js"></script>
             <script src="assets/js/copyCrmData.js"></script>
             <script src="assets/js/stopwatch.js"></script>
             <script src="assets/js/formSupport.js"></script>

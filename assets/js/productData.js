@@ -45,8 +45,8 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.3.0",
-        "schema_version": "8.1",
+        "data_version": "1.9.3",
+        "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
         "validated_by": "",
@@ -105,7 +105,10 @@ function generateProductData() {
                                 "designation": "DATE|SERIAL|FEATURE|OTHER",
                                 "designation_start": "SUBSET_DESIGNATION_STARTING_POINT_STRING | UNDEF",
                                 "designation_end": "SUBSET_DESIGNATION_ENDING_POINT_STRING | UNDEF",
-                                "designation_description": "SUBSET_DESIGNATION_DESCRIPTION_STRING | UNDEF"
+                                "designation_description": "SUBSET_DESIGNATION_DESCRIPTION_STRING | UNDEF",
+                                "supported": "BOOLEAN | INHERITED | UNDEF",
+                                "eos_date": "END_OF_GUARANTEED_SUPPORT_DATESTAMP | UNDEF",
+                                "eogs_date": "END_OF_GUARANTEED_SUPPORT_DATESTAMP | UNDEF"
                             }
                         },
                         "model_number": "MODEL_NUMBER_STRING",
@@ -488,7 +491,17 @@ function generateProductData() {
                             "prefix_format": "500-",
                             "sequence_format": "4+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "gen1": {
+                                "label": "Generation 1 (not upgraded)",
+                                "designation": "other",
+                                "designation_start": "500-00001",
+                                "designation_end": "500-21527",
+                                "designation_description": "Models running Windows 7 (original PC module, no Windows 10 upgrade)",
+                                "supported": false,
+                                "eogs_date": "01-01-2025"
+                            }
+                        },
                         "model_number": "500",
                         "full_name": "Cirrus HD-OCT 500",
                         "launch_date": "",
@@ -506,7 +519,17 @@ function generateProductData() {
                             "prefix_format": "5000-",
                             "sequence_format": "4+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "gen1": {
+                                "label": "Generation 1 (not upgraded)",
+                                "designation": "other",
+                                "designation_start": "5000-2005",
+                                "designation_end": "5000-4994",
+                                "designation_description": "Models running Windows 7 (original PC module, no Windows 10 upgrade)",
+                                "supported": false,
+                                "eogs_date": "01-01-2025"
+                            }
+                        },
                         "model_number": "5000",
                         "full_name": "Cirrus HD-OCT 5000",
                         "launch_date": "",
@@ -1123,7 +1146,17 @@ function generateProductData() {
                             "prefix_format": "830-",
                             "sequence_format": "5+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "cpc2": {
+                                "label": "CPC-2",
+                                "designation": "serial",
+                                "designation_start": "830-00001",
+                                "designation_end": "830-15000",
+                                "designation_description": "830 units shipped with the CPC-2 PC module",
+                                "supported": false,
+                                "eogs_date": "06-30-2025"
+                            }
+                        },
                         "model_number": "830",
                         "full_name": "HFA3 830",
                         "launch_date": "",
@@ -1142,7 +1175,17 @@ function generateProductData() {
                             "prefix_format": "840-",
                             "sequence_format": "5+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "cpc2": {
+                                "label": "CPC-2",
+                                "designation": "serial",
+                                "designation_start": "840-00001",
+                                "designation_end": "840-15000",
+                                "designation_description": "840 units shipped with the CPC-2 PC module",
+                                "supported": false,
+                                "eogs_date": "06-30-2025"
+                            }
+                        },
                         "model_number": "840",
                         "full_name": "HFA3 840",
                         "launch_date": "",
@@ -1161,7 +1204,17 @@ function generateProductData() {
                             "prefix_format": "850-",
                             "sequence_format": "5+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "cpc2": {
+                                "label": "CPC-2",
+                                "designation": "serial",
+                                "designation_start": "850-00001",
+                                "designation_end": "850-15000",
+                                "designation_description": "850 units shipped with the CPC-2 PC module",
+                                "supported": false,
+                                "eogs_date": "06-30-2025"
+                            }
+                        },
                         "model_number": "850",
                         "full_name": "HFA3 850",
                         "launch_date": "",
@@ -1180,7 +1233,17 @@ function generateProductData() {
                             "prefix_format": "860-",
                             "sequence_format": "5+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "cpc2": {
+                                "label": "CPC-2",
+                                "designation": "serial",
+                                "designation_start": "860-00001",
+                                "designation_end": "860-15000",
+                                "designation_description": "860 units shipped with the CPC-2 PC module",
+                                "supported": false,
+                                "eogs_date": "06-30-2025"
+                            }
+                        },
                         "model_number": "860",
                         "full_name": "HFA3 860",
                         "launch_date": "",

@@ -475,6 +475,73 @@ function addHoursToDate(date, hours) {
     return new Date(date.getTime() + hours * 3600000);
 }
 
+function dateCompare(sample, delta) {
+    /*
+        sample ... a valid, Date-parseable format string (e.g. "2077-12-25")
+        delta  ... one of the following:
+            g (greater, i.e. curr_date is later than dst_active for checking start time)
+            l (lesser, i.e. curr_date is earlier than dst_inactive for checking end time)
+            ge (greater than or equal to)
+            le (less than or equal to)
+            e (exact match)
+    */
+    console.log("Executing dateCompare ...\n  sample: " + sample + "\n  delta: " + delta);
+    var sample_date = new Date(sample);
+    switch (delta) {
+        case 'g':
+            return (curr_date > sample_date) ? true : false;
+            break;
+        case 'l':
+            return (curr_date < sample_date) ? true : false;
+            break;
+        case 'ge':
+            return (curr_date >= sample_date) ? true : false;
+            break;
+        case 'le':
+            return (curr_date <= sample_date) ? true : false;
+            break;
+        case 'e':
+        default:
+            return (curr_date == sample_date) ? true : false;
+            break;
+    }
+}
+
+function isDST(tz) {
+    console.log("Executing isDST ...\n  tz: " + JSON.stringify(tz));
+    var last_active_dst = '';
+    var last_inactive_dst = '';
+    var dst = false;
+    if (tz.daylight_savings.applies) {
+        for (var a = 0; a < tz.daylight_savings.dst_active.length; a++) {
+            if (dateCompare(tz.daylight_savings.dst_active[a], 'g')) {
+                last_active_dst = tz.daylight_savings.dst_active[a];
+            } else {
+                console.debug('Current date is earlier than ' + tz.daylight_savings.dst_active[a] + ', exiting');
+                break;
+            }
+        }
+        console.debug({last_active_dst});
+        for (var b = 0; b < tz.daylight_savings.dst_inactive.length; b++) {
+            if (dateCompare(tz.daylight_savings.dst_inactive[b], 'g')) {
+                last_inactive_dst = tz.daylight_savings.dst_inactive[b];
+            } else {
+                console.debug('Current date is earlier than ' + tz.daylight_savings.dst_inactive[b] + ', exiting');
+                break;
+            }
+        }
+        console.debug({last_inactive_dst});
+        dst = (last_inactive_dst < last_active_dst) ? true : false;
+    }
+    return dst;
+}
+
+function findTimeZoneOffset(tz, dst_known = '') {
+    console.log("Executing findTimeZoneOffset ...\n  tz: " + JSON.stringify(tz));
+    var dst = (dst_known === '') ? isDST(tz) : dst_known;
+    return (dst) ? tz.daylight_savings.daylight_offset : tz.daylight_savings.standard_offset;
+}
+
 function mapZipCodeToTimeZone(zip) {
     if (zip === '' || typeof zip === 'undefined' || zip === false) {
         return false;
@@ -482,18 +549,30 @@ function mapZipCodeToTimeZone(zip) {
     let ac = new generateTimeZoneData();
     var tzones = Object.keys(ac.tz);
     console.debug(JSON.stringify(tzones));
-    var cust_tzone = '';
+    var cust_tzone = [];
     for (var z = 0; z < tzones.length; z++) {
         if (ac.tz[tzones[z]].zipcodes.includes(zip)) {
             console.log('Customer Time Zone is: ' + ac.tz[tzones[z]].id);
-            cust_tzone = ac.tz[tzones[z]].id;
+            cust_tzone.push(ac.tz[tzones[z]].id);
+            cust_tzone.push(ac.tz[tzones[z]].name);
+            cust_tzone.push(ac.tz[tzones[z]].short_name);
+            cust_tzone.push(isDST(ac.tz[tzones[z]]));
+            cust_tzone.push(findTimeZoneOffset(ac.tz[tzones[z]], cust_tzone[3]));
             break;
         } else {
             console.debug('Zip Code ' + zip + ' is not in ' + ac.tz[tzones[z]].name);
         }
     }
     console.debug({cust_tzone});
-    return (cust_tzone !== '') ? cust_tzone : false;
+    return (cust_tzone.length !== 0) ? cust_tzone : [false, false, false, '', false];
+}
+
+function localizeOffset(target_offset, local_offset = -7) {
+    var base_offset = (target_offset - local_offset);
+    var output = ''
+    output = (base_offset >= 0) ? base_offset + ' hours ahead' : Math.abs(base_offset) + ' hours behind';
+    console.debug({output});
+    return output;
 }
 
 function checkEndOfBusiness(date, ctz) {
@@ -507,7 +586,7 @@ function checkEndOfBusiness(date, ctz) {
     } else {
         var adjusted_time = date.getHours().toLocaleString('en-US', { timeZone: ctz, hour12: false, timeStyle: 'short' });
         console.debug({adjusted_time});
-        var remaining_sla_time = 17 - adjusted_time;
+        var remaining_sla_time = 17 - adjusted_time; // 17 is the 24 hour clock designation for 5pm, presumed EOB
         console.debug({remaining_sla_time});
         return (remaining_sla_time <= 0) ? 'eob:' + Math.abs(remaining_sla_time) : false;
     }
@@ -534,23 +613,23 @@ document.getElementById('fss-name').addEventListener('change', function() {
     console.debug({customer_time_zone});
     d = new Date();
     // determine sla to use
-    var sla = (document.getElementById('is_pm').checked) ? so.Settings.process.fse_pm_sla.value : so.Settings.process.fse_sla.value;
+    var sla = (document.getElementById('is-pm').checked) ? so.Settings.process.fse_pm_sla.value : so.Settings.process.fse_sla.value;
     console.debug({sla});
     var sla_date = addHoursToDate(d, sla);
     console.debug({sla_date});
-    console.debug(sla_date.toLocaleString('en-US', { timeZone: customer_time_zone }));
+    console.debug(sla_date.toLocaleString('en-US', { timeZone: customer_time_zone[0] }));
     var fss_context = [];
-    var eob_status = checkEndOfBusiness(sla_date, customer_time_zone);
+    var eob_status = checkEndOfBusiness(sla_date, customer_time_zone[0]);
     console.debug({eob_status});
     if (eob_status === false) {
         console.log('SLA is within normal business hours');
-        cutoff_time = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
+        cutoff_time.toString().padStart(2, '0') = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
         console.debug({cutoff_time});
         fss_context.push(cutoff_time + ' today');
     } else if (eob_status.match(/^eob/)) {
         console.log('SLA is past EOB');
         var eob_results = eob_status.split(':');
-        var sla_overrun = (parseInt(eob_results[1]) + 8); // Assuming the average clinic opening hour is 8:00 am
+        var sla_overrun = (parseInt(eob_results[1]) + 9).toString().padStart(2, '0'); // Assuming the average clinic opening hour is 09:00
         console.debug({sla_overrun});
         fss_context.push(sla_overrun + ':00 tomorrow');
     } else if (eob_status === 'weekend') {
