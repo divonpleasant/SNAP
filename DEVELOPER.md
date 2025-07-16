@@ -34,7 +34,7 @@ SNAP has a few semi-informal naming conventions. If your commits/merges don't ad
 ### HTML
 
   * **IDs:** Element IDs are generally not abbreviated (unless there is a common technical, Zeiss-, or TSE acronym such as "PM") and separated by a hyphen. We try to keep them on the short side, as long as they are easily understood.
-    * _Good Examples:_ desktop-ip-address; carrier-pigeon-number; fse-dispatch-time
+    * _Good Examples:_ ``desktop-ip-address``; ``carrier-pigeon-number``; ``fse-dispatch-time``
     * _Bad Examples:_ ``cust-no`` (better: ``customer-number``); ``percentage_of_value`` (better: ``percentage-of-value``); ``number-of-zombies-destroyed-in-first-round`` (better: ``zombies-destroyed-first``)
   * **File Names:** Underscore-separated, letters lowercase unless referencing SNAP (e.g. ``SNAP.html``, ``SNAP_sandbox.html``). The shorter the better, as long as the purpose of the file is easily discernible from the name.
     * _Good Examples:_ ``SNAP_data.html``; ``reports.html``; ``bike_show.html``
