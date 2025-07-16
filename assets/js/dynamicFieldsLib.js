@@ -613,7 +613,7 @@ document.getElementById('fss-name').addEventListener('change', function() {
     console.debug({customer_time_zone});
     d = new Date();
     // determine sla to use
-    var sla = (document.getElementById('is_pm').checked) ? so.Settings.process.fse_pm_sla.value : so.Settings.process.fse_sla.value;
+    var sla = (document.getElementById('is-pm').checked) ? so.Settings.process.fse_pm_sla.value : so.Settings.process.fse_sla.value;
     console.debug({sla});
     var sla_date = addHoursToDate(d, sla);
     console.debug({sla_date});

@@ -577,7 +577,7 @@ function displayProcessMessage(msg_txt) {
 
 function pmToggle(state = false) {
     console.debug("Executing pmToggle ...\n  state: " + state);
-    document.getElementById('is_pm').checked = state; 
+    document.getElementById('is-pm').checked = state; 
     
     var auto_fields = ['frequency-problem', 'logs-not-attached-reason', 'screenshots-attached-reason'];
     if (state) {

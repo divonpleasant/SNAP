@@ -1753,8 +1753,8 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value}</value>
   </customMetaData>
   <customMetaData>
-    <key>is_pm</key>
-    <value>${document.getElementById('is_pm').value}</value>
+    <key>is-pm</key>
+    <value>${document.getElementById('is-pm').value}</value>
   </customMetaData>
   <customMetaData>
     <key>customer-time-zone</key>
