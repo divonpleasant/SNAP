@@ -586,7 +586,7 @@ function checkEndOfBusiness(date, ctz) {
     } else {
         var adjusted_time = date.getHours().toLocaleString('en-US', { timeZone: ctz, hour12: false, timeStyle: 'short' });
         console.debug({adjusted_time});
-        var remaining_sla_time = 17 - adjusted_time;
+        var remaining_sla_time = 17 - adjusted_time; // 17 is the 24 hour clock designation for 5pm, presumed EOB
         console.debug({remaining_sla_time});
         return (remaining_sla_time <= 0) ? 'eob:' + Math.abs(remaining_sla_time) : false;
     }
@@ -629,7 +629,7 @@ document.getElementById('fss-name').addEventListener('change', function() {
     } else if (eob_status.match(/^eob/)) {
         console.log('SLA is past EOB');
         var eob_results = eob_status.split(':');
-        var sla_overrun = (parseInt(eob_results[1]) + 8); // Assuming the average clinic opening hour is 8:00 am
+        var sla_overrun = (parseInt(eob_results[1]) + 9).toString().padStart(2, '0'); // Assuming the average clinic opening hour is 09:00
         console.debug({sla_overrun});
         fss_context.push(sla_overrun + ':00 tomorrow');
     } else if (eob_status === 'weekend') {

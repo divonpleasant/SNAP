@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.9.0",
+        "data_version": "1.9.3",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -495,8 +495,8 @@ function generateProductData() {
                             "gen1": {
                                 "label": "Generation 1 (not upgraded)",
                                 "designation": "other",
-                                "designation_start": "",
-                                "designation_end": "",
+                                "designation_start": "500-00001",
+                                "designation_end": "500-21527",
                                 "designation_description": "Models running Windows 7 (original PC module, no Windows 10 upgrade)",
                                 "supported": false,
                                 "eogs_date": "01-01-2025"
@@ -523,8 +523,8 @@ function generateProductData() {
                             "gen1": {
                                 "label": "Generation 1 (not upgraded)",
                                 "designation": "other",
-                                "designation_start": "",
-                                "designation_end": "",
+                                "designation_start": "5000-2005",
+                                "designation_end": "5000-4994",
                                 "designation_description": "Models running Windows 7 (original PC module, no Windows 10 upgrade)",
                                 "supported": false,
                                 "eogs_date": "01-01-2025"
