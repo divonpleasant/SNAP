@@ -3182,7 +3182,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "imaging",
                     "onenote_link": ""
                 },
                 "models": {

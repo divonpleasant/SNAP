@@ -90,6 +90,7 @@ ${(document.getElementById('same-as-reported').checked) ? '' : 'Root Cause: ' + 
 ${(document.getElementById('frequency-selector').selectedIndex !== 0) ? 'Occurrence Frequency: ' + document.getElementById('frequency-selector').value : ''}
 ${(document.getElementById('frequency-problem').value !== '') ? '    Details: ' + document.getElementById('frequency-problem').value + "\n": ''}${(document.getElementById('problem-started').value !== '') ? '    Started: ' + document.getElementById('problem-started').value + "\n" : ''}${(document.getElementById('problem-changed').value !== '') ? '    What Changed? ' + document.getElementById('problem-changed').value + "\n" : ''}
 ${(document.getElementById('troubleshooting-performed').value !== '') ? 'Troubleshooting Steps Taken: ' + document.getElementById('troubleshooting-performed').value : ''}
+
 ${(document.getElementById('customer-notes').value !== '') ? 'Additional Notes: ' + document.getElementById('customer-notes').value : ''}
 
 ${(document.getElementById('solution-notes').value !== '') ? 'Solution: ' + document.getElementById('solution-notes').value : ''}
