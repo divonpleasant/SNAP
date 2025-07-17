@@ -1100,6 +1100,11 @@ ATLAS Remote Storage AE Title: ${document.getElementById('atlas-remote-storage-a
 ATLAS Remote Storage AE Host: ${document.getElementById('atlas-remote-storage-ae-host').value}
 ATLAS Remote Storage AE Port: ${document.getElementById('atlas-remote-storage-ae-port').value}
 ATLAS Remote AE Additional Info: ${document.getElementById('atlas-remote-ae-additional-info').value}
+Cirrus Photo Primary Export Directory: ${document.getElementById('cirrus-photo-primary-export-directory').value}
+Cirrus Photo Secondary Export Directory: ${document.getElementById('cirrus-photo-secondary-export-directory').value}
+Cirrus Photo DNS Name: ${document.getElementById('cirrus-photo-dns-name').value}
+Cirrus Photo IP Addresses: ${document.getElementById('cirrus-photo-ip-addresses').value}
+Cirrus Photo Network Settings: ${document.getElementById('cirrus-photo-network-settings').value}
 Network Configuration: ${document.getElementById('network-configuration').value}
 
 FORUM SETTINGS VERIFIED AND RECORDED (SCREENSHOTS PREFERRED)..........:
@@ -1747,6 +1752,26 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>atlas-remote-ae-additional-info</key>
     <value>${document.getElementById('atlas-remote-ae-additional-info').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>cirrus-photo-primary-export-directory</key>
+    <value>${document.getElementById('cirrus-photo-primary-export-directory').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>cirrus-photo-secondary-export-directory</key>
+    <value>${document.getElementById('cirrus-photo-secondary-export-directory').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>cirrus-photo-dns-name</key>
+    <value>${document.getElementById('cirrus-photo-dns-name').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>cirrus-photo-ip-addresses</key>
+    <value>${document.getElementById('cirrus-photo-ip-addresses').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>cirrus-photo-network-settings</key>
+    <value>${document.getElementById('cirrus-photo-network-settings')[document.getElementById('cirrus-photo-network-settings').selectedIndex].value}</value>
   </customMetaData>
   <customMetaData>
     <key>fss-name</key>
