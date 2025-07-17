@@ -604,11 +604,13 @@ document.getElementById('fss-name').addEventListener('change', function() {
     console.debug('Handling eventListener for fss-name change event...');
     var selected_fss = document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value;
     console.debug('selected_fss: ' + selected_fss);
+    /*
     const personnel = new generatePersonnelData();
     var fss_data = personnel.people.fss[selected_fss];
     console.debug(JSON.stringify(fss_data));
     var fss_contact_string = fss_data.name + ' (' + fss_data.email + ')';
     console.debug({fss_contact_string});
+    */
     var customer_time_zone = mapZipCodeToTimeZone(calculateZipCode());
     console.debug({customer_time_zone});
     d = new Date();
@@ -623,7 +625,8 @@ document.getElementById('fss-name').addEventListener('change', function() {
     console.debug({eob_status});
     if (eob_status === false) {
         console.log('SLA is within normal business hours');
-        cutoff_time.toString().padStart(2, '0') = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
+        var cutoff_time = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
+        cutoff_time = cutoff_time.toString().padStart(2, '0')
         console.debug({cutoff_time});
         fss_context.push(cutoff_time + ' today');
     } else if (eob_status.match(/^eob/)) {
@@ -641,7 +644,7 @@ document.getElementById('fss-name').addEventListener('change', function() {
     for (let fc = 0; fc < fss_context.length; fc++) {
         console.debug(fss_context[fc]);
     }
-    fss_context.push(fss_contact_string);
+    // fss_context.push(fss_contact_string);
     const fsst = new generateTemplates(fss_context);
     var cust_note_fss_text = fsst.templates.system.customer_notes.fss_contact;
     console.debug({cust_note_fss_text});
@@ -658,12 +661,21 @@ function toggleFieldMenu(menu) {
     document.getElementById(menu).style.display = (current_display === 'none' || current_display === '') ? 'flex' : 'none';
 }
 
-function commonActionToField(a_id, field) {
+function commonActionToField(a_id, fields) {
     var action_data = (a_id === '0000') ? '' : document.getElementById(a_id).innerHTML;
     console.debug({action_data});
     //var line_break = (document.getElementById(field).value === '') ? '' : "\n"
     var line_break = "\n";
-    document.getElementById(field).value += line_break + "    • " + action_data;
+    for (var f = 0; f < fields.length; f++) {
+        switch (fields[f]) {
+            case 'troubleshooting-performed':
+                document.getElementById(fields[f]).value += line_break + "    • " + action_data;
+                break;
+            default:
+                document.getElementById(fields[f]).value += action_data + line_break;
+                break;
+        }
+    }
 }
 
 function expandNav() {

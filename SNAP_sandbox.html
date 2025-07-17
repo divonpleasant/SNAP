@@ -148,6 +148,7 @@
                                         <option value="PR">PR: One PM is covered; all other services are billable</option>
                                         <option value="PRM">PRM: All service is covered along with an uptime guarantee</option>
                                         <option value="PRT">PRT: All service is covered with the billing of a Call Out fee**</option>
+                                        <option value="SPNP">SPNP: Service Plan Network Protection (FORUM contract)</option>
                                     </select>
                                     <div class="label-right">Service Contract</div>
                                 </div>
@@ -428,11 +429,11 @@
                                     <div class="label-right">IP Addresses</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall cirrus-photo-field">
-                                    <select name="cirrus-photo-network-settings " id="cirrus-photo-network-settings ">
+                                    <select name="cirrus-photo-network-settings" id="cirrus-photo-network-settings">
                                         <option value="">&mdash; Network Settings &mdash;</option>
-                                        <option value="Enabled">Local Data Storage</option>
-                                        <option value="Disabled">EMR Network</option>
-                                        <option value="Unknown">DICOM Network</option>
+                                        <option value="Local Data Storage">Local Data Storage</option>
+                                        <option value="EMR Network">EMR Network</option>
+                                        <option value="DICOM Network">DICOM Network</option>
                                     </select>
                                     <div class="label-left">Network Settings</div>
                                 </div>
@@ -827,28 +828,29 @@
                                         <span class="field-menu-tail"><i class="fa-solid fa-caret-up fa-2xl"></i></span>
                                         <div class="field-menu-contents">
                                             <ul>
-                                                <li><a id="0000" onclick="commonActionToField('0000', 'troubleshooting-performed')">(Blank line)</a></li>
-                                                <li><a id="0001" onclick="commonActionToField('0001', 'troubleshooting-performed')">Not Applicable</a></li>
-                                                <li><a id="0002" onclick="commonActionToField('0002', 'troubleshooting-performed')">Advised customer about automatic payment link sent after service is completed</a></li>
-                                                <li><a id="0003" onclick="commonActionToField('0003', 'troubleshooting-performed')">Advised customer ongoing process may take some time to complete</a></li>
-                                                <li><a id="0004" onclick="commonActionToField('0004', 'troubleshooting-performed')">Archive process started</a></li>
-                                                <li><a id="0005" onclick="commonActionToField('0005', 'troubleshooting-performed')">Customer gave written/verbal approval to move forward with service request</a></li>
-                                                <li><a id="0006" onclick="commonActionToField('0006', 'troubleshooting-performed')">Customer provided access to the instrument/review station/Forum server*</a></li>
-                                                <li><a id="0007" onclick="commonActionToField('0007', 'troubleshooting-performed')">Customer requested a quote</a></li>
-                                                <li><a id="0008" onclick="commonActionToField('0008', 'troubleshooting-performed')">Customer will call back after discussing with management</a></li>
-                                                <li><a id="0009" onclick="commonActionToField('0009', 'troubleshooting-performed')">Customer will submit purchase order (PO) for payment</a></li>
-                                                <li><a id="0010" onclick="commonActionToField('0010', 'troubleshooting-performed')">Diagnostics performed, see Internal Notes for details</a></li>
-                                                <li><a id="0011" onclick="commonActionToField('0011', 'troubleshooting-performed')">Emailed Parts team with part number and included customer's contact information</a></li>
-                                                <li><a id="0012" onclick="commonActionToField('0012', 'troubleshooting-performed')">Emailed software download link and instructions for installation to the customer</a></li>
-                                                <li><a id="0013" onclick="commonActionToField('0013', 'troubleshooting-performed')">Field service engineer (FSE) dispatch is required</a></li>
-                                                <li><a id="0014" onclick="commonActionToField('0014', 'troubleshooting-performed')">Gathered logs and/or networking information</a></li>
-                                                <li><a id="0015" onclick="commonActionToField('0015', 'troubleshooting-performed')">Informed customer the FSE will call to schedule onsite appointment</a></li>
-                                                <li><a id="0016" onclick="commonActionToField('0016', 'troubleshooting-performed')">Instructed customer not to turn off instrument</a></li>
-                                                <li><a id="0017" onclick="commonActionToField('0017', 'troubleshooting-performed')">Performed the de-archive process</a></li>
-                                                <li><a id="0018" onclick="commonActionToField('0018', 'troubleshooting-performed')">Provided the preventative maintenance (PM) billable flat rate to the customer</a></li>
-                                                <li><a id="0019" onclick="commonActionToField('0019', 'troubleshooting-performed')">Provided the minimum billable flat rate to the customer</a></li>
-                                                <li><a id="0020" onclick="commonActionToField('0020', 'troubleshooting-performed')">Scheduled follow-up call</a></li>
-                                                <li><a id="0021" onclick="commonActionToField('0021', 'troubleshooting-performed')">Sent email to appropriate team(s)</a></li>
+                                                <li><a id="0000" onclick="commonActionToField('0000', ['troubleshooting-performed'])">(Blank line)</a></li>
+                                                <li><a id="0001" onclick="commonActionToField('0001', ['troubleshooting-performed'])">Not Applicable</a></li>
+                                                <li><a id="0002" onclick="commonActionToField('0002', ['troubleshooting-performed'])">Advised customer ongoing process may take some time to complete</a></li>
+                                                <li><a id="0003" onclick="commonActionToField('0003', ['troubleshooting-performed'])">Archive process started</a></li>
+                                                <li><a id="0004" onclick="commonActionToField('0004', ['other-internal-notes'])">Customer confirmed they will submit purchase order (PO) for payment</a></li>
+                                                <li><a id="0005" onclick="commonActionToField('0005', ['other-internal-notes'])">Customer confirmed they will use credit card for payment</a></li>
+                                                <li><a id="0006" onclick="commonActionToField('0006', ['troubleshooting-performed'])">Customer gave written/verbal approval to move forward with service request</a></li>
+                                                <li><a id="0007" onclick="commonActionToField('0007', ['troubleshooting-performed'])">Customer provided remote access to the instrument, review station, and/or Forum server</a></li>
+                                                <li><a id="0008" onclick="commonActionToField('0008', ['troubleshooting-performed'])">Customer requested a quote</a></li>
+                                                <li><a id="0009" onclick="commonActionToField('0009', ['troubleshooting-performed'])">Customer indicated they will call back after discussing with management</a></li>
+                                                <li><a id="0010" onclick="commonActionToField('0010', ['troubleshooting-performed'])">Field service engineer (FSE) dispatch is required</a></li>
+                                                <li><a id="0011" onclick="commonActionToField('0011', ['troubleshooting-performed'])">Gathered logs and/or networking information</a></li>
+                                                <li><a id="0012" onclick="commonActionToField('0012', ['troubleshooting-performed'])">Performed the de-archive process</a></li>
+                                                <li><a id="0013" onclick="commonActionToField('0013', ['troubleshooting-performed'])">Performed Diagnostics; see Internal Notes for details</a></li>
+                                                <li><a id="0014" onclick="commonActionToField('0014', ['troubleshooting-performed'])">Provided customer information about automatic payment link sent after service is completed</a></li>
+                                                <li><a id="0015" onclick="commonActionToField('0015', ['troubleshooting-performed'])">Provided customer information regarding FSE call to schedule onsite appointment</a></li>
+                                                <li><a id="0016" onclick="commonActionToField('0016', ['troubleshooting-performed'])">Provided customer instructions not to turn off instrument</a></li>
+                                                <li><a id="0017" onclick="commonActionToField('0017', ['troubleshooting-performed'])">Provided the preventative maintenance (PM) billable flat rate to the customer</a></li>
+                                                <li><a id="0018" onclick="commonActionToField('0018', ['troubleshooting-performed'])">Provided the minimum billable flat rate to the customer</a></li>
+                                                <li><a id="0019" onclick="commonActionToField('0019', ['troubleshooting-performed'])">Scheduled follow-up call</a></li>
+                                                <li><a id="0020" onclick="commonActionToField('0020', ['troubleshooting-performed'])">Sent email to appropriate team(s)</a></li>
+                                                <li><a id="0021" onclick="commonActionToField('0021', ['troubleshooting-performed'])">Sent email containing software download link and instructions for installation to the customer</a></li>
+                                                <li><a id="0022" onclick="commonActionToField('0022', ['troubleshooting-performed'])">Sent email to Parts team with part number and included customer's contact information</a></li>
                                             </ul>
                                         </div>
                                     </div>
