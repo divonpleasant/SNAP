@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData...');
     this.pdata = {
-        "data_version": "1.9.3",
+        "data_version": "1.9.11",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -911,7 +911,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -963,7 +963,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1468,7 +1468,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1501,7 +1501,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1752,7 +1752,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1993,7 +1993,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2044,7 +2044,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "oct",
                     "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28PLEX%20ELITE.one%7CAA7BC3EE-23B6-42DB-B5E5-A61A27EEDF53%2F%29"
                 },
                 "models": {
@@ -2149,7 +2149,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2666,7 +2666,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "imaging",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2793,7 +2793,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28YAG%20-%20LASERS%20ALL%20MODELS.one%7C58705FD2-9FFA-4C5C-9B84-2C6C8E71E107%2F%29"
                 },
                 "models": {
@@ -2940,7 +2940,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -3010,7 +3010,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -3111,7 +3111,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {

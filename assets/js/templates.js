@@ -155,7 +155,7 @@ ${so.Settings.user.email_sig.value}`
             },
             "billing-request": {
                 "name": "Billing Request",
-                "recipient": `${document.getElementById('email').value}`,
+                "recipient": `${(document.getElementById('billing-email').value !== '') ? document.getElementById('billing-email').value : document.getElementById('email').value}`,
                 "cc": [],
                 "bcc": [],
                 "subject": `Zeiss ${context[0]} Request ${serial_strings[2]}`,
@@ -1785,6 +1785,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>customer-time-zone</key>
     <value>${document.getElementById('customer-time-zone').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>instrument-code</key>
+    <value>${document.getElementById('instrument-code').value}</value>
   </customMetaData>
 </AssetInfo>`
             }
