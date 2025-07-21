@@ -1141,39 +1141,6 @@
                         </div>
                     </div>
 
-                    <!-- End of Support Overlay -->
-                    <div id="end-of-support-overlay" class="overlay" style="display: none;">
-                        <div id="eos-overlay-content" class="overlay-content">
-                            <span id="eos-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('end-of-support');">&times;</a></span> <!-- X button to close -->
-                            <h3 style="text-align: center">Enter EoS Instrument Information</h3>
-                            <select name="eos-instrument-type" id="eos-instrument-type">
-                                <option value="">&mdash; Instrument &mdash;</option>
-                                <option value="acuitus">Acuitus Auto Refractor</option>
-                                <option value="atlas">ATLAS</option>
-                                <option value="cirrus-oct">Cirrus HD-OCT</option>
-                                <option value="cirrus-photo">Cirrus Photo</option>
-                                <option value="ct">Corneal Topographer (CT)</option>
-                                <option value="clarus">Clarus</option>
-                                <option value="fundus-camera">Fundus Camera</option>
-                                <option value="hfa">Humphrey Field Analyzer (HFA)</option>
-                                <option value="iolmaster">IOLMaster</option>
-                                <option value="matrix">Matrix</option>
-                                <option value="oct">OCT</option>
-                                <option value="slit-lamp">Slit Lamps (SL)</option>
-                                <option value="stratus">Stratus</option>
-                                <option value="visante">Visante OCT</option>
-                                <option value="visucam">Visucam</option>
-                                <option value="visupac">Visupac</option>
-                            </select><br />
-                            <select name="eos-instrument-model" id="eos-instrument-model">
-                                <option value="">&mdash; Model &mdash;</option>
-                            </select><br />
-                            <div id="eos-submit-button-align">
-                                <button id="eos-proceed" onclick="manualOpenEmailTemplate('end-of-support', true)">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- FSE Update Request Overlay -->
                     <div id="fse-update-overlay" class="overlay" style="display: none;">
                         <div id="fse-update-overlay-content" class="overlay-content">
@@ -1333,7 +1300,7 @@
                                 <li>
                                     <span class="opener">End of Support</span>
                                     <ul class="fa-ul">
-                                        <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('end-of-support')" id="eos">EoS Explanation</a></li>
+                                        <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('end-of-support')" id="eos">EoS Explanation</a></li>
                                         <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                     </ul>
                                 </li>

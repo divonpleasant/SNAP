@@ -535,9 +535,6 @@ function handleEosModel(manual_switch) {
 
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
-// TODO: Replace this listener with one that works with the new instrument/model main form split
-//document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
-document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
 
 function activateProcess() {
     debugmsg(4, 'Executing activateProcess...');

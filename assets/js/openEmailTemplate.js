@@ -25,12 +25,11 @@ function openEmailTemplate(event) {
     var device_context = [];
     switch (template_id) {
         case 'eos-proceed':
-            var activeModel = (eosPreCheck()) ? fetchEosData() : manualOverlay('eos');
-            device_context.push(activeModel.short_name);
-            device_context.push(activeModel.models[document.getElementById('eos-instrument-model').value].full_name);
-            var procd_strs = eosProcContext(activeModel);
+            var active_model = (eosPreCheck()) ? fetchEosData() : updateSystemBox('EoS email template could not be processed');
+            device_context.push(document.getElementById('instrument').value);
+            device_context.push(document.getElementById('model').value);
+            var procd_strs = eosProcContext(active_model);
             device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
-            template_id = 'end-of-support';
             break;
         case 'fse-update-proceed':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
@@ -129,11 +128,17 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     var device_context = [];
     switch (template_id) {
         case 'end-of-support':
-            var activeModel = (eosPreCheck()) ? fetchEosData() : manualOverlay('eos');
-            device_context.push(activeModel.short_name);
-            device_context.push(activeModel.models[document.getElementById('eos-instrument-model').value].full_name);
-            var procd_strs = eosProcContext(activeModel);
-            device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
+            //var active_model = (eosPreCheck()) ? fetchEosData() : updateSystemBox('EoS email template could not be processed');
+            if (eosPreCheck()) {
+                var active_model = fetchEosData();
+                device_context.push(document.getElementById('instrument').value);
+                device_context.push(document.getElementById('model').value);
+                var procd_strs = eosProcContext(active_model);
+                device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
+            } else {
+                updateSystemBox('EoS email template could not be processed');
+                device_context.push('ABORT');
+            }
             break;
         case 'fse-update':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
@@ -194,6 +199,10 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             break;
     }
     console.debug({device_context});
+    if (device_context[0] === 'ABORT') {
+        console.warn("Cannot proceed with template '" + template_id + "'; context processing failed");
+        return false;
+    }
     const t = new generateTemplates(device_context);
     console.debug({template_id});
     console.debug('Using template: ' + t.templates.email[template_id].name);
