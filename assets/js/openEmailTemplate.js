@@ -1,12 +1,12 @@
 function showOverlay(event) {
     var overlay_id = event.srcElement.id;
-    debugmsg(1, 'Executing showOverlay::' + overlay_id);
+    console.log("Executing showOverlay...\n  overlay_id: " + overlay_id);
     document.getElementById(overlay_id + '-overlay').style.display = 'flex';
 }
 
 function closeOverlay(event) {
     var overlay_id = event.srcElement.id.split('-').filter(function(a) {return a !== 'close';}).join('-');
-    debugmsg(5, 'Executing closeOverlay::' + overlay_id);
+    console.log("Executing closeOverlay...\n  overlay_id: " + overlay_id);
     document.getElementById(overlay_id).style.display = 'none';
 }
 var n2w = new T2W('EN_US');
@@ -14,10 +14,9 @@ var n2w = new T2W('EN_US');
 function openEmailTemplate(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
-    //console.log(event);
     var template_id = event.srcElement.id;
     // Self-identify for debugging
-    debugmsg(1, 'Executing openEmailTemplate::' + template_id);
+    console.log("Executing openEmailTemplate...\n  template_id: " + template_id);
     if (typeof document.getElementById(template_id + 'close-overlay') !== 'undefined') {
         manualCloseOverlay(template_id);
     }
@@ -76,8 +75,8 @@ function openEmailTemplate(event) {
             break;
     }
     const t = new generateTemplates(device_context);
-    debugmsg(5, 'template_id: ' + template_id);
-    debugmsg(4, 'Using template: ' + t.templates.email[template_id].name);
+    console.debug({template_id});
+    console.debug('Using template: ' + t.templates.email[template_id].name);
 
     // Construct the mailto link
     var mailto_link = 'mailto:' + encodeURIComponent(t.templates.email[template_id].recipient) + '?';
@@ -99,7 +98,7 @@ function openEmailTemplate(event) {
         }
     }
 
-    debugmsg(5, 'mailto_link: ' + mailto_link);
+    console.debug({mailto_link});
 
     // Open the mailto link
     window.location.href = mailto_link;
@@ -113,16 +112,16 @@ function openEmailTemplate(event) {
    the migration is complete.
 */
 function manualOverlay(o_id) {
-    console.debug('Manually executing showOverlay::' + o_id);
+    console.debug("Manually executing showOverlay...\n  o_id: " + o_id);
     document.getElementById(o_id + '-overlay').style.display = 'flex';
 }
 function manualCloseOverlay(o_id) {
-    console.debug('Manually executing closeOverlay::' + o_id);
+    console.debug("Manually executing closeOverlay... \n o_id: " + o_id);
     document.getElementById(o_id + '-overlay').style.display = 'none';
 }
 function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Self-identify for debugging
-    console.debug('Manually executing openEmailTemplate::' + template_id);
+    console.debug("Manually executing openEmailTemplate... \n  template_id: " + template_id);
     (closeOL) ? manualCloseOverlay(template_id) : '';
     // Find correct template and perform any context-relevant actions
     var device_context = [];
