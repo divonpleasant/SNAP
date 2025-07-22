@@ -1,6 +1,6 @@
 console.log('Loading timeZoneData.js...');
 function generateTimeZoneData() {
-    console.debug('Executing generateTimeZoneData...');
+    console.debug('Executing generateTimeZoneData ...');
     this.tz = {
         "et": {
             "name": "Eastern Time",

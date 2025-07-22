@@ -18,8 +18,7 @@ each top-level functional category and context is only available to each
 instance upon initialization. 
 */
 function generateTemplates(context) {
-    console.log('Executing generateTemplates...');
-    console.debug('generateTemplates context: ' + context);
+    console.log("Executing generateTemplates ...\n  context: " + context);
     serial_strings = proc_template_serial(document.getElementById('serial').value);
     cct_strings = proc_template_cct(document.getElementById('cct').value);
     this.templates = {

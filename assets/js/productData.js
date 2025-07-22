@@ -43,7 +43,7 @@
 */
 console.log('Loading productData.js...');
 function generateProductData() {
-    console.debug('Executing generateProductData...');
+    console.debug('Executing generateProductData ...');
     this.pdata = {
         "data_version": "1.9.37",
         "schema_version": "8.4",
