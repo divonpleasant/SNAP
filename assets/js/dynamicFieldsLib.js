@@ -136,7 +136,8 @@ function checkProductType(product) {
                 return 'software';
             }
         } else {
-            console.debug('products.pdata.instruments[' + product + '] was not undefined, returning value: instrument');debugmsg(5, 'products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
+            console.debug('products.pdata.instruments[' + product + '] was not undefined, returning value: instrument');
+            console.debug('products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
             return 'instrument';
         }
     } catch (e) {
@@ -187,7 +188,7 @@ function generateTooltipText (instrument_code, model_id = '') {
             console.debug('model_list: ' + JSON.stringify(model_list));
             for (var i = 0; i < model_list.length; i++) {
                 tt_text += (products.pdata.instruments[instrument_code].models[model_list[i]].supported) ? model_list[i] + ' | ' : '';
-                debugmsg(5, 'tt_text: ' + tt_text);
+                console.debug({tt_text});
             }
             tt_text = tt_text.substr(0, tt_text.length - 3);
             console.debug({tt_text});
@@ -291,7 +292,7 @@ function filterOnKey(data_obj, key_to_eval, value_to_filter, reverse = false, in
     console.debug("Executing filterOnKey ...\n  data_obj: " + JSON.stringify(data_obj) + "\n  key_to_eval: " + key_to_eval + "\n  value_to_filter: " + value_to_filter + "\n  reverse: " + reverse + "\n  include_meta: " + include_meta + "\n  honor_exemptions: " + honor_exemptions);
     var filtered_data_obj = Object.keys(data_obj).reduce(
         (obj, key) => {
-            debugmsg(5, 'key: ' + key);
+            console.debug({key});
             if (reverse) {
                 (data_obj[key][key_to_eval] !== value_to_filter) ? obj[key] = data_obj[key] : '';
             } else {

@@ -1,6 +1,6 @@
 /* Process Actual Problem */
 function useActualDescription() {
-    debugmsg(5, 'same-as-reported: ' + document.getElementById('same-as-reported').checked);
+    console.debug('same-as-reported: ' + document.getElementById('same-as-reported').checked);
     if (document.getElementById('same-as-reported').checked) {
         return "N/A";
     } else {
@@ -44,15 +44,15 @@ function procCctDescription (descr_only = false) {
     strings via data functions.
 */
 function cleanData(t_data) {
-    debugmsg(3, "DATA\n====\n" + t_data);
+    console.log("DATA\n====\n" + t_data);
 
     // Remove empty lines
     var non_empty_data = t_data.split('\n').filter(line => !line.match(/: $/)).join('\n');
-    debugmsg(4, "NON-EMPTY DATA\n=========================\n" + non_empty_data);
+    console.debug("NON-EMPTY DATA\n=========================\n" + non_empty_data);
     var line_clear_data = non_empty_data.replace(/\n{3,}/g, '\n\n');
     var single_line_data = line_clear_data.replace(/\n{1,}$/, '\n');
     var processed_data = single_line_data.replace(/\n$/, '');
-    debugmsg(5, "PROCESSED DATA\n========================\n" + processed_data);
+    console.debug("PROCESSED DATA\n========================\n" + processed_data);
     return processed_data;
 }
 
@@ -75,7 +75,7 @@ function exportToFile(clean_data, extension, filename = 'export') {
 */
 function copyCrmData (data_subset) {
     var data_context = [];
-    debugmsg(4, 'data_subset: ' + data_subset);
+    console.debug({data_subset});
     switch (data_subset) {
         case 'rafta':
             data_context.push(useActualDescription()); // actual_description
@@ -96,9 +96,9 @@ function copyCrmData (data_subset) {
         default:
             break;
     }
-    debugmsg(4, 'data_context: ' + data_context);
+    console.debug({data_context});
     const crmt = new generateTemplates(data_context);
-    debugmsg(5, 'Checking crmt.templates...');
+    console.log('Checking crmt.templates ...');
     console.log(crmt.templates);
     template_data = crmt.templates.export[data_subset].format;
     cleaned_data = cleanData(template_data);
@@ -110,7 +110,7 @@ function copyCrmData (data_subset) {
             exportToFile(cleaned_data, crmt.templates.export[data_subset].file_ext);
             break;
         default:
-            debugmsg(1, 'Did not find an export type in ' + data_subset + ', no action taken');
+            console.warn('Did not find an export type in ' + data_subset + ', no action taken');
             break;
     }
 }

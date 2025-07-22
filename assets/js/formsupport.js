@@ -31,7 +31,7 @@ function handleErrorGroup() {
     console.debug('Executing handleErrorGroup ...');
     var ec_list = document.getElementById('error-code');
     var group_index = this.options[this.selectedIndex].value;
-    debugmsg(4, 'group_index: ' + group_index);
+    console.debug({group_index});
     switch (group_index) {
         case 'Cloud Services':
             enableAndReset(ec_list, 1);
@@ -339,7 +339,7 @@ function handleErrorGroup() {
 function handleRequestOrigin() {
     console.debug('Executing handleRequestOrigin ...');
     req_source_list = document.getElementById('request-source');
-    debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+    console.debug('this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
     switch (this.options[this.selectedIndex].value) {
         case 'Call':
             enableAndReset(req_source_list, 2);

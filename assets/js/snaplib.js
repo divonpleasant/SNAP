@@ -302,37 +302,6 @@ document.getElementById('pagestyle').setAttribute('href', final_style);
 (user_logged_in) ? document.getElementById('user-account').innerHTML = so.Settings.user.username.value : '';
 
 // LIB FUNCTIONS
-
-// Output debugging messages based on debug_mode and debug_level settings
-/* Usage:
-    Levels are intended to help define various developer-specific
-    logging.
-        0 : Any non-positive integer will result in an error
-            message; debugmsg level should never be set to a value less
-            than 1.
-        1 : Overview. These are a step away from default console logs 
-            (i.e. things every developer will want to see, always)
-        2 : Top-level troubleshooting. Error messages, fatal
-            conditions, etc.
-        3 : Deep troubleshooting. Warnings, API messages, etc.
-        4 : Developer mode. Default level for any descriptions of code
-            activity.
-        5 : Coding mode. Should only be used for messages intended to
-            aid initial development or bug resolution. Any messaging
-            generated from within a control loop, e.g.
-*/
-function debugmsg(level, output) {
-    if (level <= 0) {
-        console.log('[ERROR] Function debugmsg should never use message level 0 ... reserved for disabling messaging');
-        return;
-    }
-    if (so.Settings.debug.mode.value) {
-        if (so.Settings.debug.level.value >= level) {
-            console.log("[DEBUG-" + level + "] " + output);
-        }
-    }
-}
-
 function clipBoarder(text_to_clip, clip_label) {
     if (text_to_clip === '') {
         var empty_txt_clip = 'No text to copy for ' + clip_label;
@@ -347,7 +316,7 @@ function clipBoarder(text_to_clip, clip_label) {
         console.error(err);
         return false;
     });
-    debugmsg(2, "Copied " + clip_label + " to clipboard: '" + text_to_clip + "'");
+    console.log('Copied ' + clip_label + " to clipboard: '" + text_to_clip + "'");
     return true;
 }
 
@@ -515,7 +484,7 @@ function outputCommunicationPref() {
         } else if (!phone_pref && email_pref) {
             cust_pref_str = 'Customer prefers email communication';
         }
-        debugmsg(5, 'cust_pref_str: ' + cust_pref_str);
+        console.debug({cust_pref_str});
         return cust_pref_str;
     } else {
         return '';
@@ -524,33 +493,33 @@ function outputCommunicationPref() {
 
 // Calculate instruments' available disk space
 function processDiskSpace(test_field) {
-    debugmsg(5, 'test_field: ' + test_field);
+    console.debug("Executing processDiskSpace ...\n  test_field: " + test_field);
     var test_value = document.getElementById(test_field).value;
     var drive_array = test_field.split('-');
-    debugmsg(5, 'drive_array: ' + drive_array);
+    console.debug({drive_array});
     // drive_array[0] is for instrument name; drive_array[1] is drive letter
     var instr_code = drive_array[0];
     var base_drive = drive_array[1];
-    debugmsg(5, 'instr_code: ' + instr_code);
-    debugmsg(5, 'base_drive: ' + base_drive);
+    console.debug({instr_code});
+    console.debug({base_drive});
     var drive = base_drive.toUpperCase();
     var disk_string;
     if (test_value != '') {
-        debugmsg(5, 'test_value (' + test_value + ') is not empty; processing string');
-        debugmsg(5, 'Drive: ' + drive + ":\ ");
+        console.debug('test_value (' + test_value + ') is not empty; processing string');
+        console.debug('Drive: ' + drive + ":\ ");
         var free_value = document.getElementById(instr_code + '-' + base_drive + '-drive-free').value;
-        debugmsg(5, 'free_value: ' + free_value);
+        console.debug({free_value});
         var free_units = document.getElementById(instr_code + '-' + base_drive + '-drive-free-size').value;
-        debugmsg(5, 'free_units: ' + free_units);
+        console.debug({free_units});
         var total_value = document.getElementById(instr_code + '-' + base_drive + '-drive-total').value;
-        debugmsg(5, 'total_value: ' + total_value);
+        console.debug({total_value});
         var total_units = document.getElementById(instr_code + '-' + base_drive + '-drive-total-size').value;
-        debugmsg(5, 'total_units: ' + total_units);
+        console.debug({total_units});
         disk_string = free_value + ' ' + free_units.toUpperCase() + ' of ' + total_value + ' ' + total_units.toUpperCase();
-        debugmsg(5, disk_string);
+        console.debug({disk_string});
         return disk_string;
     } else {
-        debugmsg(5, 'test_field: ' + test_field + ' is empty; exiting');
+       console.debug('test_field: ' + test_field + ' is empty; exiting');
         return "";
     }
 }
@@ -574,24 +543,24 @@ function generateBillingContact() {
     }
     var bill_type = document.getElementById('billing-type');
     var output = '';
-    debugmsg(5, 'bill_type.options[bill_type.selectedIndex].value: ' + bill_type.options[bill_type.selectedIndex].value);
+    console.debug('bill_type.options[bill_type.selectedIndex].value: ' + bill_type.options[bill_type.selectedIndex].value);
     switch (bill_type.options[bill_type.selectedIndex].value) {
         case '':
-            debugmsg(4, 'Billing type is not set; no billing info output');
+            console.debug('Billing type is not set; no billing info output');
             break;
         case 'W':
-            debugmsg(4, "Billing type is 'Warranty'; no billing info output");
+            console.debug("Billing type is 'Warranty'; no billing info output");
             break;
         case 'CNTRCT':
             if (document.getElementById('billing-contact').checked) {
-                debugmsg(4, "Billing type is 'Contract' and billing contact is specified; including billing info in Internal Notes");
+                console.debug("Billing type is 'Contract' and billing contact is specified; including billing info in Internal Notes");
                 output = createBillingString(billing_poc_name, billing_phone, billing_email);
             } else {
-                debugmsg(4, "Billing type is 'Contract' but no billing contact is specified; no billing info output");
+                console.debug("Billing type is 'Contract' but no billing contact is specified; no billing info output");
             }
             break;
         default:
-            debugmsg(4, "Billing type is either 'Billable' or 'Cross-Charge'; including billing info in Internal Notes");
+            console.debug("Billing type is either 'Billable' or 'Cross-Charge'; including billing info in Internal Notes");
             output = createBillingString(billing_poc_name, billing_phone, billing_email);
             break;
     }
@@ -623,12 +592,12 @@ function setCookie(c_name, c_val, exp_days) {
     d.setTime(d.getTime() + (exp_days * 24 * 60 * 60 * 1000));
     let expires = "expires="+d.toUTCString();
     var cookie_str = c_name + "=" + c_val + ";" + expires + ";path=/";
-    debugmsg(5, 'cookie_str: ' + cookie_str);
+    console.debug({cookie_str});
     document.cookie = cookie_str;
 }
 
 function getCookie(c_name) {
-    debugmsg(5, 'Checking cookie for ' + c_name);
+    console.debug("Executing getCookie ...\n  c_name: " + c_name);
     let name = c_name + "=";
     let ca = document.cookie.split(';');
     for(let i = 0; i < ca.length; i++) {
@@ -637,7 +606,7 @@ function getCookie(c_name) {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
-            debugmsg(5, 'c.indexOf(' + name + '): ' + c.indexOf(name));
+            console.debug('c.indexOf(' + name + '): ' + c.indexOf(name));
             return c.substring(name.length, c.length);
         }
     }

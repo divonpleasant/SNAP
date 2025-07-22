@@ -1,7 +1,7 @@
 // Account support
 function accountOverlay(event) {
     event.preventDefault();
-    console.log('Executing accountOverlay...');
+    console.debug('Executing accountOverlay ...');
     // Get existing settings and set form elements appropriately
     console.debug(JSON.stringify(so.Settings.user.username.value));
     console.debug(JSON.stringify(so.Settings.user.fullname.value));
@@ -33,7 +33,7 @@ function processAccount(event) {
     setCookie("signEmail", document.getElementById('sign-email-toggle').checked, 90);
     setCookie("useCustomScr", document.getElementById('custom-scripts-toggle').checked, 90);
     
-    debugmsg(5, 'Cookie check: ' + document.cookie);
+    console.debug('Cookie check: ' + document.cookie);
     
     startUp(false, true);
     
@@ -53,7 +53,7 @@ function logoutAccount(event) {
     setCookie("signEmail", '', -1);
     setCookie("useCustomScr", '', -1);
     
-    debugmsg(4, 'Cookie check: ' + document.cookie);
+    console.debug('Cookie check: ' + document.cookie);
     
     startUp(false, true);
     
@@ -65,7 +65,7 @@ document.getElementById('user-account').addEventListener('click', accountOverlay
 document.getElementById('account-save').addEventListener('click', processAccount);
 document.getElementById('account-logout').addEventListener('click', logoutAccount);
 document.getElementById('account-close-overlay').addEventListener('click', function () {
-    debugmsg(5, 'closing account overlay...');
+    console.debug('closing account overlay...');
     document.getElementById('account-overlay').style.display = 'none';
 
 });
