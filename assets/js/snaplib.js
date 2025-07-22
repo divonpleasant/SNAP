@@ -18,14 +18,6 @@ function generateSettings() {
                 "cookie_key": "debugMode",
                 "description": "Toggles whether debug mode is on or off (true = on; false = off). Impacts how much logging is done to the brower's console."
             },
-            "level": {
-                "name": "Debug Level",
-                "default_value": 0,
-                "value": 0,
-                "type": "range",
-                "cookie_key": "debugLevel",
-                "description": "A value between 0 and 5 indicating how verbose the console logs are when debug mode is on."
-            },
             "console_clear": {
                 "name": "Clear Console on Reset",
                 "default_value": true,

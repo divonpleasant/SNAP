@@ -198,7 +198,8 @@
                                 </div>
                                 <div class="col-6 col-12-xsmall remote-support-field">
                                     <input type="checkbox" id="teleservice" name="teleservice">
-                                    <label for="teleservice">Teleservice?</label>
+                                    <label for="teleservice">Teleservice?</label><a class="context-help" href="" onclick="revealHelper('teleservice')"><i class="fa-solid fa-circle-question"></i></a>
+                                    <div id="context-help-teleservice" class="context-info">Teleservice can be accessed on an OCT in Help &gt; Service Support &gt; Teleservice</div>
                                 </div>
                                 <div class="col-12 remote-support-field">
                                     <table>
@@ -1212,14 +1213,6 @@
                             <label for="pm-sla">Preventative Maintenance SLA (hours)</label>
                             <input type="checkbox" id="debug-toggle" name="debug-toggle">
                             <label for="debug-toggle">Use Debug Mode?</label><br />
-                            <select name="debug-level" id="debug-level">
-                                <option value="0">&mdash; Debug Level &mdash;</option>
-                                <option value="1">Level 1 (Overview)</option>
-                                <option value="2">Level 2 (Troubleshooting)</option>
-                                <option value="3">Level 3 (Errors)</option>
-                                <option value="4">Level 4 (Debugging)</option>
-                                <option value="5">Level 5 (Developer)</option>
-                            </select><br />
                             <div id="setting-save-button-align">
                                 <button id="settings-save">Save</button>
                             </div>

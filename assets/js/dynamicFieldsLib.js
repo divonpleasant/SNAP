@@ -692,6 +692,24 @@ function commonActionToField(a_id, fields) {
     }
 }
 
+function revealHelper(helper_id) {
+    event.preventDefault();
+    console.log("Executing revealHelper ...\n  helper_id: " + helper_id);
+    var display_status = document.getElementById('context-help-teleservice').style.display;
+    switch (display_status) {
+        case '':
+        case 'none':
+            document.getElementById('context-help-teleservice').style.display = 'flex';
+            break;
+        case 'flex':
+            document.getElementById('context-help-teleservice').style.display = 'none';
+            break;
+        default:
+            console.log({display_status});
+            break;
+    }
+}
+
 function expandNav() {
     console.debug('Executing expandNav ...');
     if (document.getElementById('toggle-exp-nav').innerHTML === 'Expand') {
