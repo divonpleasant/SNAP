@@ -28,9 +28,10 @@ function enableAndReset(targetElement, defaultOptionsLength) {
 
 // Populate error-code based on error-group selection
 function handleErrorGroup() {
+    console.debug('Executing handleErrorGroup ...');
     var ec_list = document.getElementById('error-code');
     var group_index = this.options[this.selectedIndex].value;
-    debugmsg(4, 'group_index: ' + group_index);
+    console.debug({group_index});
     switch (group_index) {
         case 'Cloud Services':
             enableAndReset(ec_list, 1);
@@ -336,8 +337,9 @@ function handleErrorGroup() {
 
 // Populate request-source based on request-origin
 function handleRequestOrigin() {
+    console.debug('Executing handleRequestOrigin ...');
     req_source_list = document.getElementById('request-source');
-    debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+    console.debug('this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
     switch (this.options[this.selectedIndex].value) {
         case 'Call':
             enableAndReset(req_source_list, 2);
@@ -358,196 +360,18 @@ function handleRequestOrigin() {
     }
 }
 
-// Keep eos-instrument-model synced to main instrument-model select
-function syncEosModelToInstrumentField() {
-    eos_instrument_field = document.getElementById('eos-instrument-type');
-    debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
-    /*
-        NOTE: The options here are cited by index; there may be a better way to reference the elements,
-        particularly since the organization and breakdown of the select field is subject to change over time.
-        In any case, if this is ever not working as expected, check the index values carefully.
-    */
-    switch (this.options[this.selectedIndex].value) {
-        case 'Atlas 500':
-        case 'Atlas 9000':
-            handleEosModel('atlas');
-            eos_instrument_field.getElementsByTagName('option')[2].selected = 'selected';
-            break;
-        case 'Cirrus OCT':
-            eos_instrument_field.getElementsByTagName('option')[3].selected = 'selected';
-            handleEosModel('cirrus-oct');
-            break;
-        case 'Cirrus Photo':
-            eos_instrument_field.getElementsByTagName('option')[4].selected = 'selected';
-            handleEosModel('cirrus-photo');
-            break;
-        case 'Clarus':
-            eos_instrument_field.getElementsByTagName('option')[6].selected = 'selected';
-            handleEosModel('clarus');
-            break;
-        case 'HFA3':
-            eos_instrument_field.getElementsByTagName('option')[8].selected = 'selected';
-            handleEosModel('hfa');
-            break;
-        case 'IOLMaster':
-            eos_instrument_field.getElementsByTagName('option')[9].selected = 'selected';
-            handleEosModel('iolmaster');
-            break;
-        case 'Stratus 3000/Visante 1000 (old)':
-            handleEosModel('stratus');
-            eos_instrument_field.getElementsByTagName('option')[13].selected = 'selected';
-            break;
-        case 'Visucam 224/524':
-        case 'Visucam Pro/NM/NMFA':
-            handleEosModel('visucam');
-            eos_instrument_field.getElementsByTagName('option')[15].selected = 'selected';
-            break;
-        default:
-            break;
-    }
-}
-
-// Populate eos-instrument-model based on eos-instrument-type
-function handleEosModel(manual_switch) {
-    eos_model_list = document.getElementById('eos-instrument-model');
-    var eval_index = '';
-    debugmsg(4, 'manual_switch: ' + manual_switch);
-    // determine whether function is used as a callback from addEventListener
-    // if not, manual_switch is treated as a variable that explicitly specifies
-    // the index
-    if (typeof manual_switch !== 'object') {
-        eval_index = manual_switch;
-    } else {
-        debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
-        eval_index = this.options[this.selectedIndex].value;
-    }
-    debugmsg(4, 'eval_index: ' + eval_index);
-    switch (eval_index) {
-        case 'acuitus':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('Acuitus 5015', '5015'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('Acuitus 5010', '5010'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('Acuitus 5000', '5000'), eos_model_list.options[1]);
-            break;
-        case 'atlas':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('ATLAS 995', '995'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('ATLAS 993', '993'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('ATLAS 992', '992'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('ATLAS 991', '991'), eos_model_list.options[1]);
-            break;
-        case 'cirrus-oct':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('Cirrus HD-OCT 4000', '4000'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('Cirrus HD-OCT 400', '400'), eos_model_list.options[1]);
-            break;
-        case 'cirrus-photo':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('Cirrus Photo 800', '800'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('Cirrus Photo 600', '600'), eos_model_list.options[1]);
-            break;
-        case 'ct':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('CT 992', '992'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('CT 991', '991'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('CT 990', '990'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('CT 920', '920'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('CT 910', '910'), eos_model_list.options[1]);
-            break;
-        case 'fundus-camera':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('RC 310', 'RC 310'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FK 30', 'FK 30'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 450plus IR', 'FF 450plus IR'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 450 IR', 'FF 450 IR'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 450plus', 'FF 450plus'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 450 IRu', 'FF 450 IRu'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 450plus IRu', 'FF 450plus IRu'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 450', 'FF 450'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 5', 'FF 5'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('FF 4', 'FF 4'), eos_model_list.options[1]);
-            break;
-        case 'hfa':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('HFA II 750', '750'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('HFA II 745', '745'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('HFA II 740', '740'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('HFA II 735', '735'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('HFA II 730', '730'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('HFA 750i', '750i'), eos_model_list.options[1]);
-            break;
-        case 'iolmaster':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('IOLMaster 5', '5'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('IOLMaster 4', '4'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('IOLMaster 3', '3'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('IOLMaster 2', '2'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('IOLMaster 1', '1'), eos_model_list.options[1]);
-            break;
-        case 'matrix':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('Matrix 715', '715'), eos_model_list.options[1]);
-            break;
-        case 'oct':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('OCT 2', '2'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('OCT 1', '1'), eos_model_list.options[1]);
-            break;
-        case 'slit-lamp':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('10 SL', '10'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('10 SL/O', '10-O'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('20 SL', '20'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('30 SL/M', '30'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('40 SL/P', '40'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('SL 100/16', '100'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('SL 105', '105'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('Photo-SL', 'Photo'), eos_model_list.options[1]);
-            break;
-        case 'stratus':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('Stratus P4', 'P4'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('Stratus P3', 'P3'), eos_model_list.options[1]);
-            break;
-        case 'visante':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('Visante OCT 1000', '1000'), eos_model_list.options[1]);
-            break;
-        case 'visucam':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('VISUCAM PRO NM 1', 'PRO NM 1'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('VISUCAM PRO NM 2', 'PRO NM 2'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('VISUCAM NM/FA1', 'NM/FA1'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('VISUCAM Lite', 'Lite'), eos_model_list.options[1]);
-            break;
-        case 'visupac':
-            enableAndReset(eos_model_list, 1);
-            eos_model_list.add(new Option('VISUPAC 481', '481'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('VISUPAC 471', '471'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('VISUPAC 450', '450'), eos_model_list.options[1]);
-            eos_model_list.add(new Option('VISUPAC 430', '430'), eos_model_list.options[1]);
-            break;
-        default:
-            eos_model_list.setAttribute('disabled', true);
-            break;
-    }
-}
-
 document.getElementById('request-came-from').addEventListener('change', handleRequestOrigin);
 document.getElementById('error-group').addEventListener('change', handleErrorGroup);
-// TODO: Replace this listener with one that works with the new instrument/model main form split
-//document.getElementById('instrument-model').addEventListener('change', syncEosModelToInstrumentField);
-document.getElementById('eos-instrument-type').addEventListener('change', handleEosModel);
 
 function activateProcess() {
-    debugmsg(4, 'Executing activateProcess...');
+    console.debug('Executing activateProcess ...');
     // Prevent the default action (which is following the link)
     event.preventDefault();
     proc_template_id = event.srcElement.id.substr(15,);
-    debugmsg(4, 'proc_template_id: ' + proc_template_id);
+    console.debug({proc_template_id});
     var proc_context = new Array;
     var proc_location = findProcessText(proc_template_id);
-    debugmsg(4, 'proc_location: ' + proc_location);
+    console.debug({proc_location});
     const pt = new generateTemplates(proc_context);
     var proc_text = pt.templates.process[proc_template_id].general[proc_location];
     document.getElementById('prompt-text').innerHTML = proc_text;
@@ -555,10 +379,7 @@ function activateProcess() {
     document.getElementById('prompt-tail').style.display = 'none';
 }
 function manualActivateProcess(proc_type, proc_section, proc_location) {
-    console.info('Executing manualActivateProcess...');
-    console.debug({proc_type});
-    console.debug({proc_section});
-    console.debug({proc_location});
+    console.debug("Executing manualActivateProcess ...\n  proc_type: " + proc_type + "\n  proc_section: " + proc_section + "\n  proc_location: " + proc_location);
     var proc_context = new Array;
     const pt = new generateTemplates(proc_context);
     var proc_text = pt.templates.process[proc_type][proc_section][proc_location];
@@ -568,6 +389,7 @@ function manualActivateProcess(proc_type, proc_section, proc_location) {
 }
 
 function displayProcessMessage(msg_txt) {
+    console.debug("Executing displayProcessMessage ...\n  msg_txt: " + msg_txt);
     document.getElementById('prompt-text').innerHTML = msg_txt;
     document.getElementById('prompt-content').classList.add('system-message');
     document.getElementById('prompt').style.display = 'flex';
@@ -594,7 +416,7 @@ function pmToggle(state = false) {
 }
 
 function updateDescription () {
-    console.debug('Executing updateDescription...');
+    console.debug('Executing updateDescription ...');
     var proc_id = document.getElementById('common-call-scenarios').options[document.getElementById('common-call-scenarios').selectedIndex].value;
     var proc_data = proc_id.split('_', 2);
     var proc_section = proc_data[0];
@@ -641,31 +463,31 @@ function updateDescription () {
     document.getElementById('problem-description').value = document.getElementById('description').value;
 }
 function findProcessText(proc_type, template_label = 'default') {
-    debugmsg(4, 'Executing findProcessText...');
+    console.debug("Executing findProcessText ...\n  proc_type: " + proc_type + "\n  template_label: " + template_label);
     var template_el = '';
     switch (proc_type) {
         case 'call-scenarios':
             template_el = document.getElementById('common-call-scenarios');
-            debugmsg(4, 'template_el.selectedIndex: ' + template_el.selectedIndex);
+            console.debug('template_el.selectedIndex: ' + template_el.selectedIndex);
             template_label = template_el.options[template_el.selectedIndex].value;
             break;
         case 'call-types':
             template_el = document.getElementById('call-type');
-            debugmsg(4, 'template_el.selectedIndex: ' + template_el.selectedIndex);
+            console.debug('template_el.selectedIndex: ' + template_el.selectedIndex);
             template_label = template_el.options[template_el.selectedIndex].value;
             break;
         default:
             break;
     }
-    debugmsg(4, 'template_label: ' + template_label);
+    console.debug({template_label});
     if (template_label.includes('_')) {
-        debugmsg(4, 'Determining unsectioned template label');
+        console.log('Determining unsectioned template label');
         var label_data = template_label.split('_', 2);
         var label_section = label_data[0];
         var label_label = label_data[1];
-        debugmsg(4, 'label_data: ' + label_data);
-        debugmsg(4, 'label_section: ' + label_section);
-        debugmsg(4, 'label_label: ' + label_label);
+        console.log({label_data});
+        console.log({label_section});
+        console.log({label_label});
         return label_label;
     } else {
         return (template_label === '') ? 'default' : template_label;
@@ -677,7 +499,7 @@ function activateScript () {
     event.preventDefault();
     // Retrieve element id and strip prefix (script-prompt-)
     var scr_template_id = event.srcElement.id.substr(14,);
-    debugmsg(4, 'scr_template_id: ' + scr_template_id);
+    console.log({scr_template_id});
     var script_context = new Array;
     var script_location = findScriptText(scr_template_id);
     const st = new generateTemplates(script_context);
@@ -692,6 +514,7 @@ function activateScript () {
     document.getElementById('prompt-tail').style.display = 'inline';
 }
 function findScriptText(script_type) {
+    console.debug("Executing findScriptText ...\n  script_type: " + script_type);
     //var subsection = (use_custom_scripts) ? 'user' : 'default';
     var subsection = (so.Settings.user.use_custom_scripts.value) ? 'user' : 'default';
     var template_label = '';
@@ -725,17 +548,19 @@ function findScriptText(script_type) {
         default:
             break;
     }
-    debugmsg(4, 'subsection: ' + subsection + "\ntemplate_label: " + template_label);
+    console.debug('subsection: ' + subsection + "\ntemplate_label: " + template_label);
     var locations = [subsection, template_label];
     return locations;
 }
 function closeScript() {
+    console.debug('Executing closeScript ...');
     event.preventDefault();
     document.getElementById('prompt-content').classList.remove('system-message');
     document.getElementById('prompt').style.display = 'none';
 }
 
 function callTypeEval() {
+    console.debug('Executing callTypeEval ...');
     crossChargeAutoUpdate();
     document.querySelectorAll('.fss-details').forEach(a=>a.style.display = 'none');
     switch (document.getElementById('call-type')[document.getElementById('call-type').selectedIndex].value) {
@@ -754,6 +579,7 @@ function callTypeEval() {
 }
 
 function crossChargeAutoUpdate() {
+    console.debug('Executing crossChargeAutoUpdate ...');
     if (document.getElementById('billing-type').value === 'B' && document.getElementById('remote-resolution').checked && document.getElementById('call-type').value === 'remote-service') {
         console.log('crossChargeAutoUpdate ... Updating Billing Type to XC for Remote Fix (Remote Service call type and Remote resolution? checked)');
         document.getElementById('billing-type').value = 'XC';
@@ -797,7 +623,7 @@ function handleBillingAddressChange() {
 }
 
 function handleAddressChange() {
-    console.debug('Executing handleAddressChange...');
+    console.debug('Executing handleAddressChange ...');
     manualCloseOverlay('address-change');
     if (!document.getElementById('site-change').checked && !document.getElementById('billing-change').checked) {
         var requirement_msg = 'You must specify at least one address type (instrument/shipping or billing) to update'
@@ -872,7 +698,7 @@ Previous Billing Address:
 }
 
 function checkPhoneFormat() {
-    console.log('Executing checkPhoneFormat...');
+    console.log('Executing checkPhoneFormat ...');
     var input_ph = document.getElementById('phone').value;
     var cleaned = ('' + input_ph).replace(/\D/g, '');
     var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})(\d+)?$/);
@@ -886,14 +712,14 @@ function checkPhoneFormat() {
 }
 
 function openReferenceBox(location_ref) {
-    console.log("Executing openReferenceBox... \nlocation_ref: " + location_ref);
+    console.log("Executing openReferenceBox ... \nlocation_ref: " + location_ref);
     // EXAMPLE: $("#reference-contents").load("assets/data/reference/products/oct/overview.html");
     updateReferenceBoxContents(location_ref);
     document.getElementById('reference-box').style.display = 'grid';
 }
 
 function updateReferenceBoxContents(location_ref, direct_link = '') {
-    console.log("Executing updateReferenceBoxContents... \nlocation_ref: " + location_ref + "\ndirect_link: " + direct_link);
+    console.log("Executing updateReferenceBoxContents ... \nlocation_ref: " + location_ref + "\ndirect_link: " + direct_link);
     // cache prevention
     var qparam = Date.now();
     var base_path = 'assets/data/reference/'

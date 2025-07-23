@@ -1,12 +1,12 @@
 function showOverlay(event) {
     var overlay_id = event.srcElement.id;
-    debugmsg(1, 'Executing showOverlay::' + overlay_id);
+    console.log("Executing showOverlay...\n  overlay_id: " + overlay_id);
     document.getElementById(overlay_id + '-overlay').style.display = 'flex';
 }
 
 function closeOverlay(event) {
     var overlay_id = event.srcElement.id.split('-').filter(function(a) {return a !== 'close';}).join('-');
-    debugmsg(5, 'Executing closeOverlay::' + overlay_id);
+    console.log("Executing closeOverlay...\n  overlay_id: " + overlay_id);
     document.getElementById(overlay_id).style.display = 'none';
 }
 var n2w = new T2W('EN_US');
@@ -14,10 +14,9 @@ var n2w = new T2W('EN_US');
 function openEmailTemplate(event) {
     // Prevent the default action (which is following the link)
     event.preventDefault();
-    //console.log(event);
     var template_id = event.srcElement.id;
     // Self-identify for debugging
-    debugmsg(1, 'Executing openEmailTemplate::' + template_id);
+    console.log("Executing openEmailTemplate...\n  template_id: " + template_id);
     if (typeof document.getElementById(template_id + 'close-overlay') !== 'undefined') {
         manualCloseOverlay(template_id);
     }
@@ -25,12 +24,11 @@ function openEmailTemplate(event) {
     var device_context = [];
     switch (template_id) {
         case 'eos-proceed':
-            var activeModel = (eosPreCheck()) ? fetchEosData() : manualOverlay('eos');
-            device_context.push(activeModel.short_name);
-            device_context.push(activeModel.models[document.getElementById('eos-instrument-model').value].full_name);
-            var procd_strs = eosProcContext(activeModel);
+            var active_model = (eosPreCheck()) ? fetchEosData() : updateSystemBox('EoS email template could not be processed');
+            device_context.push(document.getElementById('instrument').value);
+            device_context.push(document.getElementById('model').value);
+            var procd_strs = eosProcContext(active_model);
             device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
-            template_id = 'end-of-support';
             break;
         case 'fse-update-proceed':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
@@ -77,8 +75,8 @@ function openEmailTemplate(event) {
             break;
     }
     const t = new generateTemplates(device_context);
-    debugmsg(5, 'template_id: ' + template_id);
-    debugmsg(4, 'Using template: ' + t.templates.email[template_id].name);
+    console.debug({template_id});
+    console.debug('Using template: ' + t.templates.email[template_id].name);
 
     // Construct the mailto link
     var mailto_link = 'mailto:' + encodeURIComponent(t.templates.email[template_id].recipient) + '?';
@@ -100,7 +98,7 @@ function openEmailTemplate(event) {
         }
     }
 
-    debugmsg(5, 'mailto_link: ' + mailto_link);
+    console.debug({mailto_link});
 
     // Open the mailto link
     window.location.href = mailto_link;
@@ -114,26 +112,32 @@ function openEmailTemplate(event) {
    the migration is complete.
 */
 function manualOverlay(o_id) {
-    console.debug('Manually executing showOverlay::' + o_id);
+    console.debug("Manually executing showOverlay...\n  o_id: " + o_id);
     document.getElementById(o_id + '-overlay').style.display = 'flex';
 }
 function manualCloseOverlay(o_id) {
-    console.debug('Manually executing closeOverlay::' + o_id);
+    console.debug("Manually executing closeOverlay... \n o_id: " + o_id);
     document.getElementById(o_id + '-overlay').style.display = 'none';
 }
 function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Self-identify for debugging
-    console.debug('Manually executing openEmailTemplate::' + template_id);
+    console.debug("Manually executing openEmailTemplate... \n  template_id: " + template_id);
     (closeOL) ? manualCloseOverlay(template_id) : '';
     // Find correct template and perform any context-relevant actions
     var device_context = [];
     switch (template_id) {
         case 'end-of-support':
-            var activeModel = (eosPreCheck()) ? fetchEosData() : manualOverlay('eos');
-            device_context.push(activeModel.short_name);
-            device_context.push(activeModel.models[document.getElementById('eos-instrument-model').value].full_name);
-            var procd_strs = eosProcContext(activeModel);
-            device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
+            //var active_model = (eosPreCheck()) ? fetchEosData() : updateSystemBox('EoS email template could not be processed');
+            if (eosPreCheck()) {
+                var active_model = fetchEosData();
+                device_context.push(document.getElementById('instrument').value);
+                device_context.push(document.getElementById('model').value);
+                var procd_strs = eosProcContext(active_model);
+                device_context.push(...procd_strs); // see templatelib::eosProcContext for context details
+            } else {
+                updateSystemBox('EoS email template could not be processed');
+                device_context.push('ABORT');
+            }
             break;
         case 'fse-update':
             device_context.push((document.getElementById('svo-ticket').value !== '') ? document.getElementById('svo-ticket').value : '');
@@ -194,6 +198,10 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
             break;
     }
     console.debug({device_context});
+    if (device_context[0] === 'ABORT') {
+        console.warn("Cannot proceed with template '" + template_id + "'; context processing failed");
+        return false;
+    }
     const t = new generateTemplates(device_context);
     console.debug({template_id});
     console.debug('Using template: ' + t.templates.email[template_id].name);

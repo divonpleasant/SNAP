@@ -43,9 +43,9 @@
 */
 console.log('Loading productData.js...');
 function generateProductData() {
-    console.debug('Executing generateProductData...');
+    console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.9.3",
+        "data_version": "1.9.37",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -318,7 +318,7 @@ function generateProductData() {
                         "exemptions": ["serial"]
                     },
                     "serial": {
-                        "format": "<model>-<sequence>",
+                        "format": "[model]-[sequence]",
                         "example": "",
                         "software_location": "",
                         "hardware_location": "",
@@ -387,7 +387,7 @@ function generateProductData() {
                     },
                     "9000": {
                         "model_serials": {
-                            "format": "<model>-<sequence>",
+                            "format": "[model]-[sequence]",
                             "example": "9000-1234",
                             "software_location": "",
                             "hardware_location": "Right side of instrument, to left of connectors",
@@ -441,7 +441,7 @@ function generateProductData() {
                         "exemptions": ["serial"]
                     },
                     "serial": {
-                        "format": "<model>-<sequence>",
+                        "format": "[model]-[sequence]",
                         "example": "6000-12345",
                         "software_location": "Help > About",
                         "hardware_location": "Behind connector panel on baseplate",
@@ -450,7 +450,7 @@ function generateProductData() {
                     },
                     "400": {
                         "model_serials": {
-                            "format": "400-<sequence>",
+                            "format": "400-[sequence]",
                             "example": "400-12345",
                             "prefix_format": "400-",
                             "sequence_format": "4+ digits"
@@ -468,7 +468,7 @@ function generateProductData() {
                     },
                     "4000": {
                         "model_serials": {
-                            "format": "4000-<sequence>",
+                            "format": "4000-[sequence]",
                             "example": "4000-12345",
                             "prefix_format": "4000-",
                             "sequence_format": "4+ digits"
@@ -486,7 +486,7 @@ function generateProductData() {
                     },
                     "500": {
                         "model_serials": {
-                            "format": "500-<sequence>",
+                            "format": "500-[sequence]",
                             "example": "500-12345",
                             "prefix_format": "500-",
                             "sequence_format": "4+ digits"
@@ -514,7 +514,7 @@ function generateProductData() {
                     },
                     "5000": {
                         "model_serials": {
-                            "format": "5000-<sequence>",
+                            "format": "5000-[sequence]",
                             "example": "5000-12345",
                             "prefix_format": "5000-",
                             "sequence_format": "4+ digits"
@@ -542,7 +542,7 @@ function generateProductData() {
                     },
                     "6000": {
                         "model_serials": {
-                            "format": "6000-<sequence>",
+                            "format": "6000-[sequence]",
                             "example": "6000-12345",
                             "prefix_format": "6000-",
                             "sequence_format": "4+ digits"
@@ -581,7 +581,7 @@ function generateProductData() {
                         "exemptions": ["serial"]
                     },
                     "serial": {
-                        "format": "1<6-digit number>",
+                        "format": "1[6-digit number]",
                         "example": "1081607",
                         "software_location": "",
                         "hardware_location": "Back of device, near the bottom",
@@ -637,16 +637,16 @@ function generateProductData() {
                         "exemptions": ["serial"]
                     },
                     "serial": {
-                        "format": "CL<model>-<sequence number>",
+                        "format": "CL[model]-[sequence number]",
                         "example": "CL700-12345",
                         "software_location": "Settings > System Information",
                         "hardware_location": "Below device head, in front of joystick",
-                        "prefix_format": "CL<model>",
+                        "prefix_format": "CL[model]",
                         "sequence_format": "4+ digits"
                     },
                     "500": {
                         "model_serials": {
-                            "format": "CL500-<sequence>",
+                            "format": "CL500-[sequence]",
                             "example": "CL500-1234",
                             "prefix_format": "CL500-",
                             "sequence_format": "4+ digits"
@@ -664,7 +664,7 @@ function generateProductData() {
                     },
                     "700": {
                         "model_serials": {
-                            "format": "CL700-<sequence>",
+                            "format": "CL700-[sequence]",
                             "example": "CL700-1234",
                             "prefix_format": "CL700-",
                             "sequence_format": "4+ digits"
@@ -714,9 +714,9 @@ function generateProductData() {
                     },
                     "710": {
                         "model_serials": {
-                            "format": "<year>111<sequence number>",
+                            "format": "[year]111[sequence number]",
                             "example": "20081111234",
-                            "prefix_format": "<year>111",
+                            "prefix_format": "[year]111",
                             "sequence_format": "4 digits"
                         },
                         "subsets": {},
@@ -732,7 +732,7 @@ function generateProductData() {
                     },
                     "715": {
                         "model_serials": {
-                            "format": "9<sequence number>",
+                            "format": "9[sequence number]",
                             "example": "9123456",
                             "prefix_format": "9",
                             "sequence_format": "6+ digits"
@@ -911,7 +911,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -922,7 +922,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "GDX<sequence number>",
+                        "format": "GDX[sequence number]",
                         "example": "GDX1234",
                         "software_location": "",
                         "hardware_location": "",
@@ -963,7 +963,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -983,7 +983,7 @@ function generateProductData() {
                     },
                     "599": {
                         "model_serials": {
-                            "format": "599-<sequence number>",
+                            "format": "599-[sequence number]",
                             "example": "599-1234",
                             "sequence_format": "4+ digits"
                         },
@@ -1024,7 +1024,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "<model>-<sequence number>",
+                        "format": "[model]-[sequence number]",
                         "example": "860-12345",
                         "software_location": "Settings > System Information",
                         "hardware_location": "On back of device, in the recessed panel",
@@ -1033,7 +1033,7 @@ function generateProductData() {
                     },
                     "740i": {
                         "model_serials": {
-                            "format": "740i-<sequence number>",
+                            "format": "740i-[sequence number]",
                             "example": "740i-1234",
                             "prefix_format": "740i-",
                             "sequence_format": "4+ digits"
@@ -1052,7 +1052,7 @@ function generateProductData() {
                     },
                     "750i": {
                         "model_serials": {
-                            "format": "750i-<sequence number>",
+                            "format": "750i-[sequence number]",
                             "example": "750i-1234",
                             "prefix_format": "750i-",
                             "sequence_format": "4+ digits"
@@ -1141,7 +1141,7 @@ function generateProductData() {
                     },
                     "830": {
                         "model_serials": {
-                            "format": "830-<sequence>",
+                            "format": "830-[sequence]",
                             "example": "830-12345",
                             "prefix_format": "830-",
                             "sequence_format": "5+ digits"
@@ -1170,7 +1170,7 @@ function generateProductData() {
                     },
                     "840": {
                         "model_serials": {
-                            "format": "840-<sequence>",
+                            "format": "840-[sequence]",
                             "example": "840-12345",
                             "prefix_format": "840-",
                             "sequence_format": "5+ digits"
@@ -1199,7 +1199,7 @@ function generateProductData() {
                     },
                     "850": {
                         "model_serials": {
-                            "format": "850-<sequence>",
+                            "format": "850-[sequence]",
                             "example": "850-12345",
                             "prefix_format": "850-",
                             "sequence_format": "5+ digits"
@@ -1228,7 +1228,7 @@ function generateProductData() {
                     },
                     "860": {
                         "model_serials": {
-                            "format": "860-<sequence>",
+                            "format": "860-[sequence]",
                             "example": "860-12345",
                             "prefix_format": "860-",
                             "sequence_format": "5+ digits"
@@ -1280,7 +1280,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "[1,9]<sequence>",
+                        "format": "[1,9][sequence]",
                         "example": "1234567",
                         "software_location": "Settings > System Information",
                         "hardware_location": "Below chinrest",
@@ -1468,7 +1468,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": false,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1501,7 +1501,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1521,7 +1521,7 @@ function generateProductData() {
                     },
                     "i": {
                         "model_serials": {
-                            "format": "6633<sequence>",
+                            "format": "6633[sequence]",
                             "example": "6633123456",
                             "prefix_format": "6633",
                             "sequence_format": "6+ digits"
@@ -1540,7 +1540,7 @@ function generateProductData() {
                     },
                     "t": {
                         "model_serials": {
-                            "format": "6215<sequence>",
+                            "format": "6215[sequence]",
                             "example": "6215123456",
                             "prefix_format": "6215",
                             "sequence_format": "6+ digits"
@@ -1559,7 +1559,7 @@ function generateProductData() {
                     },
                     "300": {
                         "model_serials": {
-                            "format": "6137<sequence>",
+                            "format": "6137[sequence]",
                             "example": "6137101234",
                             "prefix_format": "6137",
                             "sequence_format": "6+ digits"
@@ -1578,7 +1578,7 @@ function generateProductData() {
                     },
                     "700": {
                         "model_serials": {
-                            "format": "6634<sequence>",
+                            "format": "6634[sequence]",
                             "example": "6634101234",
                             "prefix_format": "6634",
                             "sequence_format": "6+ digits"
@@ -1629,7 +1629,7 @@ function generateProductData() {
                     },
                     "715": {
                         "model_serials": {
-                            "format": "<manufacture year><sequence>",
+                            "format": "[manufacture year][sequence]",
                             "example": "2005101234567",
                             "prefix_format": "2",
                             "sequence_format": "7+ digits"
@@ -1648,7 +1648,7 @@ function generateProductData() {
                     },
                     "800": {
                         "model_serials": {
-                            "format": "5000000<sequence>",
+                            "format": "5000000[sequence]",
                             "example": "50000001234",
                             "software_location": "F6 from the menu",
                             "hardware_location": "Underneath the instrument",
@@ -1702,7 +1702,7 @@ function generateProductData() {
                     },
                     "80": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -1721,7 +1721,7 @@ function generateProductData() {
                     },
                     "90": {
                         "model_serials": {
-                            "format": "9507<sequence>",
+                            "format": "9507[sequence]",
                             "example": "9507123456",
                             "prefix_format": "9507",
                             "sequence_format": "6 digits"
@@ -1752,7 +1752,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -1903,7 +1903,7 @@ function generateProductData() {
                     },
                     "complete": {
                         "model_serials": {
-                            "format": "4<sequence>",
+                            "format": "4[sequence]",
                             "example": "412345",
                             "prefix_format": "4",
                             "sequence_format": "5 digits"
@@ -1922,7 +1922,7 @@ function generateProductData() {
                     },
                     "800": {
                         "model_serials": {
-                            "format": "66417<sequence>",
+                            "format": "66417[sequence]",
                             "example": "6641712345",
                             "prefix_format": "66417",
                             "sequence_format": "5 digits"
@@ -1941,7 +1941,7 @@ function generateProductData() {
                     },
                     "800s": {
                         "model_serials": {
-                            "format": "6410<sequence>",
+                            "format": "6410[sequence]",
                             "example": "6410123456",
                             "prefix_format": "6410",
                             "sequence_format": "6 digits"
@@ -1960,7 +1960,7 @@ function generateProductData() {
                     },
                     "900": {
                         "model_serials": {
-                            "format": "6637<sequence>",
+                            "format": "6637[sequence]",
                             "example": "6637123456",
                             "prefix_format": "6637",
                             "sequence_format": "6 digits"
@@ -1993,7 +1993,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2004,7 +2004,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "6<sequence>",
+                        "format": "6[sequence]",
                         "example": "6123456789",
                         "software_location": "",
                         "hardware_location": "",
@@ -2013,7 +2013,7 @@ function generateProductData() {
                     },
                     "pico": {
                         "model_serials": {
-                            "format": "6<sequence>",
+                            "format": "6[sequence]",
                             "example": "6123456789",
                             "prefix_format": "6",
                             "sequence_format": "9 digits"
@@ -2044,7 +2044,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "oct",
                     "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28PLEX%20ELITE.one%7CAA7BC3EE-23B6-42DB-B5E5-A61A27EEDF53%2F%29"
                 },
                 "models": {
@@ -2055,7 +2055,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "<model>-<sequence>",
+                        "format": "[model]-[sequence]",
                         "example": "",
                         "software_location": "Help > About",
                         "hardware_location": "",
@@ -2064,7 +2064,7 @@ function generateProductData() {
                     },
                     "9000": {
                         "model_serials": {
-                            "format": "PE9000-<sequence>",
+                            "format": "PE9000-[sequence]",
                             "example": "PE9000-12345",
                             "software_location": "Help > About",
                             "hardware_location": "Back of instrument above the computer access panel",
@@ -2117,7 +2117,7 @@ function generateProductData() {
                     },
                     "700": {
                         "model_serials": {
-                            "format": "6407<sequence>",
+                            "format": "6407[sequence]",
                             "example": "6407123456",
                             "prefix_format": "6407",
                             "sequence_format": "6 digits"
@@ -2149,7 +2149,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2169,7 +2169,7 @@ function generateProductData() {
                     },
                     "500": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "112345",
                             "prefix_format": "1",
                             "sequence_format": "5 digits"
@@ -2187,7 +2187,7 @@ function generateProductData() {
                     },
                     "700": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "112345",
                             "prefix_format": "1",
                             "sequence_format": "5 digits"
@@ -2228,7 +2228,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "<sequence>",
+                        "format": "[sequence]",
                         "example": "",
                         "software_location": "",
                         "hardware_location": "",
@@ -2328,7 +2328,7 @@ function generateProductData() {
                     },
                     "115": {
                         "model_serials": {
-                            "format": "<sequence>",
+                            "format": "[sequence]",
                             "example": "1234567",
                             "hardware_location": "Below chinrest",
                             "sequence_format": "6-7 digits"
@@ -2346,7 +2346,7 @@ function generateProductData() {
                     },
                     "120": {
                         "model_serials": {
-                            "format": "<sequence>",
+                            "format": "[sequence]",
                             "example": "1234567",
                             "hardware_location": "Below chinrest",
                             "sequence_format": "6-7 digits"
@@ -2364,7 +2364,7 @@ function generateProductData() {
                     },
                     "130": {
                         "model_serials": {
-                            "format": "<sequence>",
+                            "format": "[sequence]",
                             "example": "1234567",
                             "hardware_location": "Below chinrest",
                             "sequence_format": "6-7 digits"
@@ -2395,7 +2395,7 @@ function generateProductData() {
                     },
                     "220": {
                         "model_serials": {
-                            "format": "<sequence>",
+                            "format": "[sequence]",
                             "example": "1234567",
                             "hardware_location": "Below chinrest",
                             "sequence_format": "6-7 digits"
@@ -2414,7 +2414,7 @@ function generateProductData() {
                     },
                     "800": {
                         "model_serials": {
-                            "format": "<sequence>",
+                            "format": "[sequence]",
                             "example": "1234567890",
                             "hardware_location": "On top of vertical lift assembly, swing SL arm right or left to view",
                             "sequence_format": "10 digits"
@@ -2482,7 +2482,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "3001-<sequence>",
+                        "format": "3001-[sequence]",
                         "example": "3001-1234",
                         "software_location": "",
                         "hardware_location": "",
@@ -2491,7 +2491,7 @@ function generateProductData() {
                     },
                     "stratus": {
                         "model_serials": {
-                            "format": "3001-<sequence>",
+                            "format": "3001-[sequence]",
                             "example": "3001-1234",
                             "prefix_format": "3001",
                             "sequence_format": "4+ digits"
@@ -2626,7 +2626,7 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "<model>-<sequence>",
+                        "format": "[model]-[sequence]",
                         "example": "1000-1234",
                         "software_location": "",
                         "hardware_location": "",
@@ -2635,7 +2635,7 @@ function generateProductData() {
                     },
                     "1000": {
                         "model_serials": {
-                            "format": "1000-<sequence>",
+                            "format": "1000-[sequence]",
                             "example": "1000-1234",
                             "prefix_format": "1000-",
                             "sequence_format": "4 digits"
@@ -2666,7 +2666,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "imaging",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2686,7 +2686,7 @@ function generateProductData() {
                     },
                     "lite": {
                         "model_serials": {
-                            "format": "[8,9]<sequence>",
+                            "format": "[8,9][sequence]",
                             "example": "812345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -2705,7 +2705,7 @@ function generateProductData() {
                     },
                     "nmfa1": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -2724,7 +2724,7 @@ function generateProductData() {
                     },
                     "pronm1": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -2743,7 +2743,7 @@ function generateProductData() {
                     },
                     "224": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -2762,7 +2762,7 @@ function generateProductData() {
                     },
                     "524": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -2793,7 +2793,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "surgical",
                     "onenote_link": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28YAG%20-%20LASERS%20ALL%20MODELS.one%7C58705FD2-9FFA-4C5C-9B84-2C6C8E71E107%2F%29"
                 },
                 "models": {
@@ -2813,7 +2813,7 @@ function generateProductData() {
                     },
                     "combi": {
                         "model_serials": {
-                            "format": "[9,10]<sequence>",
+                            "format": "[9,10][sequence]",
                             "example": "1012345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -2832,7 +2832,7 @@ function generateProductData() {
                     },
                     "yag": {
                         "model_serials": {
-                            "format": "[8,9]<sequence>",
+                            "format": "[8,9][sequence]",
                             "example": "812345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -2851,7 +2851,7 @@ function generateProductData() {
                     },
                     "yag2": {
                         "model_serials": {
-                            "format": "[8,9]<sequence>",
+                            "format": "[8,9][sequence]",
                             "example": "812345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -2870,7 +2870,7 @@ function generateProductData() {
                     },
                     "yag2plus": {
                         "model_serials": {
-                            "format": "[8,9]<sequence>",
+                            "format": "[8,9][sequence]",
                             "example": "912345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -2889,7 +2889,7 @@ function generateProductData() {
                     },
                     "yag3": {
                         "model_serials": {
-                            "format": "[9,10]<sequence>",
+                            "format": "[9,10][sequence]",
                             "hardware_location": "On console box (with large red button), possibly on bottom",
                             "example": "1012345",
                             "prefix_format": "",
@@ -2909,7 +2909,7 @@ function generateProductData() {
                     },
                     "532s": {
                         "model_serials": {
-                            "format": "[9,10]<sequence>",
+                            "format": "[9,10][sequence]",
                             "example": "912345",
                             "prefix_format": "",
                             "sequence_format": "5 digits"
@@ -2940,7 +2940,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -2960,7 +2960,7 @@ function generateProductData() {
                     },
                     "500": {
                         "model_serials": {
-                            "format": "9702<sequence>",
+                            "format": "9702[sequence]",
                             "example": "9702123456",
                             "prefix_format": "9702",
                             "sequence_format": "6 digits"
@@ -2979,7 +2979,7 @@ function generateProductData() {
                     },
                     "550": {
                         "model_serials": {
-                            "format": "9714<sequence>",
+                            "format": "9714[sequence]",
                             "example": "9714123456",
                             "prefix_format": "9714",
                             "sequence_format": "6 digits"
@@ -3010,7 +3010,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -3028,7 +3028,7 @@ function generateProductData() {
                     },
                     "mel80": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -3047,7 +3047,7 @@ function generateProductData() {
                     },
                     "mel90": {
                         "model_serials": {
-                            "format": "9507<sequence>",
+                            "format": "9507[sequence]",
                             "example": "9507123456",
                             "prefix_format": "9507",
                             "sequence_format": "6 digits"
@@ -3066,7 +3066,7 @@ function generateProductData() {
                     },
                     "visumax": {
                         "model_serials": {
-                            "format": "1<sequence>",
+                            "format": "1[sequence]",
                             "example": "1123456",
                             "prefix_format": "1",
                             "sequence_format": "6 digits"
@@ -3111,7 +3111,7 @@ function generateProductData() {
                 },
                 "support": {
                     "active_models": true,
-                    "team": "",
+                    "team": "refractive",
                     "onenote_link": ""
                 },
                 "models": {
@@ -3131,7 +3131,7 @@ function generateProductData() {
                     },
                     "100": {
                         "model_serials": {
-                            "format": "K8<sequence>",
+                            "format": "K8[sequence]",
                             "example": "K8A1B2C",
                             "prefix_format": "K8",
                             "sequence_format": "5 alphanumeric"
@@ -3150,7 +3150,7 @@ function generateProductData() {
                     },
                     "150": {
                         "model_serials": {
-                            "format": "9713<sequence>",
+                            "format": "9713[sequence]",
                             "example": "9713123456",
                             "prefix_format": "9713",
                             "sequence_format": "6 digits"
@@ -3193,16 +3193,16 @@ function generateProductData() {
                         ]
                     },
                     "serial": {
-                        "format": "<date_code><sequence>",
+                        "format": "[date_code][sequence]",
                         "example": "1120123456789",
                         "software_location": "",
                         "hardware_location": "Inside battery compartment",
                         "prefix_format": "",
-                        "sequence_format": "<date_code> is two digit calendar week plus two digit year of manufacture; <sequence> is 8-9 alphanumeric"
+                        "sequence_format": "[date_code] is two digit calendar week plus two digit year of manufacture; [sequence] is 8-9 alphanumeric"
                     },
                     "100": {
                         "model_serials": {
-                            "format": "<date_code><sequence>",
+                            "format": "[date_code][sequence]",
                             "example": "192012345A678",
                             "sequence_format": "9-12 alphanumeric"
                         },

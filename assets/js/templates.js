@@ -18,8 +18,7 @@ each top-level functional category and context is only available to each
 instance upon initialization. 
 */
 function generateTemplates(context) {
-    debugmsg(5, 'Executing generateTemplates...');
-    debugmsg(4, 'generateTemplates context: ' + context);
+    console.log("Executing generateTemplates ...\n  context: " + context);
     serial_strings = proc_template_serial(document.getElementById('serial').value);
     cct_strings = proc_template_cct(document.getElementById('cct').value);
     this.templates = {
@@ -155,7 +154,7 @@ ${so.Settings.user.email_sig.value}`
             },
             "billing-request": {
                 "name": "Billing Request",
-                "recipient": `${document.getElementById('email').value}`,
+                "recipient": `${(document.getElementById('billing-email').value !== '') ? document.getElementById('billing-email').value : document.getElementById('email').value}`,
                 "cc": [],
                 "bcc": [],
                 "subject": `Zeiss ${context[0]} Request ${serial_strings[2]}`,
@@ -173,7 +172,7 @@ If payment is by Credit Card, you will be invoiced after services are performed 
 
 If payment is by Purchase Order, email the hard copy of the PO to ZEISS MED Service Operations Admin US at billableservicerequest@zeiss.com, or as a reply to this message. Reference the Customer Care Ticket number ${context[4]}and serial number of the Zeiss instrument ${serial_strings[2]}on the Purchase Order to expedite the service request.
 
-The Zeiss Technician will contact the office within ${context[5]} business ${context[6]} to schedule the visit. At which time, they will answer all questions regarding specific prices, hourly rates, and travel time. Or, after discussing pricing with your FSE, you may cancel the service request.
+The Zeiss Technician will contact the office within four (4) business ${context[6]} to schedule the visit. At which time, they will answer all questions regarding specific prices, hourly rates, and travel time. Or, after discussing pricing with your FSE, you may cancel the service request.
 
 Regards,
 ${so.Settings.user.email_sig.value}`
@@ -1785,6 +1784,42 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>customer-time-zone</key>
     <value>${document.getElementById('customer-time-zone').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>instrument-code</key>
+    <value>${document.getElementById('instrument-code').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>current-site-address</key>
+    <value>${document.getElementById('current-site-address').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>new-site-address</key>
+    <value>${document.getElementById('new-site-address').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>new-site-address-phone</key>
+    <value>${document.getElementById('new-site-address-phone').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>current-billing-address</key>
+    <value>${document.getElementById('current-billing-address').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>new-billing-address</key>
+    <value>${document.getElementById('new-billing-address').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>address-change-reason-list</key>
+    <value>${document.getElementById('address-change-reason-list')[document.getElementById('address-change-reason-list').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>site-change</key>
+    <value>${document.getElementById('site-change').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>billing-change</key>
+    <value>${document.getElementById('billing-change').checked}</value>
   </customMetaData>
 </AssetInfo>`
             }

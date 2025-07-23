@@ -1,12 +1,13 @@
 // Dynamic display of instrument fields by Instrument Model drop-down
 // Support Functions
 function fetchAndRevealDynamicFields (field_class) {
+    console.debug("Executing fetchAndRevealDynamicFields ...\n  field_class: " + field_class);
     var selector_class_name = '.' + field_class + '-field';
     var hidden_fields = document.querySelectorAll(selector_class_name);
-    debugmsg(5, 'fetchAndToggleHiddenFields::hidden_fields: ' + hidden_fields);
-    debugmsg(5, 'fetchAndToggleHiddenFields::hidden_fields.length: ' + hidden_fields.length);
+    console.debug({hidden_fields});
+    console.debug('hidden_fields.length: ' + hidden_fields.length);
     hidden_fields.forEach(element => {
-        debugmsg(5, 'fetchAndToggleHiddenFields::element.className: ' + element.className);
+        console.debug('fetchAndToggleHiddenFields::element.className: ' + element.className);
     });
     hidden_fields.forEach(element => {
         element.classList.remove('dynamic-hidden');
@@ -14,16 +15,17 @@ function fetchAndRevealDynamicFields (field_class) {
 }
 
 function fetchAndHideDynamicFields (field_class) {
+    console.debug("Executing fetchAndHideDynamicFields ...\n  field_class: " + field_class);
     var selector_class_name = '.' + field_class + '-field';
     var hidden_fields = document.querySelectorAll(selector_class_name);
-    debugmsg(5, 'fetchAndToggleHiddenFields::hidden_fields: ' + hidden_fields);
-    debugmsg(5, 'fetchAndToggleHiddenFields::hidden_fields.length: ' + hidden_fields.length);
+    console.debug({hidden_fields});
+    console.debug('fetchAndToggleHiddenFields::hidden_fields.length: ' + hidden_fields.length);
     hidden_fields.forEach(element => {
-        debugmsg(5, 'fetchAndToggleHiddenFields::element.className: ' + element.className);
+        console.debug('fetchAndToggleHiddenFields::element.className: ' + element.className);
     });
     hidden_fields.forEach(element => {
         if (element.classList.contains('dynamic-hidden')) {
-            debugmsg(5, 'element.className ' + element.className + "does contain 'dynamic-hidden' class");
+            console.debug('element.className ' + element.className + "does contain 'dynamic-hidden' class");
         } else {
             element.classList.add('dynamic-hidden');
         }
@@ -31,9 +33,9 @@ function fetchAndHideDynamicFields (field_class) {
 }
 
 function fetchAndAdjustSerialTooltip (sample_text) {
-    debugmsg(5, 'sample_text: ' + sample_text);
+    console.debug("Executing fetchAndAdjustSerialTooltip ...\n  sample_text: " + sample_text);
     var tooltip_field = document.getElementById('serial-tooltip');
-    debugmsg(5, 'tooltip_field: ' + tooltip_field);
+    console.debug({tooltip_field});
     tooltip_field.innerHTML = sample_text;
 }
 
@@ -42,21 +44,21 @@ function clearSerialTooltip () {
 }
 
 function excludeMetaDataKeysFilter(k) {
-    debugmsg(5, 'Executing excludeMetaDataKeysFilter...');
-    debugmsg(5, 'k: ' + k);
+    console.debug("Executing excludeMetaDataKeysFilter ...\n  k: " + k);
     var meta_keys = ['meta', 'DEFAULT', 'serial', 'support', 'asset_id'];
     var filter_msg = (meta_keys.includes(k)) ? 'Found ' + k + ' in meta_keys, returning false' : 'Did not find ' + k + ' in meta_keys, returning true';
-    debugmsg(5, filter_msg);
+    console.debug({filter_msg});
     return (meta_keys.includes(k)) ? false : true;
 }
 
 function hideAllDynamicFields() {
+    console.debug('Executing hideAllDynamicFields ...');
     var instrument_elements = Object.keys(products.pdata.instruments).filter(excludeMetaDataKeysFilter);
     // TODO: Make the population of the extra field identifiers dynamic
     var temporary_additional_fields = ['forum', 'review-station', 'remote-support', 'billing-contact'];
     instrument_elements = instrument_elements.concat(temporary_additional_fields);
     //var instrument_elements = ['oct', 'cirrus-photo', 'clarus', 'hfa3', 'iolmaster', 'visucam', 'visucam-pro', 'atlas-500', 'atlas-9000', 'stratus', 'forum', 'review-station', 'remote-support', 'billing-contact'];
-    debugmsg(5, 'instrument_elements: ' + JSON.stringify(instrument_elements));
+    console.debug('instrument_elements: ' + JSON.stringify(instrument_elements));
     for (var i = 0; i < instrument_elements.length; i++) {
         var selector_class_name = '.' + instrument_elements[i] + '-field';
         fetchAndHideDynamicFields(instrument_elements[i]);
@@ -64,6 +66,7 @@ function hideAllDynamicFields() {
 }
 
 function hideInstrumentDynamicFields() {
+    console.debug('Executing hideInstrumentDynamicFields ...');
     var instrument_elements = Object.keys(products.pdata.instruments).filter(excludeMetaDataKeysFilter);
     for (var i = 0; i < instrument_elements.length; i++) {
         var selector_class_name = '.' + instrument_elements[i] + '-field';
@@ -72,6 +75,7 @@ function hideInstrumentDynamicFields() {
 }
 
 function addToggle (toggle_id, toggle_class) {
+    console.debug("Executing addToggle ...\n  toggle_id: " + toggle_id + "\n  toggle_class: " + toggle_class);
     var toggle = document.getElementById(toggle_id);
     toggle.addEventListener('change', function() {
         if (toggle.checked) {
@@ -83,34 +87,34 @@ function addToggle (toggle_id, toggle_class) {
 }
 
 function checkModelSerial(icode, m_id, skey) {
-    debugmsg(4, "checkModelSerial ...\nicode: " + icode + "\nm_id: " + m_id + "\nskey: " + skey);
+    console.log("Executing checkModelSerial ...\n  icode: " + icode + "\n  m_id: " + m_id + "\n  skey: " + skey);
     var prod_type = checkProductType(icode);
-    debugmsg(4, 'prod_type: ' + prod_type);
+    console.debug({prod_type});
     if (prod_type) {
         switch (prod_type) {
             case 'instrument':
                 if (checkProductHasSubcategory(products.pdata.instruments[icode].models[m_id], 'model_serials')) {
-                    debugmsg(4, 'checkModelSerial model_serial found ...');
+                    console.debug('checkModelSerial model_serial found ...');
                     if (checkProductHasSubcategory(products.pdata.instruments[icode].models[m_id].model_serials, skey)) {
-                        debugmsg(4, 'checkModelSerial model_serials found for ' + skey + ' ...');
-                        debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models[m_id].model_serials[skey]: ' + products.pdata.instruments[icode].models[m_id].model_serials[skey]);
+                        console.debug('checkModelSerial model_serials found for ' + skey + ' ...');
+                        console.debug('returning: products.pdata.instruments[' + icode + '].models[m_id].model_serials[skey]: ' + products.pdata.instruments[icode].models[m_id].model_serials[skey]);
                         return products.pdata.instruments[icode].models[m_id].model_serials[skey];
                     } else {
-                        debugmsg(4, 'checkModelSerial could not find model_serials for ' + skey + ' ...');
-                        debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
+                        console.debug('checkModelSerial could not find model_serials for ' + skey + ' ...');
+                        console.debug('returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
         return products.pdata.instruments[icode].models.serial[skey];
                         return '';
                     }
                 } else {
-                    debugmsg(4, 'checkModelSerial could not find model_serials for instrument ' + icode + ' and model ' + m_id + ' ... using instrument generic data');
-                    debugmsg(5, 'returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
+                    console.debug('checkModelSerial could not find model_serials for instrument ' + icode + ' and model ' + m_id + ' ... using instrument generic data');
+                    console.debug('returning: products.pdata.instruments[' + icode + '].models.serial[skey]: ' + products.pdata.instruments[icode].models.serial[skey]);
                     return products.pdata.instruments[icode].models.serial[skey];
                     //return '';
                 }
                 break;
             case 'software':
             default:
-                debugmsg(4, "prod_type '" + prod_type + "' did not match 'instrument' when evaluated from icode '" + icode + "', returning blank value");
+                console.debug("prod_type '" + prod_type + "' did not match 'instrument' when evaluated from icode '" + icode + "', returning blank value");
                 return '';
                 break;
         }
@@ -121,18 +125,19 @@ function checkModelSerial(icode, m_id, skey) {
 }
 
 function checkProductType(product) {
-    debugmsg(4, "checkProductType ... \nproduct: " + product);
+    console.log("Executing checkProductType ... \n  product: " + product);
     try {
         if (typeof products.pdata.instruments[product] === 'undefined') {
             if (typeof products.pdata.software[product] === 'undefined') {
                 return false;
             } else {
-                debugmsg(4, 'products.pdata.software[' + product + '] was not undefined, returning value: software');
-                debugmsg(5, 'products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
+                console.debug('products.pdata.software[' + product + '] was not undefined, returning value: software');
+                console.debug('products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
                 return 'software';
             }
         } else {
-            debugmsg(4, 'products.pdata.instruments[' + product + '] was not undefined, returning value: instrument');debugmsg(5, 'products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
+            console.debug('products.pdata.instruments[' + product + '] was not undefined, returning value: instrument');
+            console.debug('products.pdata.instruments[' + product + ']: ' + JSON.stringify(products.pdata.instruments[product]));
             return 'instrument';
         }
     } catch (e) {
@@ -142,10 +147,10 @@ function checkProductType(product) {
 }
 
 function checkProductHasSubcategory(product_obj, category_to_check) {
-    debugmsg(4, "checkProductHasSubcategory ... \nproduct_obj: " + JSON.stringify(product_obj) + "\ncategory_to_check: " + JSON.stringify(category_to_check));
+    console.debug("Executing checkProductHasSubcategory ... \n  product_obj: " + JSON.stringify(product_obj) + "\n  category_to_check: " + JSON.stringify(category_to_check));
     try {
         if (typeof product_obj !== 'undefined') {
-            debugmsg(4, 'product_obj[caetegory_to_check]: ' + JSON.stringify(product_obj[category_to_check]));
+            console.debug('product_obj[caetegory_to_check]: ' + JSON.stringify(product_obj[category_to_check]));
             return (typeof product_obj[category_to_check] === 'undefined' || product_obj[category_to_check] === '') ? false : true;
         } else {
             return false;
@@ -165,9 +170,9 @@ console.log(`productData loaded...
 const default_sn_tt = 'Select an Instrument and/or Model to see serial number tips';
 const default_sw_tt = 'Zeiss software solutions do not use serial numbers<br />IBase listings can be found from Account Management in CRM Business Role';
 function generateTooltipText (instrument_code, model_id = '') {
-    debugmsg(4, "generateTooltipText ... \ninstrument_code: " + instrument_code + "\nmodel_id: " + model_id);
+   console.log("Executing generateTooltipText ... \n  instrument_code: " + instrument_code + "\n  model_id: " + model_id);
     var prod_type = checkProductType(instrument_code);
-    debugmsg(4, 'prod_type: ' + prod_type);
+    console.debug({prod_type});
     if (instrument_code === '') {
         return default_sn_tt;
     } else if (prod_type === 'software') {
@@ -180,13 +185,13 @@ function generateTooltipText (instrument_code, model_id = '') {
             // Generic Instrument Tooltip (includes all models and uses instruments.instrument_code.serial data)
             var model_list = Object.keys(products.pdata.instruments[instrument_code].models).filter(excludeMetaDataKeysFilter);
             
-            debugmsg(4, 'model_list: ' + JSON.stringify(model_list));
+            console.debug('model_list: ' + JSON.stringify(model_list));
             for (var i = 0; i < model_list.length; i++) {
                 tt_text += (products.pdata.instruments[instrument_code].models[model_list[i]].supported) ? model_list[i] + ' | ' : '';
-                debugmsg(5, 'tt_text: ' + tt_text);
+                console.debug({tt_text});
             }
             tt_text = tt_text.substr(0, tt_text.length - 3);
-            debugmsg(4, 'tt_text: ' + tt_text);
+            console.debug({tt_text});
             tt_text += '<br />Serial Number Format: ' + htmlEscape(products.pdata.instruments[instrument_code].models.serial.format) + '<br />';
             tt_text += 'Sequence Number: ' + htmlEscape(products.pdata.instruments[instrument_code].models.serial.sequence_format) + '<br />';
             tt_text += 'Example: ' + htmlEscape(products.pdata.instruments[instrument_code].models.serial.example) + '<br />';
@@ -208,45 +213,47 @@ function generateTooltipText (instrument_code, model_id = '') {
 }
 
 function prePopulateSerialField() {
+    console.log('Executing prePopulateSerialField ...');
     var model_num = document.getElementById('model')[document.getElementById('model').selectedIndex].id;
     var instr_key = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id;
     var prefix_value = checkModelSerial(instr_key, model_num, 'prefix_format');
-    debugmsg(4, 'model_num: ' + model_num);
-    debugmsg(4, 'instr_key: ' + instr_key);
-    debugmsg(4, 'prePopulateSerialField::prefix_value: ' + prefix_value);
+    console.debug({model_num});
+    console.debug({instr_key});
+    console.debug({prefix_value});
     if (document.getElementById('serial').value === '') {
         if (typeof prefix_value !== 'undefined') {
-            debugmsg(4, 'prefix_value is NOT type `undefined`, populating serial field');
+            console.debug('prefix_value is NOT type `undefined`, populating serial field');
             document.getElementById('serial').value = prefix_value;
         }
     }
 }
 
 function populateICField() {
+    console.log('Executing populateICField ...');
     var model_num = document.getElementById('model')[document.getElementById('model').selectedIndex].id;
     var instr_val = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value;
     var instr_key = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id;
     console.log({model_num, instr_key, instr_val});
     var ic_output = '';
-    debugmsg(4, 'product type is: ' + checkProductType(instr_key));
+    console.debug('product type is: ' + checkProductType(instr_key));
     if (checkProductType(instr_key) === 'instrument') {
         if (products.pdata.instruments[instr_key].models[model_num].instrument_codes !== 'undefined') {
             for (const ic of products.pdata.instruments[instr_key].models[model_num].instrument_codes) {
                 ic_output += ic + ' ';
             }
-            debugmsg(4, 'ic_output: ' + ic_output);
+            console.debug({ic_output});
         }
         document.getElementById('instrument-code').value = ic_output.trimEnd();
     }
 }
 
 function sortSelectItems(si_list, method, exempt = [], reverse_order = true) {
-    debugmsg(5, "sortSelectItems ...\nsi_list: " + JSON.stringify(si_list) + "\nmethod: " + method + "\nreverse_order: " + reverse_order + "\nexempt: " + exempt);
+    console.debug("Executing sortSelectItems ...\n  si_list: " + JSON.stringify(si_list) + "\n  method: " + method + "\n  reverse_order: " + reverse_order + "\n  exempt: " + exempt);
     switch (method) {
         case 'numeric':
             var sorted_si_list = Object.keys(si_list).sort((a, b) => (a - b)).reduce(
                 (obj, key) => {
-                    debugmsg(5, 'key: ' + key);
+                    console.debug({key});
                     (!exempt.includes(key)) ? obj[key] = si_list[key] : '';
                     return obj;
                 }, {}
@@ -256,21 +263,21 @@ function sortSelectItems(si_list, method, exempt = [], reverse_order = true) {
         default:
             var sorted_si_list = Object.keys(si_list).sort().reduce(
                 (obj, key) => {
-                    debugmsg(5, 'key: ' + key);
+                    console.debug({key});
                     (!exempt.includes(key)) ? obj[key] = si_list[key] : '';
                     return obj;
                 }, {}
             );
             break;
     }
-    debugmsg(5, 'sorted_si_list: ' + JSON.stringify(sorted_si_list));
+    console.debug('sorted_si_list: ' + JSON.stringify(sorted_si_list));
     final_list = (reverse_order) ? Object.keys(sorted_si_list).sort().reverse().reduce((obj, key) => { obj[key] = sorted_si_list[key]; return obj; }, {}) : sorted_si_list;
-    debugmsg(5, 'final_list: ' + JSON.stringify(final_list));
+    console.debug('final_list: ' + JSON.stringify(final_list));
     return final_list;
 }
 
 function retrieveDataSet(eval_index, data_obj, reverse_order = true) {
-    debugmsg(5, "retrieveDataSet ...\neval_index: " + eval_index + "\ndata_obj: " + JSON.stringify(data_obj));
+    console.debug("Executing retrieveDataSet ...\n  eval_index: " + eval_index + "\n  data_obj: " + JSON.stringify(data_obj));
     set_items = sortSelectItems(data_obj[eval_index], data_obj[eval_index].meta.sort_method, data_obj[eval_index].meta.exemptions, reverse_order);
     return set_items
 }
@@ -282,10 +289,10 @@ function filterOnKey(data_obj, key_to_eval, value_to_filter, reverse = false, in
         reverse flag is set to true and reverse is ON, the data will only be 
         filtered if the key_to_eval value DOES NOT match the value_to_filter.
     */
-    debugmsg(5, "filterOnKey ...\ndata_obj: " + JSON.stringify(data_obj) + "\nkey_to_eval: " + key_to_eval + "\nvalue_to_filter: " + value_to_filter + "\nreverse: " + reverse + "\ninclude_meta: " + include_meta + "\nhonor_exemptions: " + honor_exemptions);
+    console.debug("Executing filterOnKey ...\n  data_obj: " + JSON.stringify(data_obj) + "\n  key_to_eval: " + key_to_eval + "\n  value_to_filter: " + value_to_filter + "\n  reverse: " + reverse + "\n  include_meta: " + include_meta + "\n  honor_exemptions: " + honor_exemptions);
     var filtered_data_obj = Object.keys(data_obj).reduce(
         (obj, key) => {
-            debugmsg(5, 'key: ' + key);
+            console.debug({key});
             if (reverse) {
                 (data_obj[key][key_to_eval] !== value_to_filter) ? obj[key] = data_obj[key] : '';
             } else {
@@ -297,16 +304,16 @@ function filterOnKey(data_obj, key_to_eval, value_to_filter, reverse = false, in
                 (key === 'meta') ? delete obj[key] : '';
             }
             //honor_exemptions code goes here
-            debugmsg(5, 'obj[' + key + ']: ' + JSON.stringify(obj[key]));
+            console.debug('obj[' + key + ']: ' + JSON.stringify(obj[key]));
             return obj;
         }, {}
     );
-    debugmsg(5, 'filtered_data_obj: ' + JSON.stringify(filtered_data_obj));
+    console.debug('filtered_data_obj: ' + JSON.stringify(filtered_data_obj));
     return filtered_data_obj;
 }
 
 function populateSelectField(field_id, processed_data_obj, name_key, value_key, empty_first = false, id_key = '') {
-    console.debug("populateSelectField ...\nfield_id: " + field_id + "\nprocessed_data_obj: " + JSON.stringify(processed_data_obj) + "\nname_key: " + name_key + "\nvalue_key: " + value_key + "\nempty_first: " + empty_first + "\nid_key: " + id_key);
+    console.debug("populateSelectField ...\n  field_id: " + field_id + "\n  processed_data_obj: " + JSON.stringify(processed_data_obj) + "\n  name_key: " + name_key + "\n  value_key: " + value_key + "\n  empty_first: " + empty_first + "\n  id_key: " + id_key);
     pop_field = document.getElementById(field_id);
     (empty_first) ? enableAndReset(pop_field, 1) : '';
     for (item in processed_data_obj) {
@@ -321,6 +328,7 @@ function populateSelectField(field_id, processed_data_obj, name_key, value_key, 
 }
 
 function checkSupportEndDateAndStatus(instr_obj) {
+    console.debug("Executing checkSupportEndDateAndStatus ...\n  instr_obj: " + instr_obj);
     for (m in instr_obj) {
         if (m !== 'serial' && m !== 'meta') {
             if (instr_obj[m].eos_date !== '') {
@@ -341,6 +349,7 @@ function checkSupportEndDateAndStatus(instr_obj) {
 }
 
 function populateInstrumentField(i_list, is_hardware = true) {
+    console.debug("Executing populateInstrumentField ...\n  i_list: " + i_list + "\n  is_hardware: " + is_hardware);
     for (i in i_list) {
         // console.debug('i_list[' + i + ']: ' + JSON.stringify(i_list[i]));
         (is_hardware) ? checkSupportEndDateAndStatus(i_list[i].models) : '';
@@ -352,7 +361,7 @@ function populateInstrumentField(i_list, is_hardware = true) {
 // Hide dynamic fields by default
 hideAllDynamicFields();
 // Handle instrument select field
-debugmsg(5, 'Starting selected element: ' + document.getElementById('instrument').selectedIndex);
+console.debug('Starting selected element: ' + document.getElementById('instrument').selectedIndex);
 // First, populate the field
 var instruments_list_obj = retrieveDataSet('instruments', products.pdata, false);
 var software_list_obj = retrieveDataSet('software', products.pdata, false);
@@ -423,7 +432,7 @@ document.getElementById('instrument').addEventListener('change', function() {
 document.getElementById('model').addEventListener('change', function() {
     var inst_field = document.getElementById('instrument');
     var model_tooltip = generateTooltipText(inst_field[inst_field.selectedIndex].id, this[this.selectedIndex].id);
-    debugmsg(4, 'model_tooltip: ' + model_tooltip);
+    console.debug({model_tooltip});
     fetchAndAdjustSerialTooltip(model_tooltip);
     prePopulateSerialField();
     populateICField();
@@ -431,7 +440,7 @@ document.getElementById('model').addEventListener('change', function() {
 
 // Handle billing select field
 document.getElementById('billing-type').addEventListener('change', function () {
-    debugmsg(4, 'this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
+    console.debug('this.options[this.selectedIndex].value: ' + this.options[this.selectedIndex].value);
     switch (this.options[this.selectedIndex].value) {
         case 'XC':
             var consoleAlertText = (so.Settings.alerts.xc.value) ? "Sending " : "Not sending (due to settings) ";
@@ -472,6 +481,7 @@ archive_select.addEventListener('change', function() {
 }, false);
 
 function addHoursToDate(date, hours) {
+    console.debug("Executing addHoursToDate ...\n  date: " + date + "\n  hours: " + hours);
     return new Date(date.getTime() + hours * 3600000);
 }
 
@@ -543,6 +553,7 @@ function findTimeZoneOffset(tz, dst_known = '') {
 }
 
 function mapZipCodeToTimeZone(zip) {
+    console.debug("Executing mapZipCodeToTimeZone ...\n zip: " + zip);
     if (zip === '' || typeof zip === 'undefined' || zip === false) {
         return false;
     }
@@ -568,6 +579,7 @@ function mapZipCodeToTimeZone(zip) {
 }
 
 function localizeOffset(target_offset, local_offset = -7) {
+    console.debug("Executing localizeOffset ...\n target_offset: " + target_offset + "\n  local_offset: " + local_offset);
     var base_offset = (target_offset - local_offset);
     var output = ''
     output = (base_offset >= 0) ? base_offset + ' hours ahead' : Math.abs(base_offset) + ' hours behind';
@@ -576,7 +588,7 @@ function localizeOffset(target_offset, local_offset = -7) {
 }
 
 function checkEndOfBusiness(date, ctz) {
-    console.debug('Executing checkEndOfBusiness...');
+    console.debug("Executing checkEndOfBusiness ...\n  date: " + date + "\n  ctz: " + ctz);
     console.debug({date});
     console.debug({ctz});
     var adjusted_day = date.getDay().toLocaleString('en-US', { timeZone: ctz });
@@ -593,7 +605,7 @@ function checkEndOfBusiness(date, ctz) {
 }
 
 function roundFifteenMinutes(m, h) {
-    console.debug('Executing roundFifteenMinutes...');
+    console.debug("Executing roundFifteenMinutes ...\n  m: " + m + "\n  h: " + h);
     min = (((m + 7.5)/15 | 0) * 15) % 60;
     hrs = (((m/105 + .5) | 0) + h) % 24;
     return hrs + ":" + min;
@@ -656,12 +668,14 @@ document.getElementById('fss-name').addEventListener('change', function() {
 });
 
 function toggleFieldMenu(menu) {
+    console.debug("Executing toggleFieldMenu ...\n  menu: " + menu);
     var current_display = document.getElementById(menu).style.display;
     console.debug({current_display});
     document.getElementById(menu).style.display = (current_display === 'none' || current_display === '') ? 'flex' : 'none';
 }
 
 function commonActionToField(a_id, fields) {
+    console.debug("Executing commonActionToField ...\n  a_id: " + a_id + "\n  fields: " + fields);
     var action_data = (a_id === '0000') ? '' : document.getElementById(a_id).innerHTML;
     console.debug({action_data});
     //var line_break = (document.getElementById(field).value === '') ? '' : "\n"
@@ -678,8 +692,26 @@ function commonActionToField(a_id, fields) {
     }
 }
 
+function revealHelper(helper_id) {
+    event.preventDefault();
+    console.log("Executing revealHelper ...\n  helper_id: " + helper_id);
+    var display_status = document.getElementById('context-help-teleservice').style.display;
+    switch (display_status) {
+        case '':
+        case 'none':
+            document.getElementById('context-help-teleservice').style.display = 'flex';
+            break;
+        case 'flex':
+            document.getElementById('context-help-teleservice').style.display = 'none';
+            break;
+        default:
+            console.log({display_status});
+            break;
+    }
+}
+
 function expandNav() {
-    console.debug('Executing expandNav...');
+    console.debug('Executing expandNav ...');
     if (document.getElementById('toggle-exp-nav').innerHTML === 'Expand') {
         document.querySelectorAll('.expanded-nav').forEach(a=>a.style.display = 'block');
         document.getElementById('toggle-exp-nav').innerHTML = 'Collapse';

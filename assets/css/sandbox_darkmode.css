@@ -3303,3 +3303,22 @@ input.teamviewer-info-head {
     right: 25px;
     z-index: 994;
 }
+
+.context-help {
+    border: none;
+    font-size: 0.8em;
+}
+.context-info {
+    position: absolute;
+    z-index: 995;
+    color: #32373e;
+    font-size: 0.8em;
+    border: 1px solid #8daac8;
+    border-radius: 4px;
+    background-color: #8daac8;
+    padding: 4px;
+    margin: -5px 25px 2px;
+}
+#context-help-teleservice {
+    display: none;
+}
