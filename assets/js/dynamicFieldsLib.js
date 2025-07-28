@@ -25,7 +25,7 @@ function fetchAndHideDynamicFields (field_class) {
     });
     hidden_fields.forEach(element => {
         if (element.classList.contains('dynamic-hidden')) {
-            console.debug('element.className ' + element.className + "does contain 'dynamic-hidden' class");
+            console.debug('element.className ' + element.className + " does contain 'dynamic-hidden' class");
         } else {
             element.classList.add('dynamic-hidden');
         }
