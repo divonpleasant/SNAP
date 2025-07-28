@@ -1314,7 +1314,7 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${document.getElementById('review-station-current-software-version').checked}</value>
   </customMetaData>
   <customMetaData>
-    <key>review-station-stoftware-version</key>
+    <key>review-station-software-version</key>
     <value>${htmlEscape(document.getElementById('review-station-software-version').value)}</value>
   </customMetaData>
   <customMetaData>
@@ -1832,6 +1832,110 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>customer-regional-oph-rep</key>
     <value>${document.getElementById('customer-regional-oph-rep').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>account-id</key>
+    <value>${document.getElementById('account-id').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>username</key>
+    <value>${document.getElementById('username').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>team-email</key>
+    <value>${document.getElementById('team-email').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>svo-ticket</key>
+    <value>${document.getElementById('svo-ticket').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>svo-date</key>
+    <value>${document.getElementById('svo-date').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>sign-email-toggle</key>
+    <value>${document.getElementById('sign-email-toggle').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>problem-description</key>
+    <value>${document.getElementById('problem-description').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>private-email</key>
+    <value>${document.getElementById('private-email').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>pm-sla</key>
+    <value>${document.getElementById('pm-sla').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>part-list</key>
+    <value>${document.getElementById('part-list').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>order-name</key>
+    <value>${document.getElementById('order-name').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>fullname</key>
+    <value>${document.getElementById('fullname').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>fse-sla</key>
+    <value>${document.getElementById('fse-sla').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>email-signature</key>
+    <value>${document.getElementById('email-signature').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>contract-number</key>
+    <value>${document.getElementById('contract-number').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>compliance-id</key>
+    <value>${document.getElementById('compliance-id').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>casual-name</key>
+    <value>${document.getElementById('casual-name').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>alert-for-xc</key>
+    <value>${document.getElementById('alert-for-xc').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>alert-on-copy</key>
+    <value>${document.getElementById('alert-on-copy').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>copy-crm-description</key>
+    <value>${document.getElementById('copy-crm-description').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>custom-scripts-toggle</key>
+    <value>${document.getElementById('custom-scripts-toggle').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>dark-mode</key>
+    <value>${document.getElementById('dark-mode').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>debug-toggle</key>
+    <value>${document.getElementById('debug-toggle').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>foc</key>
+    <value>${document.getElementById('foc').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>sign-email</key>
+    <value>${document.getElementById('sign-email').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>delivery-type</key>
+    <value>${document.getElementById('delivery-type')[document.getElementById('delivery-type').selectedIndex].value}</value>
   </customMetaData>
 </AssetInfo>`
             }
