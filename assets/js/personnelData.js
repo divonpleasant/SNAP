@@ -89,6 +89,64 @@ function generatePersonnelData() {
                 "phone": "",
                 "mobile": "848-241-1142"
             }
+        },
+        "contract_rep": {
+            "contreras-michael": {
+                "name": "Michael Contreras",
+                "email": "michael.contreras@zeiss.com",
+                "phone": "925-557-4163",
+                "group": "oph",
+                "regions": ["AZ", "CA", "MN", "NV", "UT", "WA"]
+            },
+            "fong-randy": {
+                "name": "Randy Fong",
+                "email": "randy.fong@zeiss.com",
+                "phone": "925-557-4390",
+                "group": "oph",
+                "regions": ["NY", "ND", "OH", "PA", "SD"]
+            },
+            "holt-steven": {
+                "name": "Steven Holt",
+                "email": "steven.holt@zeiss.com",
+                "phone": "925-997-4456",
+                "group": "oph",
+                "regions": ["AR", "CO", "ID", "LA", "NM", "OK", "TX", "WI"]
+            },
+            "leyva-jimmy": {
+                "name": "Jimmy Leyva",
+                "email": "jim.leyva@zeiss.com",
+                "phone": "925-997-4527",
+                "group": "oph",
+                "regions": ["AL", "FL", "GA", "GU", "IL", "IA", "NC", "PR", "MP"]
+            },
+            "overby-richard": {
+                "name": "Richard Overby",
+                "email": "richard.overby@zeiss.com",
+                "phone": "925-997-4478",
+                "group": "oph",
+                "regions": ["AK", "CT", "HI", "KS", "MD", "MI", "MS", "MO", "MT", "OR", "SC", "TN", "WY"]
+            },
+            "paul-matt": {
+                "name": "Matt Paul",
+                "email": "matt.paul@zeiss.com",
+                "phone": "925-997-4124",
+                "group": "mcs",
+                "regions": ["AK", "AZ", "AR", "CA", "CO", "HI", "ID", "IL", "IA", "KS", "LA", "MN", "MS", "MO", "MT", "NE", "NV", "NM", "ND", "OK", "OR", "SD", "TX", "UT", "VI", "WA", "WI", "WY"]
+            },
+            "thomas-david": {
+                "name": "David Thomas",
+                "email": "david.thomas@zeiss.com",
+                "phone": "925-997-4158",
+                "group": "oph",
+                "regions": ["DC", "DE", "IN", "KY", "ME", "MA", "NE", "NH", "NJ", "RI", "VT", "VI", "VA", "WV"]
+            },
+            "watkins-chanell": {
+                "name": "Chanell Watkins",
+                "email": "chanell.watkins@zeiss.com",
+                "phone": "925-997-4113",
+                "group": "mcs",
+                "regions": ["AL", "CT", "DE", "DC", "FL", "GA", "GU", "IN", "KY", "ME", "MD", "MA", "MI", "NH", "NJ", "NY", "NC", "OH", "PA", "PR", "RI", "SC", "TN", "VT", "VA", "WV"]
+            }
         }
     }
 }
