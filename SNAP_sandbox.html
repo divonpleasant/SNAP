@@ -1063,6 +1063,8 @@
                                         <option value="">&mdash; Select a Clipboard Preset &mdash;</option>
                                         <option value="address-change">Address Change Data</option>
                                         <option value="cct-description">CCT Description</option>
+                                        <option value="contract-rep-mcs">Contract Representative Info (MCS)</option>
+                                        <option value="contract-rep-oph">Contract Representative Info (OPH)</option>
                                         <option value="ci-rejection">Critical Incident Rejection</option>
                                         <option value="deferred-billing">Deferred Billing</option>
                                         <option value="instrument-code">Instrument Code</option>
@@ -1273,7 +1275,13 @@
                             <input type="checkbox" id="is-pm" name="is-pm">
                             <label for="is-pm">Is Preventative Maintenance?</label><br />
                             <input type="text" id="customer-time-zone" name="customer-time-zone">
-                            <label for="customer-time-zone">Customer's Time Zone</label><br />
+                            <label for="customer-time-zone">Customer's Time Zone</label>
+                            <input type="text" id="customer-region" name="customer-region">
+                            <label for="customer-region">Customer's State/Region</label>
+                            <input type="text" id="customer-regional-mcs-rep" name="customer-regional-mcs-rep">
+                            <label for="customer-regional-mcs-rep">Regional Contract Representative (MCS)</label>
+                            <input type="text" id="customer-regional-oph-rep" name="customer-regional-oph-rep">
+                            <label for="customer-regional-oph-rep">Regional Contract Representative (OPH)</label><br />
                             <!-- <button id="modalContinue">Continue</button> -->
                         </div>
                     </div>

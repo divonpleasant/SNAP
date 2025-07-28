@@ -1,4 +1,4 @@
-const version = '3.1.14';
+const version = '3.1.15';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -387,9 +387,37 @@ function calculateZipCode(use_unknown = false) {
         var zc = document.getElementById('instrument-address').value.split(' ').at(-1).split('-')[0];
         return zc;
     } else {
-        console.warn('No address populated in Instrument/Shipping Address field, cannot calculate Zip Code; default is ET');
-        return (use_unknown) ? '00100' : false;
+        console.warn('No address populated in Instrument/Shipping Address field, cannot calculate Zip Code/Time Zone; default is ZICC Zip Code/PT');
+        return (use_unknown) ? '94568' : false;
     }
+}
+
+function attemptRegionDiscovery(use_unknown = false) {
+    var regions_list = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC', 'GU', 'MH', 'MP', 'PR', 'VI'];
+    var valid_state = false;
+    if (document.getElementById('instrument-address').value !== '') {
+        var region = document.getElementById('instrument-address').value.match(/ ([ACDFGHIKLMNOPRSTUVW][ACDEHIJKLMNOPRSTUVXYZ]) /);
+        valid_state = (regions_list.includes(region[1])) ? true : false;
+    } else {
+        console.warn('No address populated in Instrument/Shipping Address field, cannot attempt region discovery; default is ZICC region');
+        return (use_unknown) ? 'CA' : false;
+    }
+    if (valid_state) {
+        return region[1];
+    } else {
+        console.warn('Could not determine state/region from Instrument/Shipping Address field (discovered region was ' + region[1] + '); default is ZICC region');
+        return (use_unknown) ? 'CA' : false;
+    }
+}
+
+function getContractRepInfo(group) {
+    const p = new generatePersonnelData();
+    var e_id = 'customer-regional-' + group + '-rep';
+    var rep_data = p.people.contract_rep[document.getElementById(e_id).value];
+    console.log({rep_data});
+    var rep_output = '';
+    rep_output = 'Contract Representative (' + group.toUpperCase() + ")\nName: " + rep_data['name'] + "\nPhone: " + rep_data['phone'] + "\nEmail: " + rep_data['email'];
+    return rep_output;
 }
 
 // Handle Clipboard Template select box
@@ -406,6 +434,14 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
         case 'cct-description':
             clip_string = procCctDescription();
             clipboard_title = 'CCT Description';
+            break;
+        case 'contract-rep-mcs':
+            clip_string = getContractRepInfo('mcs');
+            clipboard_title = 'Contract Rep (MCS)';
+            break;
+        case 'contract-rep-oph':
+            clip_string = getContractRepInfo('oph');
+            clipboard_title = 'Contract Rep (OPH)';
             break;
         case 'ci-rejection':
             context[0] = document.getElementById('ci-reject-string').value;

@@ -763,6 +763,38 @@ function populateTimeZone() {
     document.getElementById('cust-tz').innerHTML = (tz[0]) ? 'Customer is ' + tz[1] + ' (' + tz[2] + '): ' + localizeOffset(tz[4]) : '';
 }
 
+function populateRegionAndContractRep() {
+    console.log('Executing populateRegion ...');
+    var region = attemptRegionDiscovery();
+    console.debug({region});
+    document.getElementById('customer-region').value = (region) ? region : '';
+    const personnel = new generatePersonnelData();
+    if (document.getElementById('customer-region').value !== '') {
+        var reps = Object.keys(personnel.people.contract_rep);
+        var match_reps = [];
+        for (var r = 0; r < reps.length; r++) {
+            console.debug('personnel.people.contract_rep[' + reps[r] + '].regions: ' + JSON.stringify(personnel.people.contract_rep[reps[r]].regions));
+            if (personnel.people.contract_rep[reps[r]].regions.includes(document.getElementById('customer-region').value)) {
+                match_reps.push(reps[r]);
+            }
+        }
+    } else {
+        console.warn('Region could not be established, so contract representatives could also not be determined. Please check Instrument Address field.');
+    }
+    console.debug({match_reps});
+    for (var rcr = 0; rcr < match_reps.length; rcr++) {
+        var support_group = personnel.people.contract_rep[match_reps[rcr]].group;
+        var proc_field_id = 'customer-regional-' + support_group + '-rep';
+        document.getElementById(proc_field_id).value = match_reps[rcr];
+    }
+}
+
+function processInstrumentAddress() {
+    console.debug('Executing processInstrumentAddress ...');
+    populateTimeZone();
+    populateRegionAndContractRep();
+}
+
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
 document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
@@ -794,4 +826,4 @@ document.getElementById('address-change-proceed').addEventListener('click', func
     address_change_data = (change_result) ? change_result : '';
 });
 document.getElementById('phone').addEventListener('change', checkPhoneFormat);
-document.getElementById('instrument-address').addEventListener('change', populateTimeZone);
+document.getElementById('instrument-address').addEventListener('change', processInstrumentAddress);

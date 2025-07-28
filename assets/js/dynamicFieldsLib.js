@@ -263,7 +263,7 @@ function sortSelectItems(si_list, method, exempt = [], reverse_order = true) {
         default:
             var sorted_si_list = Object.keys(si_list).sort().reduce(
                 (obj, key) => {
-                    console.debug({key});
+                    console.debug('key: ' + JSON.stringify(key));
                     (!exempt.includes(key)) ? obj[key] = si_list[key] : '';
                     return obj;
                 }, {}
@@ -611,11 +611,9 @@ function roundFifteenMinutes(m, h) {
     return hrs + ":" + min;
 }
 
-// Handle FSS select field
-document.getElementById('fss-name').addEventListener('change', function() {
-    console.debug('Handling eventListener for fss-name change event...');
-    var selected_fss = document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value;
-    console.debug('selected_fss: ' + selected_fss);
+function processSlaNote() {
+    console.debug('Executing processSlaNote ...');
+    // This commented block is not currently used as it was decided specific personnel data should not be included in any customer-facing output (for the time being)
     /*
     const personnel = new generatePersonnelData();
     var fss_data = personnel.people.fss[selected_fss];
@@ -664,7 +662,21 @@ document.getElementById('fss-name').addEventListener('change', function() {
     console.debug({cn_sep});
     var final_fss_str = cn_sep + cust_note_fss_text;
     console.debug({final_fss_str});
-    document.getElementById('customer-notes').value += final_fss_str;
+    return final_fss_str;
+}
+
+// Handle FSS select field
+document.getElementById('fss-name').addEventListener('change', function() {
+    console.debug('Handling eventListener for fss-name change event ...');
+    var selected_fss = document.getElementById('fss-name')[document.getElementById('fss-name').selectedIndex].value;
+    console.debug('selected_fss: ' + selected_fss);
+    // Only output customer note if the SVO has already been processed
+    var cust_note = (document.getElementById('svo').value !== '') ? processSlaNote() : '';
+    if (cust_note !== '') {
+        document.getElementById('customer-notes').value += cust_note;
+    } else {
+        console.warn('Customer note regarding scheduling call timing cannot be processed until the SVO has been created.');
+    }
 });
 
 function toggleFieldMenu(menu) {

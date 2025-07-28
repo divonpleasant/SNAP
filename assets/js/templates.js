@@ -1821,6 +1821,18 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <key>billing-change</key>
     <value>${document.getElementById('billing-change').checked}</value>
   </customMetaData>
+  <customMetaData>
+    <key>customer-region</key>
+    <value>${document.getElementById('customer-region').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>customer-regional-mcs-rep</key>
+    <value>${document.getElementById('customer-regional-mcs-rep').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>customer-regional-oph-rep</key>
+    <value>${document.getElementById('customer-regional-oph-rep').value}</value>
+  </customMetaData>
 </AssetInfo>`
             }
         }
