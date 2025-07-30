@@ -13,7 +13,13 @@
     </head>
     <body class="is-preload">
         <div id="topnav">
-            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" target="_blank"><i class="fa-solid fa-plus"></i></a>]</span></span>
+            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" onclick="newWindowMenuToggle()"><i class="fa-solid fa-plus"></i></a>]</span></span>
+        </div>
+        <div id="new-window-menu">
+            <ul>
+                <li><a href="#" target="_blank">New SNAP Form</a></li>
+                <li><a href="" onclick="generateNewWindowLink('account')" target="_blank">New SNAP Form with Account Data</a></li>
+            </ul>
         </div>
         <div id="systembox">
             <span id="systembox-contents">System messages</span><span class="sb-x"><a href="#" id="hide-sys-box">X</a>
@@ -1470,6 +1476,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/stopwatch.js"></script>
             <script src="assets/js/formSupport.js"></script>
             <script src="assets/js/dynamicFieldsLib.js"></script>
+            <script src="assets/js/populateFromQuery.js"></script>
             <script src="assets/js/schedulecall.js"></script>
             <script src="assets/js/templatelib.js"></script>
             <script src="assets/js/openEmailTemplate.js"></script>

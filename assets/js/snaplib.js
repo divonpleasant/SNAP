@@ -1,4 +1,4 @@
-const version = '3.1.15';
+const version = '3.1.16';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -224,6 +224,7 @@ function procSettingValues() {
     }
 }
 
+var passed_values = {};
 function startUp(style_refresh = false, page_reload = false) {
     procSettingValues();
     if (style_refresh) {
@@ -284,6 +285,8 @@ stylesheet: ${final_style}
     (so.Settings.debug.mode.value) ? console.log(debug_message) : console.debug(debug_message);
     
     (page_reload) ? window.location.reload() : '';
+    
+    passed_values = new URLSearchParams(window.location.search);
 }
 startUp();
 
