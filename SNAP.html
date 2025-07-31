@@ -10,7 +10,14 @@
     </head>
     <body class="is-preload">
         <div id="topnav">
-            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" target="_blank"><i class="fa-solid fa-plus"></i></a>]</span></span>
+            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" onclick="newWindowMenuToggle()"><i class="fa-solid fa-plus"></i></a>]</span></span>
+        </div>
+        <div id="new-window-menu">
+            <ul>
+                <li><a href="#" target="_blank">New SNAP Form</a></li>
+                <li><a href="" onclick="generateNewWindowLink('account')" target="_blank">New SNAP Form with Account Data</a></li>
+                <li><a href="" onclick="generateNewWindowLink('instrument')" target="_blank">New SNAP Form with Instrument Data</a></li>
+            </ul>
         </div>
         <div id="systembox">
             <span id="systembox-contents">System messages</span><span class="sb-x"><a href="#" id="hide-sys-box">X</a>
@@ -195,7 +202,8 @@
                                 </div>
                                 <div class="col-6 col-12-xsmall remote-support-field">
                                     <input type="checkbox" id="teleservice" name="teleservice">
-                                    <label for="teleservice">Teleservice?</label>
+                                    <label for="teleservice">Teleservice?</label><a class="context-help" href="" onclick="revealHelper('teleservice')"><i class="fa-solid fa-circle-question"></i></a>
+                                    <div id="context-help-teleservice" class="context-info">Teleservice can be accessed on an OCT in Help &gt; Service Support &gt; Teleservice</div>
                                 </div>
                                 <div class="col-12 remote-support-field">
                                     <table>
@@ -979,7 +987,7 @@
                                     <div class="label-right">Other Internal Notes</div>
                                 </div>
                                 <div class="col-12">
-                                    <a href="#internal" id="printintnotes" class="button primary small" onclick="copyCrmData('internal')">Copy Internal Notes</a>
+                                    <a href="#internal" id="printintnotes" class="button primary small" onclick="copyCrmData('internal')">Copy Internal Notes</a> 
                                     <hr />
                                 </div>
 
@@ -1466,6 +1474,7 @@ onenote:https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/Documents
             <script src="assets/js/stopwatch.js"></script>
             <script src="assets/js/formSupport.js"></script>
             <script src="assets/js/dynamicFieldsLib.js"></script>
+            <script src="assets/js/populateFromQuery.js"></script>
             <script src="assets/js/schedulecall.js"></script>
             <script src="assets/js/templatelib.js"></script>
             <script src="assets/js/openEmailTemplate.js"></script>

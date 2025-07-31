@@ -77,6 +77,10 @@ function generateNewWindowLink(includes) {
             fields = ['request-came-from', 'request-source', 'local-contact-person', 'phone', 'prefer-phone', 'email', 'prefer-email', 'account', 'instrument-address'];
             query = processFieldList(fields);
             break;
+        case 'instrument':
+            fields = ['request-came-from', 'request-source', 'local-contact-person', 'phone', 'prefer-phone', 'email', 'prefer-email', 'account', 'instrument-address', 'instrument', 'model', 'serial'];
+            query = processFieldList(fields);
+            break;
         default:
             console.warn("Could not find a preset for includes value of '" + includes + "'"); 
             break;

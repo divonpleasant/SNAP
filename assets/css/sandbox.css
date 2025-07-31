@@ -3222,3 +3222,25 @@ input.teamviewer-info-head {
     right: 25px;
     z-index: 994;
 }
+
+#new-window-menu {
+    display: none;
+    position: fixed;
+    top: 55px;
+    right: 5px;
+    z-index: 960;
+    font-size: 0.8em;
+}
+#new-window-menu ul {
+    padding: 5px;
+}
+#new-window-menu ul li {
+    background-color: #f2f5f8;
+    margin: 3px;
+    padding: 5px;
+    list-style-type: none;
+}
+#new-window-menu ul li a {
+    text-decoration: none;
+    border: none;
+}
