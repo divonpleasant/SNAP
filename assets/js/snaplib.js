@@ -415,6 +415,9 @@ function attemptRegionDiscovery(use_unknown = false) {
 
 function getContractRepInfo(group) {
     const p = new generatePersonnelData();
+    console.log(`personnelData loaded...
+  Schema: v${personnel.people.schema_version}
+    Data: v${personnel.people.data_version}`);
     var e_id = 'customer-regional-' + group + '-rep';
     var rep_data = p.people.contract_rep[document.getElementById(e_id).value];
     console.log({rep_data});

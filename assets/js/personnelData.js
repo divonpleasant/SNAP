@@ -2,8 +2,8 @@ console.log('Loading personnelData.js...');
 function generatePersonnelData() {
     console.debug('Executing generatePersonnelData...');
     this.people = {
-        "data_version": "0.0.1",
-        "schema_version": "0.1",
+        "data_version": "0.2.0",
+        "schema_version": "2.0",
         "fss": {
             "arguello-robert": {
                 "name": "Robert Arguello",
@@ -67,6 +67,13 @@ function generatePersonnelData() {
                 "email": "sidi.sbai@zeiss.com",
                 "phone": "",
                 "mobile": "720-253-8328"
+            },
+            "seabourn-ryan": {
+                "name": "Ryan Seabourn",
+                "hr_number": "HR08007858",
+                "email": "ryan.seabourn@zeiss.com",
+                "phone": "",
+                "mobile": "682-401-3785"
             },
             "sichter-nathan": {
                 "name": "Nathan Sichter",
