@@ -142,10 +142,14 @@ ${context[2]}
 Customer Care Ticket Number: ${document.getElementById('cct').value}
 Instrument Serial Number: ${document.getElementById('serial').value}
 Account Name: ${document.getElementById('account').value}
+
 Address:
     Attention: ${document.getElementById('local-contact-person').value}
     ${document.getElementById('instrument-address').value}
 Shipment: ${document.getElementById('delivery-type').value}
+Billing Type: ${(document.getElementById('foc').checked) ? 'Free of Charge (see CCT #' + document.getElementById('cct').value + ')' : 'Billable'}
+Customer Email: ${(document.getElementById('billing-email').value !== '') ? document.getElementById('billing-email').value : document.getElementById('email').value}
+Customer Phone: ${(document.getElementById('billing-phone').value !== '') ? document.getElementById('billing-phone').value : document.getElementById('phone').value}
 
 Thank you for your prompt attention to this matter.
 
