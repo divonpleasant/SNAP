@@ -142,10 +142,14 @@ ${context[2]}
 Customer Care Ticket Number: ${document.getElementById('cct').value}
 Instrument Serial Number: ${document.getElementById('serial').value}
 Account Name: ${document.getElementById('account').value}
+
 Address:
     Attention: ${document.getElementById('local-contact-person').value}
     ${document.getElementById('instrument-address').value}
 Shipment: ${document.getElementById('delivery-type').value}
+Billing Type: ${(document.getElementById('foc').checked) ? 'Free of Charge (see CCT #' + document.getElementById('cct').value + ')' : 'Billable'}
+Customer Email: ${(document.getElementById('billing-email').value !== '') ? document.getElementById('billing-email').value : document.getElementById('email').value}
+Customer Phone: ${(document.getElementById('billing-phone').value !== '') ? document.getElementById('billing-phone').value : document.getElementById('phone').value}
 
 Thank you for your prompt attention to this matter.
 
@@ -566,7 +570,7 @@ To create a Task-Task:
             <li>Use the Call Type 'Prev. Maintenance'</li>
             <li>Use the Call Type Details 'PM On-Call'</li>
             <li>Use the Symptom Code 'PM/Install/Relocate Equipment'</li>
-            <li>If billing is authorized verbally or approval/PO is sent to you, create Preventative Maintenance task as Follow-Up</li>
+            <li>If billing is authorized verbally or approval/PO is sent to you, create a Corrective Maintenance task as Follow-Up (ensure PO is attached to the SVO)</li>
             <li>Leave Status as 'In Process with Follow-Up'</li>
         </ul>
     </li>
