@@ -570,7 +570,7 @@ To create a Task-Task:
             <li>Use the Call Type 'Prev. Maintenance'</li>
             <li>Use the Call Type Details 'PM On-Call'</li>
             <li>Use the Symptom Code 'PM/Install/Relocate Equipment'</li>
-            <li>If billing is authorized verbally or approval/PO is sent to you, create a Corrective Maintenance task as Follow-Up</li>
+            <li>If billing is authorized verbally or approval/PO is sent to you, create a Corrective Maintenance task as Follow-Up (ensure PO is attached to the SVO)</li>
             <li>Leave Status as 'In Process with Follow-Up'</li>
         </ul>
     </li>
