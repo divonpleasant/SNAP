@@ -3322,3 +3322,25 @@ input.teamviewer-info-head {
 #context-help-teleservice {
     display: none;
 }
+
+#new-window-menu {
+    display: none;
+    position: fixed;
+    top: 55px;
+    right: 5px;
+    z-index: 960;
+    font-size: 0.8em;
+}
+#new-window-menu ul {
+    padding: 5px;
+}
+#new-window-menu ul li {
+    background-color: #606a76;
+    margin: 3px;
+    padding: 5px;
+    list-style-type: none;
+}
+#new-window-menu ul li a {
+    text-decoration: none;
+    border: none;
+}

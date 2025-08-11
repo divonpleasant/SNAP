@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.9.37",
+        "data_version": "1.14.0",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -462,7 +462,7 @@ function generateProductData() {
                         "supported": false,
                         "required_escalation": false,
                         "eos_date": "04-30-2022",
-                        "eogs_date": "04-2022",
+                        "eogs_date": "04-01-2022",
                         "eos_url": "https://www.zeiss.com/content/dam/med-hcp/usa/customer-care/end-of-lifecycle-info/opt/final_eos_cirrus_400_4000.pdf/_jcr_content/renditions/original.media_file.download_attachment.file/final_eos_cirrus_400_4000.pdf",
                         "instrument_codes": ["8707"]
                     },
@@ -473,7 +473,26 @@ function generateProductData() {
                             "prefix_format": "4000-",
                             "sequence_format": "4+ digits"
                         },
-                        "subsets": {},
+                        "subsets": {
+                            "dual_core": {
+                                "label": "Dual Core",
+                                "designation": "serial",
+                                "designation_start": "4000-0001",
+                                "designation_end": "4000-5198",
+                                "designation_description": "Dual core PC module",
+                                "supported": "false",
+                                "eogs_date": "04-01-2022"
+                            },
+                            "quad_core": {
+                                "label": "Quad Core",
+                                "designation": "serial",
+                                "designation_start": "4000-5199",
+                                "designation_end": "",
+                                "designation_description": "Quad core PC module",
+                                "supported": "false",
+                                "eogs_date": "04-01-2022"
+                            }
+                        },
                         "model_number": "4000",
                         "full_name": "Cirrus HD-OCT 4000",
                         "launch_date": "",
@@ -493,13 +512,22 @@ function generateProductData() {
                         },
                         "subsets": {
                             "gen1": {
-                                "label": "Generation 1 (not upgraded)",
+                                "label": "Generation 1 (not upgraded, CPC)",
                                 "designation": "other",
                                 "designation_start": "500-00001",
                                 "designation_end": "500-21527",
                                 "designation_description": "Models running Windows 7 (original PC module, no Windows 10 upgrade)",
                                 "supported": false,
                                 "eogs_date": "01-01-2025"
+                            },
+                            "gen2": {
+                                "label": "Generation 2 (MY2014)",
+                                "designation": "other",
+                                "designation_start": "500-21528",
+                                "designation_end": "",
+                                "designation_description": "Models manufactured on or after 2014, plus CPC/Gen1 models with PC upgrade",
+                                "supported": true,
+                                "eogs_date": ""
                             }
                         },
                         "model_number": "500",
@@ -521,13 +549,22 @@ function generateProductData() {
                         },
                         "subsets": {
                             "gen1": {
-                                "label": "Generation 1 (not upgraded)",
+                                "label": "Generation 1 (not upgraded, CPC)",
                                 "designation": "other",
                                 "designation_start": "5000-2005",
                                 "designation_end": "5000-4994",
                                 "designation_description": "Models running Windows 7 (original PC module, no Windows 10 upgrade)",
                                 "supported": false,
                                 "eogs_date": "01-01-2025"
+                            },
+                            "gen2": {
+                                "label": "Generation 2 (MY2014)",
+                                "designation": "other",
+                                "designation_start": "5000-4995",
+                                "designation_end": "",
+                                "designation_description": "Models manufactured on or after 2014, plus CPC/Gen1 models with PC upgrade",
+                                "supported": true,
+                                "eogs_date": ""
                             }
                         },
                         "model_number": "5000",
@@ -1867,6 +1904,20 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["6218"]
+                    },
+                    "visu160": {
+                        "model_serials": {},
+                        "subsets": {},
+                        "model_number": "Visu 160",
+                        "full_name": "OPMI VISU 160",
+                        "launch_date": "",
+                        "supported": false,
+                        "required_escalation": false,
+                        "eos_date": "",
+                        "eogs_date": "",
+                        "eos_url": "",
+                        "model_url": "",
+                        "instrument_codes": ["6213"]
                     }
                 }
             },
@@ -2285,7 +2336,7 @@ function generateProductData() {
                         "eos_date": "12-01-2006",
                         "eogs_date": "12-01-2005",
                         "eos_url": "",
-                        "instrument_codes": []
+                        "instrument_codes": ["9008"]
                     },
                     "40": {
                         "model_serials": {},
@@ -2298,7 +2349,7 @@ function generateProductData() {
                         "eos_date": "03-01-2005",
                         "eogs_date": "03-01-2005",
                         "eos_url": "",
-                        "instrument_codes": []
+                        "instrument_codes": ["9009"]
                     },
                     "100": {
                         "model_serials": {},
