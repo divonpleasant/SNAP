@@ -1,4 +1,4 @@
-const version = '3.1.16';
+const version = '3.1.17';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -661,4 +661,8 @@ function checkCookie() {
             setCookie('username', user, 365);
         }
     }
+}
+
+function newSnap() {
+    window.location.assign(window.location.href);
 }
