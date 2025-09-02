@@ -638,16 +638,16 @@ function processSlaNote() {
         var cutoff_time = roundFifteenMinutes(sla_date.getMinutes(), sla_date.getHours());
         cutoff_time = cutoff_time.toString().padStart(2, '0')
         console.debug({cutoff_time});
-        fss_context.push(cutoff_time + ' today');
+        fss_context.push('end of business today');
     } else if (eob_status.match(/^eob/)) {
         console.log('SLA is past EOB');
         var eob_results = eob_status.split(':');
         var sla_overrun = (parseInt(eob_results[1]) + 9).toString().padStart(2, '0'); // Assuming the average clinic opening hour is 09:00
         console.debug({sla_overrun});
-        fss_context.push(sla_overrun + ':00 tomorrow');
+        fss_context.push('noon tomorrow');
     } else if (eob_status === 'weekend') {
         console.log('SLA is past EOB and extends into weekend');
-        fss_context.push('10:00 Monday'); // Setting a reasonable post-weekend window
+        fss_context.push('noon Monday'); // Setting a reasonable post-weekend window
     } else {
         console.error('checkEndOfBusiness function returned a non-valid result: ' + eob_status);
     }

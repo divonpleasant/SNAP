@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.14.0",
+        "data_version": "1.16.0",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -335,7 +335,7 @@ function generateProductData() {
                         "eos_date": "",
                         "eogs_date": "",
                         "eos_url": "",
-                        "instrument_codes": []
+                        "instrument_codes": ["9801"]
                     },
                     "991": {
                         "model_serials": {},
@@ -2002,7 +2002,7 @@ function generateProductData() {
                         "full_name": "Pentero 800 S",
                         "launch_date": "",
                         "supported": true,
-                        "required_escalation": false,
+                        "required_escalation": true,
                         "eos_date": "",
                         "eogs_date": "",
                         "eos_url": "",
@@ -2178,7 +2178,7 @@ function generateProductData() {
                         "full_name": "Quatera 700",
                         "launch_date": "",
                         "supported": true,
-                        "required_escalation": true,
+                        "required_escalation": false,
                         "eos_date": "",
                         "eogs_date": "",
                         "eos_url": "",
@@ -2879,7 +2879,7 @@ function generateProductData() {
                         "eogs_date": "",
                         "eos_url": "",
                         "model_url": "",
-                        "instrument_codes": ["9138"]
+                        "instrument_codes": ["9138", "9149"]
                     },
                     "yag": {
                         "model_serials": {
