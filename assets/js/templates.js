@@ -1037,6 +1037,7 @@ SOLUTION NOTES........................................................:
 ${document.getElementById('solution-notes').value}
 
 Call Type: ${document.getElementById('call-type').value}
+Sustaining Ticket: ${document.getElementById('sustaining-ticket').checked ? "Yes" : "No"}
 
 TECHNICAL SUPPORT CALL CHECKLIST......................................:
 Device Running Current Software Version: ${document.getElementById('current-software-version').checked ? "Yes" : "No"}
@@ -1062,6 +1063,16 @@ Cirrus HD-OCT Old Archive Path: ${document.getElementById('oct-old-archive-path'
 Cirrus HD-OCT Old Archive Mapping: ${document.getElementById('oct-old-archive-mapping').value}
 Clarus HDCP Setting: ${document.getElementById('clarus-dhcp-setting').value}
 Clarus Network Status: ${document.getElementById('clarus-network-status').value}
+Clarus Review Stations: ${document.getElementById('clarus-number-review-stations').value}
+Clarus Data Synchronization Status: ${document.getElementById('clarus-data-synchronization').value}
+Clarus Data Synchronization Group: ${document.getElementById('clarus-synchronization-group').value}
+Clarus Backup Interval: ${document.getElementById('clarus-backup-interval').value}
+Clarus Backup Storage Path: ${document.getElementById('clarus-backup-storage-path').value}
+Clarus Date of Last Backup: ${document.getElementById('clarus-backup-date').value}
+Clarus Active Archive: ${document.getElementById('clarus-active-archive').checked ? "Yes" : "No"}
+Clarus Archive Label: ${document.getElementById('clarus-archive-label').value}
+Clarus Archive Path: ${document.getElementById('clarus-archive-path').value}
+Clarus Archive Available Space: ${document.getElementById('clarus-archive-available-free-space').value + document.getElementById('clarus-archive-available-size').value}
 HFA Network Status: ${document.getElementById('hfa-network-status').value}
 HFA DHCP Setting: ${document.getElementById('hfa-dhcp-setting').value}
 HFA Network Drive Configured: ${document.getElementById('hfa-network-drive').value}
@@ -1940,6 +1951,54 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>delivery-type</key>
     <value>${document.getElementById('delivery-type')[document.getElementById('delivery-type').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-number-review-stations</key>
+    <value>${document.getElementById('clarus-number-review-stations').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-data-synchronization</key>
+    <value>${document.getElementById('clarus-data-synchronization')[document.getElementById('clarus-data-synchronization').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-synchronization-group</key>
+    <value>${document.getElementById('clarus-synchronization-group').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-backup-interval</key>
+    <value>${document.getElementById('clarus-backup-interval')[document.getElementById('clarus-backup-interval').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-backup-storage-path</key>
+    <value>${document.getElementById('clarus-backup-storage-path').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-backup-date</key>
+    <value>${document.getElementById('clarus-backup-date').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-active-archive</key>
+    <value>${document.getElementById('clarus-active-archive').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-archive-label</key>
+    <value>${document.getElementById('clarus-archive-label').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-archive-path</key>
+    <value>${document.getElementById('clarus-archive-path').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-archive-available-free-space</key>
+    <value>${document.getElementById('clarus-archive-available-free-space').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>clarus-archive-available-size</key>
+    <value>${document.getElementById('clarus-archive-available-size')[document.getElementById('clarus-archive-available-size').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>sustaining-ticket</key>
+    <value>${document.getElementById('sustaining-ticket').checked}</value>
   </customMetaData>
 </AssetInfo>`
             }

@@ -1,4 +1,4 @@
-const version = '3.1.17';
+const version = '3.1.18';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -416,8 +416,8 @@ function attemptRegionDiscovery(use_unknown = false) {
 function getContractRepInfo(group) {
     const p = new generatePersonnelData();
     console.log(`personnelData loaded...
-  Schema: v${personnel.people.schema_version}
-    Data: v${personnel.people.data_version}`);
+  Schema: v${p.people.schema_version}
+    Data: v${p.people.data_version}`);
     var e_id = 'customer-regional-' + group + '-rep';
     var rep_data = p.people.contract_rep[document.getElementById(e_id).value];
     console.log({rep_data});
@@ -450,6 +450,8 @@ document.getElementById('clipboard-templates').addEventListener('change', () => 
             clipboard_title = 'Contract Rep (OPH)';
             break;
         case 'ci-rejection':
+            console.log('CI Rejection string requested...');
+            (document.getElementById('sustaining-ticket').checked) ? document.getElementById('sustaining-message').innerHTML = "Young revenue product selected<br/ >Ticket may not be critical but should be sustaining" : console.log('Sustaining ticket value: ' + document.getElementById('sustaining-ticket').checked);
             context[0] = document.getElementById('ci-reject-string').value;
             use_templ = true;
             clipboard_title = 'CI Rejection';

@@ -3244,3 +3244,7 @@ input.teamviewer-info-head {
     text-decoration: none;
     border: none;
 }
+
+#sustaining-message {
+    color: #e71e1e;
+}

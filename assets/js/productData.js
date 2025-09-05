@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.16.0",
+        "data_version": "1.16.1",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -1768,7 +1768,7 @@ function generateProductData() {
                         "full_name": "MEL 90",
                         "launch_date": "",
                         "supported": true,
-                        "required_escalation": false,
+                        "required_escalation": true,
                         "eos_date": "",
                         "eogs_date": "",
                         "eos_url": "",
