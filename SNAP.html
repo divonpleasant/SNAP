@@ -450,6 +450,14 @@
                                     <h5>Clarus Checklist</h5>
                                 </div>
                                 <div class="col-6 col-12-xsmall clarus-field">
+                                    <select name="clarus-network-status" id="clarus-network-status">
+                                        <option value="">&mdash; Network Status &mdash;</option>
+                                        <option value="Connected">Connected</option>
+                                        <option value="Disconnected">Disconnected</option>
+                                    </select>
+                                    <div class="label-left">Network Status</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
                                     <select name="clarus-dhcp-setting" id="clarus-dhcp-setting">
                                         <option value="">&mdash; DHCP Setting &mdash;</option>
                                         <option value="Enabled">Enabled</option>
@@ -458,12 +466,61 @@
                                     <div class="label-right">DHCP Setting</div>
                                 </div>
                                 <div class="col-6 col-12-xsmall clarus-field">
-                                    <select name="clarus-network-status" id="clarus-network-status">
-                                        <option value="">&mdash; Network Status &mdash;</option>
-                                        <option value="Connected">Connected</option>
-                                        <option value="Disconnected">Disconnected</option>
+                                    <input type="text" name="clarus-number-review-stations" id="clarus-number-review-stations" placeholder="Number of Review Stations" />
+                                    <div class="label-left">Number of Clarus Review Stations</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <select name="clarus-backup-interval" id="clarus-backup-interval">
+                                        <option value="">&mdash; Backup Interval &mdash;</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Fortnightly">Fortnightly</option>
+                                        <option value="Monthly">Monthly</option>
                                     </select>
-                                    <div class="label-left">Network Status</div>
+                                    <div class="label-right">Data Backup Interval</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input type="text" name="clarus-backup-storage-path" id="clarus-backup-storage-path" placeholder="Backup Storage Path" />
+                                    <div class="label-left">Backup Storage Path</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input type="text" name="clarus-backup-date" id="clarus-backup-date" placeholder="Date of Last Backup" />
+                                    <div class="label-right">Last Backup Date</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <select name="clarus-data-synchronization" id="clarus-data-synchronization">
+                                        <option value="">&mdash; Data Synchronization &mdash;</option>
+                                        <option value="Enabled">Enabled</option>
+                                        <option value="Disabled">Disabled</option>
+                                    </select>
+                                    <div class="label-left">Data Synchronization</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input type="text" name="clarus-synchronization-group" id="clarus-synchronization-group" placeholder="Data Sync Group" />
+                                    <div class="label-right">Data Synchronization Group</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input type="checkbox" id="clarus-active-archive" name="clarus-active-archive">
+                                    <label for="clarus-active-archive">Active Archive?</label>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input type="text" name="clarus-archive-label" id="clarus-archive-label" placeholder="Archive Label" />
+                                    <div class="label-right">Archive Label</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input type="text" name="clarus-archive-path" id="clarus-archive-path" placeholder="Archive Path" />
+                                    <div class="label-left">Archive Path</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall clarus-field">
+                                    <input style="float: left; width: 70%;" type="text" name="clarus-archive-available-free-space" id="clarus-archive-available-free-space" placeholder="Archive Free Space" />
+                                    <select style="float: left; width: 30%;" name="clarus-archive-available-size" id="clarus-archive-available-size">
+                                        <option value="">----</option>
+                                        <option value="mb">MB</option>
+                                        <option value="gb">GB</option>
+                                        <option value="tb">TB</option>
+                                        <option value="pb">PB</option>
+                                    </select>
+                                    <div class="label-right">Archive Free Space</div>
                                 </div>
 
                                 <!-- HFA Instrument-Specific -->
@@ -1000,6 +1057,13 @@
                                 <div class="col-12">
                                     <textarea name="solution-notes" id="solution-notes" placeholder="Solution Notes" rows="3"></textarea>
                                     <div class="label-right">Solution Notes</div>
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <span id="sustaining-message"></span>
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <input type="checkbox" id="sustaining-ticket" name="sustaining-ticket" />
+                                    <label for="sustaining-ticket">Sustaining Ticket?</label>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <a href="#wrap-up" id="schedulecall" class="button primary small">Schedule Call Back</a>

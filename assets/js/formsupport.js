@@ -702,7 +702,8 @@ function checkPhoneFormat() {
     var input_ph = document.getElementById('phone').value;
     var cleaned = ('' + input_ph).replace(/\D/g, '');
     var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})(\d+)?$/);
-    if (match) {
+    console.log({match});
+    if (match !== null) {
         console.log('match[5]: ' + match[5]);
         var ext = (typeof match[5] === 'undefined') ? '' : ' x' + match[5];
         document.getElementById('phone').value = [match[2], '-', match[3], '-', match[4], ext].join('');

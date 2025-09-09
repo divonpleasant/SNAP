@@ -247,6 +247,24 @@ function populateICField() {
     }
 }
 
+function checkYoungRevenue() {
+    console.log('Executing checkYoungRevenue ...');
+    var model_num = document.getElementById('model')[document.getElementById('model').selectedIndex].id;
+    var instr_val = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value;
+    var instr_key = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id;
+    console.log({model_num, instr_key, instr_val});
+    var ic_output = '';
+    console.debug('product type is: ' + checkProductType(instr_key));
+    if (checkProductType(instr_key) === 'instrument') {
+        if (products.pdata.instruments[instr_key].models[model_num].required_escalation !== 'undefined') {
+            if (products.pdata.instruments[instr_key].models[model_num].required_escalation) {
+                updateSystemBox('Young Revenue product selected. Sustaining ticket required');
+                document.getElementById('sustaining-ticket').checked = true;
+            }
+        }
+    }
+}
+
 function sortSelectItems(si_list, method, exempt = [], reverse_order = true) {
     console.debug("Executing sortSelectItems ...\n  si_list: " + JSON.stringify(si_list) + "\n  method: " + method + "\n  reverse_order: " + reverse_order + "\n  exempt: " + exempt);
     switch (method) {
@@ -436,6 +454,7 @@ document.getElementById('model').addEventListener('change', function() {
     fetchAndAdjustSerialTooltip(model_tooltip);
     prePopulateSerialField();
     populateICField();
+    checkYoungRevenue();
 }, false);
 
 // Handle billing select field
