@@ -3005,6 +3005,9 @@ input.teamviewer-info-head {
     background: #e71e1e;
     color: #fff;
 }
+#prompt-content p {
+    margin: 0 0 1em 0;
+}
 #prompt-content a {
     color: #a70240;
     border-bottom: dotted 1px;
@@ -3024,7 +3027,7 @@ input.teamviewer-info-head {
     margin: 0;
 }
 #prompt-content ul,ol {
-    margin-bottom: .4em;
+    margin-bottom: 1em;
     padding-left: 2em;
 }
 #prompt-content .console {

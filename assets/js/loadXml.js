@@ -43,6 +43,7 @@ function populateData(form, xmlDom) {
             }
         }
         updateSystemBox('Successfully imported ' + loadedFile.name);
+        logHistoryEvent(`XML Form Data Imported from ${loadedFile.name}`);
     } catch (e) {
         console.error(e);
     }

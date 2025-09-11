@@ -589,6 +589,7 @@ function crossChargeAutoUpdate() {
         console.log('crossChargeAutoUpdate ... Changing XC to B because call type or remote resolution checkbox do not meet the XC criteria');
         document.getElementById('billing-type').value = 'B';
     }
+    logHistoryEvent('Billing Type Auto-Updated: ' + document.getElementById('billing-type').value)
 }
 
 function hideSystemBox() {
@@ -828,3 +829,11 @@ document.getElementById('address-change-proceed').addEventListener('click', func
 });
 document.getElementById('phone').addEventListener('change', checkPhoneFormat);
 document.getElementById('instrument-address').addEventListener('change', processInstrumentAddress);
+
+/* Logging/History Listeners */
+document.getElementById('serial').addEventListener('change', function() {
+    logHistoryEvent('Serial number changed: ' + document.getElementById('serial').value);
+});
+document.getElementById('billing-type').addEventListener('change', function() {
+    logHistoryEvent('Billing Type Set: ' + document.getElementById('billing-type').value);
+});
