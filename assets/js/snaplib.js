@@ -673,6 +673,8 @@ function newSnap() {
 function logHistoryEvent(msg) {
     var hist = document.getElementById('case-history').value;
     console.log({hist});
-    var logdate = new Date().toISOString();
+    const date_opts = { timeZone: "America/Los_Angeles", timeZoneName: "short", hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3 };
+    var logdate = new Date().toLocaleDateString("en", date_opts);
+    console.log({logdate});
     document.getElementById('case-history').value = '[' + logdate + '] ' + msg + "\n" + hist;
 }
