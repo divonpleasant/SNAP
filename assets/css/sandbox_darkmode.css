@@ -3023,9 +3023,12 @@ input.teamviewer-info-head {
     font-weight: bold;
     margin: 0;
 }
+#prompt-content p {
+    margin: 0 0 1em 0;
+}
 #prompt-content ul,ol {
-    margin-bottom: .4em;
-    padding-left: 2em;
+    margin-bottom: 1em;
+    padding-left: 2em;                     
 }
 #prompt-content .console {
     font-family: "Andale Mono", Andale, monospace;
