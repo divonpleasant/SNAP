@@ -410,7 +410,8 @@ ${so.Settings.user.email_sig.value}`
                     "outgoing": `Hello! This is ${so.Settings.user.casual_name.value} calling from Zeiss Technical Support.${(document.getElementById('local-contact-person').value !== '') ? "I'm trying to reach " + document.getElementById('local-contact-person').value + ", please." : ''}`
                 },
                 "user": {
-                    "queue": `${(curr_date.getHours() <= 9) ? 'Good morning' : 'Hello'}! Thank you for calling Zeiss Technical Support, this is ${so.Settings.user.casual_name.value}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`
+                    "queue": `${(curr_date.getHours() <= 9) ? 'Good morning' : 'Hello'}! Thank you for calling Zeiss Technical Support, this is ${so.Settings.user.casual_name.value}. Who do I have the pleasure of speaking with? [ENTER POC.] May I have the serial number of your instrument or an existing ticket number to reference?`,
+                    "callback": `Hello! This is ${so.Settings.user.casual_name.value} from Zeiss Technical Support with a callback on a request we received. Can you please tell me which Zeiss instrument, service, or software you were calling about?`
                 }                    
             },
             "wrap-up": {
@@ -815,6 +816,15 @@ If a serial number provided by the customer does not return any results:
 <a name="cc-payments"></a>
 <h4>Credit Card Payments</h4>
 <p>Customers can confirm either verbally (over the phone) or in writing (generally via email, especially when using the <a href="#" onclick="manualOpenEmailTemplate('billing-request')">PO Authorization</a> email template) that they would like to handle payment via credit card. Credit card processing is handled by the FSE, through an Adyn Link sent to the customer's billing contact after the service is completed.</p>
+<h5>Adyn Link Ineligible Customers</h5>
+<p>The credit card payment option is not available for every customer. It is provided primarily as a convenience for smaller and independent practices who may not have dedicated accounting or bookkeeping personnel. As a result, Adyn Link is not an option for the following categories of customer:</p>
+<ul>
+    <li><strong>Third-party Billing Entities</strong> (e.g. GE Clinical, TriMedX, Agilitti)</li>
+    <li><strong>Educational Institutions</strong> (e.g. Johns Hopkins University, UCLA, Yale, University of Miami)</li>
+    <li><strong>Government Facilities</strong> (e.g. PROAIM accounts, VAs)</li>
+    <li><strong>Hospitals</strong> (e.g. Beth Israel Hospital, Cook County Hospital, Seattle Children's Hospital)</li>
+    <li><strong>National Accounts</strong> (e.g. Keplr Vision, MyEyeDr, Vision Innovation Partners)</li>
+</ul>
 <a name="po-payments"></a>
 <h4>Purchase Order Payments</h4>
 <p>Purchase Order payments require a customer to generate a minimum billable purchase order document legally binding them to transfer funds to cover the service rendered. This PO must be processed by Service Operations Admin (SOA) in order to generate the dispatch SVO for the FSE onsite visit. Purchase Order payments cannot be processed over the phone, and the easiest means to confirm the customer's PO is to send the billing contact the PO information included in the <a href="#" onclick="manualOpenEmailTemplate('billing-request')">PO Authorization</a> email template.</p>
@@ -1999,6 +2009,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>sustaining-ticket</key>
     <value>${document.getElementById('sustaining-ticket').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>case-history</key>
+    <value>${document.getElementById('case-history').value}</value>
   </customMetaData>
 </AssetInfo>`
             }

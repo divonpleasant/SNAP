@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.16.1",
+        "data_version": "1.17.0",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -2880,6 +2880,25 @@ function generateProductData() {
                         "eos_url": "",
                         "model_url": "",
                         "instrument_codes": ["9138", "9149"]
+                    },
+                    "green": {
+                        "model_serials": {
+                            "format": "12[sequence]",
+                            "example": "1212345",
+                            "prefix_format": "12",
+                            "sequence_format": "5 digits"
+                        },
+                        "subsets": {},
+                        "model_number": "Green",
+                        "full_name": "VisuLas Green",
+                        "launch_date": "",
+                        "supported": true,
+                        "required_escalation": true,
+                        "eos_date": "",
+                        "eogs_date": "",
+                        "eos_url": "",
+                        "model_url": "",
+                        "instrument_codes": ["9143", "9144"]
                     },
                     "yag": {
                         "model_serials": {

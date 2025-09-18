@@ -205,6 +205,7 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     const t = new generateTemplates(device_context);
     console.debug({template_id});
     console.debug('Using template: ' + t.templates.email[template_id].name);
+    logHistoryEvent(`Sent ${template_id} message to customer`);
 
     // Construct the mailto link
     var mailto_link = 'mailto:' + encodeURIComponent(t.templates.email[template_id].recipient) + '?';

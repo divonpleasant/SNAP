@@ -67,6 +67,7 @@ function exportToFile(clean_data, extension, filename = 'export') {
     }
     link.download = `${filename}${extension}`;
     link.click();
+    logHistoryEvent(`Form Data Exported: ${filename}${extension}`);
 }
 
 /*
@@ -79,6 +80,7 @@ function copyCrmData (data_subset) {
     switch (data_subset) {
         case 'rafta':
             data_context.push(useActualDescription()); // actual_description
+            logHistoryEvent('RAFTA Notes Exported');
             break;
         case 'interaction':
             data_context.push(procCctDescription()); // cct_description
@@ -88,10 +90,12 @@ function copyCrmData (data_subset) {
             data_context.push(processDiskSpace('oct-c-drive-free')); // oct_c_space
             data_context.push(processDiskSpace('oct-e-drive-free')); // oct_e_space
             clipBoarder(data_context[0], 'CCT description string');
+            logHistoryEvent('Interaction Data Exported');
             break;
         case 'internal':
             data_context.push(outputCommunicationPref()); // comm_preference
             data_context.push(generateBillingContact()); // billing_str
+            logHistoryEvent('Internal Notes Exported');
             break;
         default:
             break;

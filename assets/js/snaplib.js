@@ -1,4 +1,4 @@
-const version = '3.1.18';
+const version = '3.1.19';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -287,6 +287,7 @@ stylesheet: ${final_style}
     (page_reload) ? window.location.reload() : '';
     
     passed_values = new URLSearchParams(window.location.search);
+    logHistoryEvent('New SNAP form initialized');
 }
 startUp();
 
@@ -667,4 +668,13 @@ function checkCookie() {
 
 function newSnap() {
     window.location.assign(window.location.href);
+}
+
+function logHistoryEvent(msg) {
+    var hist = document.getElementById('case-history').value;
+    console.log({hist});
+    const date_opts = { timeZone: "America/Los_Angeles", timeZoneName: "short", hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3 };
+    var logdate = new Date().toLocaleDateString("en", date_opts);
+    console.log({logdate});
+    document.getElementById('case-history').value = '[' + logdate + '] ' + msg + "\n" + hist;
 }

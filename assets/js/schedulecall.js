@@ -47,6 +47,7 @@ document.getElementById('modalContinue').addEventListener('click', function (eve
     };
 
     generateICS(eventData, serial);
+    logHistoryEvent(`Call back scheduled for ${new Date(dateTime).toISOString()}`);
     document.getElementById('schedule-overlay').style.display = 'none';
 });
 
