@@ -1,4 +1,4 @@
-const version = '3.1.19';
+const version = '3.1.20';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -676,5 +676,7 @@ function logHistoryEvent(msg) {
     const date_opts = { timeZone: "America/Los_Angeles", timeZoneName: "short", hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3 };
     var logdate = new Date().toLocaleDateString("en", date_opts);
     console.log({logdate});
-    document.getElementById('case-history').value = '[' + logdate + '] ' + msg + "\n" + hist;
+    var new_field_data = '[' + logdate + '] ' + msg + "\n" + hist;
+    console.log({new_field_data});
+    document.getElementById('case-history').value = new_field_data;
 }

@@ -1,13 +1,31 @@
 function readFile(event) {
+    console.log('Executing readFile ...');
+    console.debug({event});
+    var formlist = ['secondary-form', 'snap-form'];
+    for(f = 0; f < formlist.length; f++) {
+        if (document.getElementById(formlist[f]) === null) {
+            console.warn('Form with id ' + formlist[f] + ' not found.');
+            return;
+        } else {
+            var form = document.getElementById(formlist[f]);
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(event.target.result, 'text/xml');
+            console.log({form});
+            populateData(form, xmlDoc);
+        }
+    }
+    /*
     var form = document.getElementById('snap-form');
     var parser = new DOMParser();
     var xmlDoc = parser.parseFromString(event.target.result, 'text/xml');
+    console.log({form});
     populateData(form, xmlDoc);
-    console.debug({event});
+    */
 }
 
 var loadedFile = '';
 function changeFile() {
+    console.log('Executing changeFile ...');
     var file = document.getElementById('upload').files[0];
     loadedFile = file;
     console.debug('file: ' + JSON.stringify(file));
@@ -21,6 +39,7 @@ function changeFile() {
 }
 
 function populateData(form, xmlDom) {
+    console.log("Executing populateData ... \nform: " + form.id + "\nxmlDom: " + xmlDom.documentElement.nodeName);
     try {
         var root = xmlDom.documentElement;
         var metadataNodes = root.querySelectorAll('customMetaData');

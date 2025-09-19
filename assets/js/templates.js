@@ -1155,6 +1155,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
 <state>import</state>
 <name>snap_savefile</name>
   <customMetaData>
+    <key>case-history</key>
+    <value>${document.getElementById('case-history').value}</value>
+  </customMetaData>
+  <customMetaData>
     <key>serial</key>
     <value>${htmlEscape(document.getElementById('serial').value)}</value>
   </customMetaData>
@@ -2009,10 +2013,6 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>sustaining-ticket</key>
     <value>${document.getElementById('sustaining-ticket').checked}</value>
-  </customMetaData>
-  <customMetaData>
-    <key>case-history</key>
-    <value>${document.getElementById('case-history').value}</value>
   </customMetaData>
 </AssetInfo>`
             }
