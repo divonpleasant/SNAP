@@ -60,6 +60,14 @@ function generateSettings() {
                 "type": "boolean",
                 "cookie_key": "copyCrmDescrSttng",
                 "description": "Toggles whether or not to copy a derived sample CRM description string (assembled from the serial number, billing type, and first sentence of the problem description) when an export operation is executed."
+            },
+            "solutions_score_threshold": {
+                "name": "Solutions Score Threshold",
+                "default_value": 0,
+                "value": 0,
+                "type": "integer",
+                "cookie_key": "solScoreThresh",
+                "description": "Numerical value to set the minimum score value displayed in the possible solutions list."
             }
         },
         "process": {

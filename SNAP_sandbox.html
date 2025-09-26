@@ -131,7 +131,11 @@
                             </div>
                             <div class="col-12">
                                 <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
-                                <div class="label-right">Problem/Issue Description</div>
+                                <div class="solutions-container">
+                                    <div id="search-solutions" class="solutions-toggle" title="Search for Solutions"><a href="#" class="info-button" onclick="showHideSolutions()"><i id="solution-lookup" class="fa-solid fa-magnifying-glass-arrow-right" tooltip="Search for Solutions"></i></a></div>
+                                    <div class="solutions-label">Problem/Issue Description</div>
+                                </div>
+                                <div id="solutions-box"></div>
                             </div>
 
                             <!-- Warranty and Service Contracts -->
@@ -887,7 +891,7 @@
                                 <a name="troubleshooting-actions-performed"></a>
                                 <h5>Troubleshooting/Actions Performed</h5>
                                 <textarea name="troubleshooting-performed" id="troubleshooting-performed" placeholder="Troubleshooting/Actions Performed" rows="6"></textarea>
-                                <span id="activate-common-actions" class="field-menu-toggle"><a href="#troubleshooting-actions-performed" onclick="toggleFieldMenu('common-actions-container');"><i class="fa-solid fa-person-digging"></i></a></span>
+                                <span id="activate-common-actions" class="field-menu-toggle" title="Common Actions Menu"><a href="#troubleshooting-actions-performed" onclick="toggleFieldMenu('common-actions-container');"><i class="fa-solid fa-person-digging"></i></a></span>
                                 <div id="common-actions-container" class="field-menu">
                                     <span class="field-menu-tail"><i class="fa-solid fa-caret-up fa-2xl"></i></span>
                                     <div class="field-menu-contents">
@@ -1560,6 +1564,7 @@
         <script src="assets/js/schedulecall.js"></script>
         <script src="assets/js/templatelib.js"></script>
         <script src="assets/js/openEmailTemplate.js"></script>
+        <script src="assets/js/solutions.js"></script>
         <script src="assets/js/loadXML.js"></script>
 
     </body>

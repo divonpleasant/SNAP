@@ -724,7 +724,7 @@ function updateReferenceBoxContents(location_ref, direct_link = '') {
     console.log("Executing updateReferenceBoxContents ... \nlocation_ref: " + location_ref + "\ndirect_link: " + direct_link);
     // cache prevention
     var qparam = Date.now();
-    var base_path = 'assets/data/reference/'
+    var base_path = 'assets/data/reference/';
     var context_location = '';
     var path_location = '';
     switch (location_ref) {

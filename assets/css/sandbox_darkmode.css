@@ -4031,3 +4031,112 @@ input.teamviewer-info-head {
 #sustaining-message {
     color: #fdbb08;
 }
+
+.solutions-container {
+    display: flex;
+}
+.solutions-toggle {
+    font-size: 1.2em;
+}
+.solutions-label {
+    font-size: 8pt;
+    width: 100%;
+    text-align: right;
+    align-content: center;
+    color: light-gray;
+    align-items: stretch;
+}
+
+#solutions-box {
+    display: none;
+    position: relative;
+    max-height: 400px;
+    padding: 10px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #244a86 #8daac8;
+    background-color: #4c6bb1;
+    z-index: 995;
+    border-radius: 5px;
+}
+#solutions-box .solution-card {
+    font-family: 'ZEISS-Frutiger';
+    color: #8daac8;
+    list-style: none;
+    border: 1px solid #8daac8;
+    border-radius: 5px;
+    background-color: #244a86;
+    padding: 4px 6px;
+    margin: 2px;
+}
+#solutions-box .solution-card strong {
+    font-weight: bold;
+}
+#solutions-box .solution-header {
+    display: flex;
+    justify-content: space-between;
+}
+#solutions-box .solution-header .sol-title {
+    text-decoration: underline;
+}
+#solutions-box .solution-header .scorevalue {
+    font-size: 0.9em;
+    /*position: relative;*/
+    top: 0em;
+}
+#solutions-box h1 {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+#solutions-box h2 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0.1em 0 0;
+}
+#solutions-box h3 {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0.1em 0 0;
+}
+.solution-details {
+    display: none;
+    font-size: 0.8em;
+}
+.solution-details p {
+    margin-bottom: 0;
+}
+.solution-details blockquote {
+    margin-bottom: 1em;
+}
+.solution-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.2em;
+}
+.solution-details table th, .solution-details table td {
+    border: 1px solid #000;
+    padding: 0.2em;
+    text-align: left;
+    background-color: none;
+}
+.solution-details table th {
+    background-color: #778592;
+    font-weight: bold;
+    border: 1px solid #000;
+    color: #fff;
+}
+.solution-details table td {
+    background-color: none;
+}
+.solution-details table thead {
+    border: none;
+}
+.solution-details ul, .solution-details ol {
+    list-style-position: inside;
+    margin: 0 0 1px;
+}
+.solution-references ul {
+    list-style-type: square;
+    list-style-position: inside;
+    margin: 0 0 2px;
+}

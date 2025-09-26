@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.17.0",
+        "data_version": "1.18.0",
         "schema_version": "8.4",
         "validated_date": "",
         "validated_ver": "",
@@ -318,7 +318,7 @@ function generateProductData() {
                         "exemptions": ["serial"]
                     },
                     "serial": {
-                        "format": "[model]-[sequence]",
+                        "format": "",
                         "example": "",
                         "software_location": "",
                         "hardware_location": "",
@@ -326,7 +326,14 @@ function generateProductData() {
                         "sequence_format": "4+ digits"
                     },
                     "500": {
-                        "model_serials": {},
+                        "model_serials": {
+                            "format": "9801[sequence]",
+                            "example": "9801123456",
+                            "software_location": "Settings > Instrument Settings > Device Information",
+                            "hardware_location": "Baseplate on the patient side, below the chinrest",
+                            "prefix_format": "9801",
+                            "sequence_format": "6+ digits"
+                        },
                         "model_number": "500",
                         "full_name": "ATLAS 500",
                         "launch_date": "",
@@ -389,7 +396,7 @@ function generateProductData() {
                         "model_serials": {
                             "format": "[model]-[sequence]",
                             "example": "9000-1234",
-                            "software_location": "",
+                            "software_location": "C:\\ATLAS\\atlas_calibration.xml",
                             "hardware_location": "Right side of instrument, to left of connectors",
                             "prefix_format": "9000-",
                             "sequence_format": "4 digits"
