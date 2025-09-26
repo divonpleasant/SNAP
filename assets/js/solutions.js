@@ -210,6 +210,18 @@ function generateSolutions(context = '') {
             ]
         },
         "00004": {
+            "title": "Freeze on Next or Missing Mapped Drives",
+            "tags": ["freeze", "hang", "lock", "unresponsive", "starting test", "start test", "daily", "every day", "morning", "every morning", "each morning", "next button", "next", "network map", "network drive", "mapped drive", "mapped", "re-map", "manual map", "drive", "disappear", "drive disconnected", "disconnect", "location"],
+            "instruments": ["HFA"],
+            "models": ["HFA3 830", "HFA3 840", "HFA3 850", "HFA3 860"],
+            "software_versions": ["1.5.3"],
+            "problem_description": "hfa3_freeze_on_next_drives_not_mapping.html",
+            "solution_description": "hfa3_missing_mapped_drive_solution.html",
+            "references": [
+                {"title": "When Network map disconnects/disappears...", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28HFA3%20ALL%20MODELS.one%7C41994B2F-AC33-4B1C-AAED-181045CC14C4%2FWhen%20Network%20map%20disconnects%5C%2FDisappears%20%2C%20this%20is%20the%20last%7C678B8385-D330-4F17-AE27-85ADD12FFAC8%2F%29&wdpartid={F2F1A3A5-C863-4F6E-BC6D-4B60DC57505A}{18}&wdsectionfileid={9599597F-B1AB-463F-B4D8-197A014914B1}", "src": "OneNote"}
+            ]
+        },
+        "00005": {
             "title": "Errors in Scanning Module",
             "tags": ["errors", "detected", "scanning module", "acquire or review scans", "scans", "scanner", "module", "start up", "start-up", "problem is corrected", "problem", "corrected", "contact", "carl zeiss meditec", "customer service", "customer support", "assistance", "details", "instrument", "acquire or review", "red x", "x icon", "cirrus hd-oct", "cirrus", "hd-oct", "hd oct"],
             "instruments": ["Cirrus OCT"],
