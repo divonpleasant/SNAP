@@ -867,6 +867,26 @@ If a serial number provided by the customer does not return any results:
     <li>If there is additional follow-up required, contact the customer and confirm all necessary information, then proceed until the order is confirmed and the ticket can be closed</li>
     <li>If the customer requests an ETA on a fulfilled order, direct an inquiry including the Sales Order number and the Part Number(s) to <a href="mailto:logistics@watchpointlogistics.com">logistics@watchpointlogistics.com</a></li>
 </ul>`
+                },
+                "eos": {
+                    "default": `<h1>End of Support</h1>
+<p>The model of instrument or version of the software requested by the customer has the status of "End of Support" or EoS. Products that have had their support ended cannot be triaged per the usual process. Specifically:</p>
+<ul>
+    <li>Remote support is not permitted. Do not connect to EoS instruments via TeamViewer or Teleservice</li>
+    <li>Onsite repair is no longer provided. Do not dispatch an FSE or create an onsite SVO for this device</li>
+    <li>Preventative Maintenance requests cannot be honored. Similar to the above, do not create or request SVOs for PMs</li>
+    <li>Spare parts will be stocked only until no longer available from the supplier or until they become cost prohibitive to keep in inventory. As such, there is no guarantee spare parts requests can be honored</li>
+    <li>Service contracts will have already been cancelled and refunded, and new contracts can no longer be acquired. Do not direct customers to their contract reps (remember that billable services are no longer provided, either, so contract vs billable status shouldn't matter)</li>
+</ul>
+<p>It is generally considered to be good customer service to at least hear a caller out and do your best within the constraints above to provide support. This can include sending documentation or troubleshooting guides via email, providing phone support, and analyzing logs offline (when provided by the customer via team inbox).</p>
+<p>You are also encouraged to nudge customers toward acquiring newer, supported replacements for their EoS devices. Use the Sales Lead form to set up a callback to the customer from the Sales Team, and mention that Zeiss regularly offers trade-in opportunities for EoS devices toward the purchase of newer instruments. You can also provide customers the toll-free number to the Customer Direct Center: 800-342-9821.</p>
+`,
+                  "eogs": `<h1>End of Guaranteed Support</h1>
+<p>The model of instrument or version of the software requested by the customer has the status of "End of Guaranteed Support" or EoGS. Products that have reached the end of <em>guaranteed</em> support are in a sunset period, sort of a transition phase between full, active support and the End of Support status.</p>
+<p>Typically when an End of Guaranteed Support message is sent to customers, a support deadline will be included indicating when active service contracts will be cancelled and reimbursed (it may or may not be the same as the EoGS date). Once that date has passed, no new contracts can be acquired.</p>
+<p>Because EoGS products are no longer eligible for contracted support, all remote and professional services support is provided on a billable basis.</p>
+<p>EoGS products should be triaged and serviced as normal, but you should set customer expectations that Zeiss is no longer able to guarantee technical expertise, parts availability, or a viable service delivery process to restore products to original functionality. In other words, we will do our level best, but there may be circumstances where the device cannot be fully fixed or repaired.</p>
+`
                 }
             },
             "clipboard-templates": {
