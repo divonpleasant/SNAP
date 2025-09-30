@@ -13,7 +13,7 @@ function settingsOverlay(event) {
     document.getElementById('sign-email').checked = so.Settings.user.sign_email.value;
     document.getElementById('fse-sla').value = so.Settings.process.fse_sla.value;
     document.getElementById('pm-sla').value = so.Settings.process.fse_pm_sla.value;
-
+    document.getElementById('solution-score-threshold').value = so.Settings.ui.solutions_score_threshold.value;
     document.getElementById('settings-overlay').style.display = 'flex';
 }
 
@@ -29,6 +29,7 @@ function processSettings(event) {
     var user_set_signEmailSttng = document.getElementById('sign-email').checked;
     var user_set_fseSlaBreakFix = document.getElementById('fse-sla').value;
     var user_set_fseSlaPM = document.getElementById('pm-sla').value;
+    var user_set_solScoreThresh = document.getElementById('solution-score-threshold').value;
     console.debug({user_set_alrtCpySttng});
     console.debug({user_set_alrtXcSttng});
     console.debug({user_set_copyCrmDescrSttng});
@@ -42,6 +43,7 @@ function processSettings(event) {
     setCookie('debugMode', user_set_debugSttng, 365);
     setCookie('fseSlaBreakFix', user_set_fseSlaBreakFix, 365);
     setCookie('fseSlaPM', user_set_fseSlaPM, 365);
+    setCookie('solScoreThresh', user_set_solScoreThresh, 365);
     
     console.debug('Cookie check: ' + document.cookie);
     

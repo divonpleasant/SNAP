@@ -1955,6 +1955,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${document.getElementById('debug-toggle').checked}</value>
   </customMetaData>
   <customMetaData>
+    <key>solution-score-threshold</key>
+    <value>${document.getElementById('solution-score-threshold').value}</value>
+  </customMetaData>
+  <customMetaData>
     <key>foc</key>
     <value>${document.getElementById('foc').checked}</value>
   </customMetaData>

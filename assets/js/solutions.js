@@ -233,6 +233,20 @@ function generateSolutions(context = '') {
                 {"title": "Self test: Instrument errors", "url": "https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/Doc.aspx?sourcedoc={2D11422D-7802-40B6-A0D4-C7EF3B2C4EDC}&wd=target%28Common%20Issues.one%7CFE1CBE1A-12E5-4479-9DAA-D61ED3EA7C83%2FSelf%20test%3A%20Instrument%20errors%7C0C1E23AC-56C3-458F-9BEC-0C4216724C0C%2F%29&wdpartid={DAA2736B-757B-4CEC-86BB-80F899226C18}{89}&wdsectionfileid={CCB5FC0F-FFAB-408D-B757-4F1E82F0EAC3}", "src": "OneNote"},
                 {"title": "CIRRUS_5000_SB_007: Known Issues", "url": "https://mira.med.zeiss.com/service-express/portal/object/lvid/SM_000000-2515-253_01_002?context=%7B%22filter%22%3A%7B%22InformationTypes%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23ServiceBulletin%22%5D%7D%2C%22text%22%3A%22CIRRUS_5000_SB_007%22%2C%22page%22%3A1%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Service Bulletin"}
             ]
+        },
+        "00006": {
+            "title": "Database Initialization Issues",
+            "tags": ["error", "start up", "start-up", "migration", "prior", "database", "db", "data base", "initialization", "device", "zeiss logo", "white screen", "boot", "boot-up", "launch", "databaseintegrity", "databasesnapshotactivity", "ensuredatabaseintegrity", "exception", "sql", "sqlexception", "cannot open database", "czmdefault"],
+            "instruments": ["IOLMaster"],
+            "models": ["IOLMaster 700"],
+            "software_versions": ["1.90.40", "1.90.12"],
+            "problem_description": "iolmaster_migration_prior.html",
+            "solution_description": "iolmaster_migration_prior_to_database_initialization_solution.html",
+            "references": [
+                {"title": "IOLM700-Migration prior to database initialization - Error creating device database snapshot 1", "url": "https://zeiss.sharepoint.com/:b:/r/sites/msteams_729f4a/Shared%20Documents/General/IOLM700%E2%80%93Migration%20prior%20to%20database%20initialization%20-%20Error%20creating%20device%20database%20snapshot%201.pdf?csf=1&web=1&e=guJI7o", "src": "SharePoint"},
+                {"title": "IOLMaster 700 - White Screen with Zeiss Logo on Bootup", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28IOLMASTER%20700.one%7C9D82B692-F67F-4FE4-ACC7-BE726F16E193%2FIOLMaster%20700%20-%20White%20Screen%20with%20Zeiss%20Logo%20on%20Bootup%7CB5ADF9DE-0E6C-474D-9D61-B90863CC5E1C%2F%29&wdpartid={C63F457F-4A62-4318-AA5A-7383BAD2A5D6}{128}&wdsectionfileid={B603A2C5-7B19-4DE8-B9F0-89FF6238D4C8}", "src": "OneNote"},
+                {"title": "Adjustment and Calibration: 4.5.4 Deleting of corrupt databases", "url": "https://mira.med.zeiss.com/service-express/portal/object/lvid/SM_000000-2516-448_01_002?context=%7B%22filter%22%3A%7B%7D%2C%22text%22%3A%22IOLMaster+700+service+manual+4.5.4%22%2C%22page%22%3A2%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Service Manual"}
+            ]
         }
     }
 }

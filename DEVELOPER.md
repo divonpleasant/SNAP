@@ -25,7 +25,7 @@ A few things to keep in mind when contributing to SNAP:
 
 ## GETTING STARTED
 
-If you're not invetigating the SNAP codebase to fix a specific bug, but want to contribute in some way, you may find it easiest (after reading the Key Points, above) to look through the [Issues Page](https://github.com/divonpleasant/SNAP/issues) and choose one to work through.
+If you're not invetigating the SNAP codebase to fix a specific bug, but want to contribute in some way, you may find it easiest (after reading the Key Points, above) to look through the [Issues Page](https://github.com/divonpleasant/SNAP/issues) and choose one to work through. The maintainers try to flag issues filed with the "good first issue" tag to indicate issues that shouldn't require extensive knowledge of the existing codebase to understand and/or fix.
 
 ## NAMING CONVENTIONS
 
@@ -48,3 +48,16 @@ SNAP has a few semi-informal naming conventions. If your commits/merges don't ad
   * **Functions:** Functions use "camel case" (no word separation, each word other than the first is capitalized), should be descriptive without being verbose, use abbreviations sparingly. It is highly recommended that you run a search before creating a new function to ensure a similar or similarly-named function doesn't already exist.
     * _Good Examples:_ ``generateCartList``; ``updateTimeZone``; ``processUserInput``
     * _Bad Examples:_ ``hide_unused-FORM-element`` (better: ``hideUnusedFormElement``); ``cA`` (better: ``catchAll``); ``accept_user_input_and_validate_data_for_pii`` (better: ``validateUserInput``)
+  * **File Names:** Camel case, with ``.min.`` used for generated or library code that has been compressed (whitespace stripping). Files should be named by the area of function they cover. If a file contains a data object/class, it should be named like "{function_area}Data.js" even if it includes additional code, and files which contain functions or classes which are meant to be called from various other feature areas should be named like "{function_area}lib.js". And generated, licensed, public, or open source code should be minimized and named like "{library_name}.min.js".
+    * _Good Examples:_ ``productData.js``; ``loadXml.js``; ``numbers2words.min.js``; ``templateLib.js``
+    * _Bad Examples:_ ``email_TEMPLATE.library-code.js`` (better: ``emailTemplateLib.js``); ``Employees.js`` (better: ``personnelData.js``); ``funcs.js`` (better: ``formLib.js``)
+
+## CODE WALK
+
+The SNAP code, as of this writing (3.1.X), is comprised of a couple dozen JavaScript files, HTML files for the main SNAP page and a Sandbox version, and CSS files to manage styles for both, plus a dark mode alternate CSS scheme. There are also a handful of specialized files such as a page for auditing SNAP data, and some HTML snippets or include files for populating various helper features like the References pane and Solutions Index.
+
+The crux of SNAP is the JavaScript code, which was written by two TSEs with some elements generated with assistive AI. The latter was primarily used to create some basic UI functionality and that code is readily identifiable as being minimized (or saved without whitespace for file size optimization). Note that the main logic of the form is not minimized for the sake of legibility and the ability to debug/enhance. Performance--particularly network-based, of the type that minimization generally addresses--isn't much of a concern for an internal-use, front-end executed tool. Should performance become a concern in the future, compression options may be explored.
+
+For the most part, we recommend leaving the minimized AI-assisted code as-is. All (or nearly all) of the Zeiss-specific functionality is inside the un-minimized code files, which should be the only parts we really want to change.
+
+Note that, from an organizational standpoint, we try to keep things contained within a minimal number of discreet files, but at the same time the goal is to separate code by purpose. Ideally, it should be intuitive to guess which file contains a given function, object, or class definition. This is obviously a work in progress, and some additional clean-up is definitely needed and planned for future dev work.
