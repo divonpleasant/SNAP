@@ -247,6 +247,18 @@ function generateSolutions(context = '') {
                 {"title": "IOLMaster 700 - White Screen with Zeiss Logo on Bootup", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28IOLMASTER%20700.one%7C9D82B692-F67F-4FE4-ACC7-BE726F16E193%2FIOLMaster%20700%20-%20White%20Screen%20with%20Zeiss%20Logo%20on%20Bootup%7CB5ADF9DE-0E6C-474D-9D61-B90863CC5E1C%2F%29&wdpartid={C63F457F-4A62-4318-AA5A-7383BAD2A5D6}{128}&wdsectionfileid={B603A2C5-7B19-4DE8-B9F0-89FF6238D4C8}", "src": "OneNote"},
                 {"title": "Adjustment and Calibration: 4.5.4 Deleting of corrupt databases", "url": "https://mira.med.zeiss.com/service-express/portal/object/lvid/SM_000000-2516-448_01_002?context=%7B%22filter%22%3A%7B%7D%2C%22text%22%3A%22IOLMaster+700+service+manual+4.5.4%22%2C%22page%22%3A2%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Service Manual"}
             ]
+        },
+        "00007": {
+            "title": "Screen Resolution Error",
+            "tags": ["screen", "resolution", "screen resolution", "less than", "1920x1080", "1920", "1080", "application will close", "start up", "start-up", "red x", "ok button"],
+            "instruments": ["Cirrus OCT"],
+            "models": ["Cirrus HD-OCT 6000"],
+            "problem_description": "screen_resolution_error.html",
+            "solution_description": "screen_resolution_solution.html",
+            "references": [
+                {"title": "Screen Resolution is less than 1920 x 1080. The application will close", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CIRRUS%20OCT%20ALL%20MODELS.one%7C4AEE7F34-6ABD-4543-BC96-64DDD1137CE2%2FScreen%20Resolution%20is%20less%20than%201920%20x%201080.%20The%20application%7C460CECF7-24F8-458D-9C3F-A7F4012525A5%2F%29&wdpartid={C39063C4-C46B-4D42-8D6E-A9DA1B3BD24C}{1}&wdsectionfileid={FE4D980A-3850-43D2-82EB-3983DCD74828}", "src": "OneNote"},
+                {"title": "Cirrus 6000 Application unable for lunch, showing screen resolution error", "url": "https://mira.med.zeiss.com/service-express/portal/object/objectid/ticketid_1322165?context=%7B%22filter%22%3A%7B%22ProductHierarchy%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OPT%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OphtalmicDiagnostics%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OCTSystems%22%5D%7D%2C%22text%22%3A%221920%22%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Knowledge Base"}
+            ]
         }
     }
 }
