@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.25.1",
+        "data_version": "1.26.5",
         "schema_version": "9.0",
         "validated_date": "",
         "validated_ver": "",
@@ -337,7 +337,7 @@ function generateProductData() {
                         "model_serials": {
                             "format": "9801[sequence]",
                             "example": "9801123456",
-                            "software_location": "Settings > Instrument Settings > Device Information",
+                            "software_location": "Settings > Instrument > Device Information",
                             "hardware_location": "Baseplate on the patient side, below the chinrest",
                             "prefix_format": "9801",
                             "sequence_format": "6+ digits"
@@ -652,7 +652,7 @@ function generateProductData() {
                     "serial": {
                         "format": "1[6-digit number]",
                         "example": "1081607",
-                        "software_location": "",
+                        "software_location": "Help > About",
                         "hardware_location": "Back of device, near the bottom",
                         "prefix_format": "1",
                         "sequence_format": "6 digits"
@@ -885,7 +885,9 @@ function generateProductData() {
                     },
                     "ff450": {
                         "model_serials": {},
-                        "subsets": {},
+                        "subsets": {
+                            "hardware_location": "Patient side, on instrument base"
+                        },
                         "model_number": "FF 450",
                         "full_name": "Fundus Camera FF 450",
                         "launch_date": "",
@@ -1121,6 +1123,7 @@ function generateProductData() {
                         "model_serials": {
                             "format": "740i-[sequence number]",
                             "example": "740i-1234",
+                            "software_location": "'i' Icon, upper left corner",
                             "prefix_format": "740i-",
                             "sequence_format": "4+ digits"
                         },
@@ -2478,7 +2481,7 @@ function generateProductData() {
                         "format": "[sequence]",
                         "example": "",
                         "software_location": "",
-                        "hardware_location": "",
+                        "hardware_location": "Patient side, on instrument base",
                         "prefix_format": "",
                         "sequence_format": "6-7 digits"
                     },
@@ -2945,7 +2948,7 @@ function generateProductData() {
                     "serial": {
                         "format": "",
                         "example": "",
-                        "software_location": "",
+                        "software_location": "Help > About",
                         "hardware_location": "Underneath the chinrest",
                         "prefix_format": "",
                         "sequence_format": ""

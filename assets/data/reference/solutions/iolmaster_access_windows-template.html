@@ -1,0 +1,32 @@
+<h3>Accessing Windows &mdash; Service Mode Method</h3>
+<p>[<strong>Note:</strong> this is the "official", Zeiss documented method. It will drop you into Windows with no IOLMaster application running and full access to the Windows operating system. Re-starting the IOLMaster application from here will limit Windows access again, which may limit its usefulness if you need to bounce between the application and the O/S repeatedly to troubleshoot.]</p>
+<ul>
+    <li>From main IOLMaster screen, click the X in the upper right and choose "Log Off"</li>
+    <li>On the application login screen, choose the Service user. Password is <code>September16</code></li>
+    <li>Click the wrench icon to access Settings</li>
+    <li>Select the Service menu option on the left panel</li>
+    <li>Click the button labeled, "Start Service Mode"</li>
+    <li>Confirm the Log Off</li>
+    <li>On the Windows login screen, select the CZM Service user. Password is <code>zeissuser</code></li>
+    <li>This should log you onto Windows with no application running, loading the Desktop</li>
+</ul>
+
+<h3>Accessing Windows &mdash; Application Bump Method</h3>
+<p>[<strong>Note:</strong> this is a quicker method than the Service Mode, and does not provide full access to the Windows O/S, but it does allow ready access to both some useful Windows functionality as well as the IOLMaster application in case switching back and forth between the two is helpful. If you suspect a system-level issue such as disk corruption or similar, refer to the Service Mode Method, above. This method also requires a physical keyboard attached to the device, it cannot be done with the on-screen virtual keyboard.]</p>
+<ul>
+    <li>Click the wrench icon to access Settings</li>
+    <li>Press ALT+Spacebar to bring up the context application menu in the upper left corner of the screen (once this is done, avoid moving the mouse until the move mode sequence is complete)</li>
+    <li>Using the arrow keys, press down until the Move option is highlighted</li>
+    <li>Press Enter to activate window move mode</li>
+    <li>Again using the arrow keys, press the right arrow <em>once</em>, then press enter to exit move mode</li>
+    <li>The application should have shifted a bit to the right, exposing a white margin on the left side of the screen</li>
+    <li>Mouse down to the bottom of the exposed margin, to reveal the hidden taskbar and the Start menu on the left of the taskbar</li>
+    <li>From the Start menu you should be able to access File Explorer, Windows Settings, and Control Panel which can be used to show peripherals data without overtaking the application</li>
+</ul>
+
+<h3>Accessing Windows &mdash; Direct Start to Windows</h3>
+<p>[<strong>Note:</strong> this is another Zeiss-approved method for FSEs in the field. It requires participation from the customer, and is mostly useful if the system is encountering errors before the application can start up, allowing for direct O/S troubleshooting. This method also requires a physical keyboard attached to the device, it cannot be done exclusively with the on-screen virtual keyboard. If you are having problems getting this method to work, it may help to have the customer unplug the touchscreen control cable from the side of the device before starting the instrument.]</p>
+<ul>
+    <li>After powering on the instrument, as soon as the cursor appears on-screen, instruct customer to press and hold the Shift key</li>
+    <li>This should disable the application auto-start and boot normally into Windows</li>
+</ul>

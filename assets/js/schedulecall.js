@@ -52,6 +52,15 @@ document.getElementById('modalContinue').addEventListener('click', function (eve
 });
 
 // Function to generate ICS file
+/*  Note: Address needs to be at the end of the content text. CRM 
+    addresses typically include a slash ( / ) character to separate 
+    the street address from the city/state/ZIP code; this slash 
+    interferes with the regular expression executed below when 
+    assigning the icsContent value. While the regex could be updated 
+    or an auto-formatter (similar to the one executed on the phone 
+    number field) could be applied, putting the address--which isn't 
+    nearly as vital in a scheduled callback calendar event as some of 
+    the other data--at the end elegantly works around the issue. */
 function generateICS(event, serial) {
     const bodyContent = `
 Instrument: ${event.details.instrument}
@@ -60,10 +69,10 @@ Point of Contact: ${event.details.poc}
 Account Name: ${event.details.account}
 Phone Number: ${event.details.phone}
 Email: ${event.details.email}
-Address: ${event.details.address}
 Customer Care Ticket #: ${event.details.cct}
 Problem Description: ${event.details.description}
 Billing Type: ${event.details.billing}
+Address: ${event.details.address}
 `;
 
     // Ensure the correct format for DTSTART and DTEND

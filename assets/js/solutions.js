@@ -259,6 +259,39 @@ function generateSolutions(context = '') {
                 {"title": "Screen Resolution is less than 1920 x 1080. The application will close", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CIRRUS%20OCT%20ALL%20MODELS.one%7C4AEE7F34-6ABD-4543-BC96-64DDD1137CE2%2FScreen%20Resolution%20is%20less%20than%201920%20x%201080.%20The%20application%7C460CECF7-24F8-458D-9C3F-A7F4012525A5%2F%29&wdpartid={C39063C4-C46B-4D42-8D6E-A9DA1B3BD24C}{1}&wdsectionfileid={FE4D980A-3850-43D2-82EB-3983DCD74828}", "src": "OneNote"},
                 {"title": "Cirrus 6000 Application unable for lunch, showing screen resolution error", "url": "https://mira.med.zeiss.com/service-express/portal/object/objectid/ticketid_1322165?context=%7B%22filter%22%3A%7B%22ProductHierarchy%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OPT%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OphtalmicDiagnostics%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OCTSystems%22%5D%7D%2C%22text%22%3A%221920%22%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Knowledge Base"}
             ]
+        },
+        "00008": {
+            "title": "Camera Preview Obscured/Dark",
+            "tags": ["black", "black preview", "no preview", "preview", "dark preview", "right side", "main preview", "eye dark", "not visible", "unable to see", "obscured", "right", "alignment working", "small preview", "preview not functioning", "completely dark", "opaque", "images fine", "output", "pictures", "still works", "take pictures", "images", "output", "alignment", "screen black", "screen not working", "screen function"],
+            "instruments": ["Clarus"],
+            "models": ["Clarus 500", "Clarus 700"],
+            "problem_description": "ir_laser_led_failure.html",
+            "solution_description": "ir_laser_led_failure_solution.html",
+            "references": [
+                {"title": "IR Laser/LED Failure", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CLARUS.one%7C7BCEC8B3-1FD0-4902-B626-985C8C9E35C7%2FIR%20Laser%5C%2FLED%20Failure%7C635A93AE-D798-4186-B200-52AE2EE80E84%2F%29&wdpartid={B117E1FC-C1B6-45D1-A658-55A5AC475C45}{1}&wdsectionfileid={22135654-211D-4C69-858B-A4F54EAABA99}", "src": "OneNote"}
+            ]
+        },
+        "00009": {
+            "title": "Error #9,1",
+            "tags": ["oct initialization warning", "oct initialization", "initialization warning", "oct", "initialization", "warning", "9 1", "#9,1", "#9, 1", "nine one", "nine-one", "nine", "one", "9", "1", "startup check", "yellow warning", "loading acquisition components", "loading acquisition", "aquisition components", "loading", "acquisition", "components", "cirrus", "cirrus photo", "tabs", "photo only", "photo tab", "no oct", "no cirrus", "no cirrus photo", "greyed out", "grayed out", "gray", "grey", "can't click", "not responding", "not clickable"],
+            "instruments": ["Cirrus Photo"],
+            "models": ["Cirrus Photo 600", "Cirrus Photo 800"],
+            "problem_description": "cp_error_9_1.html",
+            "solution_description": "cp_error_9_1_solution.html",
+            "references": [
+                {"title": "Cirrus Photo - Error # 9,1", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CIRRUS%20PHOTO.one%7C35611F14-8D51-4252-ACD9-31960C4D37BC%2FCirrus%20Photo%20-%20Error%20%23%209%2C1%7C4116B4F4-A5DB-4EBC-B7E7-1AD7AC0887A8%2F%29&wdpartid={2A7E5926-DB61-4B8F-9C5F-03EEF5378E38}{1}&wdsectionfileid={3796621D-A5F2-4FA2-BBB0-45E07DA3EE60}", "src": "OneNote"}
+            ]
+        },
+        "00010": {
+            "title": "System Hangs on Start Up at Checking Device",
+            "tags": ["start up", "startup", "start-up", "boot", "boot up", "boot-up", "checking device", "checking", "device", "hang", "stuck", "freeze", "progress", "not progressing", "locked", "locking", "sticking", "freezing", "progress", "hanging"],
+            "instruments": ["IOLMaster"],
+            "models": ["IOLMaster 700"],
+            "problem_description": "iolmaster_stuck_checking_device.html",
+            "solution_description": "iolmaster_stuck_checking_solution.html",
+            "references": [
+                {"title": "IOLMaster 700 - Boots up and gets stuck at Checking Device", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28IOLMASTER%20700.one%7C9D82B692-F67F-4FE4-ACC7-BE726F16E193%2FIOLMaster%20700%20-%20Boots%20up%20and%20gets%20stuck%20at%20Checking%7C6B23502C-48DF-412C-8D41-FDDAEE940844%2F%29&wdpartid={46A61D34-BF76-4BAF-9F16-C8FBC5C4382B}{210}&wdsectionfileid={B603A2C5-7B19-4DE8-B9F0-89FF6238D4C8}", "src": "OneNote"}
+            ]
         }
     }
 }
