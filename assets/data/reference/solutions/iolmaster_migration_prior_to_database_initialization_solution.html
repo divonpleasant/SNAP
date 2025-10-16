@@ -1,0 +1,45 @@
+<p>This issue occurs when the IOLMaster software cannot launch due to an issue. This can be caused by an error loading the settings files, a missing Windows paging file, or problems initializing the SQL Server database.</p>
+<h3>Verifying Issue</h3>
+<p>The exact nature of the issue can be verified by checking the developer logs (D:\Logs\). Corrupt configuration files are often identifiable by noting frequent log messages referencing the settings file or entries stating:
+<blockquote>Compatibility check of configuration</blockquote>
+<p>On the other hand, if there are error messages more like:</p>
+<blockquote> Error; EnsureDatabaseIntegrityBeforeMigrations; DeviceDataManagement.Core.DatabaseMigrator; (17) (193 ms) Exeption thrown while cleaning up the database: System.Data.SqlClient.SqlException (0x80131904): Cannot open database "CzmDefault" requested by the login. The login failed.</blockquote>
+<p>Or:</p>
+<blockquote>ERROR 	Source: Infrastructure 	Theme: Workflow 	Message: (8) (735 ms) Activity "DatabasePreInitMigrations#2": unexpected error, System.Data.SqlClient.SqlException (0x80131904): Cannot open database "CzmDefault"</blockquote>
+<p>Those indicate an issue with a corrupted patient database.</p>
+<h3>Resolving Settings File Issues</h3>
+<p>To recover from corrupted settings file issues, try the following:</p>
+<ul>
+    <li>Navigate to <code>D:\Settings\</code></li>
+    <li>Rename or relocate any files ending in <code>.user.settings.xml</code>. These are usually identified with a UUID-style key offset by curly braces, such as: <code>{af479cc6-5258-4f38-b3fb-f2c9c558d864}.user.settings.xml</code></li>
+    <li>You can try rebooting after removing just these files, but you could also remove <code>applications.settings.xml</code> or even empty the entire Settings folder</li>
+    <li>Reboot the device</li>
+    <li>On reboot, if this resolved the underlying problem, you may be prompted to complete the Configuration Wizard. If not, and the system launches back into the IOLMaster software, manually run the Configuration Wizard by going to Settings &gt; Maintenance &gt; Configuration Wizard and ensure the settings are correct for the clinic in question</li>
+</ul>
+<p>Often the root cause of this particular issue is improper shutdown. Ensure the customer is shutting down the device correctly using the application prompts, and not simply holding down the power button.</p>
+<h3>Resolving Database Related Issues</h3>
+<p>If the issue is related to the database or if clearing the Settings files doesn't resolve the issue, it is likely a problem with the database. Keep in mind that if the customer is using Forum, their data should be stored on the Forum server and it is generally safe to take any corrective action on the instrument regarding the database. If the customer is not using Forum and does not have a solid backup plan in place, you must do everything you can to try to retain and recover as much patient data as possible.</p>
+<p>IOLMaster 700s use a feature known as "shadow backup," where a snapshot of the database is taken without manual intervention from the customer/operator. We can leverage this feature to try to recover from a corrupted database.</p>
+<ul>
+    <li>Log into the device with the CZMService Windows user account:
+        <ul>
+            <li>On start-up, hold SHIFT key to bypass auto-login</li>
+            <li>On Windows 10, it may be possible to click the Start menu, type LOGOFF, and hit enter to exit before the IOLMaster application launches</li>
+            <li>Using the Command Line Tool, issue the command <code>logoff</code></li>
+        </ul>
+        User: <code>CZMservice</code><br />
+        Password: <code>zeissuser</code>
+    </li>
+    <li>Verify with customer the last date the IOLMaster software successfully launched and the system worked as expected</li>
+    <li>Navigate to the folder: <code>D:\db.default\backup</code> and look for the most recent shadow backups (folder names will be in the format <code>YYYYMMDDxxxxxxxx</code>)</li>
+    <li>You will need to keep any folders whose datestamped name indicates the backup was taken <em>before</em> any issues/corruption occurred. Delete any folders dated <em>after</em> the issue began</li>
+    <li>Once corrupted backups have been removed, we'll want to remove the corrupted database using a batch script provided with the software
+        <ul>
+            <li>In File Explorer, navigate to <code>C:\Program Files\CZMI\IOLMaster700ServiceTool\scripts\</code></li>
+            <li>Execute <code>DeletePatientDatabaseFile.bat</code></li>
+        </ul>
+    </li>
+    <li>Once the script is finished, the CzmDefault database should be removed and IOLMaster will re-build it using the most recent shadow backup on next launch</li>
+    <li>Reboot the system</li>
+</ul>
+<p>If the forced backup works, the IOLMaster software should launch normally, although the most recent scans may have been lost. Since they are corruption risks, they may not be recoverable, and customer expectations should be set accordingly.</p>

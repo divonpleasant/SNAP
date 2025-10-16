@@ -724,7 +724,7 @@ function updateReferenceBoxContents(location_ref, direct_link = '') {
     console.log("Executing updateReferenceBoxContents ... \nlocation_ref: " + location_ref + "\ndirect_link: " + direct_link);
     // cache prevention
     var qparam = Date.now();
-    var base_path = 'assets/data/reference/'
+    var base_path = 'assets/data/reference/';
     var context_location = '';
     var path_location = '';
     switch (location_ref) {
@@ -797,10 +797,51 @@ function processInstrumentAddress() {
     populateRegionAndContractRep();
 }
 
+function checkPCE() {
+    console.debug('Executing checkPCE ...');
+    const pce_threshold = 2;
+    if (document.getElementById('pce-ticket-count').value >= pce_threshold) {
+        document.getElementById('is-pce').checked = true;
+    }
+}
+
+function processPCEText() {
+    console.debug('Executing processPCEText ...');
+    var internal_notes_text = document.getElementById('other-internal-notes').value;
+    var pce_string = 'Flagged as PCE because of ' + document.getElementById('pce-ticket-count').value + ' qualifying CCTs since ' + document.getElementById('pce-date-start').value;
+    var pce_output = internal_notes_text + "\n" + pce_string;
+    return pce_output;
+}
+
+function handlePCE() {
+    console.debug('Executing handlePCE ...');
+    if (document.getElementById('is-pce').checked) {
+        switch (so.Settings.system.pce_phase.value) {
+            case 1: // PCE Phase 1 applies only if billing type is W or CNTRCT
+                if (document.getElementById('billing-type').value === 'W' || document.getElementById('billing-type').value ==='CNTRCT') {
+                    document.getElementById('other-internal-notes').value = processPCEText();
+                } else {
+                    console.log('PCE is not applicable in Phase 1 for Billing Type: ' + document.getElementById('billing-type').value);
+                }
+                break;
+            case 2:
+                document.getElementById('other-internal-notes').value = processPCEText();
+                break;
+            default:
+                console.log('PCE phase is not set or not recognized');
+                break;
+        }
+    } else {
+        console.log('PCE toggle not set');
+    }
+}
+
 document.getElementById('common-call-scenarios').addEventListener('change', updateDescription);
 document.getElementById('process-prompt-call-scenarios').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-call-types').addEventListener('click', activateProcess);
 document.getElementById('process-prompt-clipboard-templates').addEventListener('click', activateProcess);
+document.getElementById('pce-ticket-count').addEventListener('change', checkPCE);
+document.getElementById('pce-date-start').addEventListener('change', handlePCE);
 document.getElementById('script-prompt-greeting').addEventListener('click', activateScript);
 document.getElementById('script-prompt-wrap-up').addEventListener('click', activateScript);
 document.getElementById('prompt-close').addEventListener('click', closeScript);

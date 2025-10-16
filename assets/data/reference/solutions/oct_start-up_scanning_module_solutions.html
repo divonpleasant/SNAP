@@ -1,0 +1,96 @@
+<p>These errors occur when any of the start-up diagnostic tests fail as the software launches. The customer-presented error is generic and could have many underlying root causes. Regardless of root cause, the instrument cannot Acquire scans until or unless this error is resolved.</p>
+<p>A hard power cycle should always be attempted first before any deeper investigation. Often the diagnostic failure will be transient and a reboot will allow the device to start up without any further errors. If the issue is intermittent but persisent, it may require an FSE onsite dispatch to confirm the hardware components are not compromised.</p>
+<h3>Details</h3>
+<p>To determine the root cause, click on the <strong>Details</strong> button to the left of the <strong>Continue</strong> button, then scroll to the bottom to find the message marked with "FAIL," and cross reference with the common messages table, below:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Error Message</th>
+            <th>Recommended Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <ul>
+                    <li><em>Object reference not set to an instance of an object<em></li>
+                    <li><em>FW initialization failed, most likely controller is disconnected</em></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Confirm Windows login account has <a href="https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/Doc.aspx?sourcedoc={2D11422D-7802-40B6-A0D4-C7EF3B2C4EDC}&wd=target%28Common%20Issues.one%7CFE1CBE1A-12E5-4479-9DAA-D61ED3EA7C83%2FSelf%20test%3A%20Instrument%20errors%7C0C1E23AC-56C3-458F-9BEC-0C4216724C0C%2F%29&wdpartid={DAA2736B-757B-4CEC-86BB-80F899226C18}{89}&wdsectionfileid={CCB5FC0F-FFAB-408D-B757-4F1E82F0EAC3}" target="_blank">local administrator permissions</a></li>
+                    <li>Confirm LAN 2 (Internal NIC) is <a href="https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/15/Doc.aspx?sourcedoc={2d11422d-7802-40b6-a0d4-c7ef3b2c4edc}&action=edit&wd=target%28Common%20Troubleshooting%20procedures.one%7C684124bf-4f66-4513-aa1b-3b53fd459fb5%2FVerifying%20Internal%20NIC%7Cd2f5cafc-3dd8-47a0-8789-0d3a72168e4e%2F%29&wdorigin=703&wdpreservelink=1" target="_blank">enabled and properly configured</a></li>
+                    <li>Check <a href="https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/15/Doc.aspx?sourcedoc={2d11422d-7802-40b6-a0d4-c7ef3b2c4edc}&action=edit&wd=target%28Common%20Troubleshooting%20procedures.one%7C684124bf-4f66-4513-aa1b-3b53fd459fb5%2FClearing%20space%20on%20the%20C%20drive%7Cd294af15-480c-475e-853d-539c9bf5e05d%2F%29&wdorigin=703&wdpreservelink=1" target="_blank">available disk space on C: drive</a></li>
+                    <li>Check Framegrabber driver: click Help &gt; About and note the Framegrabber driver version; if it shows a question mark ("?"), reinstall the Coreco driver</li>
+                    <li>Verify there are not two instances of the software running. You may not see the error dialog which says, "Another instance of this program is running. Please close before continuing" unless you log off the primary screen instance</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><em>Galvo test failed</em> (for X, Y, and/or L galvo)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>If the standard power cycle does not work, occasionally running a manual diagnostic test can exercise the galvos sufficiently to allow the start up tests to pass</li>
+                    <li>If restart and manual diagnostics do not resolve the issue, root cause could be the galvo(s), power conversion board, framegrabber, or the micro-controller. Dispatch an FSE for onsite evaluation</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><em>Power supply out of range</em> (for one or more voltage power supplies)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Check software version. If version is 7.0, this is an intermittently occurring <a href="https://mira.med.zeiss.com/service-express/portal/object/lvid/SM_000000-2515-253_01_002?context=%7B%22filter%22%3A%7B%22InformationTypes%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23ServiceBulletin%22%5D%7D%2C%22text%22%3A%22CIRRUS_5000_SB_007%22%2C%22page%22%3A1%2C%22useExpertQuery%22%3A0%7D" target="_blank">known issue</a>. Upgrade the software to 7.5+</li>
+                    <li>If software is 7.5+ already and the problem persists, it may be a failing power supply or power conversion board. Dispatch an FSE for onsite evaluation</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><em>OCT camera initialization failure. Camera pixel clock is not detected</em></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Check the software version and Microsoft .NET Framework. Older versions of the OCT software (6.5 &nbsp; 7.0 with .NET 4.5.1+, fixed in 7.5) had a <a href="https://mira.med.zeiss.com/service-express/portal/object/lvid/SM_000000-2515-253_01_002?context=%7B%22filter%22%3A%7B%22InformationTypes%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23ServiceBulletin%22%5D%7D%2C%22text%22%3A%22CIRRUS_5000_SB_007%22%2C%22page%22%3A1%2C%22useExpertQuery%22%3A0%7D" target="_blank">known issue</a> requiring a .NET downgrade</li>
+                    <li>If upgrading does not resolve the issue, the root cause may be due to a loose power connector to the OCT camera or a defective spectrometer. Dispatch an FSE for onsite evaluation</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><em>LSLO camera initialization failure. Camera pixel clock is not detected</em></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>If software version is 9.0, especially if the issue is intermittent, determine whether the device is being rebooted frequently or if the error occurs mostly when the device is rebooted warm. This could be due to a <a href="https://mira.med.zeiss.com/service-express/portal/object/lvid/SM_000000-2515-253_01_002?context=%7B%22filter%22%3A%7B%22InformationTypes%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23ServiceBulletin%22%5D%7D%2C%22text%22%3A%22CIRRUS_5000_SB_007%22%2C%22page%22%3A1%2C%22useExpertQuery%22%3A0%7D" target="_blank">known issue</a>. The workaround requires a cold boot (shut down the instrument and allow the system to rest for 1-5 minutes before restarting)</li>
+                    <li>If the software version is 9.5+ and a cold boot does not resolve the issue, it could be a loose power connector to the LSLO or a defective LSLO camera. Dispatch an FSE for onsite evaluation</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><em>Stored calibration values are not the same as specified</em></li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>Download the calibration file from the microcontroller to the hard drive (see the Service Manual, <a href="https://mira.med.zeiss.com/service-express/portal/project1_p/document/iu-428-9b5208e2-1187-4637-b82e-d90a3132281c?context=%7B%22filter%22%3A%7B%22InformationTypes%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23ServiceManual%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23CorrectMaintenanceMan%22%5D%7D,%22text%22%3A%224.2.17.2%22,%22page%22%3A3,%22useExpertQuery%22%3A0%7D" target="_blank">Section 4.2.17.2: Sending Calibration Data to the Hard Disk</a>)</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>If the root cause is not listed above, or if the problem persists after checking connections and power, a Field Service Engineer onsite dispatch is required to resolve the issue.</p>

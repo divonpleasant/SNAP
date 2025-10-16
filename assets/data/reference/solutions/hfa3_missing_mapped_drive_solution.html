@@ -1,0 +1,48 @@
+<p>When an HFA is configured to use mapped network drives, if the mapped drive is not connected, the software will freeze or hang when clicking Next to initialize a test as the instrument tries to verify the network connection and fails.</p>
+<p>The underlying issue is typically either a discrepancy between the credentials for the network mapping in Windows Credentials Manager or a race condition between the network mapping and the HFA software.</p>
+<p>The first thing to check is whether the drive can be mapped in Windows. If the credentials or the network location have changed, the configured setup may no longer work and will have to be updated. However, in some cases the drives are capable of connecting, but it doesn't happen on start-up.</p>
+<h3>Workaround: Auto-Connect Batch Script</h3>
+<p>To workaround this issue, you can create an auto-connect script that will run via Task Scheduler whenever the default Windows user (Zeiss) logs in. Follow the steps below to create the script:</p>
+<ol>
+    <li>Turn off KIOSK mode via the Tech Support/czmadmin/ITAdministrator account by running the KIOSK-OFF script on the Desktop</li>
+    <li>Log in using the Zeiss Windows account (this may require re-connecting to TeamViewer)</li>
+    <li>Open Control Panel &gt; Credentials Manager &gt; Windows Credentials and delete any existing passwords present for the customer's network</li>
+    <li>Open File Explorer and right click any existing mapped drives and choose Disconnect from the context menu</li>
+    <li>Edit <a href="assets/documents/auto-connect.bat" target="_blank">this file</a> locally, updating the variables as follows:
+        <ul>
+            <li><code>&lt;drive_letter&gt;</code>: Use customer's preferred drive letter (e.g. "Z")</li>
+            <li><code>&lt;unc_path&gt;</code>: Windows Universal Naming Convention path to the networked drive (e.g. "\\192.168.1.10\data\hfa3")</li>
+            <li><code>&lt;password&gt;</code>: Password for the network share</li>
+            <li><code>&lt;domain&gt;</code>: Windows domain, if one is used</li>
+            <li><code>&lt;user&gt;</code>: Windows user name for the network share</li>
+        </ul>
+        <strong>Note:</strong> If the customer's IT group or admin does not want the password stored in plain text, you can use the Windows Credentials Manager here, but it will make for trickier troubleshooting, now and in the future.
+    </li>
+    <li>Copy the file to the device or copy the text into a blank Notepad document. If using Notepad, save the file to the Data partition (in case of OS reimage) by clicking File &gt; Save As and then change the "Save As Type" dropdown to "All Files" and name the file "auto-connect.bat"</li>
+    <li>Test the script by executing the batch file and checking File Explorer to confirm the drives are mapped and pointing to the expected location. <em>Note: the mappings will not be created until the script completes, including the window close countdown. If you wish to end the script early, follow the prompt to press CTRL-C</em></li>
+    <li>Create a task via Windows Task Scheduler:
+        <ol>
+            <li>Choose Action &gt; Create Task...</li>
+            <li>On the General tab of the Create Task dialog, input a task Name (e.g. "Auto-Map Network Drives")</li>
+            <li>If logged in as the Zeiss user, you can leave the Security Options as-is, but if performing this task as ITAdministrator or similar, use the Change User... option to make sure the task is being run as the Zeiss user</li>
+            <li>On the Triggers tab, click the New... button
+                <ol>
+                    <li>Change the Begin the Task drop-down to "At log on"</li>
+                    <li>Ensure the Specific User setting is selected and that the user is the Zeiss account</li>
+                    <li>Click OK</li>
+                </ol>
+            </li>
+            <li>On the Actions tab, click the New... button
+                <ol>
+                    <li>Ensure the Action drop-down is set to "Start a program"</li>
+                    <li>Under Settings, enter the path to the batch script or click Browse... to select it from the file select dialog</li>
+                    <li>Click OK</li>
+                </ol>
+            </li>
+            <li>Click the OK button on the Create Task dialog to save the task</li>
+            <li>Verify your task appears in the Task Scheduler Summary under "Active Tasks"</li>
+        </ol>
+    </li>
+    <li>To peform the final test, restart the system (leaving Kiosk mode off), and log back in to the Zeiss account and ensure the script runs and completes the mapping within the 60 second timeout. It is not recommended to interrupt the script countdown on this test; verify the drive mappings are in place and pointing to the expected locations after the script completes</li>
+    <li>Run the KIOSK-ON script on the Desktop to re-enable Kisok mode, the restart the instrument one last time for final verification</li>
+</ol>

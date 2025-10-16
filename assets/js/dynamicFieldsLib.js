@@ -247,6 +247,35 @@ function populateICField() {
     }
 }
 
+function checkSupportLevel() {
+    console.log('Executing checkSupportLevel ...');
+    var model_num = document.getElementById('model')[document.getElementById('model').selectedIndex].id;
+    var instr_val = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].value;
+    var instr_key = document.getElementById('instrument')[document.getElementById('instrument').selectedIndex].id;
+    console.log({model_num, instr_key, instr_val});
+    switch (checkProductType(instr_key)) {
+        case 'instrument':
+            var gsup = products.pdata.instruments[instr_key].models[model_num].guaranteed_supported;
+            var supp = products.pdata.instruments[instr_key].models[model_num].supported;
+            break;
+        case 'software':
+            var gsup = products.pdata.software[instr_key].versions[model_num].guaranteed_supported;
+            var supp = products.pdata.software[instr_key].versions[model_num].supported;
+            break;
+        default:
+            console.error('Reached unexpected product type result');
+            return false;
+    }
+    if (supp === false) {
+        manualActivateProcess('call-types', 'eos', 'default');
+        return true;
+    } else if (supp === true && gsup === false) {
+        manualActivateProcess('call-types', 'eos', 'eogs');
+        return true;
+    }
+    return true;
+}
+
 function checkYoungRevenue() {
     console.log('Executing checkYoungRevenue ...');
     var model_num = document.getElementById('model')[document.getElementById('model').selectedIndex].id;
@@ -452,6 +481,7 @@ document.getElementById('model').addEventListener('change', function() {
     var model_tooltip = generateTooltipText(inst_field[inst_field.selectedIndex].id, this[this.selectedIndex].id);
     console.debug({model_tooltip});
     fetchAndAdjustSerialTooltip(model_tooltip);
+    checkSupportLevel();
     prePopulateSerialField();
     populateICField();
     checkYoungRevenue();

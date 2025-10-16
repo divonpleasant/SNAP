@@ -10,10 +10,23 @@ function useActualDescription() {
 
 /* Process CCT Description */
 function procCctDescription (descr_only = false) {
+    console.log("Executing procCctDescription ... \n    descr_only: " + descr_only);
+    var bt = '';
+    var pce_str = '';
     if (document.getElementById('billing-type').value == "CNTRCT") {
         bt = document.getElementById('service-contract').value;
     } else {
         bt = document.getElementById('billing-type').value;
+    }
+    if (document.getElementById('is-pce').checked) {
+        // Temporary process restriction for PCE: only applies to non-billable customers until Phase 2
+        if (so.Settings.system.pce_phase.value == 1) {
+            if (document.getElementById('billing-type').value === 'W' || document.getElementById('billing-type').value ==='CNTRCT') {
+                pce_str = 'PCE ';
+            }
+        } else if (so.Settings.system.pce_phase.value > 1) {
+            pce_str = 'PCE ';
+        }
     }
     var serialnum = document.getElementById('serial').value;
     var raw_description = document.getElementById('description').value;
@@ -24,7 +37,7 @@ function procCctDescription (descr_only = false) {
     }
     console.debug({bt});
     console.debug('bt.length: ' + bt.length);
-    var prefix_len = serialnum.length + bt.length;
+    var prefix_len = serialnum.length + bt.length + pce_str.length + 2; // +2 for the spaces after serialnum and bt
     console.debug({prefix_len});
     var avail_chars = 40 - prefix_len; // tested description field in CRM for 40 characters total
     var desc_arr = raw_description.split(".");
@@ -33,7 +46,7 @@ function procCctDescription (descr_only = false) {
         console.debug({descr_only});
         return description;
     } else {
-        var cct_descr = serialnum + " " + bt + " " + description;
+        var cct_descr = serialnum + " " + bt + " " + pce_str + description;
         console.debug({cct_descr});
         return cct_descr;
     }

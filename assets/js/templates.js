@@ -708,6 +708,37 @@ ${context[5]}
 `
                 }
             },
+            "pce": {
+                "general": {
+                    "default": `<h1>Potential Customer Escalation (PCE) Process</h1>
+<p>Potential Customer Escalations (PCEs) is a process for preventing customer issues (PCE is also interchangably used to mean Preventing Customer Escalation) from being escalated through sales or management due to dissatisfaction with support service. This process is meant to identify poptentially dissatisfied customers and incorporate additional details into Customer Care Ticket (CCT) creations which will allow these cases to be identified by CRM automation for proactive involvement with Tech Support management.</p>
+<h2>Process Steps</h2>
+<ul>
+  <li>During a customer call, TSEs will review the Service History in CRM and identify potential escalation risks based on the number of service interactions within a specific time frame
+    <ul>
+      <li>As of October 20, 2025, this applies only to customers with an active warranty or service contract (billing code W or CO)</li>
+      <li>Number of qualifying interactions: two (2) or more
+        <ul>
+          <li>Qualifying interactions exclude Installations, Trainings, or Preventative Maintenance</li>
+          <li>Count the qualifying interactions and add the number to the Qualifying PCE Tickets field under the Internal Notes section</li>
+        </ul>
+      </li>
+      <li>Time Frame: 90 days or less
+        <ul>
+          <li>Set the PCE Check Start Date to 90 days prior to the current date</li>
+          <li>If there are a qualifying number of tickets in a shorter period of time, use the more recent start date (e.g. if a customer has five (5) qualifying interactions in the past two weeks, use the two week start date, even if expanding the range to 90 days would increase the qualifying interactions count)</li>
+      </li>
+    </ul>
+  </li>
+  <li>If the Service History meets the criteria, a flag (the string, <code>PCE</code> will be added to the CCT Description text between the Billing Status and the Problem Description
+    <ul>
+      <li>Example: <code>6000-12345 W PCE Ongoing Database Issues</code></li>
+    </ul>
+  </li>
+  <li>Additional details will be added to the Internal Notes (specifically, in SNAP, the Other Internal Notes field)</li>
+</ul>`
+                }
+        },
             "serial-numbers": {
                 "general": {
                     "not-found": `<h1>Serial Number Not Found</h1>
@@ -867,6 +898,26 @@ If a serial number provided by the customer does not return any results:
     <li>If there is additional follow-up required, contact the customer and confirm all necessary information, then proceed until the order is confirmed and the ticket can be closed</li>
     <li>If the customer requests an ETA on a fulfilled order, direct an inquiry including the Sales Order number and the Part Number(s) to <a href="mailto:logistics@watchpointlogistics.com">logistics@watchpointlogistics.com</a></li>
 </ul>`
+                },
+                "eos": {
+                    "default": `<h1>End of Support</h1>
+<p>The model of instrument or version of the software requested by the customer has the status of "End of Support" or EoS. Products that have had their support ended cannot be triaged per the usual process. Specifically:</p>
+<ul>
+    <li>Remote support is not permitted. Do not connect to EoS instruments via TeamViewer or Teleservice</li>
+    <li>Onsite repair is no longer provided. Do not dispatch an FSE or create an onsite SVO for this device</li>
+    <li>Preventative Maintenance requests cannot be honored. Similar to the above, do not create or request SVOs for PMs</li>
+    <li>Spare parts will be stocked only until no longer available from the supplier or until they become cost prohibitive to keep in inventory. As such, there is no guarantee spare parts requests can be honored</li>
+    <li>Service contracts will have already been cancelled and refunded, and new contracts can no longer be acquired. Do not direct customers to their contract reps (remember that billable services are no longer provided, either, so contract vs billable status shouldn't matter)</li>
+</ul>
+<p>It is generally considered to be good customer service to at least hear a caller out and do your best within the constraints above to provide support. This can include sending documentation or troubleshooting guides via email, providing phone support, and analyzing logs offline (when provided by the customer via team inbox).</p>
+<p>You are also encouraged to nudge customers toward acquiring newer, supported replacements for their EoS devices. Use the Sales Lead form to set up a callback to the customer from the Sales Team, and mention that Zeiss regularly offers trade-in opportunities for EoS devices toward the purchase of newer instruments. You can also provide customers the toll-free number to the Customer Direct Center: 800-342-9821.</p>
+`,
+                  "eogs": `<h1>End of Guaranteed Support</h1>
+<p>The model of instrument or version of the software requested by the customer has the status of "End of Guaranteed Support" or EoGS. Products that have reached the end of <em>guaranteed</em> support are in a sunset period, sort of a transition phase between full, active support and the End of Support status.</p>
+<p>Typically when an End of Guaranteed Support message is sent to customers, a support deadline will be included indicating when active service contracts will be cancelled and reimbursed (it may or may not be the same as the EoGS date). Once that date has passed, no new contracts can be acquired.</p>
+<p>Because EoGS products are no longer eligible for contracted support, all remote and professional services support is provided on a billable basis.</p>
+<p>EoGS products should be triaged and serviced as normal, but you should set customer expectations that Zeiss is no longer able to guarantee technical expertise, parts availability, or a viable service delivery process to restore products to original functionality. In other words, we will do our level best, but there may be circumstances where the device cannot be fully fixed or repaired.</p>
+`
                 }
             },
             "clipboard-templates": {
@@ -1154,6 +1205,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
 <assetSubType>undefined</assetSubType>
 <state>import</state>
 <name>snap_savefile</name>
+  <customMetaData>
+    <key>case-history</key>
+    <value>${document.getElementById('case-history').value}</value>
+  </customMetaData>
   <customMetaData>
     <key>serial</key>
     <value>${htmlEscape(document.getElementById('serial').value)}</value>
@@ -1951,6 +2006,10 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${document.getElementById('debug-toggle').checked}</value>
   </customMetaData>
   <customMetaData>
+    <key>solution-score-threshold</key>
+    <value>${document.getElementById('solution-score-threshold').value}</value>
+  </customMetaData>
+  <customMetaData>
     <key>foc</key>
     <value>${document.getElementById('foc').checked}</value>
   </customMetaData>
@@ -2011,8 +2070,16 @@ Architecture: ${document.getElementById('forum-architecture').value}
     <value>${document.getElementById('sustaining-ticket').checked}</value>
   </customMetaData>
   <customMetaData>
-    <key>case-history</key>
-    <value>${document.getElementById('case-history').value}</value>
+    <key>pce-ticket-count</key>
+    <value>${document.getElementById('pce-ticket-count').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>pce-date-start</key>
+    <value>${document.getElementById('pce-date-start').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>is-pce</key>
+    <value>${document.getElementById('is-pce').checked}</value>
   </customMetaData>
 </AssetInfo>`
             }

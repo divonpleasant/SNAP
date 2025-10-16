@@ -1,4 +1,4 @@
-const version = '3.1.19';
+const version = '3.1.20';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine
@@ -60,6 +60,14 @@ function generateSettings() {
                 "type": "boolean",
                 "cookie_key": "copyCrmDescrSttng",
                 "description": "Toggles whether or not to copy a derived sample CRM description string (assembled from the serial number, billing type, and first sentence of the problem description) when an export operation is executed."
+            },
+            "solutions_score_threshold": {
+                "name": "Solutions Score Threshold",
+                "default_value": 0,
+                "value": 0,
+                "type": "integer",
+                "cookie_key": "solScoreThresh",
+                "description": "Numerical value to set the minimum score value displayed in the possible solutions list."
             }
         },
         "process": {
@@ -94,6 +102,13 @@ function generateSettings() {
                 "value": "main",
                 "type": "string",
                 "description": "Text mapping to a specific stylesheet."
+            },
+            "pce_phase": {
+                "name": "PCE Phase",
+                "default_value": 2,
+                "value": 1,
+                "type": "numeric",
+                "description": "Phase of the PCE (Potential/Preventing Customer Escalation) process rollout. Phase 1 applies PCE data only for Warrantied or Contracted devices; Phase 2 applies PCE data for all devices."
             }
         },
         "user": {
@@ -676,5 +691,7 @@ function logHistoryEvent(msg) {
     const date_opts = { timeZone: "America/Los_Angeles", timeZoneName: "short", hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3 };
     var logdate = new Date().toLocaleDateString("en", date_opts);
     console.log({logdate});
-    document.getElementById('case-history').value = '[' + logdate + '] ' + msg + "\n" + hist;
+    var new_field_data = '[' + logdate + '] ' + msg + "\n" + hist;
+    console.log({new_field_data});
+    document.getElementById('case-history').value = new_field_data;
 }
