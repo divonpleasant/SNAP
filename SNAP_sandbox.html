@@ -1004,14 +1004,20 @@
                                 </select>
                                 <div class="label-right">Error Group</div>
                             </div>
-                            <div class="col-6 col-12-xsmall"></div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="number" id="pce-ticket-count" name="pce-ticket-count" min="0" max="50" value="0" />
+                                <div class="label-left">Qualifying <span title="Potential Customer Escalation">PCE</span> Tickets  <span><a class="info-button" href="#internal" onclick="manualActivateProcess('pce', 'general', 'default')"><i id="process-prompt-pce-count" class="fa-solid fa-circle-info"></i></a></span></div>
+                            </div>
                             <div class="col-6 col-12-xsmall">
                                 <select name="error-code" id="error-code" disabled>
                                     <option value="">&mdash; Error Code &mdash;</option>
                                 </select>
                                 <div class="label-right">Error Code</div>
                             </div>
-                            <div class="col-6 col-12-xsmall"></div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="date" name="pce-date-start" id="pce-date-start" placeholder="PCE Start Date" />
+                                <div class="label-left"><span title="Potential Customer Escalation">PCE</span> Check Start Date  <span><a class="info-button" href="#internal"  onclick="manualActivateProcess('pce', 'general', 'default')"><i id="process-prompt-pce-date" class="fa-solid fa-circle-info"></i></a></span></div>
+                            </div>
                             <div class="col-6 col-12-xsmall">
                                 <select name="action-code" id="action-code">
                                     <option value="">&mdash; Action Code &mdash;</option>
@@ -1351,7 +1357,9 @@
                             <span id="hidden-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('hidden')">&times;</a></span> <!-- X button to close -->
                             <h3>Hidden Fields</h3>
                             <input type="checkbox" id="is-pm" name="is-pm">
-                            <label for="is-pm">Is Preventative Maintenance?</label><br />
+                            <label for="is-pm">Is <span title="Preventative Maintenance">PM</span>?</label><br />
+                            <input type="checkbox" id="is-pce" name="is-pce">
+                            <label for="is-pce">Is <span title="Potential Customer Escalation">PCE</span>?</label><br />
                             <input type="text" id="customer-time-zone" name="customer-time-zone">
                             <label for="customer-time-zone">Customer's Time Zone</label>
                             <input type="text" id="customer-region" name="customer-region">

@@ -1463,6 +1463,8 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="number"],
+input[type="date"],
 select,
 textarea {
     -moz-appearance: none;
@@ -1486,6 +1488,8 @@ input[type="email"]:invalid,
 input[type="tel"]:invalid,
 input[type="search"]:invalid,
 input[type="url"]:invalid,
+input[type="number"]:invalid,
+input[type="date"]:invalid,
 select:invalid,
 textarea:invalid {
     box-shadow: none;
@@ -1496,6 +1500,8 @@ input[type="email"]:focus,
 input[type="tel"]:focus,
 input[type="search"]:focus,
 input[type="url"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
 select:focus,
 textarea:focus {
     border-color: #0f2db3;
@@ -1545,6 +1551,8 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="number"],
+input[type="date"],
 select {
     height: 2.75em;
 }
@@ -3363,6 +3371,36 @@ button:disabled,
 }
 
 #eos-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+}
+
+#hidden-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#hidden-overlay-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+}
+#hidden-submit-button-align {
+    align-items: center;
+    text-align: center;
+}
+#hidden-close-overlay {
     position: absolute;
     top: 10px;
     right: 15px;

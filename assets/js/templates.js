@@ -708,6 +708,37 @@ ${context[5]}
 `
                 }
             },
+            "pce": {
+                "general": {
+                    "default": `<h1>Potential Customer Escalation (PCE) Process</h1>
+<p>Potential Customer Escalations (PCEs) is a process for preventing customer issues (PCE is also interchangably used to mean Preventing Customer Escalation) from being escalated through sales or management due to dissatisfaction with support service. This process is meant to identify poptentially dissatisfied customers and incorporate additional details into Customer Care Ticket (CCT) creations which will allow these cases to be identified by CRM automation for proactive involvement with Tech Support management.</p>
+<h2>Process Steps</h2>
+<ul>
+  <li>During a customer call, TSEs will review the Service History in CRM and identify potential escalation risks based on the number of service interactions within a specific time frame
+    <ul>
+      <li>As of October 20, 2025, this applies only to customers with an active warranty or service contract (billing code W or CO)</li>
+      <li>Number of qualifying interactions: two (2) or more
+        <ul>
+          <li>Qualifying interactions exclude Installations, Trainings, or Preventative Maintenance</li>
+          <li>Count the qualifying interactions and add the number to the Qualifying PCE Tickets field under the Internal Notes section</li>
+        </ul>
+      </li>
+      <li>Time Frame: 90 days or less
+        <ul>
+          <li>Set the PCE Check Start Date to 90 days prior to the current date</li>
+          <li>If there are a qualifying number of tickets in a shorter period of time, use the more recent start date (e.g. if a customer has five (5) qualifying interactions in the past two weeks, use the two week start date, even if expanding the range to 90 days would increase the qualifying interactions count)</li>
+      </li>
+    </ul>
+  </li>
+  <li>If the Service History meets the criteria, a flag (the string, <code>PCE</code> will be added to the CCT Description text between the Billing Status and the Problem Description
+    <ul>
+      <li>Example: <code>6000-12345 W PCE Ongoing Database Issues</code></li>
+    </ul>
+  </li>
+  <li>Additional details will be added to the Internal Notes (specifically, in SNAP, the Other Internal Notes field)</li>
+</ul>`
+                }
+        },
             "serial-numbers": {
                 "general": {
                     "not-found": `<h1>Serial Number Not Found</h1>
@@ -2037,6 +2068,18 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>sustaining-ticket</key>
     <value>${document.getElementById('sustaining-ticket').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>pce-ticket-count</key>
+    <value>${document.getElementById('pce-ticket-count').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>pce-date-start</key>
+    <value>${document.getElementById('pce-date-start').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>is-pce</key>
+    <value>${document.getElementById('is-pce').checked}</value>
   </customMetaData>
 </AssetInfo>`
             }

@@ -102,6 +102,13 @@ function generateSettings() {
                 "value": "main",
                 "type": "string",
                 "description": "Text mapping to a specific stylesheet."
+            },
+            "pce_phase": {
+                "name": "PCE Phase",
+                "default_value": 2,
+                "value": 1,
+                "type": "numeric",
+                "description": "Phase of the PCE (Potential/Preventing Customer Escalation) process rollout. Phase 1 applies PCE data only for Warrantied or Contracted devices; Phase 2 applies PCE data for all devices."
             }
         },
         "user": {
