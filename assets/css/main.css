@@ -1834,6 +1834,8 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="number"],
+input[type="date"],
 select,
 textarea {
     -moz-appearance: none;
@@ -1858,6 +1860,8 @@ textarea {
     input[type="tel"]:invalid,
     input[type="search"]:invalid,
     input[type="url"]:invalid,
+    input[type="number"]:invalid,
+    input[type="date"]:invalid,
     select:invalid,
     textarea:invalid {
         box-shadow: none;
@@ -1869,6 +1873,8 @@ textarea {
     input[type="tel"]:focus,
     input[type="search"]:focus,
     input[type="url"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
     select:focus,
     textarea:focus {
         border-color: #0f2db3;
@@ -1924,6 +1930,8 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="number"],
+input[type="date"],
 select {
     height: 2.75em;
 }
@@ -3992,6 +4000,39 @@ button,
     font-size: 34px;
 }
 
+#hidden-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#hidden-overlay-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+}
+
+#hidden-submit-button-align {
+    align-items: center;
+    text-align: center;
+}
+
+#hidden-close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+}
+
 #schedule-overlay {
     position: fixed;
     top: 0;
@@ -4611,5 +4652,138 @@ input.teamviewer-info-head {
                 #sustaining-message {
                     color: #e71e1e;
                 }
+
+#sustaining-message {
+    color: #e71e1e;
+}
+
+.solutions-container {
+    display: flex;
+}
+
+.solutions-toggle {
+    font-size: 1.2em;
+}
+
+.solutions-label {
+    font-size: 8pt;
+    width: 100%;
+    text-align: right;
+    align-content: center;
+    color: light-gray;
+    align-items: stretch;
+}
+
+#solutions-box {
+    display: none;
+    position: relative;
+    max-height: 400px;
+    padding: 10px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #0f2db3 #b4c0ca;
+    background-color: #b4c0ca;
+    z-index: 995;
+    border-radius: 5px;
+}
+
+    #solutions-box .solution-card {
+        font-family: 'ZEISS-Frutiger';
+        color: #000;
+        list-style: none;
+        border: 1px solid #0f2db3;
+        border-radius: 5px;
+        background-color: #f2f5f8;
+        padding: 4px 6px;
+        margin: 2px;
+    }
+
+        #solutions-box .solution-card strong {
+            color: #000;
+            font-weight: bold;
+        }
+
+    #solutions-box .solution-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        #solutions-box .solution-header .sol-title {
+            text-decoration: underline;
+        }
+
+        #solutions-box .solution-header .scorevalue {
+            font-size: 0.9em;
+            /*position: relative;*/
+            top: 0em;
+        }
+
+    #solutions-box h1 {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #000;
+    }
+
+    #solutions-box h2 {
+        font-size: 1em;
+        font-weight: bold;
+        color: #000;
+        margin: 0.1em 0 0;
+    }
+
+    #solutions-box h3 {
+        font-size: 0.9em;
+        font-weight: bold;
+        color: #000;
+        margin: 0.1em 0 0;
+    }
+
+.solution-details {
+    display: none;
+    font-size: 0.8em;
+}
+
+    .solution-details p {
+        margin-bottom: 0;
+    }
+
+    .solution-details table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0.2em;
+    }
+
+        .solution-details table th, .solution-details table td {
+            border: 1px solid #0f2db3;
+            padding: 0.2em;
+            text-align: left;
+            background-color: none;
+        }
+
+        .solution-details table th {
+            background-color: #778592;
+            font-weight: bold;
+            border: 1px solid #0f2db3;
+            color: #fff;
+        }
+
+        .solution-details table td {
+            background-color: none;
+        }
+
+        .solution-details table thead {
+            border: none;
+        }
+
+    .solution-details ul, .solution-details ol {
+        list-style-position: inside;
+        margin: 0 0 1px;
+    }
+
+.solution-references ul {
+    list-style-type: square;
+    list-style-position: inside;
+    margin: 0 0 1px;
+}
 
 /* Side Icons and menus*/
