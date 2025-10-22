@@ -35,7 +35,7 @@ The following Canadian customer needs a Service Request, please.
 Business Location Details
 
     Account Name: ${document.getElementById('account').value}
-    Address: ${document.getElementById('instrument-address').value}
+    Address: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
     Serial Number: ${document.getElementById('serial').value}
     Instrument Description: ${getInstrumentModel()}
     Windows Version: ${document.getElementById('windows-version').value}
@@ -64,7 +64,7 @@ An incoming customer call for a ${serial_strings[1]} came in with a Compliance C
     Compliance Match ID: ${document.getElementById('compliance-id').value}
     Account ID: ${document.getElementById('account-id').value}
     Account Name: ${document.getElementById('account').value}
-    Address: ${document.getElementById('instrument-address').value}
+    Address: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 
 Please advise on how I may proceed.
 
@@ -145,7 +145,7 @@ Account Name: ${document.getElementById('account').value}
 
 Address:
     Attention: ${document.getElementById('local-contact-person').value}
-    ${document.getElementById('instrument-address').value}
+    ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 Shipment: ${document.getElementById('delivery-type').value}
 Billing Type: ${(document.getElementById('foc').checked) ? 'Free of Charge (see CCT #' + document.getElementById('cct').value + ')' : 'Billable'}
 Customer Email: ${(document.getElementById('billing-email').value !== '') ? document.getElementById('billing-email').value : document.getElementById('email').value}
@@ -264,7 +264,7 @@ Zeiss Ticket Number (CCT #): ${document.getElementById('cct').value}
 Problem Description: ${document.getElementById('description').value}
 Ticket Creation Date: ${simple_date}
 Serial Number: ${document.getElementById('serial').value}
-Customer Site: ${document.getElementById('instrument-address').value}
+Customer Site: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 Contact Person: ${document.getElementById('local-contact-person').value}
 Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
@@ -311,7 +311,7 @@ ${so.Settings.user.email_sig.value}`
 Customer has called in to request a contract PM with the following info:
 
 Customer (Account Name): ${document.getElementById('account').value}
-Site Location: ${document.getElementById('instrument-address').value}
+Site Location: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 Contact Name: ${document.getElementById('local-contact-person').value}
 Contact Phone Number: ${document.getElementById('phone').value}
 Serial Number: ${document.getElementById('serial').value}
@@ -346,7 +346,7 @@ The following customer needs a service request for a ${context[0]} device, pleas
 
 Business Location Details
     Account Name: ${document.getElementById('account').value}
-    Address: ${document.getElementById('instrument-address').value}
+    Address: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
     Serial Number: ${document.getElementById('serial').value}
 Contact Details
     Contact Name: ${document.getElementById('local-contact-person').value}
@@ -552,7 +552,7 @@ To create a Task-Task:
 <h2>With Service Contract</h2>
 <ol>
     <li>Note the Contract ID in ${TRef.crm}</li>
-    <li>Use the <a href="#" onclick="manualOpenEmailTemplate('service-admin-contract-pm-request')">Admin PM Request</a> email template</li>
+    <li>Use the ${TRef.admin_pm_req} email template</li>
     <li>Create a ${TRef.cct}:
         <ul>
             <li>Use the Call Type 'Prev. Maintenance'</li>
@@ -565,7 +565,7 @@ To create a Task-Task:
 </ol>
 <h2>Without Service Contract</h2>
 <ol>
-    <li>Confirm billing (use the <a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')">PO Authorization</a> email request template if needed)</li>
+    <li>Confirm billing (use the ${TRef.po_auth} email request template if needed)</li>
     <li>Create a ${TRef.cct}:
         <ul>
             <li>Use the Call Type 'Prev. Maintenance'</li>
@@ -599,7 +599,7 @@ To create a Task-Task:
         </ol>
     </li>
     <li>Copy the new CCT number into the CCT field.
-    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-pm-request')">PROAIM PM Request</a> email template to send request to Service Ops</li>
+    <li>Use the ${TRef.proaim_pm_auth} email template to send request to Service Ops</li>
     <li>Mark the CCT as Complete</li>
 </ol>`,
                     "proaim-request": `<h1>PROAIM Service Request</h1>
@@ -690,9 +690,9 @@ To create a Task-Task:
 <p>Incorrect/unverified addresses can lead to service delays if an FSE is dispatched to the wrong location. If the Ship-To address in ${TRef.crm} does not match the customer's information during verification, you must work with Service Operations Administration (SOA) to get the address updated.</p>
 <p>Occasionally, it is also necessary to update a customer's billing or account address. In either case, the process is the same:</p>
 <ol>
-    <li>Use the <a href="#" onclick="manualOverlay('address-change')">Address Change Form</a> and complete all fields with updated information</li>
+    <li>Use the ${TRef.address_change_form} and complete all fields with updated information</li>
     <li>Ensure the following fields on the SNAP Work Form are filled out: POC Name, POC Phone Number, POC Email, Instrument/Shipping Address (should be copied from CRM, will be reflected in Current Site Address field on the <a href="#" onclick="manualOverlay('address-change')">Change Form</a>)</li>
-    <li><a href="#" onclick="manualActivateProcess('crm', 'tasks', 'create-task-task')">Create a Task</a> using the Address Change Task Template</li>
+    <li>${TRef.proc_create_task} using the Address Change Task Template</li>
 </ol>`,
                     "change-task": `Change ${context[0]} Address${context[1]}${context[2]}
 Customer POC Info:
@@ -711,12 +711,12 @@ ${context[5]}
             "pce": {
                 "general": {
                     "default": `<h1>Potential Customer Escalation (PCE) Process</h1>
-<p>Potential Customer Escalations (PCEs) is a process for preventing customer issues (PCE is also interchangably used to mean Preventing Customer Escalation) from being escalated through sales or management due to dissatisfaction with support service. This process is meant to identify poptentially dissatisfied customers and incorporate additional details into Customer Care Ticket (CCT) creations which will allow these cases to be identified by CRM automation for proactive involvement with Tech Support management.</p>
+<p>Potential Customer Escalations (PCEs) is a process for preventing customer issues (PCE is also interchangably used to mean Preventing Customer Escalation) from being escalated through sales or management due to dissatisfaction with support service. This process is meant to identify potentially dissatisfied customers and incorporate additional details into Customer Care Ticket (CCT) creations which will allow these cases to be identified by CRM automation for proactive involvement with Tech Support management.</p>
 <h2>Process Steps</h2>
 <ul>
   <li>During a customer call, TSEs will review the Service History in CRM and identify potential escalation risks based on the number of service interactions within a specific time frame
     <ul>
-      <li>As of October 20, 2025, this applies only to customers with an active warranty or service contract (billing code W or CO)</li>
+      <li>As of November 2025, this applies only to customers with an active warranty or service contract (billing code W or CO)</li>
       <li>Number of qualifying interactions: two (2) or more
         <ul>
           <li>Qualifying interactions exclude Installations, Trainings, or Preventative Maintenance</li>
