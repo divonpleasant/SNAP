@@ -1,0 +1,11 @@
+<p>The application may display a message saying:</p>
+<ul>
+    <li>Critial Error</li>
+    <li>Emergency Shutdown</li>
+    <li>Application encountered an error</li>
+</ul>
+<p>Regardless of DICOM usage, if the logs include the string, <code>Database or SQL issue</code>, this is likely due to some problem with the local MySQL instance or the database on that instance.</p>
+<h3>Patient Disassociation</h3>
+<p>If the instrument is connectedo to a DICOM EMR and there is patient disassociation referenced in the logs as well, a new database is likely necessary.</p>
+<p>Sample patient disassociation log entry:</p>
+<blockquote><code>8:23:25 AM    Critical 08:23:25 25-04-16      CRITICAL Error      Application     Fatal Error     Final exception handler called. Details: Czm.GenericDevice.DatabaseManagement.EntityNotFoundException: No patient found for exam 2a128e27-a5d5-78ea-ef87-dafccae5a61c</code></blockquote>

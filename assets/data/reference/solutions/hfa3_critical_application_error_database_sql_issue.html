@@ -1,0 +1,4 @@
+<p>HFAs with database issues will often display an error indicating, "Critical Error", "Emergency Shutdown", "System Application Error", "Application encountered an error, shutting down", or similar when there are issues with the MySQL database on the device.</p>
+<p>To verify the root cause is the database, check the logs for messages like:</p>
+<blockquote>There was an unexpected error.	Database or SQL issue</blockquote>
+<p>These types of issues can occur whether or not the device is connected to a DICOM EMR or to Forum. HFAs in a Forum environment do not use the local database for data retention, so the resolution steps below will not impact any patient data. Standalone device configurations should proceed with caution.</p>

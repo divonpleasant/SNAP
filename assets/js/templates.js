@@ -124,9 +124,38 @@ ${so.Settings.user.email_sig.value}`
                 "cc": [],
                 "bcc": [`${so.Settings.user.private_inbox.value}`],
                 "subject": `${(document.getElementById('cct').value) !== '' ? '[CCT: #' + document.getElementById('cct').value + '] ' : ''}`,
-                "body": `Dear ${document.getElementById('local-contact-person').value},
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
 
 Regards,
+${so.Settings.user.email_sig.value}`
+            },
+            "gl2-escalation": {
+                "name": "Global Level 2 Escalation",
+                "recipient": `${document.getElementById('gl2-team').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": `Global Level 2 Escalation for ${document.getElementById('serial').value} ${(document.getElementById('cct').value !== '') ? '[CCT #' + document.getElementById('cct').value + ']' : ''}`,
+                "body": `Hi Team,
+Please review the following escalation request. ${(document.getElementById('cct').value !== '') ? 'Original ticket is #' + document.getElementById('cct').value + ']' : ''}
+
+Details about the reported problem and findings:
+•	Reported Problem: ${document.getElementById('description').value}
+•	Actual Problem: ${document.getElementById('actual-problem-description').value}
+${(document.getElementById('gl2-issue-timing').value != '') ? `•	When in the customer workflow does the problem occur?: ${document.getElementById('gl2-issue-timing').value}` : ''}
+${(document.getElementById('gl2-workaround').value != '') ? `•	Workaround to regain functionality?: ${document.getElementById('gl2-workaround').value}` : ''}
+•	Details about Instrument/Review Station:
+    OS: ${document.getElementById('windows-version').value}
+    Instrument/Software Version: ${document.getElementById('device-software-version').value}
+    ${(document.getElementById('include-review-station').checked) ? 'Review Station Version: ' + document.getElementById('review-station-version').value + "\n" : ''}
+
+Detailed Troubleshooting Steps:
+${document.getElementById('troubleshooting-performed').value}
+
+${(document.getElementById('gl2-troubleshooting').value !== '') ? "Additional Notes: \n" + document.getElementById('gl2-troubleshooting').value : ''}
+
+Log files and any available/pertinent screenshots are attached.
+
+Thank you!
 ${so.Settings.user.email_sig.value}`
             },
             "parts-order": {
@@ -2080,6 +2109,22 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>is-pce</key>
     <value>${document.getElementById('is-pce').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-team</key>
+    <value>${document.getElementById('gl2-team')[document.getElementById('gl2-team').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-issue-timing</key>
+    <value>${document.getElementById('gl2-issue-timing').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-workaround</key>
+    <value>${document.getElementById('gl2-workaround').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-troubleshooting</key>
+    <value>${document.getElementById('gl2-troubleshooting').value}</value>
   </customMetaData>
 </AssetInfo>`
             }
