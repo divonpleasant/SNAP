@@ -146,7 +146,7 @@ ${(document.getElementById('gl2-workaround').value != '') ? `•	Workaround to r
 •	Details about Instrument/Review Station:
     OS: ${document.getElementById('windows-version').value}
     Instrument/Software Version: ${document.getElementById('device-software-version').value}
-    ${(document.getElementById('include-review-station').checked) ? 'Review Station Version: ' + document.getElementById('review-station-version').value + "\n" : ''}
+    ${(document.getElementById('include-review-station').checked) ? 'Review Station Version: ' + document.getElementById('review-station-software-version').value + "\n" : ''}
 
 Detailed Troubleshooting Steps:
 ${document.getElementById('troubleshooting-performed').value}
