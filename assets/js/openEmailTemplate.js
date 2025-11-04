@@ -127,13 +127,14 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     var device_context = [];
     switch (template_id) {
         case 'customer-summary':
+            var deferred_str_regex = /^Customer is not prepared with payment information/;
+            var proaim_str_regex = /^PROAIM/i;
             var type_notes = '';
             switch (document.getElementById('call-type').value) {
                 case 'inhouse-repair':
                     type_notes = 'Your ticket with an associated inhouse repair will remain open until the instrument is returned to you. Our IHR team should reach out to you within one (1) business day to confirm the details of your inhouse repair request.';
                     break;
                 case 'onsite-fix':
-                    deferred_str_regex = /^Customer is not prepared with payment information/;
                     if (document.getElementById('solution-notes').value.match(deferred_str_regex)) {
                         type_notes = 'Your onsite fix request is in process. Pending payment method confirmation, this ticket has been closed. Once payment method verification is complete, a new ticket with a field service dispatch will be created and will remain open until the onsite visit is complete. Please continue to reference CCT number ' + document.getElementById('cct').value + ' in any interactions regarding this issue until CZMI Tech Support provides an updated ticket.';
                     } else {
@@ -144,17 +145,25 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
                     type_notes = 'Your ticket was categorized as "handled via phone," and the ticket may be closed or marked as "complete" for record-keeping purposes. Do continue to reference CCT number ' + document.getElementById('cct').value + ' in any future interactions regarding this issue until CZMI Tech Support provides an updated ticket number.';
                     break;
                 case 'prev-maintenance':
-                    switch (document.getElementById('billing-type').value) {
-                        case 'CNTRCT':
-                            type_notes = 'Your preventative maintenance request ticket under service contract was processed with a request to our Service Operations Admin team. Your ticket has been closed.';
-                            break;
-                        case 'B':
-                        case 'W':
-                            type_notes = (document.getElementById('account').value === 'PROAIM Medical') ? 'Your request for a preventative maintenance has been forwarded to our Service Operations Administration team, who will coordinate with PROAIM to process your request. Once processed, a Field Service Engineer (FSE) will be dispatched. This ticket has been marked as "complete" for record-keeping purposes. A new dispatch ticket will be opened for your FSE, and the updated ticket can be requested at the time of the scheduling call.' : 'Your billable preventative maintenance request ticket is in process. Once payment method confirmation has been verified, your request will be associated with a field service dispatch and will remain open until the onsite visit is complete.';
-                            break;
-                        default:
-                            type_notes = 'Your preventative maintenance request ticket was processed with a request to our Service Operations Admin team. Your ticket has been closed.';
-                            break;
+                    if (document.getElementById('account').value.match(proaim_str_regex)) {
+                        type_notes = `Your request for a preventative maintenance has been forwarded to our Service Operations Administration team, who will coordinate with PROAIM to process your request. Once processed, a Field Service Engineer (FSE) will be dispatched. This ticket has been marked as "complete" for record-keeping purposes. A new dispatch ticket will be opened for your FSE, and the updated ticket can be requested at the time of the scheduling call. Please continue to reference CCT number ${document.getElementById('cct').value} in any interactions regarding this issue until CZMI Tech Support provides an updated ticket.`;
+                    } else {
+                        switch (document.getElementById('billing-type').value) {
+                            case 'CNTRCT':
+                                type_notes = `Your preventative maintenance request ticket under service contract was processed with a request to our Service Operations Admin team. Your ticket has been marked as "complete" for record-keeping purposes. A new dispatch ticket will be opened for your FSE, and the updated ticket can be requested at the time of the scheduling call. Please continue to reference CCT number ${document.getElementById('cct').value} in any interactions regarding this issue until CZMI Tech Support provides an updated ticket.`;
+                                break;
+                            case 'B':
+                            case 'W':
+                                if (document.getElementById('solution-notes').value.match(deferred_str_regex)) {
+                                    type_notes = `Pending payment method confirmation, this ticket has been closed. Once payment method verification is complete, a new ticket with a preventative maintenance dispatch will be created and will remain open until the onsite visit is complete. Please continue to reference CCT number ${document.getElementById('cct').value} in any interactions regarding this issue until CZMI Tech Support provides an updated ticket.`;
+                                } else {
+                                    type_notes = 'Your billable preventative maintenance request ticket is in process. Once payment method confirmation has been verified, your request will be associated with a field service dispatch and will remain open until the onsite visit is complete.';
+                                }
+                                break;
+                            default:
+                                type_notes = 'Your preventative maintenance request ticket was processed with a request to our Service Operations Admin team. Your ticket has been closed.';
+                                break;
+                        }
                     }
                     break;
                 case 'remote-service':
