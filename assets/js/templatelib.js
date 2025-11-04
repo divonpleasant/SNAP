@@ -123,7 +123,7 @@ TRef = {
     "cct_in_crm": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">Create CCT in CRM</a>",
     "cct": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">CCT</a>",
     "crm": "<a href=\"https://p8cmain.zeiss.org/sap(bD1lbiZjPTAxMCZkPW1pbg==)/crm_logon/default.htm\" target=\"_blank\">CRM</a>",
-    "admin_pm_req": "<a href=\"#\" onclick=\"manualOpenEmailTemplate('service-admin-contract-pm-request')\">Admin PM Request</a>",
+    "admin_pm_req": "<a href=\"#\" onclick=\"manualOverlay('soa-contract-pm')\">Admin PM Request</a>",
     "po_auth": "<a href=\"#\" onclick=\"manualOpenEmailTemplate('fse-billing-request')\">PO Authorization</a>",
     "proaim_pm_auth": "<a href=\"#\" onclick=\"manualOpenEmailTemplate('proaim-pm-request')\">PROAIM PM Request</a>",
     "address_change_form": "<a href=\"#\" onclick=\"manualOverlay('address-change')\">Address Change Form</a>",
