@@ -86,13 +86,13 @@
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="phone" id="phone" placeholder="Phone Number" style="float: left; width: 70%; margin-right: 20px;" />
-                                <input type="checkbox" name="prefer-phone" id="prefer-phone" style="float: left; width: 30%; align: right;" />
+                                <input type="checkbox" name="prefer-phone" id="prefer-phone" style="float: left; width: 30%;" />
                                 <label for="prefer-phone" style="font-size: 0.8em;">Preferred</label>
                                 <div class="label-left">POC Phone Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('phone').value, 'POC Phone Number')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="email" id="email" placeholder="Email" style="float: left; width: 70%; margin-right: 20px;" />
-                                <input type="checkbox" name="prefer-email" id="prefer-email" style="float: left; width: 30%; align: right;" />
+                                <input type="checkbox" name="prefer-email" id="prefer-email" style="float: left; width: 30%;" />
                                 <label for="prefer-email" style="font-size: 0.8em;">Preferred</label>
                                 <div class="label-right">POC Email <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('email').value, 'POC Email Address')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
@@ -1087,7 +1087,7 @@
                                     <option value="inhouse-repair">Inhouse Repair</option>
                                     <option value="onsite-fix">Onsite Fix</option>
                                     <option value="phone-fix">Phone Fix</option>
-                                    <!-- <option value="prev-maintenance">Prev. Maintenance</option> -->
+                                    <option value="prev-maintenance">Prev. Maintenance</option>
                                     <option value="remote-service">Remote Service</option>
                                     <option value="spare-part-order">Spare Part Order</option>
                                 </select>
@@ -1265,6 +1265,31 @@
                         </div>
                     </div>
 
+                    <!-- Global L2 Escalation Overlay -->
+                    <div id="gl2-escalation-overlay" class="overlay" style="display: none;">
+                        <div id="gl2-escalation-overlay-content" class="overlay-content">
+                            <span id="gl2-escalation-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('gl2-escalation')">&times;</a></span> <!-- X button to close -->
+                            <h3>Global L2 Escalation</h3>
+                            <select id="gl2-team" name="gl2-team">
+                                <option value="">&mdash; Select Global L2 Team &mdash;</option>
+                                <option value="support.ophthalmology@zeiss.com">Ophthalmic Diagnostics</option>
+                                <option value="support.surgicalophthalmology@zeiss.com">Surgical Ophthalmology</option>
+                                <option value="support.microsurgery@zeiss.com">Microsurgery</option>
+                                <option value="support.refractivelaser@zeiss.com">Refractive Lasers</option>
+                                <option value="support.radiotherapy@zeiss.com">Intraoperative Radiotherapy</option>
+                                <option value="support.datamangement@zeiss.com">Digital &amp; Connectivity</option>
+                            </select>
+                            <input type="text" id="gl2-issue-timing" name="gl2-issue-timing" placeholder="What step in the workflow?">
+                            <label for="gl2-issue-timing">When does the problem occur?</label>
+                            <textarea rows="3" id="gl2-workaround" name="gl2-workaround" placeholder="Is there a workaround to regain functionality? What are the steps?"></textarea>
+                            <label for="gl2-workaround">Workaround</label>
+                            <textarea rows="5" id="gl2-troubleshooting" name="gl2-troubleshooting" placeholder="What have you tried so far? What was the result? Has the reported problem changed or have remediation steps caused new issues? Be as detailed as possible."></textarea>
+                            <label for="gl2-troubleshooting">Detailed Troubleshooting Steps</label>
+                            <br />
+                            <button id="gl2-escalation-proceed" onclick="manualOpenEmailTemplate('gl2-escalation', true)">Continue</button>
+                        </div>
+                    </div>
+
                     <!-- Schedule Callback Overlay -->
                     <div id="schedule-overlay" style="display: none;">
                         <div id="schedule-overlay-content">
@@ -1335,11 +1360,11 @@
                                 <label for="email-signature">Custom Email Signature</label>
                             </div>
                             <div class="overlay-checkbox-align">
-                                <input type="checkbox" style="align: right" id="sign-email-toggle" name="sign-email-toggle">
+                                <input type="checkbox" id="sign-email-toggle" name="sign-email-toggle">
                                 <label for="sign-email-toggle">Sign Email?</label><br />
                             </div>
                             <div class="overlay-checkbox-align">
-                                <input type="checkbox" style="align: right" id="custom-scripts-toggle" name="custom-scripts-toggle">
+                                <input type="checkbox" id="custom-scripts-toggle" name="custom-scripts-toggle">
                                 <label for="custom-scripts-toggle">Use Custom Scripts?</label><br />
                             </div>
                             <div class="overlay-button-align">
@@ -1517,6 +1542,7 @@
                                 <span class="opener">Level 2 Support</span>
                                 <ul class="fa-ul">
                                     <li><strong>Phone Number: 1-925-307-1600</strong></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a onclick="manualOverlay('gl2-escalation')">Global L2 Escalation Template</a></li>
                                     <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="mailto:support.ophthalmology@zeiss.com">Ophthalmic Diagnostics (Phone Option 1)</a></li>
                                     <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="mailto:support.surgicalophthalmology@zeiss.com">Surgical Ophthalmology (Phone Option 2)</a></li>
                                     <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="mailto:support.microsurgery@zeiss.com">Microsurgery (Phone Option 3)</a></li>

@@ -124,14 +124,22 @@ function findAndScoreSolutions() {
         if (sol.solutions[key].models.includes(model)) {
             base_scr += 20;
         }
+        console.log("sol.solutions[key].software_versions: " + JSON.stringify(sol.solutions[key].software_versions));
         if (document.getElementById('device-software-version').value !== '') {
-            var input_version = document.getElementById('device-software-version').value;
-            var version_components = input_version.split('.');
-            if (version_components.length >= 3) {
-                base_scr += (sol.solutions[key].software_versions.includes(version_components.slice(0, 3).join('.')) ? 10 : 0);
-            } else if (version_components.length < 3) {
-                const search_pattern = new RegExp(`${input_version}`);
-                base_scr += (sol.solutions[key].software_versions.some(e => search_pattern.test(e)) ? 5 : 0);
+            if (typeof sol.solutions[key].software_versions === 'undefined') {
+                // If version list is undefined, solution applies to all versions, treat this as if it matched point version
+                console.log("Got 'undefined === true' because software_version is: " + sol.solutions[key].software_versions);
+                base_scr += 10;
+            } else {
+                console.log("Got 'undefined === false' because software_version is: " + sol.solutions[key].software_versions);
+                var input_version = document.getElementById('device-software-version').value;
+                var version_components = input_version.split('.');
+                if (version_components.length >= 3) {
+                    base_scr += (sol.solutions[key].software_versions.includes(version_components.slice(0, 3).join('.')) ? 10 : 0);
+                } else if (version_components.length < 3) {
+                    const search_pattern = new RegExp(`${input_version}`);
+                    base_scr += (sol.solutions[key].software_versions.some(e => search_pattern.test(e)) ? 5 : 0);
+                }
             }
         }
         final_score = assignSolutionScore(description, sol.solutions[key], base_scr);
@@ -253,8 +261,8 @@ function generateSolutions(context = '') {
             "tags": ["screen", "resolution", "screen resolution", "less than", "1920x1080", "1920", "1080", "application will close", "start up", "start-up", "red x", "ok button"],
             "instruments": ["Cirrus OCT"],
             "models": ["Cirrus HD-OCT 6000"],
-            "problem_description": "screen_resolution_error.html",
-            "solution_description": "screen_resolution_solution.html",
+            "problem_description": "oct_screen_resolution_error.html",
+            "solution_description": "oct_screen_resolution_solution.html",
             "references": [
                 {"title": "Screen Resolution is less than 1920 x 1080. The application will close", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CIRRUS%20OCT%20ALL%20MODELS.one%7C4AEE7F34-6ABD-4543-BC96-64DDD1137CE2%2FScreen%20Resolution%20is%20less%20than%201920%20x%201080.%20The%20application%7C460CECF7-24F8-458D-9C3F-A7F4012525A5%2F%29&wdpartid={C39063C4-C46B-4D42-8D6E-A9DA1B3BD24C}{1}&wdsectionfileid={FE4D980A-3850-43D2-82EB-3983DCD74828}", "src": "OneNote"},
                 {"title": "Cirrus 6000 Application unable for lunch, showing screen resolution error", "url": "https://mira.med.zeiss.com/service-express/portal/object/objectid/ticketid_1322165?context=%7B%22filter%22%3A%7B%22ProductHierarchy%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OPT%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OphtalmicDiagnostics%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OCTSystems%22%5D%7D%2C%22text%22%3A%221920%22%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Knowledge Base"}
@@ -265,8 +273,8 @@ function generateSolutions(context = '') {
             "tags": ["black", "black preview", "no preview", "preview", "dark preview", "right side", "main preview", "eye dark", "not visible", "unable to see", "obscured", "right", "alignment working", "small preview", "preview not functioning", "completely dark", "opaque", "images fine", "output", "pictures", "still works", "take pictures", "images", "output", "alignment", "screen black", "screen not working", "screen function"],
             "instruments": ["Clarus"],
             "models": ["Clarus 500", "Clarus 700"],
-            "problem_description": "ir_laser_led_failure.html",
-            "solution_description": "ir_laser_led_failure_solution.html",
+            "problem_description": "clarus_ir_laser_led_failure.html",
+            "solution_description": "clarus_ir_laser_led_failure_solution.html",
             "references": [
                 {"title": "IR Laser/LED Failure", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CLARUS.one%7C7BCEC8B3-1FD0-4902-B626-985C8C9E35C7%2FIR%20Laser%5C%2FLED%20Failure%7C635A93AE-D798-4186-B200-52AE2EE80E84%2F%29&wdpartid={B117E1FC-C1B6-45D1-A658-55A5AC475C45}{1}&wdsectionfileid={22135654-211D-4C69-858B-A4F54EAABA99}", "src": "OneNote"}
             ]
@@ -291,6 +299,43 @@ function generateSolutions(context = '') {
             "solution_description": "iolmaster_stuck_checking_solution.html",
             "references": [
                 {"title": "IOLMaster 700 - Boots up and gets stuck at Checking Device", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28IOLMASTER%20700.one%7C9D82B692-F67F-4FE4-ACC7-BE726F16E193%2FIOLMaster%20700%20-%20Boots%20up%20and%20gets%20stuck%20at%20Checking%7C6B23502C-48DF-412C-8D41-FDDAEE940844%2F%29&wdpartid={46A61D34-BF76-4BAF-9F16-C8FBC5C4382B}{210}&wdsectionfileid={B603A2C5-7B19-4DE8-B9F0-89FF6238D4C8}", "src": "OneNote"}
+            ]
+        },
+        "00011": {
+            "title": "Static or Snowy OCT Scan Images",
+            "tags": ["static", "snowy", "snow", "scan", "images", "image", "oct", "cirrus", "oct scan", "oct scan window", "green", "yellow", "multicolored", "multi-colored", "color", "scan image", "scan images", "scan image window", "scan window", "tv", "reception", "monitor", "screen", "display", "monitor display", "screen display", "display monitor", "display screen", "monitor screen", "screen monitor", "acquire", "acquire scan", "acquire scans", "acquire scan images", "acquire scan image", "acquire oct scan", "acquire oct scans", "acquire oct scan images", "acquire oct scan image"],
+            "instruments": ["Cirrus OCT"],
+            "models": ["Cirrus HD-OCT 500", "Cirrus HD-OCT 5000", "Cirrus HD-OCT 6000"],
+            "software_versions": ["8.1.0", "9.5.1", "9.5.2", "11.5.2", "11.5.3", "11.7.0", "11.7.1", "11.7.2"],
+            "problem_description": "oct_static_snowy_scan_images.html",
+            "solution_description": "oct_static_snowy_scan_images_solution.html",
+            "references": [
+                {"title": "Cirrus Information", "url": "https://zeiss.sharepoint.com/:b:/r/Sites/201368/MEDTS/SiteAssets/SitePages/Device-Quick-Reference/Cirrus-Information.pdf?csf=1&web=1&e=idTcex", "src": "SharePoint"},
+                {"title": "'Snowy'/'Static' OCT Images", "url": "https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/Doc.aspx?sourcedoc={2D11422D-7802-40B6-A0D4-C7EF3B2C4EDC}&wd=target%28Common%20Issues.one%7CFE1CBE1A-12E5-4479-9DAA-D61ED3EA7C83%2F%22Snowy%20%5C%2F%20Static%22%20OCT%20images%7CC201EBD7-2BC6-4D40-B35D-219D38E9334C%2F%29&wdpartid={64B78EBD-7F0D-4681-94F0-A26819666FAA}{63}&wdsectionfileid={CCB5FC0F-FFAB-408D-B757-4F1E82F0EAC3", "src": "OneNote"}
+            ]
+        },
+        "00012": {
+            "title": "Database or SQL Issue",
+            "tags": ["database", "sql", "mysql", "mysql 5.7", "5.7", "error", "error message", "error code", "sql error", "sql issue", "sql database", "database issue", "database error", "sql error code", "log error", "database or sql", "no patient found", "for exam", "critical error", "critical", "application encountered", "encountered an error", "emergency", "emergency shutdown", "patient disassociation", "patient", "disassociation", "final exception handler", "mysql57", "service", "service mysql57", "service start", "service stop", "service restart", "service status", "service mysql57 start", "service mysql57 stop", "service mysql57 restart", "service mysql57 status", "system application error", "system application", "application error", "serious error", "error occurred", "device will be shut down", "device", "shut down"],
+            "instruments": ["HFA"],
+            "models": ["HFA3 830", "HFA3 840", "HFA3 850", "HFA3 860"],
+            "software_versions": ["1.5.1", "1.5.2", "1.5.3", "1.6.1"],
+            "problem_description": "hfa3_critical_application_error_database_sql_issue.html",
+            "solution_description": "hfa3_mysql_maintenance_reinstall_recreate_solution.html",
+            "references": [
+                {"title": "HFA3 - Database or SQL Issue", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28HFA3%20ALL%20MODELS.one%7C41994B2F-AC33-4B1C-AAED-181045CC14C4%2FCritical%20Error%5C%2FApplication%20encountered%20an%20error%2C%20Shutting%20down--%7C52BBA473-9BEB-45A3-BE58-1271A6603FAB%2F%29&wdpartid={E1821560-BE77-46FC-A2B2-E524D237A45F}{16}&wdsectionfileid={9599597F-B1AB-463F-B4D8-197A014914B1}", "src": "OneNote"}
+            ]
+        },
+        "00013": {
+            "title": "Black/Blank Screen or Screen Not Turning On",
+            "tags": ["black screen", "screen not turning on", "screen not turning", "screen black", "black display", "display black", "display not turning on", "blank", "blank screen", "blank display", "display blank", "screen not working", "screen not functioning", "screen not responding", "screen off", "display off", "display not working", "display not functioning", "display not responding", "display unresponsive", "monitor", "monitor not turning on", "monitor black", "monitor blank", "monitor not working", "monitor not functioning", "monitor not responding", "monitor unresponsive", "fans", "fan", "fans running", "fan running", "power light on", "power light not off", "sounds like", "normal sounds", "sounds", "normal", "no picture", "no display", "no video", "not working", "not functioning", "monitor dead", "screen dead", "display dead", "dead"],
+            "instruments": ["Cirrus OCT"],
+            "models": ["Cirrus HD-OCT 6000"],
+            "software_versions": ["8.1.0", "9.5.1", "9.5.2", "11.5.2", "11.5.3", "11.7.0", "11.7.1", "11.7.2"],
+            "problem_description": "oct_black_screen.html",
+            "solution_description": "oct_black_screen_solution.html",
+            "references": [
+                {"title": "6000 specific", "url": "https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/Doc.aspx?sourcedoc={2D11422D-7802-40B6-A0D4-C7EF3B2C4EDC}&wd=target%28Common%20Issues.one%7CFE1CBE1A-12E5-4479-9DAA-D61ED3EA7C83%2F6000%20specific%7CC73DE8A3-79AB-466F-B1B5-FACEB57074D0%2F%29&wdpartid={FDEA036E-A326-4BD9-AF16-BD6FF982DF2C}{180}&wdsectionfileid={CCB5FC0F-FFAB-408D-B757-4F1E82F0EAC3}", "src": "OneNote"}
             ]
         }
     }

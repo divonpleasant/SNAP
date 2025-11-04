@@ -1,0 +1,98 @@
+<a name="stop-start-mysql-service"></a>
+<h3>Stop/Start MySQL Service</h3>
+<p>It is often useful to try checking the status of the MySQL service, or to attempt a service restart. These steps are used in the other resolution steps, below, but can also be performed on their own for diagnostics or recovery of general database issues.</p>
+<a name="mysql-service-restart-steps"></a>
+<ol>
+    <li>Click the Start menu (Windows icon on Taskbar) or press WIN+R to bring up the Run menu</li>
+    <li>From either the Start menu search bar or the Run menu command prompt, enter <code>services.msc</code> and press Enter to open the Services system tool</li>
+    <li>Locate the service named <code>MySQL57</code></li>
+    <li>To <strong>STOP</strong> the service:
+        <ul>
+            <li>Click the "Stop" (square icon) VCR button at the top of the Services window</li>
+            <li>Right-click the service line and select "Stop" from the context menu</li>
+            <li>Select Action &gt; Stop from the menu bar</li>
+        </ul>
+    </li>
+    <li>To <strong>START</strong> the service:
+        <ul>
+            <li>Click the "Start" (play, triangle, or right-arrow icon) VCR button at the top of the Services window</li>
+            <li>Right-click the service line and select "Start" from the context menu</li>
+            <li>Select Action &gt; Start from the menu bar</li>
+        </ul>
+    </li>
+</ol>
+
+<a name="maintenance-mysql"></a>
+<h3>Maintenance</h3>
+<p>If the application is reporting an error with the database, e.g. "Database or SQL issue" appears in the logfiles, regardless of whether DICOM is in play, running this maintenance on the MySQL instance can help alleviate some problems.</p>
+<ol>
+    <li><a href="#mysql-service-restart-steps">Stop the MySQL57 service</a> (steps #1-4)</li>
+    <li>If the service fails to stop, proceed to <a href="#reinstall-mysql">reinstallation</a> steps, below. Otherwise, continue with the remaining Maintenance steps</li>
+    <li>Open File Explorer and browse to <code>D:\MySQLData\Data</code></li>
+    <li>Delete the following files:
+        <ul>
+            <li><code>ib_logfile0</code></li>
+            <li><code>ib_logfile1</code></li>
+            <li><code>ib_logfileXXX</code> (where X is any integer)</li>
+            <li><code>mysql.err</code></li>
+            <li><code>mysql-slow.log</code></li>
+        </ul>
+    </li>
+    <li>Return to the <a href="stop-start-mysql-service">Services tool</a> (if you closed it, repeat steps #1-3)</li>
+    <li><a href="#mysql-service-restart-steps">Start the MySQL57 service</a> (step #5)</li>
+    <li>If the services starts up successfully, open the HFA application</li>
+</ol>
+
+<a name="reinstall-mysql"></a>
+<h3>Reinstall MySQL</h3>
+<p>This is a destructive sequence, unless the customer is <em>successfully</em> connecting to Forum. In a Forum environment, the HFA doesn't use the local MySQL instance for data storage so there is no risk to reinstalling the database software or overwriting the database. To confirm the device is successfully writing to Forum, either have the customer verify all recent tests are visible in Forum Viewer or manually send a sample test to Forum and confirm it before taking any of the following steps.</p>
+<p>However, if the HFA is running in standalone mode, this process will delete patient data. Customers are responsible for managing and protecting their own data, but ensure before taking any destructive action that:</p>
+<ol style="list-style: lower-alpha;">
+    <li>Every reasonable effort has been made to create a viable recovery backup of all customer patient data</li>
+    <li>The customer POC and any relevant stakeholders (doctors, hospital administrators, office managers, etc) are fully aware of the potential for data loss</li>
+</ol>
+<ol>
+    <li><a href="#mysql-service-restart-steps">Stop the MySQL57 service</a> (steps #1-4)</li>
+    <li>Delete the MySQL57 service:
+        <ol>
+            <li>Open an elevated-permissions command prompt by searching the Start menu for "CMD" and right-clicking the Command Prompt application and choosing, "Run as Administrator"</li>
+            <li>In the elevated command prompt, run: <code>sc delete MySQL57</code></li>
+        </ol>
+    </li>
+    <li>Open File Explorer and navigate to the <code>D:\</code> drive</li>
+    <li>Update the following folders:
+        <ul>
+            <li><code>MySQLData</code> rename to <code>MySQLData.bak</code></li>
+            <li><code>MySQLdb.default</code> rename to <code>MySQLdb.default.bak</code></li>
+            <li><code>MySQLdb.usermanagement</code> rename to <code>MySQLdb.usermanagement.bak</code></li>
+        </ul>
+    </li>
+    <li>Open Control Panel from the Start menu</li>
+    <li>Select Programs &gt; Programs and Features</li>
+    <li>Highlight <code>MySQL Connector Net 6.10.6</code> and click "Uninstall" to remove the program</li>
+    <li>Return to File Explorer and navigate to: <code>C:\Program Files\MySQL\MySQL Server 5.7\Installer</code></li>
+    <li>Locate and run <code>MySQLinstallerInst.exe</code>, and follow the prompts</li>
+</ol>
+<p>When the installation is complete, the MySQL57 service should be re-installed and an empty database will be created.</p>
+<p>In most cases this should resolve the database-related issues. In some circumstances, the root cause was an issue with the MySQL installation, service, or program itself, rather than the data within the database. In these cases, it may be possible to <a href="#revert-mysql">revert to the previous database instance</a> after a reinstall to recover data without needing to restore from backup.</p>
+
+<a name="revert-mysql"></a>
+<h3>Revert to a Previous Database</h3>
+<p>This should be attempted primarily if the device is not connected to Forum and the <a href="#reinstall-mysql">reinstallation steps</a> were performed on a standalone database resulting in data loss (especially if no full backup was possible). Forum-connected devices do not need to revert to previous databases.</p>
+<ol>
+    <li><a href="#mysql-service-restart-steps">Stop the MySQL57 service</a> (steps #1-4)</li>
+    <li>Open File Explorer and navigate to the <code>D:\</code> drive</li>
+    <li>Update the following folders:
+        <ul>
+            <li><code>MySQLData</code> rename to <code>MySQLData.new</code></li>
+            <li><code>MySQLdb.default</code> (if present) rename to <code>MySQLdb.default.new</code></li>
+            <li><code>MySQLdb.usermanagement</code> (if present) rename to <code>MySQLdb.usermanagement.new</code></li>
+            <li>Open File Explorer and navigate to the <code>D:\</code> drive</li>
+            <li><code>MySQLData.bak</code> rename to <code>MySQLData</code></li>
+            <li><code>MySQLdb.default.bak</code> rename to <code>MySQLdb.default</code></li>
+            <li><code>MySQLdb.usermanagement.bak</code> rename to <code>MySQLdb.usermanagement</code></li>
+        </ul>
+    </li>
+    <li>Return to the <a href="stop-start-mysql-service">Services tool</a> (if you closed it, repeat steps #1-3)</li>
+    <li><a href="#mysql-service-restart-steps">Start the MySQL57 service</a> (step #5)</li>
+</ol>

@@ -405,6 +405,7 @@ function pmToggle(state = false) {
     if (state) {
         document.getElementById('same-as-reported').checked = true;
         document.getElementById('frequency-selector').selectedIndex = 5;
+        document.getElementById('call-type').selectedIndex = 4;
         for (let aa = 0; aa < auto_fields.length; aa++) {
             document.getElementById(auto_fields[aa]).value = 'PM Request';
         }

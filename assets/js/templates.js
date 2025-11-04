@@ -35,7 +35,7 @@ The following Canadian customer needs a Service Request, please.
 Business Location Details
 
     Account Name: ${document.getElementById('account').value}
-    Address: ${document.getElementById('instrument-address').value}
+    Address: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
     Serial Number: ${document.getElementById('serial').value}
     Instrument Description: ${getInstrumentModel()}
     Windows Version: ${document.getElementById('windows-version').value}
@@ -64,7 +64,7 @@ An incoming customer call for a ${serial_strings[1]} came in with a Compliance C
     Compliance Match ID: ${document.getElementById('compliance-id').value}
     Account ID: ${document.getElementById('account-id').value}
     Account Name: ${document.getElementById('account').value}
-    Address: ${document.getElementById('instrument-address').value}
+    Address: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 
 Please advise on how I may proceed.
 
@@ -94,7 +94,7 @@ ${(document.getElementById('customer-notes').value !== '') ? 'Additional Notes: 
 
 ${(document.getElementById('solution-notes').value !== '') ? 'Solution: ' + document.getElementById('solution-notes').value : ''}
 
-${(document.getElementById('call-type').value === 'onsite-fix') ? 'Your ticket with an associated field service dispatch will remain open until the onsite visit is completed. The dispatch order number is ' + document.getElementById('svo').value + '.' : ''}${(document.getElementById('call-type').value === 'phone-fix') ? 'Your ticket was categorized as "handled via phone," and the ticket may be closed or marked as "complete" for record-keeping purposes. Do continue to reference CCT number ' + document.getElementById('cct').value + ' in any future interactions regarding this issue until CZMI Tech Support provides an updated ticket number.' : ''}${(document.getElementById('call-type').value === 'remote-service') ? 'Your ticket involved remote service (TeamViewer, Teleservice, Zeiss Smart Services, etc). This ticket will have been marked as "complete" unless a follow-up was scheduled during the call.' : ''}${(document.getElementById('call-type').value === 'spare-part-order') ? "Your request for the following parts:\n    " + document.getElementById('part-list').value + "\nWas forwarded to the CZMI Parts department for processing. If there is an associated charge, the Parts team will reach out to you via phone or email within one (1) business day for payment processing. Otherwise, parts orders will be processed and shipped in the order received." : ''}
+${context[0]}
 
 Thank you for being a Zeiss customer!
 
@@ -124,9 +124,38 @@ ${so.Settings.user.email_sig.value}`
                 "cc": [],
                 "bcc": [`${so.Settings.user.private_inbox.value}`],
                 "subject": `${(document.getElementById('cct').value) !== '' ? '[CCT: #' + document.getElementById('cct').value + '] ' : ''}`,
-                "body": `Dear ${document.getElementById('local-contact-person').value},
+                "body": `Dear ${document.getElementById('local-contact-person').value.split(' ')[0]},
 
 Regards,
+${so.Settings.user.email_sig.value}`
+            },
+            "gl2-escalation": {
+                "name": "Global Level 2 Escalation",
+                "recipient": `${document.getElementById('gl2-team').value}`,
+                "cc": [],
+                "bcc": [],
+                "subject": `Global Level 2 Escalation for ${document.getElementById('serial').value} ${(document.getElementById('cct').value !== '') ? '[CCT #' + document.getElementById('cct').value + ']' : ''}`,
+                "body": `Hi Team,
+Please review the following escalation request. ${(document.getElementById('cct').value !== '') ? 'Original ticket is #' + document.getElementById('cct').value + ']' : ''}
+
+Details about the reported problem and findings:
+•	Reported Problem: ${document.getElementById('description').value}
+•	Actual Problem: ${document.getElementById('actual-problem-description').value}
+${(document.getElementById('gl2-issue-timing').value != '') ? `•	When in the customer workflow does the problem occur?: ${document.getElementById('gl2-issue-timing').value}` : ''}
+${(document.getElementById('gl2-workaround').value != '') ? `•	Workaround to regain functionality?: ${document.getElementById('gl2-workaround').value}` : ''}
+•	Details about Instrument/Review Station:
+    OS: ${document.getElementById('windows-version').value}
+    Instrument/Software Version: ${document.getElementById('device-software-version').value}
+    ${(document.getElementById('include-review-station').checked) ? 'Review Station Version: ' + document.getElementById('review-station-software-version').value + "\n" : ''}
+
+Detailed Troubleshooting Steps:
+${document.getElementById('troubleshooting-performed').value}
+
+${(document.getElementById('gl2-troubleshooting').value !== '') ? "Additional Notes: \n" + document.getElementById('gl2-troubleshooting').value : ''}
+
+Log files and any available/pertinent screenshots are attached.
+
+Thank you!
 ${so.Settings.user.email_sig.value}`
             },
             "parts-order": {
@@ -145,7 +174,7 @@ Account Name: ${document.getElementById('account').value}
 
 Address:
     Attention: ${document.getElementById('local-contact-person').value}
-    ${document.getElementById('instrument-address').value}
+    ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 Shipment: ${document.getElementById('delivery-type').value}
 Billing Type: ${(document.getElementById('foc').checked) ? 'Free of Charge (see CCT #' + document.getElementById('cct').value + ')' : 'Billable'}
 Customer Email: ${(document.getElementById('billing-email').value !== '') ? document.getElementById('billing-email').value : document.getElementById('email').value}
@@ -264,7 +293,7 @@ Zeiss Ticket Number (CCT #): ${document.getElementById('cct').value}
 Problem Description: ${document.getElementById('description').value}
 Ticket Creation Date: ${simple_date}
 Serial Number: ${document.getElementById('serial').value}
-Customer Site: ${document.getElementById('instrument-address').value}
+Customer Site: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 Contact Person: ${document.getElementById('local-contact-person').value}
 Phone Number: ${document.getElementById('phone').value}
 Email Address: ${document.getElementById('email').value}
@@ -311,7 +340,7 @@ ${so.Settings.user.email_sig.value}`
 Customer has called in to request a contract PM with the following info:
 
 Customer (Account Name): ${document.getElementById('account').value}
-Site Location: ${document.getElementById('instrument-address').value}
+Site Location: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
 Contact Name: ${document.getElementById('local-contact-person').value}
 Contact Phone Number: ${document.getElementById('phone').value}
 Serial Number: ${document.getElementById('serial').value}
@@ -346,7 +375,7 @@ The following customer needs a service request for a ${context[0]} device, pleas
 
 Business Location Details
     Account Name: ${document.getElementById('account').value}
-    Address: ${document.getElementById('instrument-address').value}
+    Address: ${(document.getElementById('new-site-address').value === '') ? document.getElementById('instrument-address').value : document.getElementById('new-site-address').value}
     Serial Number: ${document.getElementById('serial').value}
 Contact Details
     Contact Name: ${document.getElementById('local-contact-person').value}
@@ -552,7 +581,7 @@ To create a Task-Task:
 <h2>With Service Contract</h2>
 <ol>
     <li>Note the Contract ID in ${TRef.crm}</li>
-    <li>Use the <a href="#" onclick="manualOpenEmailTemplate('service-admin-contract-pm-request')">Admin PM Request</a> email template</li>
+    <li>Use the ${TRef.admin_pm_req} email template</li>
     <li>Create a ${TRef.cct}:
         <ul>
             <li>Use the Call Type 'Prev. Maintenance'</li>
@@ -565,7 +594,7 @@ To create a Task-Task:
 </ol>
 <h2>Without Service Contract</h2>
 <ol>
-    <li>Confirm billing (use the <a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')">PO Authorization</a> email request template if needed)</li>
+    <li>Confirm billing (use the ${TRef.po_auth} email request template if needed)</li>
     <li>Create a ${TRef.cct}:
         <ul>
             <li>Use the Call Type 'Prev. Maintenance'</li>
@@ -599,7 +628,7 @@ To create a Task-Task:
         </ol>
     </li>
     <li>Copy the new CCT number into the CCT field.
-    <li>Use <a href="#" onclick="manualOpenEmailTemplate('proaim-pm-request')">PROAIM PM Request</a> email template to send request to Service Ops</li>
+    <li>Use the ${TRef.proaim_pm_auth} email template to send request to Service Ops</li>
     <li>Mark the CCT as Complete</li>
 </ol>`,
                     "proaim-request": `<h1>PROAIM Service Request</h1>
@@ -690,9 +719,9 @@ To create a Task-Task:
 <p>Incorrect/unverified addresses can lead to service delays if an FSE is dispatched to the wrong location. If the Ship-To address in ${TRef.crm} does not match the customer's information during verification, you must work with Service Operations Administration (SOA) to get the address updated.</p>
 <p>Occasionally, it is also necessary to update a customer's billing or account address. In either case, the process is the same:</p>
 <ol>
-    <li>Use the <a href="#" onclick="manualOverlay('address-change')">Address Change Form</a> and complete all fields with updated information</li>
+    <li>Use the ${TRef.address_change_form} and complete all fields with updated information</li>
     <li>Ensure the following fields on the SNAP Work Form are filled out: POC Name, POC Phone Number, POC Email, Instrument/Shipping Address (should be copied from CRM, will be reflected in Current Site Address field on the <a href="#" onclick="manualOverlay('address-change')">Change Form</a>)</li>
-    <li><a href="#" onclick="manualActivateProcess('crm', 'tasks', 'create-task-task')">Create a Task</a> using the Address Change Task Template</li>
+    <li>${TRef.proc_create_task} using the Address Change Task Template</li>
 </ol>`,
                     "change-task": `Change ${context[0]} Address${context[1]}${context[2]}
 Customer POC Info:
@@ -711,12 +740,12 @@ ${context[5]}
             "pce": {
                 "general": {
                     "default": `<h1>Potential Customer Escalation (PCE) Process</h1>
-<p>Potential Customer Escalations (PCEs) is a process for preventing customer issues (PCE is also interchangably used to mean Preventing Customer Escalation) from being escalated through sales or management due to dissatisfaction with support service. This process is meant to identify poptentially dissatisfied customers and incorporate additional details into Customer Care Ticket (CCT) creations which will allow these cases to be identified by CRM automation for proactive involvement with Tech Support management.</p>
+<p>Potential Customer Escalations (PCEs) is a process for preventing customer issues (PCE is also interchangably used to mean Preventing Customer Escalation) from being escalated through sales or management due to dissatisfaction with support service. This process is meant to identify potentially dissatisfied customers and incorporate additional details into Customer Care Ticket (CCT) creations which will allow these cases to be identified by CRM automation for proactive involvement with Tech Support management.</p>
 <h2>Process Steps</h2>
 <ul>
   <li>During a customer call, TSEs will review the Service History in CRM and identify potential escalation risks based on the number of service interactions within a specific time frame
     <ul>
-      <li>As of October 20, 2025, this applies only to customers with an active warranty or service contract (billing code W or CO)</li>
+      <li>As of November 2025, this applies only to customers with an active warranty or service contract (billing code W or CO)</li>
       <li>Number of qualifying interactions: two (2) or more
         <ul>
           <li>Qualifying interactions exclude Installations, Trainings, or Preventative Maintenance</li>
@@ -2080,6 +2109,22 @@ Architecture: ${document.getElementById('forum-architecture').value}
   <customMetaData>
     <key>is-pce</key>
     <value>${document.getElementById('is-pce').checked}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-team</key>
+    <value>${document.getElementById('gl2-team')[document.getElementById('gl2-team').selectedIndex].value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-issue-timing</key>
+    <value>${document.getElementById('gl2-issue-timing').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-workaround</key>
+    <value>${document.getElementById('gl2-workaround').value}</value>
+  </customMetaData>
+  <customMetaData>
+    <key>gl2-troubleshooting</key>
+    <value>${document.getElementById('gl2-troubleshooting').value}</value>
   </customMetaData>
 </AssetInfo>`
             }
