@@ -94,7 +94,7 @@ ${(document.getElementById('customer-notes').value !== '') ? 'Additional Notes: 
 
 ${(document.getElementById('solution-notes').value !== '') ? 'Solution: ' + document.getElementById('solution-notes').value : ''}
 
-${(document.getElementById('call-type').value === 'onsite-fix') ? 'Your ticket with an associated field service dispatch will remain open until the onsite visit is completed. The dispatch order number is ' + document.getElementById('svo').value + '.' : ''}${(document.getElementById('call-type').value === 'phone-fix') ? 'Your ticket was categorized as "handled via phone," and the ticket may be closed or marked as "complete" for record-keeping purposes. Do continue to reference CCT number ' + document.getElementById('cct').value + ' in any future interactions regarding this issue until CZMI Tech Support provides an updated ticket number.' : ''}${(document.getElementById('call-type').value === 'remote-service') ? 'Your ticket involved remote service (TeamViewer, Teleservice, Zeiss Smart Services, etc). This ticket will have been marked as "complete" unless a follow-up was scheduled during the call.' : ''}${(document.getElementById('call-type').value === 'spare-part-order') ? "Your request for the following parts:\n    " + document.getElementById('part-list').value + "\nWas forwarded to the CZMI Parts department for processing. If there is an associated charge, the Parts team will reach out to you via phone or email within one (1) business day for payment processing. Otherwise, parts orders will be processed and shipped in the order received." : ''}
+${context[0]}
 
 Thank you for being a Zeiss customer!
 

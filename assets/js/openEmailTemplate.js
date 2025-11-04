@@ -126,6 +126,51 @@ function manualOpenEmailTemplate(template_id, closeOL = false) {
     // Find correct template and perform any context-relevant actions
     var device_context = [];
     switch (template_id) {
+        case 'customer-summary':
+            var type_notes = '';
+            switch (document.getElementById('call-type').value) {
+                case 'inhouse-repair':
+                    type_notes = 'Your ticket with an associated inhouse repair will remain open until the instrument is returned to you. Our IHR team should reach out to you within one (1) business day to confirm the details of your inhouse repair request.';
+                    break;
+                case 'onsite-fix':
+                    deferred_str_regex = /^Customer is not prepared with payment information/;
+                    if (document.getElementById('solution-notes').value.match(deferred_str_regex)) {
+                        type_notes = 'Your onsite fix request is in process. Pending payment method confirmation, this ticket has been closed. Once payment method verification is complete, a new ticket with a field service dispatch will be created and will remain open until the onsite visit is complete. Please continue to reference CCT number ' + document.getElementById('cct').value + ' in any interactions regarding this issue until CZMI Tech Support provides an updated ticket.';
+                    } else {
+                        type_notes = `Your ticket with an associated field service dispatch will remain open until the onsite visit is completed. ${(document.getElementById('svo').value !== '') ? 'The dispatch order number is ' + document.getElementById('svo').value + '.' : ''}`;
+                    }
+                    break;
+                case 'phone-fix':
+                    type_notes = 'Your ticket was categorized as "handled via phone," and the ticket may be closed or marked as "complete" for record-keeping purposes. Do continue to reference CCT number ' + document.getElementById('cct').value + ' in any future interactions regarding this issue until CZMI Tech Support provides an updated ticket number.';
+                    break;
+                case 'prev-maintenance':
+                    switch (document.getElementById('billing-type').value) {
+                        case 'CNTRCT':
+                            type_notes = 'Your preventative maintenance request ticket under service contract was processed with a request to our Service Operations Admin team. Your ticket has been closed.';
+                            break;
+                        case 'B':
+                        case 'W':
+                            type_notes = (document.getElementById('account').value === 'PROAIM Medical') ? 'Your request for a preventative maintenance has been forwarded to our Service Operations Administration team, who will coordinate with PROAIM to process your request. Once processed, a Field Service Engineer (FSE) will be dispatched. This ticket has been marked as "complete" for record-keeping purposes. A new dispatch ticket will be opened for your FSE, and the updated ticket can be requested at the time of the scheduling call.' : 'Your billable preventative maintenance request ticket is in process. Once payment method confirmation has been verified, your request will be associated with a field service dispatch and will remain open until the onsite visit is complete.';
+                            break;
+                        default:
+                            type_notes = 'Your preventative maintenance request ticket was processed with a request to our Service Operations Admin team. Your ticket has been closed.';
+                            break;
+                    }
+                    break;
+                case 'remote-service':
+                    type_notes = 'Your ticket involved remote service (TeamViewer, Teleservice, Zeiss Smart Services, etc). This ticket will have been marked as "complete" unless a follow-up was scheduled during the call.';
+                    break;
+                case 'spare-part-order':
+                    type_notes = `Your request for the following parts:
+    ${document.getElementById('part-list').value}
+Was forwarded to the CZMI Parts department for processing. If there is an associated charge, the Parts team will reach out to you via phone or email within one (1) business day for payment processing. Otherwise, parts orders will be processed and shipped in the order received.`;
+                    break;
+                default:
+                    type_notes = 'Your ticket was handled according to our default process. In most cases, this means it was marked as "complete" for record-keeping purposes. If you have any questions, please contact CZMI Tech Support.';
+                    break;
+            }
+            device_context.push(type_notes);
+            break;
         case 'end-of-support':
             //var active_model = (eosPreCheck()) ? fetchEosData() : updateSystemBox('EoS email template could not be processed');
             if (eosPreCheck()) {
