@@ -1,4 +1,4 @@
-const version = '3.1.21';
+const version = '3.1.22';
 const project_home = 'https://github.com/divonpleasant/SNAP'
 
 // Startup routine

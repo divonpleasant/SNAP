@@ -753,6 +753,18 @@ function commonActionToField(a_id, fields) {
     }
 }
 
+function commonPartToField(a_id, fields, formatted_input = '') {
+    console.debug("Executing commonPartToField ...\na_id: " + a_id + "\nfields: " + fields + "\nformatted_input: " + formatted_input);
+    var line_break = "\n";
+    for (var f = 0; f < fields.length; f++) {
+        if (formatted_input !== '') {
+            const parts_re = /\^/g;
+            formatted_input = formatted_input.replace(parts_re, "\n");
+        }
+        document.getElementById(fields[f]).value += (formatted_input === '') ? document.getElementById(a_id).innerHTML + line_break : formatted_input + line_break;
+    }
+}
+
 function revealHelper(helper_id) {
     event.preventDefault();
     console.log("Executing revealHelper ...\n  helper_id: " + helper_id);
