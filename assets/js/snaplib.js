@@ -518,7 +518,13 @@ function copyTVInfo(field_num) {
     const tvc = new generateTemplates([]);
     var tv_index = 'teamviewer-info' + field_num;
     var tv_str = tvc.templates.clipboard[tv_index];
-    return clipBoarder(tv_str, `TeamViewer Info for TV Field ${field_num}`);
+    clipBoarder(tv_str, `TeamViewer Info for TV Field ${field_num}`);
+    return false;
+}
+
+function iconCopy(copy_data, label) {
+    clipBoarder(copy_data, label);
+    return false;
 }
 
 // Determine POC communication preferences

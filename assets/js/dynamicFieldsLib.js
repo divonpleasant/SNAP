@@ -733,6 +733,7 @@ function toggleFieldMenu(menu) {
     var current_display = document.getElementById(menu).style.display;
     console.debug({current_display});
     document.getElementById(menu).style.display = (current_display === 'none' || current_display === '') ? 'flex' : 'none';
+    return false;
 }
 
 function commonActionToField(a_id, fields) {

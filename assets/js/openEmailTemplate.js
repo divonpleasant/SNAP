@@ -334,4 +334,5 @@ ${t.templates.email[template_id].body}`;
             console.log(error);
         }
     }
+    return false;
 }

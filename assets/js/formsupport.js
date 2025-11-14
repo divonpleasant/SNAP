@@ -377,6 +377,7 @@ function activateProcess() {
     document.getElementById('prompt-text').innerHTML = proc_text;
     document.getElementById('prompt').style.display = 'flex';
     document.getElementById('prompt-tail').style.display = 'none';
+    return false;
 }
 function manualActivateProcess(proc_type, proc_section, proc_location) {
     console.debug("Executing manualActivateProcess ...\n  proc_type: " + proc_type + "\n  proc_section: " + proc_section + "\n  proc_location: " + proc_location);
@@ -386,6 +387,7 @@ function manualActivateProcess(proc_type, proc_section, proc_location) {
     document.getElementById('prompt-text').innerHTML = proc_text;
     document.getElementById('prompt').style.display = 'flex';
     document.getElementById('prompt-tail').style.display = 'none';
+    return false;
 }
 
 function displayProcessMessage(msg_txt) {
@@ -513,6 +515,7 @@ function activateScript () {
     //console.log(st.templates.script.greeting.default);
     document.getElementById('prompt').style.display = 'flex';
     document.getElementById('prompt-tail').style.display = 'inline';
+    return false;
 }
 function findScriptText(script_type) {
     console.debug("Executing findScriptText ...\n  script_type: " + script_type);
