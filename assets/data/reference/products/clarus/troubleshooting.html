@@ -1,0 +1,920 @@
+<div class="reference-main">
+    <a name="reftop"></a>
+    <h1><a href="#reftop" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/clarus/index')">Clarus</a> Troubleshooting Guide &amp; Common Issues</h1>
+
+    <a name="known-issues"></a>
+    <h2>Known Issues</h2>
+    <p>Note: this list is transferred from Service Bulletin 038, updated May 8, 2025 (document version 16) for software version 1.1.4. Please check SIS for the most current version of this document.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Issue</th>
+                <th>Cause/Solution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>124</td>
+                <td>Clarus application v1.1.4 startup stalls at MySQL bootup and triggers an emergency shutdown.</td>
+                <td>
+                    <p><strong>Cause:</strong> The application doesn't wait for the MySQL service to boot, but instead triggers an emergency shutdown.</p>
+                    <p><strong>Workaround:</strong> Wait a few minutes after an OS boot-up before starting the Clarus application. Clarus application v1.1.4 typically starts successfully on the second or third attempt.</p></td>
+            </tr>
+            <tr>
+                <td>123</td>
+                <td><p>For instruments that are synchronized, images for a selected patient are missing (showing placeholders for images) or the error message indicates:<br />
+                <code>Image(s) is missing/corrupt</code></p>
+                <img src="images/reference/clarus/clarus-image_missing_corrupt_example.png" /></td>
+                <td>
+                    <p><strong>Cause:</strong> A data-synchronized instrument is offline (most likely cause).</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Select Settings > Data and Report > Data Synchronization</li>
+                        <li>Verify that synchronized instruments are online</li>
+                        <li>If the status is not green, ensure the devices in synchronization are online</li>
+                        <li>When all synchronized instruments are online, select the patient</li>
+                    </ol>
+                    <p>The synchronized data and images appear normally.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <td>Clarus application upgrade to v1.1.4 fails at database restore.</td>
+                <td>
+                    <p><strong>Cause:</strong> MySQL databases are not compatible.</p>
+                    <p><strong>Workaround:</strong> Trigger a full backup.</p>
+                    <p>There are two ways to trigger a backup. Either will work for this workaround.</p>
+                    <p>Method 1: Restart the Clarus Application</p>
+                    <p>Method 2: Data Backup and Restore Settings</p>
+                    <ol>
+                        <li>Open the Clarus application</li>
+                        <li>Login as Administrator</li>
+                        <li>Select Settings &gt; Data and Report &gt; Backup &amp; Restore</li>
+                        <li>Under Data Backup On Shutdown, click Backup Now</li>
+                        <li>Wait for the data backup to complete. A confirmation opens when the backup finishes</li>
+                        <li>Click OK</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>121</td>
+                <td>Double-clicking on FA stack shows only one image (instead of all images in the stack).</td>
+                <td>
+                    <p><strong>Cause:</strong> Double-clicking triggers the wrong mechanism.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Single-click on the FA stack; all images are selected</li>
+                        <li>Click Review</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>120</td>
+                <td>Clarus application v1.1.4 installation aborts and subsequent installation attempts fail.</td>
+                <td>
+                    <p><strong>Cause:</strong> MySQL 5.7 is not installed, preventing Clarus application upgrade to v1.1.4.</p>
+                    <p>If the installer aborts during upgrade after the MySQL binaries are deleted, subsequent attempts to upgrade can fail.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Restore factory image</li>
+                        <li>Upgrade the Clarus application to v.1.1.4</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>119</td>
+                <td>The marked ONH (Optic Nerve Head) location is saved on the incorrect image.</td>
+                <td>
+                    <p><strong>Cause:</strong> Following a particular unintended workflow causes the marked ONH location to save on the incorrect image.</p>
+                    <p><strong>Unintended Workflow:</strong></p>
+                    <ol>
+                        <li>During acquisition, manually mark the ONH location</li>
+                        <li>Immediately select a different image; the marked ONH location saves on the incorrect image</li>
+                    </ol>
+                    <p>Selecting a different image before the ONH location saves completely interrupts the process.</p>
+                    <p><strong>Solution:</strong> Do not select another image immediately after marking ONH location.</p>
+                    <p>Wait a moment for the ONH location save process to complete before selecting another image.</p>
+                    <p>If already saved incorrectly, manually re-locate the ONH on the image and wait a moment for the process to complete.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>118</td>
+                <td>Study information is disassociated from a patient.</td>
+                <td>
+                    <p><strong>Cause:</strong> Following a particular unintended workflow in the Clarus application causes study information to be disassociated from a patient.</p>
+                    <p><strong>Unintended Workflow:</strong></p>
+                    <ol>
+                        <li>Select a patient</li>
+                        <li>Edit patient data</li>
+                        <li>Select the same patient again (without de-selecting)</li>
+                        <li>Edit patient data again</li>
+                        <li>The Patient key is set to Null in the Study table</li>
+                    </ol>
+                    <p><strong>Solution:</strong> <a href="#" onclick="return manualOverlay('gl2-escalation')">Escalate to the L2 team</a> for correction an include the following information:</p>
+                    <ul>
+                        <li>A copy of the database</li>
+                        <li>Log files</li>
+                        <li>Audit logs</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>117</td>
+                <td>The interleave timer is not visible on the Clarus application Acquire screen.</td>
+                <td>
+                    <p><strong>Cause:</strong> Following a particular unintended workflow in the Clarus application causes the interleave timer to be no longer visible.</p>
+                    <p><strong>Unintended Workflow:</strong></p>
+                    <ol>
+                        <li>Select a patient and click Acquire<br />The interleave timer is visible</li>
+                        <li>Navigate to Settings</li>
+                        <li>Navigate to Acquire again<br />The interleave timer is no longer visible</li>
+                    </ol>
+                    <p><strong>Solution:</strong> Navigate to the Patient screen and then the Acquire screen.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>116</td>
+                <td>During acquisition, the pupil size and fixation are selectable, but unreadable.</td>
+                <td>
+                    <p><strong>Cause:</strong> The instrument uses multi-component names.</p>
+                    <p>Multi-component banner size is larger, causing the pupil size and fixation to be unreadable.</p>
+                    <p><strong>Solution:</strong> Do not use multi-component names.</p>
+                    <p>&mdash; Or &mdash;</p>
+                    <p>Select the correct pupil size and fixation.</p>
+                    <p>Pupil size selections: Myd is on the left. Non-Myd is on the right.</p>
+                    <p>Fixation selections: Internal is on the left. External is on the right.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>115</td>
+                <td>Images reported as imported successfully, but images are not present or viewable in the Clarus application.</td>
+                <td>
+                    <p><strong>Cause:</strong> OP images are imported without the RAW data.</p>
+                    <p>The Clarus application requires RAW data for image analysis.</p>
+                    <p><strong>Solution:</strong> Import RAW data with the OP image.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>114</td>
+                <td>Patient scanned images were not saved.</td>
+                <td>
+                    <p><strong>Cause:</strong> Following a particular unintended workflow in the Clarus application causes unsaved patient scans.</p>
+                    <p><strong>Unintended Workflow:</strong></p>
+                    <ol>
+                        <li>Select a patient and go to Acquire</li>
+                        <li>Navigate to Settings and import DICOM files</li>
+                        <li>Navigate to Acquire again<br />
+                        The patient was cleared from Acquire</li>
+                        <li>Acquire (one or more) images<br />
+                        Acquired scans are not saved</li>
+                    </ol>
+                    <p><strong>Solution:</strong> Select the intended patient on the patient list and re-acquire images.</p>
+                    <p>Make sure you initiate the DICOM import from the Patient screen (not Acquire or Analysis screen).</p>
+                </td>
+            </tr>
+            <tr>
+                <td>113</td>
+                <td>Clarus cannot acquire an image for a patient retrieved from the DICOM EMR/Forum/PACs MWL.</td>
+                <td>
+                    <p><strong>Cause:</strong> The patient retrieved from the DICOM EMR/Forum/PACs MWL does not have a last name.</p>
+                    <p>The Clarus application requires a complete name to acquire images.</p>
+                    <p><strong>Solution:</strong> Add the patient's last name in the DICOM EMR/Forum/PACs system and retrieve the patient from the MWL again.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>112</td>
+                <td>The Clarus application does not automatically re-open after database restoration.</td>
+                <td>
+                    <p><strong>Cause:</strong> Following a particular unintended workflow, the application does not restart automatically.</p>
+                    <p><strong>Unintended Workflow:</strong></p>
+                    <ol>
+                        <li>Upgrade the Clarus application</li>
+                        <li>Open Clarus application</li>
+                        <li>On first boot, restore the database<br />
+                        Clarus application closes and does not re-open</li>
+                    </ol>
+                    <p><strong>Solution:</strong> Restart the Clarus application manually.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>111</td>
+                <td>The system crashes after database restore.</td>
+                <td>
+                    <p><strong>Cause:</strong> The system attempts to add an alert notice before it is ready.</p>
+                    <p><strong>Solution:</strong> Restart the Clarus application.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>110</td>
+                <td>Patient is selected, but patient information in the patient banner is missing.</td>
+                <td>
+                    <p><strong>Cause:</strong> Database fields missing in MySQL database.</p>
+                    <p><strong>Workaround:</strong></p>
+                    <ol>
+                        <li>Archive all RAW data to Forum</li>
+                        <li>Confirm data has been archived to Forum</li>
+                        <li>Factory reset to create a new database</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>109</td>
+                <td>Exams are not purged from the local database when connected to Forum.</td>
+                <td>
+                    <p><strong>Cause:</strong> Database fields missing in MySQL database.</p>
+                    <p><strong>Workaround:</strong></p>
+                    <ol>
+                        <li>Archive all RAW data to Forum</li>
+                        <li>Confirm data has been archived to Forum</li>
+                        <li>Factory reset to create a new database</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>106</td>
+                <td>Review startup does not auto-connect to Forum server v4.4 or higher.</td>
+                <td>
+                    <p><strong>Cause:</strong> Forum 4.4 requires credentials for auto-connect.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Skip Forum configuration in the startup Wizard</li>
+                        <li>Open the Clarus Review application</li>
+                        <li>Configure the Forum connection in Settings<br />
+                        &mdash; Or &mdash;<br />
+                        Manually configure the Forum connection from Review application</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>105</td>
+                <td>The calibration wizard does not open.</td>
+                <td>
+                    <p><strong>Cause:</strong> For Clarus application v1.1.4 or higher, if Enhanced Security is enabled, you must open the calibration wizard as administrator.</p>
+                    <p><strong>Solution:</strong> Right-click on the calibration wizard and select Run as Administrator.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>104</td>
+                <td>Mapped drives are not listed in the Clarus application.</td>
+                <td>
+                    <p><strong>Cause:</strong> Systems with Enhanced Security and UAC enabled do not show all mapped drives in the Clarus application.</p>
+                    <p><strong>Solution:</strong> Set the registry key to enable linked connections:</p>
+                    <p><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableLinkedConnections = 1</code></p>
+                </td>
+            </tr>
+            <tr>
+                <td>103</td>
+                <td>Clarus application takes 30 minutes or more to start.</td>
+                <td>
+                    <p><strong>Cause:</strong> During the first launch of Clarus application v1.1.4, a database upgrade takes place.</p>
+                    <p>For large databases, this upgrade can take 30 minutes or more.</p>
+                    <p><strong>Solution:</strong> Wait until the upgrade completes. This issue occurs one time (first launch).</p>
+                </td>
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>User cannot delete patient in the Clarus Review application.</td>
+                <td>
+                    <p><strong>Cause:</strong> Clarus Review application is installed in RDS mode, which disables some functions (delete patients, merge patients, re-assign exams).</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Uninstall the Clarus Review application</li>
+                        <li>Install Clarus Review application without RDS mode</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>101</td>
+                <td>Image is not saved after acquisition.</td>
+                <td>
+                    <p><strong>Cause:</strong> The following workflow intermittently causes images to fail saving to the database:</p>
+                    <ul>
+                        <li>Select Patient A</li>
+                        <li>Use quick search that cannot find Patient B<br />
+                        <strong>Note!</strong> If you navigate more quickly or more slowly, this issue does not occur</li>
+                        <li>Capture an image<br />
+                        Image is not saved because Patient B is not selected</li>
+                    </ul>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Select the patient in the Patient menu</li>
+                        <li>Re-acquire the images</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>System does not enforce signing SMB communication.</td>
+                <td>
+                    <p><strong>Cause:</strong> The following local GPOs are disabled:</p>
+                    <ul>
+                        <li>Microsoft network server: Digitally sign commuications (always)</li>
+                        <li>Microsoft network client: Digitally sign communications (always)</li>
+                    </ul>
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li>To disable SMB1 and enforce SMB signing run, refer to <code>C:\Drivers\Zeiss\SecConfig\Zeiss\Disable_SMB1.CMD</code><br />
+                        This script disables SMB1 communication which may cause communication loss with established mapped network drives. Network drives may need to be re-mapped</li>
+                        <li>To enable SMB1 and not enforce SMB signing, run <code>C:\Drivers\Zeiss\SecConfig\Zeiss\Enable_SMB1.CMD</code></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>099</td>
+                <td>During Zeiss Smart Services configuration, the user cannot determine what version is installed.</td>
+                <td>
+                    <p><strong>Cause:</strong> ZSS configuration does not identify the current installed configuration.</p>
+                    <p><strong>Solution:</strong> To determine the version of ZSS installed:</p>
+                    <ul>
+                        <li>Select Settings &gt; System &gt; Maintenance</li>
+                        <li>Scroll down to view the Zeiss Smart Service settings</li>
+                        <li>If the setting for SSL Manager is not present, ZSS 1.0 is installed</li>
+                        <li>If the setting for SSL Manager os present, ZSS 2.0 is installed</li>
+                    </ul>
+                    <p>Note: ZSS 1.0 and ZSS 2.0 settings offer different options.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>098</td>
+                <td>Operator cannot find ZSS screen recordings and screen captures saved to the local drive.</td>
+                <td>
+                    <p><strong>Cause:</strong> Screen recording storage locations vary depending on ZSS version.</p>
+                    <p><strong>Solution:</strong> Storage locations are as follows:</p>
+                    <ul>
+                        <li>ZSS 1.0: <code>C:\DCS_Write\dataaction\action\Video-RecordingFiles</code></li>
+                        <li>ZSS 2.0: <code>D:\ZSS\ScreenRecord</code></li>
+                        <li>ZSS 1.0 and 2.0 screen captures: <code>D:\ZSS\Screen-Capture</code></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>097</td>
+                <td>The Cancel button is inactive when trying to merge patients (after importing a database).</td>
+                <td>
+                    <p><strong>Cause:</strong> While attempting to resolve conflicting patient records (after importing database), the Cancel button looks inactive but can be clicked.</p>
+                    <p><strong>Solution:</strong> The Cancel button appears inactive, but it is active. Use the Cancel button normally as needed.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>095</td>
+                <td>Service Mode button available.</td>
+                <td>
+                    <p><strong>Cause:</strong> The Service Mode butoon is for instruments that support Kiosk mode. The Clarus instrument does not support Kiosk mode.</p>
+                    <p><strong>Solution:</strong> N/A</p>
+                </td>
+            </tr>
+            <tr>
+                <td>094</td>
+                <td>Clarus camera does not upgrade.</td>
+                <td>
+                    <p><strong>Cause:</strong> The keyboard charger is connected to port 17 on the underside of the AIO computer, which can cause communication failure.</p>
+                    <p><strong>Solution:</strong> Connect keyboard to a USB 2.0 port on the side of the AIO computer.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>093</td>
+                <td>ZSS 1.0 logging component log4j does not meet the Defense Health Agency (DHA) cybersecurity requirements.</td>
+                <td>
+                    <p><strong>Cause:</strong> ZSS 1.0 is an older, unsupported version.</p>
+                    <p><strong>Solution:</strong> Use the batch script provided to uninstall ZSS 1.0 if this version does not meed the site cybersecurity requirements.</p>
+                    <ul>
+                        <li>Navigate to <code>C:\Program Files\CZM\CLARUS\CzmTools\Bin</code></li>
+                        <li>Run the script: <code>CzmTools\uninstall_dcs_s.bat</code></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>092</td>
+                <td>Service log does not describe the failure status code: <code>N-EVENT-RQ (Storage Commitment)</code></td>
+                <td>
+                    <p><strong>Cause:</strong> N/A</p>
+                    <p><strong>Solution:</strong></p>
+                    <p>Failure status codes:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>sop_instance_uid of</th>
+                                <th>DICOM Error Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0112H (274)</td>
+                                <td>archived object</td>
+                                <td>No such object instance</td>
+                            </tr>
+                            <tr>
+                                <td>0213H (531)</td>
+                                <td>archived instance (RAW IOD)</td>
+                                <td>Resource limitation</td>
+                            </tr>
+                            <tr>
+                                <td>0110H (272)</td>
+                                <td>archived instance (RAW IOD)</td>
+                                <td>Processing failure</td>
+                            </tr>
+                            <tr>
+                                <td>0122H (290)</td>
+                                <td>archived report</td>
+                                <td>Referenced SOP Class not supported</td>
+                            </tr>
+                            <tr>
+                                <td>0119H (281)</td>
+                                <td>archived report</td>
+                                <td>Class/Instance conflict</td>
+                            </tr>
+                            <tr>
+                                <td>0131H (305)</td>
+                                <td>archived instance (RAW IOD)</td>
+                                <td>Duplicate transaction UID</td>
+                            </tr>
+                            <tr>
+                                <td>A123H (41251)</td>
+                                <td>archived instance (RAW IOD)</td>
+                                <td>Unknown failure reason</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>091</td>
+                <td>Clarus application v1.1.3 or v1.1.4 crashes when trying to back up the database while a large amount of data is getting archived.</td>
+                <td>
+                    <p><strong>Cause:</strong> Backup operation may start a second backup thread.</p>
+                    <p><strong>Solution:</strong> Allow archive to finish running the background, then back up the data.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>090</td>
+                <td>Active Directory settings not saved.</td>
+                <td>
+                    <p><strong>Cause:</strong> Settings are not automatically saved. Selecting the Back button in the Active Directory settings screen restarts the computer, not the application.</p>
+                    <p><strong>Solution:</strong> Manually save all changes before selecting the Back button.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>089</td>
+                <td>In Review, a rare issue can occur when trying to connect to instrument mode, which causes the system to freeze.</td>
+                <td>
+                    <p><strong>Cause:</strong> Variables are not set correctly.</p>
+                    <p><strong>Solution:</strong> Use Task Manager to End Task (Review application). Restart the Clarus Review application and it opens in Instrument Mode.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>088</td>
+                <td>Unable to remote desktop into Clarus AIO computer.</td>
+                <td>
+                    <p><strong>Cause:</strong> Remote Desktop Connection is not available with Enhanced Security enabled.</p>
+                    <p><strong>Solution:</strong> No recommended service action.</p>
+                    <p>Customer can use another application (like TeamViewer) or disable Enhanced Security if Remote Desktop Connection is required.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>087</td>
+                <td>When navigating to Settings &gt; Network &gt; Network Adapter and toggle the Adapter Status button from Enabled to Disabled, the screen appears frozen for a few seconds.</td>
+                <td>
+                    <p><strong>Cause:</strong> There could be a delay of up to five (5) seconds for the status of the network adpater to switch between states Enabled to Disabled and vice-versa.</p>
+                    <p><strong>Solution:</strong> Wait for a few seconds for the application to become available.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>086</td>
+                <td>Clarus icons and status indicators for ZSS remote connection is unclear.</td>
+                <td>
+                    <p><strong>Cause:</strong> N/A</p>
+                    <p><strong>Solution:</strong> Updated UI; see <a href="#" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/clarus/overview')">software overview</a> for additional details.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>085</td>
+                <td>
+                    <p>Failure to upgrade the Clarus application to v1.1.4:</p>
+                    <p>System requires database rollback from MySQL 8.0 to Mysql 5.7 to install previous version of Clarus application.</p>
+                </td>
+                <td>
+                    <p><strong>Cause:</strong> N/A</p>
+                    <p><strong>Solution:</strong> If Clarus application v1.1.4 upgrade fails, the user can roll back to the old database.</p>
+                    <ol>
+                        <li>Delete the following:
+                            <ul>
+                                <li>Clarus_MySQL service</li>
+                                <li>MySQL57</li>
+                                <li><code>D:\Data</code></li>
+                                <li><code>C:\Data</code></li>
+                                <li><code>C:\ProgramData\MySQL Server 5/7</code></li>
+                                <li><code>C:\ProgramData\MySQL Server 8.0</code></li>
+                            </ul>
+                        </li>
+                        <li>Install previous version of the Clarus application</li>
+                        <li>Stop MySQL57</li>
+                        <li>Copy <code>D:\DataBackup_Timestamp\</code> to <code>D:\Data\MySQL\</code> and rename to folder <code>Data</code></li>
+                        <li>Start MySQL57</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>084</td>
+                <td>Factory reset patient and user data causes database initialization failure and application shutdown after restart.</td>
+                <td>
+                    <p><strong>Cause:</strong> MySQL service remains stopped.</p>
+                    <p><strong>Solution:</strong> Reboot the instrument.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>083</td>
+                <td>
+                    <p>Opening the Clarus Review application from Forum Viewer causes a failure and reports the error:<br />
+                    <code>License not found</code></p>
+                    <div class="img-c">
+                        <img src="images/reference/clarus/clarus-license_error.png" />
+                    </div>
+                </td>
+                <td>
+                    <p><strong>Cause:</strong> Forum Viewer version 4.4 working directory does not match the Clarus Review application.</p>
+                    <p><strong>Solution:</strong> Update the Forum Viewer file (review-sw-config.xml) <code>WorkingDirectory</code> field to match the Clarus Review application directory.</p>
+                    <p>The default location of Forum Viewer file is: <code>C:\Program Files\CZM\FORUM Viewer\review-config\review-sw-config-template.xml</code> with <code>@&lt;hostname&gt;\SAM\review-config\review-sw-config.xml</code></p>
+                    <p>The default change for working directoy field: <code>&lt;workingDirectory&gt;C:\Program Files\CZM\CLARUS&lt;/workingDirectory&gt;</code><br />
+                    <strong>NOTE! This may change if Forum Viewer or Clarus Review was installed in a different location.</strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td>082</td>
+                <td>Clarus installer logs failure (Error Code 16) when installing with Federal Information Processing Standard (FIPS) enabled.</td>
+                <td>
+                    <p><strong>Cause:</strong> The installer uses an MD5 hash to verify that the firmware was successfully upgraded. FIPS disables the MD5 hash (considered an unsafe hash for encryption).</p>
+                    <p><solution>Start the Clarus application normally and verify it works.</solution></p>
+                    <p>If swapping hardware:</p>
+                    <ol>
+                        <li>Disable FIPS</li>
+                        <li>Uninstall and re-install the Clarus application</li>
+                        <li>Enable FIPS</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>081</td>
+                <td>Because it could become a cybersecurity issue, PuTTY is no longer automatically installed.</td>
+                <td>
+                    <p><strong>Cause:</strong> N/A</p>
+                    <p><strong>Solution:</strong> If you want to install PuTTY, you can download it from the <a href="https://sdp-meditec.zeiss.com/Home" target="_blank">Software Download Portal</a>.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>080</td>
+                <td>Proofsheet is disabled.</td>
+                <td>
+                    <p><strong>Cause:</strong> Proofsheet cannot complete loading process when a user deletes a constituent image from a finished montage in acquisition/</p>
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li>Click Patient to enter the patient list page</li>
+                        <li>Click Analyze to enter Proofsheet</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>079</td>
+                <td>The Archive button is disabled.</td>
+                <td>
+                    <p><strong>Cause:</strong> Archive runs in the background. Manually archiving data is not required.</p>
+                    <p><strong>Solution:</strong> N/A</p>
+                </td>
+            </tr>
+            <tr>
+                <td>078</td>
+                <td>Clarus Review application initiates an emergency shutdown after clicking Auto-Connect.</td>
+                <td>
+                    <p><strong>Cause:</strong> Clarus Review application is configured in instrument mode which does not allow for Forum connection. Emergency shutdown occurs to prevent damage to the data set.</p>
+                    <p><strong>Solution:</strong> Set Clarus Review application to standalone mode, then connect to Forum using auto-connect.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>077</td>
+                <td>Clarus instrument takes a long time to shut down.</td>
+                <td>
+                    <p><strong>Cause:</strong> Clarus instrument is attempting to send RAW data to Forum, but is unable to establish a connection.</p>
+                    <p><strong>Solution:</strong> Re-establish connection with Forum. Shut down the application using Task Manager if you cannot re-establish a connection with the Forum server.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>076</td>
+                <td>Delay loading images in proofsheet (occurs only when the device is in Standalone mode with no archive created).</td>
+                <td>
+                    <p><strong>Cause:</strong> Delay caused by a combination of changes in the Clarus application:</p>
+                    <ul>
+                        <li>Database is queried multiple times for data retrieval</li>
+                        <li>Thumbnail data is verified before presenting images in proofsheet</li>
+                        <li>Filter information is verified before presenting images in proofsheet</li>
+                        <li>Angiography image post-processing verification is confirmed before presenting images in proofsheet</li>
+                    </ul>
+                    <p><strong>Solution:</strong> Currently no solution. Wait until process is complete.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>075</td>
+                <td>When connected to Forum, patient demographic information is missing when selecting a patient in the patient list.</td>
+                <td>
+                    <p><strong>Cause:</strong> Patient demographic information missing in database. This failure occurs in extremely rare situations.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li>Verify that all data has been archived to Forum</li>
+                        <li>Perform factory reset of patient and user data.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>074</td>
+                <td>Delay occurs when selecting a patient in the Patient list.</td>
+                <td>
+                    <p><strong>Cause:</strong> Archived images that were imported must be retrieved before moving to a different screen.</p>
+                    <p><strong>Workaround:</strong> Wait until process is complete.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>073</td>
+                <td>Clarus Review auto-connect does not establish communication with Forum server.</td>
+                <td>
+                    <p><strong>Cause:</strong> Required communication ports are blocked on the Forum server.</p>
+                    <p><strong>Solution:</strong> Create a firewall rule on the Forum server to allow communication on ports 10000 &ndash; 10999 (TCP)</p>
+                </td>
+            </tr>
+            <tr>
+                <td>072</td>
+                <td>Clarus InstallATI icon remains on the desktop.</td>
+                <td>
+                    <p><strong>Cause:</strong> DeleteATI command does not remove the InstallATI icon from the desktop.</p>
+                    <p><strong>Solution:</strong> Manually delete InstallATI icon. Issue resolved in updated MHD.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>071</td>
+                <td>Clarus Database Restore fails.</td>
+                <td>
+                    <p><strong>Cause:</strong> Database restore fails if the database backup is larger than the available space on the <code>D:\</code> drive.</p>
+                    <p><strong>Solution:</strong> Clear space from the <code>D:\</code> drive to make available space greater than the size of the database backup.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>070</td>
+                <td>Clarus application crashes when connected to Forum v3.2.X</td>
+                <td>
+                    <p><strong>Cause:</strong> Forum v3.2.X sends a lot of broadcast message which cause the bonjour service to eventually fail. Forum v3.2.C is not supported by the Clarus.</p>
+                    <p><strong>Solution:</strong> Upgrade to Forum v4.1 or higher.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>069</td>
+                <td>When importing VisuCam and VisuPAC images, an error message appears stating that the format is unsupported.</td>
+                <td>
+                    <p><strong>Cause:</strong> Images containing an <code>image laterality</code> DICOM header instead of a <code>laterality</code> header cannot be imported into Clarus.</p>
+                    <p><strong>Solution:</strong> <em>Currently no solution.</em></p>
+                    <p>Use VisuPAC Review or Forum to view the images.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>068</td>
+                <td>Cannot view archived images.</td>
+                <td>
+                    <p><strong>Cause:</strong> The archive is de-activated then re-activated while replication was enabled.</p>
+                    <p><strong>Solution:</strong> Restart the Clarus application.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>067</td>
+                <td>Zeiss Smart Services (ZSS) diagnostic package is unavailable.</td>
+                <td>
+                    <p><strong>Cause:</strong> Creating diagnostic package from the Clarus application does not save in the folder.</p>
+                    <p><strong>Solution:</strong> Either of the following solutions:</p>
+                    <ul>
+                        <li>Run Create Diagnostic Package from SCU</li>
+                        <li>Use Zeiss Smart Service file access feature to copy Clarus log files</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>066</td>
+                <td>When modifying default image Review settings, the Clarus instrument is unresponsive.</td>
+                <td>
+                    <p><strong>Cause:</strong> Default image Review settings take a long time to take effect with a large database. Updates can take as long as 3&ndash;4 minutes.</p>
+                    <p><strong>Workaround:</strong> Wait until process is complete.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>064</td>
+                <td>Cannot map a network drive.</td>
+                <td>
+                    <p><strong>Cause:</strong> Credentials provided has insufficient permissions.</p>
+                    <p><strong>Solution:</strong> Provide credentials with read/write permissions.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>063</td>
+                <td>
+                    <p>System shows archive inaccessible message when attempting to authenticate.</p>
+                    <div class="img-c">
+                        <img src="images/reference/clarus/clarus-archive_inaccessible_message.png" />
+                    </div>
+                </td>
+                <td>
+                    <p><strong>Cause:</strong> System cannot connect to archive if using the UNC path to connect a subfolder and the authentication credentials changed.</p>
+                    <p><strong>Solution:</strong></p>
+                    <ol>
+                        <li>Map a drive to the subfolder</li>
+                        <li>Update archive path to new mapped drive</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>062</td>
+                <td>System cannot connect to an archive defined on a different instrument.</td>
+                <td>
+                    <p><strong>Cause:</strong> Two or more synchronized instruments use the same drive letter mapping for different locations. For example:</p>
+                    <ul>
+                        <li>Clarus A synchronizes with Clarus B</li>
+                        <li>Clarus A has an archive set to <code>\\Server\Share1</code> as drive <code>Z:</code></li>
+                        <li>Clarus B has an archive set to <code>\\Server\Share2</code> as drive <code>Z:</code></li>
+                        <li>Clarus A sees that archive data is available in both shared locations<br />When Clarus A selects Archive and clicks Credential Activate, the following error message opens:<br /><img src="images/reference/clarus/clarus-mapping_failed_message.png" /></li>
+                    </ul>
+                    <p>Click Dismiss.</p>
+                    <p><strong>Solution:</strong> Define unique drive letters for each shared folder.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>061</td>
+                <td>Synchronization between two or more instruments fails.</td>
+                <td>
+                    <p><strong>Cause:</strong> Synchronization feature cannot communicate because the IP address changed.</p>
+                    <p><strong>Solution:</strong> Reboot the Clarus instrument.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>059</td>
+                <td>Patient in MWL order is not associated with work order or acession #.</td>
+                <td>
+                    <p><strong>Cause:</strong> When you search for and select an MWL order using Advanced Search, the MWL order is not selected in the Patient window. Acquired images are not associated with the MWL order and the MWL order continues to appear in the Patient window.</p>
+                    <img src="images/reference/clarus/clarus-mwl_issue_059_cause.png" />
+                    <p><strong>Solution:</strong> Manually select the MWL order from the Patient list before starting acquistion.</p>
+                    <img src="images/reference/clarus/clarus-mwl_issue_059_solution.png" />
+                </td>
+            </tr>
+            <tr>
+                <td>058</td>
+                <td>Issuer of Patient ID is incorrectly set to <code>CLARUS-700CL700-00000</code>, <code>CLARUS-500CL500-53000</code>, or <code>CLARUS500CL500-CL500-00000</code></td>
+                <td>
+                    <p><strong>Cause:</strong> If the Clarus application is opened prior to setting the correct serial number in the Calibration application, the Issuer of Patient ID is set to a default value.</p>
+                    <p>For example, the following sequence of steps results in the Issuer of Patient ID being set incorrectly:</p>
+                    <ol>
+                        <li>Reimage the instrument computer</li>
+                        <li>Install the Clarus application</li>
+                        <li>Open the Clarus application</li>
+                        <li>Open the Calibration application</li>
+                    </ol>
+                    <p><strong>Solution:</strong> Manually modify Issuer of Patient ID to be unique.</p>
+                    <p>The default naming convention for Issuer of Patient ID is the Model and Serial Number: <em>CLARUS-XXXCLXXX-XXXXXX</em>; for example, <code>CLARUS-500CL500-12345</code></p>
+                </td>
+            </tr>
+            <tr>
+                <td>057</td>
+                <td>Issuer of Patient ID is the same on multiple instruments.</td>
+                <td>
+                    <p><strong>Cause:</strong> If you restore a database and select New Device, the instrument assigns the default Issuer of Patient ID.</p>
+                    <p>If you restore a database and select Replacement Device, the current Issuer of Patient ID is restored to the one stored in the backup.</p>
+                    <p><strong>Solution:</strong> Manually modify Issuer of Patient ID to be unique.</p>
+                    <p>The default naming convention for Issuer of Patient ID is the Model and Serial Number: <em>CLARUS-XXXCLXXX-XXXXXX</em>; for example, <code>CLARUS-500CL500-12345</code></p>
+                </td>
+            </tr>
+            <tr>
+                <td>056</td>
+                <td>In rare instances, the proofsheet displays the incorrect montage image thumbnail.</td>
+                <td>
+                    <p><strong>Cause:</strong>Two montages are completed at the same time and will have the same composite thumbnail image.</p>
+                    <p><strong>Solution:</strong> For a system connected to Forum or a DICOM PACS, the issue automatically resolves after 14 days.</p>
+                    <p>For standalone instrumnets or instruments connected to an EMR:</p>
+                    <ol>
+                        <li>Export montaged images in DICOM format</li>
+                        <li>Delete images from Clarus application</li>
+                        <li>Import the previously exported images to the device</li>
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>055</td>
+                <td>DICOM Storage and DICOM Retrieve status shows yellow traffic light instead of green.</td>
+                <td>
+                    <p><strong>Cause:</strong> Forum 4.1 (or earlier) does not support all of Clarus's Transfer Syntax.</p>
+                    <p><strong>Solution:</strong> Either:</p>
+                    <ul>
+                        <li>Ignore yellow status; all functions work as designed</li>
+                        <li>Upgrade to Forum 4.2.1 or higher</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>049</td>
+                <td><p>A bright red stripe (artifact) appears at the bottom of the images, which can look like a retinal detachment.</p><img src="images/reference/clarus/clarus-red_stripe_artifact.png"></td>
+                <td>
+                    <p><strong>Cause:</strong> Faulty lightbox driver board.</p>
+                    <p><strong>Solution:</strong> Replace the lightbox driver board.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>045</td>
+                <td>DICOM or Forum settings are missing.</td>
+                <td>
+                    <p><strong>Cause:</strong> Cancelling the Connection Wizard before completion can cause DICOM and EMR settings to disappear.</p>
+                    <p><strong>Solution:</strong> Start and complete (do not cancel) the Connection Wizard.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>042</td>
+                <td>On a Review Station, only one image is visible.</td>
+                <td>
+                    <p><strong>Cause:</strong> The Review Station has a 4K display.</p>
+                    <p><strong>Solution:</strong> Set the display to a lower resolution.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>036</td>
+                <td>Region-of-interest crosshair placement is visible on the Acquisition screen on instruments not configured for Region-of-interest.</td>
+                <td>
+                    <p><strong>Cause:</strong> An image quality enhancement resulted in showing the Region-of-interest in the center of the screen.</p>
+                    <p><strong>Workaround:</strong> None. Captured images are not impacted (even if the crosshair is moved).</p>
+                    <p><strong>Note! Use the large alignment tool to enable this feature.</strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td>026</td>
+                <td>Calibration dates are missing in Calibration application.</td>
+                <td>
+                    <p><strong>Cause:</strong> The Clarus Calibration application is updated during the upgrade. Temporary data is overwritten during this process.</p>
+                    <p><strong>Solution:</strong> Navigate to <code>C:\Program Files\CZM\CLARUS\Configuration</code> to view the full calibration history.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>024</td>
+                <td>The Clarus application upgrade does not start from the Clarus application.</td>
+                <td>
+                    <p><strong>Cause:</strong> The installer file is missing a UPT file required to start the installer from the Clarus application.</p>
+                    <p><strong>Workaround:</strong> Install the Clarus application directly from <code>setup.exe</code> in Windows.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>017</td>
+                <td>The Clarus application recieves "Critical Error; Controller communication failure"; image acquisition is disabled.</td>
+                <td>
+                    <p><strong>Cause:</strong> The All-in-One computer PC cannot communicate with the microcontroller over the internal network due to an IP address conflict or a configured network proxy.</p>
+                    <p><strong>IP Conflict Solution:</strong> The Clarus is not compatible with LAN or VLAN networks using IPv4 addressing in the range 192.168.111.0 to 192.168.111.254.</p>
+                    <ol>
+                        <li>Request that the customer update their office LAN or VLAN network to a compatible IPv4 network</li>
+                        <li>No changes made to the Clarus instrument can resolve this issue</li>
+                        <li><strong>Caution!</strong> Do not change the IPv4 address of the internal network</li>
+                    </ol>
+                    <p><strong>Network Proxy Configuration Solution:</strong> Diable network proxy on the Clarus instrument.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>015</td>
+                <td>ONH animation / calculation did not save.</td>
+                <td>
+                    <p><strong>Cause:</strong> The user exited the analysis before the DAQ animation was complete or the ONH calculation was in progress.</p>
+                    <p><strong>Solution:</strong> Wait for the DAQ animation to stop and the ONH calculation to complete before exiting analysis.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>012</td>
+                <td>The Clarus application fails to launch.</td>
+                <td>
+                    <p><strong>Cause:</strong> Multiple files with <code>manufacturing.settings.xml</code> in the name exist in the folder <code>C:\Program Files\CZM\CLARUS\Configuration</code></p>
+                    <p>For example:</p>
+                    <ul>
+                        <li><code>manufacturing.settings.xml</code></li>
+                        <li><code>backup.manufacturing.settings.xml</code></li>
+                    </ul>
+                    <p><strong>Solution:</strong></p>
+                    <ul>
+                        <li>Ensure there is only one file with <code>manufacturing.settings.xml</code> in the name in the folder <code>C:\Program Files\CZM\CLARUS\Configuration</code></li>
+                        <li>Delete all additional files with <code>manufacturing.settings.xml</code> in the name from the Configuration folder</li>
+                        <li>Do not save a backup file for manufacturing settings in the Configuration folder</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>010</td>
+                <td>When adding an annotation that inclused measurements, the original calculated value could be slightly different after you save and exit the analysis.</td>
+                <td>
+                    <p><strong>Cause:</strong> The difference is due to rounding. This difference does not exceed +/- 0.2 mm for length and +/- 0.04 mm<sup>2</sup> for area.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>Clarus Review software cannot find or connect to instrument.</td>
+                <td>
+                    <p><strong>Cause:</strong> When the instrument is configured for EMR connection, enabling DICOM Retireve, DICOM Query, and DICOM Storage Commitment disables instrument review capacity.</p>
+                    <p><strong>Solution:</strong> Disable DICOM Retrieve, DICOM Query, and/or DICOM Storage Commitment.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
