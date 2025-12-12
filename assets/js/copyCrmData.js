@@ -2,7 +2,7 @@
 function useActualDescription() {
     console.debug('same-as-reported: ' + document.getElementById('same-as-reported').checked);
     if (document.getElementById('same-as-reported').checked) {
-        return "N/A";
+        return "Same as reported.";
     } else {
         return document.getElementById('actual-problem-description').value;
     }

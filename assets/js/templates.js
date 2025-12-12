@@ -759,7 +759,7 @@ ${context[5]}
       </li>
     </ul>
   </li>
-  <li>If the Service History meets the criteria, a flag (the string, <code>PCE</code> will be added to the CCT Description text between the Billing Status and the Problem Description
+  <li>If the Service History meets the criteria, a flag (the string, <code>PCE</code>) will be added to the CCT Description text between the Billing Status and the Problem Description
     <ul>
       <li>Example: <code>6000-12345 W PCE Ongoing Database Issues</code></li>
     </ul>

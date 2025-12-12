@@ -6,12 +6,218 @@
             $('#overview-header-include').load('assets/data/reference/templates/overview_header.html?qparam=' + qparam);
         </script>
     </div>
+    <a name="device-overview"></a>
+    <h2>Device Overview</h2>
+    <p>The Humphrey Field Analyzer (HFA) 3 is a device designed to test a patient's eyes for blind spots (scotomas) in their field of vision. The test is performed by projecting stimuli (spots of light) of varying brightnesses onto the surface of the device's bowl in a specific pattern. The patient responds to the stimulus they can see. The device tests for absolute scotoma (no vision) and relative scotoma (decreased vision).</p>
+    <p><strong><em>The HFA3 device should be started in a dimly lit room as it performs brightness checks on boot-up to verify calibration before testing is allowed.</em></strong></p>
+
+    <a name="front-side"></a>
+    <h3>Operator's Side</h3>
+    <div class="img-l" style="margin-right: 3em;">
+        <img src="images/reference/hfa/hfa3-device_parts_diagram_labeled-front.png" />
+        <span class="caption">Fig 1. Illustration of HFA3 front (operator's side) with parts labeled 1-8 for reference</span>
+    </div>
+    <ol>
+        <li>Patient Response Button (PRB) Connection</li>
+        <li>Patient Response Button (PRB)</li>
+        <li>Chinrest controls</li>
+        <li>Touchscreen display</li>
+        <li>On/Off button</li>
+        <li>USB connections (x2)</li>
+        <li>Audio port</li>
+        <li>Speaker</li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="back-side"></a>
+    <h3>Patient's Side</h3>
+    <div class="img-l" style="margin-right: 3em;">
+        <img src="images/reference/hfa/hfa3-device_parts_diagram_labeled-back.png" />
+        <span class="caption">Fig 2. Illustration of HFA3 back (patient's side) with parts labeled 1-4 for reference</span>
+    </div>
+    <ol>
+        <li>Chinrest</li>
+        <li>Bowl &mdash; Stimuli are projected onto this surface</li>
+        <li>Visor handle &mdash; For using the blue/yellow visor</li>
+        <li>Forehead rest</li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="model-differences"></a>
+    <h3>Model Differences</h3>
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Feature</th>
+                <th colspan="4">Model</th>
+            </tr>
+            <tr>
+                <th>830</th>
+                <th>840</th>
+                <th>850</th>
+                <th>860</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Manual Kinetic</td>
+                <td>No</td>
+                <td>License</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Custom Kinetic Patterns</td>
+                <td>No</td>
+                <td>License</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Custom Static Patterns</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>DICOM OPV (Ophthalmic Visual Field) IOD (Information Object Definition)</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>OPV IOD Advanced Indices</td>
+                <td>License</td>
+                <td>License</td>
+                <td>License</td>
+                <td>License</td>
+            </tr>
+            <tr>
+                <td>Remote Diagnostics and Software Loading</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>SITA<sup>TM</sup>, STATPAC<sup>TM</sup></td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>SITA-SWAP<sup>TM</sup></td>
+                <td>No</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Stimulis Size</td>
+                <td>I&ndash;V</td>
+                <td>I&ndash;V</td>
+                <td>I&ndash;V</td>
+                <td>I&ndash;V</td>
+            </tr>
+            <tr>
+                <td>Auto Pupil Measurement</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Stimulus Color</td>
+                <td>White</td>
+                <td>White, Red</td>
+                <td>White, Blue, Red</td>
+                <td>White, Blue, Red</td>
+            </tr>
+            <tr>
+                <td>Foeveal Threshold</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Gaze Tracking</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Head Tracking</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Vertex Monitor</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>GPA<sup>TM</sup> (Guided Progression Analysis)</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>Liquid Trial Lens</td>
+                <td>No</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Standard</td>
+            </tr>
+            <tr>
+                <td>RelEYE<sup>TM</sup> Monitor</td>
+                <td>No</td>
+                <td>No</td>
+                <td>Standard</td>
+                <td>Standard</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a name="device-notes"></a>
+    <h3>Device Notes</h3>
+    <ul>
+        <li>The HFA3 includes a touchscreen display with an onscreen keyboard for data entry. An external USB keyboard and mouse can be used for data input and interface navigation</li>
+    </ul>
+
     <a name="software-overview"></a>
     <h2>Software Overview</h2>
-    <h3>Notes</h3>
+
+    <a name="title-bar"></a>
+    <h3>Title Bar</h3>
+    <ul>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-liquid_trial_lens.png" class="icon-list" /> <strong>Liquid Trial Lens.</strong> Appears if the Liquid Trial Lens is installed (model 860 only) and flashes red during lens adjustment. <strong>Do not touch the trial lens when the icon is blinking</strong></li>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-privacy_mode.png" class="icon-list" /> <strong>Privacy Mode.</strong> Hides the screen from anyone who does not need to view the patient data. Click the Continue button to return to the patient data</li>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-help.png" class="icon-list" /> <strong>Help.</strong> Opens the on-screen user manual</li>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-brightness.png" class="icon-list" /> <strong>Brightness.</strong> Displays a control for adjusting the screen brightness</li>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-volume.png" class="icon-list" /> <strong>Volume.</strong> Displays a slider control to adjust the sound output volume</li>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-settings.png" class="icon-list" /> <strong>Settings.</strong> Opens the Settings window. When there is a new alert, an exclamation mark appears on the Settings icon. Clicking the exclamation mark opens the Message history</li>
+        <li><img src="images/reference/hfa/hfa3-title_bar_icons-close.png" class="icon-list" /> <strong>Close.</strong> Opens a menu with options for logging out the current user or shutting down the device</li>
+    </ul>
+
+    <a name="software-notes"></a>
+    <h2>Software Notes</h2>
     <ul>
         <li>HFA Review Software is not compatible with FORUM and cannot be used with an HFA3 instrument connected to FORUM</li>
     </ul>
+
+    <a name="printer-support"></a>
+    <h3>Printer Support</h3>
+    <p>The HFA3 is compatible with PostScript printers, including shared network printers and wireless printers using a wireless USB adapter, or directly connected using the ethernet port. Direct USB connection is not supported.</p>
 
     <a name="gpa-baseline-and-follow-up"></a>
     <h3>GPA Baseline and Follow-Up</h3>

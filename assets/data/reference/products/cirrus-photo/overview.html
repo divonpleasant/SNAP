@@ -589,4 +589,49 @@
         <li>Write parameters to EEPROM &ndash; verify no error in read or write</li>
     </ol>
     <p>If an error shows in the information window or a read/write message is displayed during any of the steps above, suspect a bad control board. If normal function is returned during this process, there may have been a bad value stored in the EEPROM.</p>
+
+    <a name="dicom-gateway"></a>
+    <h3>DICOM Gateway</h3>
+    <p>Similarly to a <a href="#" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/cirrus-oct/index')">Cirrus HD-OCT</a>, the Cirrus Photo uses the DICOM Gateway application to configure communication with Forum or other DICOM-based systems or records software. This configuration utility allows local and remote Application Entity Titles (AETs), hostnames/IPs, and port values.</p>
+    <h4>Troubleshooting</h4>
+    <h5>DICOM Gateway Service</h5>
+    <p>DICOM Gateway is an application/utility for configuration as well as a Service running to manage DICOM communication requests. If the Service fails, DICOM connections cannot be established and errors are likely.</p>
+    <p>In the case of DICOM-related log messages or errors, check the status of the Service by accessing the Services system tool and locate the service named <code>DICOM Gateway 2.4</code> (service name may be different if the operating system is earlier than Windows 7, for example Windows XP). The status should be "Running". If the status is blank or any other value, try restarting the service to restore functionality.</p>
+    <h5>DICOM Gateway Failing to Launch from Cirrus Photo Application</h5>
+    <p>To access the DICOM Gateway, typically use <code>Tools &gt; Settings &gt; Network Tab &gt; Select DICOM network &gt; Click Configure DICOM gateway button</code></p>
+    <p>If the DICOM Gateway utility fails to launch from within the Cirrus Photo application, and the service is Running, you can attempt to launch the Gateway Configuration utility from Windows/File Explorer directly:</p>
+    <ul>
+        <li><strong>Windows 7/10</strong> &mdash; <code>C:\Program Files (x86)\CZM\DICOM Gateway\2.4\CZM.Networking.GatewayConfigurator.exe</code></li>
+        <li><strong>Windows XP</strong> &mdash; <code>C:\Program Files\CZM\DICOM Gateway\2.3\CZM.Networking.GatewayConfigurator.exe</code></li>
+    </ul>
+    <p>If launched from the Explorer path, configure DICOM as you would normally and run the test. Once the tests pass, launch the Cirrus Photo application and click the Configure DICOM gateway button to verify the program starts and the tests still pass.</p>
+    <h5>DICOM Gateway Files</h5>
+    <p>If the DICOM Gateway Configuration utility or service are having issues, check the files in the following folders for potential issues:</p>
+    <ul>
+        <li><strong>Windows 7/10:</strong> <code>%AppData%</code></li>
+        <li><strong>Windows XP:</strong> <code>C:\Documents and Settings\All Users\Application Data\Carl Zeiss Meditec\DICOM Gateway Service 2.3\</code></li>
+    </ul>
+    <p>Of particular note in either location are the files <code>GatewayRepository.xml</code> and <code>NIMConfig.xml</code>.</p>
+
+    <a name="common-issues"></a>
+    <h2>Common Issues</h2>
+    <a name="backup-of-system-files"></a>
+    <h3>"Backup of System Files Failed" Error</h3>
+    <p>Verify there is enough free space on the <code>E:\</code> and <code>Z:\</code> partitions to rewrite the folders named <code>SystemFilesBackup</code>. Rename the folders in both locations (e.g. <code>SystemFilesBackup.1</code>).</p>
+    <p>If there is <em>not</em> enough disk space, delete the existing <code>SystemFilesBackup</code> folders.</p>
+    <p>In either case, the folders will be rewritten on the next application restart. This will also work if a specific file fails during a backup (e.g. a license file fails to backup during device start-up check).</p>
+    <a name="backup-loop"></a>
+    <h3>Backup Loop Issues</h3>
+    <p>If experiencing issues with a backup loop, navigate to <code>C:\Program Files (x86)\CZM\Cirrus photo\Configuration\userconfig.xml</code> and right-click, then choose Edit. The file will open in Notepad.</p>
+    <p>CTRL + F (or <code>Edit &gt; Find</code>) to access the search box and type in "BackupRestore" (you can check the Match Case box as well).</p>
+    <p>The BackupRestore block should look something like this:</p>
+    <pre>
+&lt;add Key="BackupRestore" Value="" Type="System.String" Description="" Permission="0"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SubList&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add Key="LastUsedBackupFolder" Value="E:\test" Type="System.String" Description="" Permission="0" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add Key="DatabaseFileToBeRestored" Value="" Type="System.String" Description="" Permission="0" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add Key="IncludeExternalFilesInRestore" Value="false" Type="System.Boolean" Permission="0" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/SubList&gt;
+&lt;/add&gt;</pre>
+    <p>Remove anything entered between the quotation marks for the <code>Value</code> of key <code>DatabaseFileToBeRestored</code> then save the file and restart the application.</p>
 </div>

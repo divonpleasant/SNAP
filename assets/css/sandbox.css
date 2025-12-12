@@ -4527,6 +4527,15 @@ input.teamviewer-info-head {
     margin: 0 0 0.75em;
 }
 
+#reference-contents sup {
+    font-size: 0.6em;
+    padding: 1px;
+}
+
+#reference-contents .icon-list {
+    vertical-align: middle;
+}
+
 #reference-contents div.section-break {
     clear: both;
 }

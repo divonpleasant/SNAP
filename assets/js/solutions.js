@@ -337,6 +337,22 @@ function generateSolutions(context = '') {
             "references": [
                 {"title": "6000 specific", "url": "https://zeiss.sharepoint.com/sites/OCTTechnicalSupport/_layouts/Doc.aspx?sourcedoc={2D11422D-7802-40B6-A0D4-C7EF3B2C4EDC}&wd=target%28Common%20Issues.one%7CFE1CBE1A-12E5-4479-9DAA-D61ED3EA7C83%2F6000%20specific%7CC73DE8A3-79AB-466F-B1B5-FACEB57074D0%2F%29&wdpartid={FDEA036E-A326-4BD9-AF16-BD6FF982DF2C}{180}&wdsectionfileid={CCB5FC0F-FFAB-408D-B757-4F1E82F0EAC3}", "src": "OneNote"}
             ]
+        },
+        "00014": {
+            "title": "Review Software Database Connectivity",
+            "tags": ["review software", "rs", "r/s", "review", "start-up", "database", "twenty percent", "20 percent", "20%", "thirty-three", "33 percent", "33%", "hangs", "connection", "database connection", "current database", "failed", "specify", "database folder", "valid folder", "not configured properly", "red x", "error", "database connectivity", "check", "database file", "freeze", "freezing", "database is not configured", "configured", "configure database", "device", "exam", "exam room", "exam lane"],
+            "instruments": ["Cirrus OCT"],
+            "models": ["Cirrus HD-OCT 500", "Cirrus HD-OCT 5000", "Cirrus HD-OCT 6000"],
+            "software_versions": ["8.1.0", "9.5.1", "9.5.2", "11.5.2", "11.5.3", "11.7.0", "11.7.1", "11.7.2"],
+            "problem_description": "oct_review_station_errors.html",
+            "solution_description": "oct_review_station_db_connection_solution.html",
+            "references": [
+                {"title": "Resolving Database Access Error in Cirrus HD-OCT Review Software (Enable Linked Connections)", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CIRRUS%20OCT%20ALL%20MODELS.one%7C4AEE7F34-6ABD-4543-BC96-64DDD1137CE2%2FResolving%20Database%20Access%20Error%20in%20Cirrus%20HD-OCT%20Review%20Software%7C6C6D45C7-B519-40FA-9BD4-4EFF5007FAC6%2F%29&wdpartid={47684F6E-E7B4-01D0-1B1E-7B68097EE661}{1}&wdsectionfileid={FE4D980A-3850-43D2-82EB-3983DCD74828}", "src": "OneNote"},
+                {"title": "Review SW - 'Database failed, specify another database", "url": "https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/Doc.aspx?sourcedoc={BE01033C-FBAE-452B-9D6C-0600B981DE53}&wd=target%28CIRRUS%20OCT%20ALL%20MODELS.one%7C4AEE7F34-6ABD-4543-BC96-64DDD1137CE2%2FReview%20SW%20-%20%22Database%20failed%2C%20specify%20another%20database%22%7CB37B3D04-8AA6-4145-B011-1967FFDE9C25%2F%29&wdpartid={3012594E-926D-4EC0-99DE-B40231872E58}{1}&wdsectionfileid={FE4D980A-3850-43D2-82EB-3983DCD74828}", "src": "OneNote"},
+                {"title": "CIRRUS Instrument based Review shows error as 'Connection to the current database failed. Do you want to specify another database?'", "url": "https://mira.med.zeiss.com/service-express/portal/object/objectid/ticketid_1279554?context=%7B%22filter%22%3A%7B%22ProductHierarchy%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OPT%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OphtalmicDiagnostics%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OCTSystems%22%5D%7D%2C%22text%22%3A%22review+database%22%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Resolved 2nd Level Tickets"},
+                {"title": "Instrument based CIRRUS Review error- No such host known", "url": "https://mira.med.zeiss.com/service-express/portal/object/objectid/ticketid_1324091?context=%7B%22filter%22%3A%7B%22ProductHierarchy%22%3A%5B%22http%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OPT%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OphtalmicDiagnostics%5Cu001fhttp%3A%2F%2Fmetadata.zeiss.de%2Fmed%23OCTSystems%22%5D%7D%2C%22text%22%3A%22review+database%22%2C%22useExpertQuery%22%3A0%7D", "src": "MIRA::Resolved 2nd Level Tickets"},
+                {"title": "Cirrus Information", "url": "https://zeiss.sharepoint.com/:b:/r/Sites/201368/MEDTS/SiteAssets/SitePages/Device-Quick-Reference/Cirrus-Information.pdf?csf=1&web=1&e=CtYDFM", "src": "SharePoint"}
+            ]
         }
     }
 }
