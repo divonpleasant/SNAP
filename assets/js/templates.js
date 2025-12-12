@@ -659,29 +659,30 @@ To create a Task-Task:
 </ol>`,
                     "recertification": `<h1>Recertification</h1>
                     <h2>Identifying Recertifications and Customer Communication</h2>
+                    <p><strong>Note:</strong> <em>This process has been updated as of 12/15/2025. Please review the revised process below and note that tech support will no longer be sending the recertification form via email to the customer. Service Operations will handle all form data acquisition going forward.</em></p>
                     <p>If the billing account does not match the customer, or the ship-to address is listed as CZMI (5300 Central Parkway, Dublin CA), ask the customer where and when they purchased the instrument. Zeiss does not authorize third-party reselling of their devices. If a Zeiss instrument was acquired from an unauthorized reseller, the instrument must be recertified.</p>
                     <p><strong>Do not provide service on uncertified instruments or devices.</strong></p>
                     <p>"Unfortunately, because Zeiss cannot ensure that uncertified devices meet our techincal specifications and are in compliance with FDA and ISO standards, I cannot provide any service on your instrument until a recertification process is completed."</p>
+                    <p>Zeiss's updated policy <em>does</em> permit customer-to-customer sales of Zeiss instruments. As long as the customer can provide a bill of sale there is no need for a recertification.</p>
                     <h2>Process</h2>
                     <ol>
                         <li>Verify and enter the Serial Number, Point of Contact (POC) Name, POC Phone Number, POC Email Address, Account Name, Billing POC, Billing POC Phone Number, and Billing POC Email Address</li>
                         <li>If possible, locate the new Bill-To Account ID (enter it into the Internal Notes field)</li>
-                        <li>Download a copy of the <a href="assets/documents/Recertification_Form.pdf" target="_blank">Recertification Form</a>.</li>
-                        <li>${TRef.cct_in_crm}, noting the CCT number
+                        <li>${TRef.cct_in_crm}
                             <ul>
-                                <li>Call Type: Phone Fix</li>
-                                <li>Symptom Code: Other</li>
-                                <li>Status/Priority: Customer Action Required</li>
-                                <li>Assign to Corinne Debenedetti</li>
+                                <li>Call Type: Phone Fix/Onsite Fix</li>
+                                <li>Symptom Code: Use appropriate code for complaint</li>
+                                <li>Status/Priority: In Process</li>
+                                <li>Assign to Corinne Debenedetti (HR08000236)</li>
+                                <li>Internal Notes: Provide a detailed explanation of how the customer acquired ownership of the instrument in question</li>
                             </ul>
                         </li>
-                        <li>Fill out the top section of the Recertification Form, save as a copy, and use the <a href="#" onclick="manualOpenEmailTemplate('recertification')">Recertification email template</a> to send the form to the customer as an attachment</li>
-                        <li>Create a Task-Task
+                        <li>${TRef.proc_create_task}
                             <ul>
                                 <li>Description: Recertification Sent to Customer</li>
-                                <li>Notes should include the Serial Number, Billing POC information, new Bill-To Account information</li>
+                                <li>Notes should include the full Internal Notes data from the associated CCT, the instrument serial number, full contact information, and the billing account information of the new owner</li>
                                 <li>Attach the Recertification form to the task</li>
-                                <li>Assign to Corinne Debenedetti</li>
+                                <li>Assign to Corinne Debenedetti (HR08000236)</li>
                             </ul>
                         </li>
                     </ol>`,
@@ -759,7 +760,7 @@ ${context[5]}
       </li>
     </ul>
   </li>
-  <li>If the Service History meets the criteria, a flag (the string, <code>PCE</code> will be added to the CCT Description text between the Billing Status and the Problem Description
+  <li>If the Service History meets the criteria, a flag (the string, <code>PCE</code>) will be added to the CCT Description text between the Billing Status and the Problem Description
     <ul>
       <li>Example: <code>6000-12345 W PCE Ongoing Database Issues</code></li>
     </ul>

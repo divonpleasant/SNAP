@@ -45,7 +45,7 @@ console.log('Loading productData.js...');
 function generateProductData() {
     console.debug('Executing generateProductData ...');
     this.pdata = {
-        "data_version": "1.26.5",
+        "data_version": "1.26.8",
         "schema_version": "9.0",
         "validated_date": "",
         "validated_ver": "",
@@ -592,19 +592,19 @@ function generateProductData() {
                                 "designation_start": "5000-4995",
                                 "designation_end": "",
                                 "designation_description": "Models manufactured on or after 2014, plus CPC/Gen1 models with PC upgrade",
-                                "guaranteed_supported": false,
+                                "guaranteed_supported": true,
                                 "supported": true,
-                                "eogs_date": ""
+                                "eogs_date": "11-01-2032"
                             }
                         },
                         "model_number": "5000",
                         "full_name": "Cirrus HD-OCT 5000",
                         "launch_date": "",
-                        "guaranteed_supported": false,
+                        "guaranteed_supported": true,
                         "supported": true,
                         "required_escalation": false,
                         "eos_date": "",
-                        "eogs_date": "08-01-2024",
+                        "eogs_date": "11-01-2032",
                         "eos_url": "",
                         "instrument_codes": ["8708"]
                     },

@@ -10,7 +10,7 @@
     </head>
     <body class="is-preload">
         <div id="topnav">
-            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#top" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" onclick="newWindowMenuToggle()"><i class="fa-solid fa-plus"></i></a>]</span>
+            <span class="nav-top"><a href="#top">Top</a></span><span class="nav-billingcontact billing-contact-field"> | <a href="#billingcontactinfo">Billing Contact</a></span><span class="nav-remotesupport remote-support-field"> | <a href="#remotesupport">Remote Support</a></span><span class="nav-checklist"> | <a href="#checklist">Technical Support Checklist</a></span><span class="nav-rafta"> | <a href="#rafta">Request Notes</a></span><span class="nav-int"> | <a href="#internal">Internal Notes</a></span><span class="nav-export"> | <a href="#wrap-up">Call Wrap-Up</a> | <a href="#export">Controls</a> | <a href="#" id="notifications-toggle">Notifications</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" id="user-account">Account</a>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="#" title="Open New Window" onclick="newWindowMenuToggle()"><i class="fa-solid fa-plus"></i></a>]</span>
         </div>
         <div id="new-window-menu">
             <ul>
@@ -33,7 +33,7 @@
                     <form id="snap-form" method="post" action="#">
                         <!-- Header -->
                         <header id="header">
-                            <a href="#.html" class="logo"><strong>S.N.A.P.</strong> The Script and Note Automation Process</a><span id="header-tag"></span>
+                            <a href="https://github.com/divonpleasant/SNAP" class="logo" target="_blank"><strong>S.N.A.P.</strong> The Script and Note Automation Process</a><span id="header-tag"></span>
                         </header>
                         <br />
 
@@ -41,7 +41,7 @@
 
                         <div class="row gtr-uniform">
                             <div class="col-12">
-                                <span class="script-scroll"><a style="border-bottom: none;" href="#top"><i id="script-prompt-greeting" class="fa-solid fa-scroll"></i></a></span>
+                                <span class="script-scroll"><a style="border-bottom: none;" href="#"><i id="script-prompt-greeting" class="fa-solid fa-scroll"></i></a></span>
                                 <h4>Initialize Call</h4>
                             </div>
                             <div class="col-6 col-12-xsmall">
@@ -66,7 +66,7 @@
                                     <option value="">&mdash; Instrument Type &mdash;</option>
                                     <option style="font-style: italic" value="">&ndash; Actively Supported &ndash;</option>
                                 </select>
-                                <div class="label-left">Instrument/Product <a href="#" class="info-button" onclick="openReferenceBox('instrument')"><i id="reference-prompt-instrument" class="fa-solid fa-circle-info"></i></a></div>
+                                <div class="label-left">Instrument/Product <a href="#" class="info-button" onclick="return openReferenceBox('instrument')"><i id="reference-prompt-instrument" class="fa-solid fa-circle-info"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall tooltip">
                                 <select name="model" id="model">
@@ -76,41 +76,41 @@
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="local-contact-person" id="local-contact-person" placeholder="Local Point of Contact Name" />
-                                <div class="label-left">Point of Contact (POC) Name <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('local-contact-person').value, 'POC Name')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-left">Point of Contact (POC) Name <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('local-contact-person').value, 'POC Name')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall tooltip">
                                 <input type="text" name="serial" id="serial" placeholder="Serial Number" />
                                 <span id="serial-tooltip" class="sn-tooltiptext">Select an Instrument to see serial number tips</span>
-                                <div class="label-right">Serial Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('serial').value, 'Serial Number')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a href="#" class="info-button" onclick="manualActivateProcess('serial-numbers', 'general', 'not-found')"><i id="process-prompt-serial-numbers" class="fa-solid fa-circle-info"></i></a></span></div>
+                                <div class="label-right">Serial Number <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('serial').value, 'Serial Number')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a href="#" class="info-button" onclick="return manualActivateProcess('serial-numbers', 'general', 'not-found')"><i id="process-prompt-serial-numbers" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="phone" id="phone" placeholder="Phone Number" style="float: left; width: 70%; margin-right: 20px;" />
                                 <input type="checkbox" name="prefer-phone" id="prefer-phone" style="float: left; width: 30%;" />
                                 <label for="prefer-phone" style="font-size: 0.8em;">Preferred</label>
-                                <div class="label-left">POC Phone Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('phone').value, 'POC Phone Number')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-left">POC Phone Number <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('phone').value, 'POC Phone Number')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="email" id="email" placeholder="Email" style="float: left; width: 70%; margin-right: 20px;" />
                                 <input type="checkbox" name="prefer-email" id="prefer-email" style="float: left; width: 30%;" />
                                 <label for="prefer-email" style="font-size: 0.8em;">Preferred</label>
-                                <div class="label-right">POC Email <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('email').value, 'POC Email Address')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-right">POC Email <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('email').value, 'POC Email Address')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="account" id="account" placeholder="Account Name" />
-                                <div class="label-left">Account Name <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('account').value, 'Account Name')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-left">Account Name <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('account').value, 'Account Name')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall tooltip">
                                 <input type="text" name="instrument-address" id="instrument-address" placeholder="Instrument/Shipping Address" />
                                 <span class="tooltiptext">If address shows CZMI, <br />ask customer where and <br />when they purchased the instrument</span>
-                                <div class="label-right">Instrument/Shipping Address <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('instrument-address').value, 'Instrument Address')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a class="info-button" href="#" onclick="manualActivateProcess('instrument-address', 'general', 'info')"><i id="process-prompt-instrument-address" class="fa-solid fa-circle-info"></i></a></span></div>
+                                <div class="label-right">Instrument/Shipping Address <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('instrument-address').value, 'Instrument Address')"><i class="fa-regular fa-copy"></i></a> <span class="script-scroll"><a class="info-button" href="#" onclick="return manualActivateProcess('instrument-address', 'general', 'info')"><i id="process-prompt-instrument-address" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="cct" id="cct" placeholder="Customer Care Ticket #" />
-                                <div class="label-left">CCT Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('cct').value, 'CCT Number')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-left">CCT Number <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('cct').value, 'CCT Number')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="svo" id="svo" placeholder="Service Order #" />
-                                <div class="label-right">SVO Number <a href="#" class="field-copy" onclick="clipBoarder(document.getElementById('svo').value, 'SVO Number')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-right">SVO Number <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('svo').value, 'SVO Number')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-12">
                                 <select name="common-call-scenarios" id="common-call-scenarios">
@@ -126,12 +126,12 @@
                                     <option value="general_spare-parts">Spare Parts</option>
                                 </select>
 
-                                <div class="label-right">Call Scenario <span class="script-scroll"><a class="info-button" href="#top"><i id="process-prompt-call-scenarios" class="fa-solid fa-circle-info"></i></a></span></div>
+                                <div class="label-right">Call Scenario <span class="script-scroll"><a class="info-button" href="#"><i id="process-prompt-call-scenarios" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-12">
                                 <textarea name="description" id="description" placeholder="Problem/Issue Description" rows="6"></textarea>
                                 <div class="solutions-container">
-                                    <div id="search-solutions" class="solutions-toggle" title="Search for Solutions"><a href="#" class="info-button" onclick="showHideSolutions()"><i id="solution-lookup" class="fa-solid fa-magnifying-glass-arrow-right" tooltip="Search for Solutions"></i></a></div>
+                                    <div id="search-solutions" class="solutions-toggle" title="Search for Solutions"><a href="#" class="info-button" onclick="return showHideSolutions()"><i id="solution-lookup" class="fa-solid fa-magnifying-glass-arrow-right" tooltip="Search for Solutions"></i></a></div>
                                     <div class="solutions-label">Problem/Issue Description</div>
                                 </div>
                                 <div id="solutions-box"></div>
@@ -207,7 +207,7 @@
                             </div>
                             <div class="col-6 col-12-xsmall remote-support-field">
                                 <input type="checkbox" id="teleservice" name="teleservice">
-                                <label for="teleservice">Teleservice?</label><a class="context-help" href="" onclick="revealHelper('teleservice')"><i class="fa-solid fa-circle-question"></i></a>
+                                <label for="teleservice">Teleservice?</label><a class="context-help" href="" onclick="return revealHelper('teleservice')"><i class="fa-solid fa-circle-question"></i></a>
                                 <div id="context-help-teleservice" class="context-info">Teleservice can be accessed on an OCT in Help &gt; Service Support &gt; Teleservice</div>
                             </div>
                             <div class="col-12 remote-support-field">
@@ -216,32 +216,32 @@
                                         <td>
                                             <input type="text" name="teamviewer-info-head1" id="teamviewer-info-head1" class="teamviewer-info-head" value="Instrument" />
                                             <div class="teamviewer-info">
-                                                <input type="text" name="teamviewer-username1" class="teamviewer-info" id="teamviewer-username1" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username1').value, `${document.getElementById('teamviewer-info-head1').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                <input type="text" name="teamviewer-username1" class="teamviewer-info" id="teamviewer-username1" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="return iconCopy(document.getElementById('teamviewer-username1').value, `${document.getElementById('teamviewer-info-head1').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
                                             </div>
                                             <div class="teamviewer-info">
-                                                <input type="text" name="teamviewer-password1" class="teamviewer-info" id="teamviewer-password1" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password1').value, `${document.getElementById('teamviewer-info-head1').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
+                                                <input type="text" name="teamviewer-password1" class="teamviewer-info" id="teamviewer-password1" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="return iconCopy(document.getElementById('teamviewer-password1').value, `${document.getElementById('teamviewer-info-head1').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
                                             </div>
-                                            <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info1" onclick="copyTVInfo('1')">Copy This TV Info</a></span>
+                                            <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info1" onclick="return copyTVInfo('1')">Copy This TV Info</a></span>
                                         </td>
                                         <td class="review-station-field">
                                             <input type="text" name="teamviewer-info-head2" id="teamviewer-info-head2" class="teamviewer-info-head" value="Review Station" />
                                             <div class="teamviewer-info">
-                                                <input type="text" name="teamviewer-username2" class="teamviewer-info" id="teamviewer-username2" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                <input type="text" name="teamviewer-username2" class="teamviewer-info" id="teamviewer-username2" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="return iconCopy(document.getElementById('teamviewer-username2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
                                             </div>
                                             <div class="teamviewer-info">
-                                                <input type="text" name="teamviewer-password2" class="teamviewer-info" id="teamviewer-password2" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
+                                                <input type="text" name="teamviewer-password2" class="teamviewer-info" id="teamviewer-password2" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="return iconCopy(document.getElementById('teamviewer-password2').value, `${document.getElementById('teamviewer-info-head2').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
                                             </div>
-                                            <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info2" onclick="copyTVInfo('2')">Copy This TV Info</a></span>
+                                            <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info2" onclick="return copyTVInfo('2')">Copy This TV Info</a></span>
                                         </td>
                                         <td class="forum-field">
                                             <input type="text" name="teamviewer-info-head3" id="teamviewer-info-head3" class="teamviewer-info-head" value="FORUM" />
                                             <div class="teamviewer-info">
-                                                <input type="text" name="teamviewer-username3" class="teamviewer-info" id="teamviewer-username3" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-username3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
+                                                <input type="text" name="teamviewer-username3" class="teamviewer-info" id="teamviewer-username3" placeholder="TeamViewer ID" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="return iconCopy(document.getElementById('teamviewer-username3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer ID`)"><i class="fa-regular fa-copy"></i></a>
                                             </div>
                                             <div class="teamviewer-info">
-                                                <input type="text" name="teamviewer-password3" class="teamviewer-info" id="teamviewer-password3" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="clipBoarder(document.getElementById('teamviewer-password3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
+                                                <input type="text" name="teamviewer-password3" class="teamviewer-info" id="teamviewer-password3" placeholder="Password" /> <a href="#remotesupport" class="teamviewer-copy-icon" onclick="return iconCopy(document.getElementById('teamviewer-password3').value, `${document.getElementById('teamviewer-info-head3').value} TeamViewer Password`)"><i class="fa-regular fa-copy"></i></a>
                                             </div>
-                                            <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info3" onclick="copyTVInfo('3')">Copy This TV Info</a></span>
+                                            <span class="copy-tv-info"><a href="#remotesupport" id="copy-tv-info3" onclick="return copyTVInfo('3')">Copy This TV Info</a></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -890,7 +890,7 @@
                                 <a name="troubleshooting-actions-performed"></a>
                                 <h5>Troubleshooting/Actions Performed</h5>
                                 <textarea name="troubleshooting-performed" id="troubleshooting-performed" placeholder="Troubleshooting/Actions Performed" rows="6"></textarea>
-                                <span id="activate-common-actions" class="field-menu-toggle" title="Common Actions Menu"><a href="#troubleshooting-actions-performed" onclick="toggleFieldMenu('common-actions-container');"><i class="fa-solid fa-person-digging"></i></a></span>
+                                <span id="activate-common-actions" class="field-menu-toggle" title="Common Actions Menu"><a href="#troubleshooting-actions-performed" onclick="return toggleFieldMenu('common-actions-container');"><i class="fa-solid fa-person-digging"></i></a></span>
                                 <div id="common-actions-container" class="field-menu">
                                     <span class="field-menu-tail"><i class="fa-solid fa-caret-up fa-2xl"></i></span>
                                     <div class="field-menu-contents">
@@ -967,7 +967,7 @@
                             </div>
                             <div class="col-12">
                                 <a class="anchor" name="copyrafta"></a>
-                                <a href="#copyrafta" id="printrafta" class="button primary small" onclick="copyCrmData('rafta')">Copy Request Notes</a>
+                                <a href="#" id="printrafta" class="button primary small" onclick="return copyCrmData('rafta')">Copy Request Notes</a>
                                 <hr />
                             </div>
 
@@ -1005,7 +1005,7 @@
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="number" id="pce-ticket-count" name="pce-ticket-count" min="0" max="50" value="0" />
-                                <div class="label-left">Qualifying <span title="Potential Customer Escalation">PCE</span> Tickets  <span><a class="info-button" href="#internal" onclick="manualActivateProcess('pce', 'general', 'default')"><i id="process-prompt-pce-count" class="fa-solid fa-circle-info"></i></a></span></div>
+                                <div class="label-left">Qualifying <span title="Potential Customer Escalation">PCE</span> Tickets  <span><a class="info-button" href="#internal" onclick="return manualActivateProcess('pce', 'general', 'default')"><i id="process-prompt-pce-count" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <select name="error-code" id="error-code" disabled>
@@ -1015,7 +1015,7 @@
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="date" name="pce-date-start" id="pce-date-start" placeholder="PCE Start Date" />
-                                <div class="label-left"><span title="Potential Customer Escalation">PCE</span> Check Start Date  <span><a class="info-button" href="#internal"  onclick="manualActivateProcess('pce', 'general', 'default')"><i id="process-prompt-pce-date" class="fa-solid fa-circle-info"></i></a></span></div>
+                                <div class="label-left"><span title="Potential Customer Escalation">PCE</span> Check Start Date  <span><a class="info-button" href="#internal"  onclick="return manualActivateProcess('pce', 'general', 'default')"><i id="process-prompt-pce-date" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <select name="action-code" id="action-code">
@@ -1055,14 +1055,14 @@
                                 <div class="label-right">Other Internal Notes</div>
                             </div>
                             <div class="col-12">
-                                <a href="#internal" id="printintnotes" class="button primary small" onclick="copyCrmData('internal')">Copy Internal Notes</a>
+                                <a href="#" id="printintnotes" class="button primary small" onclick="return copyCrmData('internal')">Copy Internal Notes</a>
                                 <hr />
                             </div>
 
                             <!-- Call Wrap-Up -->
                             <a class="anchor" name="wrap-up"></a>
                             <div class="col-12">
-                                <span class="script-scroll"><a style="border-bottom: none;" href="#wrap-up"><i id="script-prompt-wrap-up" class="fa-solid fa-scroll"></i></a></span>
+                                <span class="script-scroll"><a style="border-bottom: none;" href="#"><i id="script-prompt-wrap-up" class="fa-solid fa-scroll"></i></a></span>
                                 <h4>Call Wrap-Up</h4>
                             </div>
                             <div class="col-12">
@@ -1077,8 +1077,8 @@
                                 <label for="sustaining-ticket">Sustaining Ticket?</label>
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <a href="#wrap-up" id="schedulecall" class="button primary small">Schedule Call Back</a>
-                                <a href="#wrap-up" id="send-summary" class="button primary small" onclick="manualOpenEmailTemplate('customer-summary');">Send Summary Email</a>
+                                <a href="#" id="schedulecall" class="button primary small">Schedule Call Back</a>
+                                <a href="#" id="send-summary" class="button primary small" onclick="return manualOpenEmailTemplate('customer-summary');">Send Summary Email</a>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <select name="call-type" id="call-type">
@@ -1093,7 +1093,7 @@
                                 <div class="label-right">Call Type <span class="script-scroll"><a class="info-button" href="#wrap-up"><i id="process-prompt-call-types" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <a href="#wrap-up" id="copy-solution" class="button primary small" onclick="clipBoarder(document.getElementById('solution-notes').value, 'Solution Notes')">Copy Solution Notes</a>
+                                <a href="#" id="copy-solution" class="button primary small" onclick="return iconCopy(document.getElementById('solution-notes').value, 'Solution Notes')">Copy Solution Notes</a>
                             </div>
                             <div class="col-6 col-12-xsmall fss-details">
                                 <select name="fss-name" id="fss-name">
@@ -1132,11 +1132,11 @@
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" id="instrument-code" name="instrument-code" />
-                                <div class="label-right">Instrument Code <a href="#export" class="field-copy" onclick="clipBoarder(document.getElementById('instrument-code').value, 'Instrument Code')"><i class="fa-regular fa-copy"></i></a></div>
+                                <div class="label-right">Instrument Code <a href="#" class="field-copy" onclick="return iconCopy(document.getElementById('instrument-code').value, 'Instrument Code')"><i class="fa-regular fa-copy"></i></a></div>
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                <a href="#export" id="exportall" class="button primary small" onclick="copyCrmData('interaction')">Export Interaction</a>
-                                <a href="#export" id="save-xml" class="button primary small" onclick="copyCrmData('xml')">Save as XML</a>
+                                <a href="#" id="exportall" class="button primary small" onclick="return copyCrmData('interaction')">Export Interaction</a>
+                                <a href="#" id="save-xml" class="button primary small" onclick="return copyCrmData('xml')">Save as XML</a>
                             </div>
                             <div class="col-6 col-12-xsmall">
                                 <select name="clipboard-templates" id="clipboard-templates">
@@ -1152,7 +1152,7 @@
                                     <option value="teamviewer-info-all">TeamViewer Info</option>
                                     <option value="zip-code">Zip Code</option>
                                 </select>
-                                <div class="label-left">Clipboard Templates <span class="script-scroll"><a class="info-button" href="#export"><i id="process-prompt-clipboard-templates" class="fa-solid fa-circle-info"></i></a></span></div>
+                                <div class="label-left">Clipboard Templates <span class="script-scroll"><a class="info-button" href="#"><i id="process-prompt-clipboard-templates" class="fa-solid fa-circle-info"></i></a></span></div>
                             </div>
                             <div class="col-12">
                                 <input id="resetButton" type="reset" class="button primary small">
@@ -1172,14 +1172,14 @@
                             <h3 style="text-align: center">Enter Compliance Check Information</h3>
                             <input type="text" id="compliance-id" name="compliance-id" placeholder="Enter Compliance ID (From Details)"><br />
                             <input type="text" id="account-id" name="account-id" placeholder="Account ID"><br />
-                            <button id="compliance-check-proceed" onclick="manualOpenEmailTemplate('compliance-check', true)">Continue</button>
+                            <button id="compliance-check-proceed" onclick="return manualOpenEmailTemplate('compliance-check', true)">Continue</button>
                         </div>
                     </div>
 
                     <!-- Address Change Overlay -->
                     <div id="address-change-overlay" class="overlay" style="display: none;">
                         <div id="address-change-overlay-content" class="overlay-content">
-                            <span id="address-change-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('address-change');">&times;</a></span> <!-- X button to close -->
+                            <span id="address-change-close-overlay" class="close-overlay"><a href="#" onclick="return manualCloseOverlay('address-change');">&times;</a></span> <!-- X button to close -->
                             <h3 style="text-align: center">Address Change Information</h3>
                             <div class="overlay-input-wrapper">
                                 <input type="text" id="current-site-address" name="current-site-address" placeholder="Instrument/Shipping Address" disabled />
@@ -1232,7 +1232,7 @@
                             <h3>Enter SVO Information</h3>
                             <input type="text" id="svo-ticket" name="svo-ticket" placeholder="Enter SVO Ticket"><br />
                             <input type="text" id="svo-date" name="svo-date" placeholder="Enter Creation Date"><br />
-                            <button id="fse-update-proceed" onclick="manualOpenEmailTemplate('fse-update', true)">Continue</button>
+                            <button id="fse-update-proceed" onclick="return manualOpenEmailTemplate('fse-update', true)">Continue</button>
                         </div>
                     </div>
 
@@ -1242,7 +1242,55 @@
                             <span id="parts-order-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('parts-order')">&times;</a></span> <!-- X button to close -->
                             <h3>Enter Parts Order Information</h3>
                             <input type="text" id="order-name" name="order-name" placeholder="Name of Order (e.g. Fuses)"><br />
-                            <span class="parts-tooltip"><textarea rows="4" id="part-list" name="part-list" placeholder="PART_DESC_01;PART_ID_01&#10;PART_DESC_02;PART_ID_02"></textarea><span class="parts-req-tooltiptext">Semicolon-separated list of part descriptions and part numbers.<br />Input one part entry per line.<br />Example:<br />FUSE 6.3A/250VAC 5X20MM TYPE T;000000-1211-851<br /></span></span><br />
+                            <span class="parts-tooltip">
+                                <textarea rows="4" id="part-list" name="part-list" placeholder="PART_DESC_01;PART_ID_01&#10;PART_DESC_02;PART_ID_02&#10;..."></textarea>
+                                <!-- <span class="parts-req-tooltiptext">Semicolon-separated list of part descriptions and part numbers.<br />Input one part entry per line.<br />Example:<br />FUSE 6.3A/250VAC 5X20MM TYPE T;000000-1211-851<br /></span> //-->
+                                <span id="add-common-parts" class="field-menu-toggle" title="Commonly Requested Parts"><a href="#" onclick="toggleFieldMenu('common-parts-container');"><i class="fa-solid fa-person-digging"></i></a></span>
+                                <div id="common-parts-container" class="field-menu">
+                                    <span class="field-menu-tail"><i class="fa-solid fa-caret-up fa-2xl"></i></span>
+                                    <div class="field-menu-contents">
+                                        <ul>
+                                            <li><a id="p0000" onclick="commonPartToField('p0000', ['part-list'], 'UNIVERSAL POWER TABLE;266002-112-4655')">Universal Power Table</a></li>
+                                            <li><a id="p0001" onclick="commonPartToField('p0001', ['part-list'], 'ASSY HFA PATIENT RESPONSE BUTTON OPTICAL;266002-1173-951')">Patient Response Button (PRB) [HFA3]</a></li>
+                                            <li><a id="p0002" onclick="commonPartToField('p0002', ['part-list'], 'PCBA SANTA CRUZ PROJECTION LAMP;266002-1148-110')">Projection Lamp Bulb [HFA3]</a></li>
+                                            <li><a id="p0003" onclick="commonPartToField('p0003', ['part-list'], 'FAN FILTER;266002-1149-222')">Fan Filter [HFA3]</a></li>
+                                            <li><a id="p0004" onclick="commonPartToField('p0004', ['part-list'], 'ASSY HFA3 TRIAL LENS HOLDER WITH IR LEDS;266002-1151-504')">Manual Trial Lens Holder [HFA3 830/40/50]</a></li>
+                                            <li><a id="p0005" onclick="commonPartToField('p0005', ['part-list'], 'ASSY SC MRCM;266002-1154-571')">Manual Trial Lens Holder [HFA3 860]</a></li>
+                                            <li><a id="p0006" onclick="commonPartToField('p0006', ['part-list'], 'Fixation Light;319751-9006-000')">External Fixation [OCT 6/500/0]</a></li>
+                                            <li><a id="p0007" onclick="commonPartToField('p0007', ['part-list'], 'KEYBOARD WIRELESS BACKLIGHT BLK;266002-1182-248')">Wireless Keyboard with Trackpad [OCT 6/500/0]</a></li>
+                                            <li><a id="p0008" onclick="commonPartToField('p0008', ['part-list'], 'MOUSE WIRELESS LOGITECH;266002-1147-390')">Wireless Mouse [OCT 6/500/0]</a></li>
+                                            <li><a id="p0009" onclick="commonPartToField('p0009', ['part-list'], 'OCULAR LENS COVER;266002-1124-008')">Lens Cover [OCT 6/500/0]</a></li>
+                                            <li><a id="p0010" onclick="commonPartToField('p0010', ['part-list'], 'USB 802.11B/G/N WIRELESS ADAPTER;266002-1180-508')">USB Wireless Adapter [OCT 6/500/0]</a></li>
+                                            <li><a id="p0011" onclick="commonPartToField('p0011', ['part-list'], 'FAN FILTER;266002-1161-991')">Fan Filter [OCT 6/500/0]</a></li>
+                                            <li><a id="p0012" onclick="commonPartToField('p0012', ['part-list'], 'TOP DOOR/COVER FOR FAN FILTER;266002-1172-890')">Fan Filter Cover Door [OCT 6/500/0]</a></li>
+                                            <li><a id="p0013" onclick="commonPartToField('p0013', ['part-list'], 'COVER DUST SD-OCT PATIENT MOD;266002-1123-062')">Dust Cover [OCT 500/0]</a></li>
+                                            <li><a id="p0014" onclick="commonPartToField('p0014', ['part-list'], 'Fixation Light;319751-9006-000^Occluding Sleeve for Fixation Light;319751-9005-000^Blinking diode red for Fixation Light;301350-9052-000')">External Fixation (Full Assembly, 3 Parts) [OCT 500/0]</a></li>
+                                            <li><a id="p0015" onclick="commonPartToField('p0015', ['part-list'], 'Occluding Sleeve for Fixation Light;319751-9005-000')">External Fixation Occluding Sleeve [OCT 500/0]</a></li>
+                                            <li><a id="p0016" onclick="commonPartToField('p0016', ['part-list'], 'Blinking diode red for Fixation Light;301350-9052-000')">External Fixation LED [OCT 6/500/0]</a></li>
+                                            <li><a id="p0017" onclick="commonPartToField('p0017', ['part-list'], 'KEYBOARD MINI BLACK USB;266002-1121-716')">Wired Mini Keyboard [OCT 500/0]</a></li>
+                                            <li><a id="p0018" onclick="commonPartToField('p0018', ['part-list'], 'Instrument Cover;266002-1174-524')">Instrument Cover [OCT 6000]</a></li>
+                                            <li><a id="p0019" onclick="commonPartToField('p0019', ['part-list'], 'KEYBOARD SLIM LINE/USB;000000-0441-494')">Slimline Keyboard [IOLMaster]</a></li>
+                                            <li><a id="p0020" onclick="commonPartToField('p0020', ['part-list'], 'CHIN REST;319752-8016-000')">Chin Rest [IOLMaster 500]</a></li>
+                                            <li><a id="p0021" onclick="commonPartToField('p0021', ['part-list'], 'MOUSE/USB;000000-0509-725')">Mouse [IOLMaster 700]</a></li>
+                                            <li><a id="p0022" onclick="commonPartToField('p0022', ['part-list'], 'PROTECTIVE COVER FOR REFERENCE IMAGE;000000-2074-285')">"Bat Wings" Cover [IOLMaster 700]</a></li>
+                                            <li><a id="p0023" onclick="commonPartToField('p0023', ['part-list'], 'BRAKE CAP AND KNOB;000000-2118-125')">Chin Rest [IOLMaster 700]</a></li>
+                                            <li><a id="p0024" onclick="commonPartToField('p0024', ['part-list'], 'SC chin rest with screws;000000-2191-082')">Chin Rest [SL 1/220]</a></li>
+                                            <li><a id="p0025" onclick="commonPartToField('p0025', ['part-list'], 'SL120 PRISM DIFFUSER;000000-1208-936')">Frosted Plastic Prism Diffuser [SL 1/220]</a></li>
+                                            <li><a id="p0026" onclick="commonPartToField('p0026', ['part-list'], 'AIO PC POWER CABLE;266002-1165-837')">Computer Power Cable [Clarus 5/700]</a></li>
+                                            <li><a id="p0027" onclick="commonPartToField('p0027', ['part-list'], 'KEYBOARD TRAY;266002-1166-054')">Keyboard Tray [Clarus 5/700]</a></li>
+                                            <li><a id="p0028" onclick="commonPartToField('p0028', ['part-list'], 'COVER/CAP FOR OCULAR LENS;266002-1169-716')">Lens Cover [Clarus 5/700]</a></li>
+                                            <li><a id="p0029" onclick="commonPartToField('p0029', ['part-list'], 'DEVICE DUST COVER;266002-1166-733')">Dust Cover [Clarus 5/700]</a></li>
+                                            <li><a id="p0030" onclick="commonPartToField('p0030', ['part-list'], 'CHINREST WITH SCREWS;000000-2451-562')">Chin Rest (incl screws) [Clarus 5/700]</a></li>
+                                            <li><a id="p0031" onclick="commonPartToField('p0031', ['part-list'], '23 IN LCD MONITOR;000000-0532-832')">LCD Monitor [VisuCam 224/524]</a></li>
+                                            <li><a id="p0032" onclick="commonPartToField('p0032', ['part-list'], 'DUST COVER;459311-0000-000')">Dust Cover [VisuCam 224/524, Cirrus Photo 6/800]</a></li>
+                                            <li><a id="p0033" onclick="commonPartToField('p0033', ['part-list'], 'EXTERNAL FIXATION DEVICE - COMPLETE;000000-1364-513')">External Fixation [VisuCam 224/524, Cirrus Photo 6/800]</a></li>
+                                            <li><a id="p0034" onclick="commonPartToField('p0034', ['part-list'], 'OCT ENGINE BRACKET - K2 TABLE;266002-1153-337')">OCT Engine Bracket [Cirrus Photo 6/800]</a></li>
+                                            <li><a id="p0035" onclick="commonPartToField('p0035', ['part-list'], 'OCT ENGINE RACK - IT 1060 TABLE;000000-1837-451')">OCT Engine Rack [Cirrus Photo 6/800]</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </span>
+                            <br />
                             <input type="checkbox" id="foc" name="foc">
                             <label for="foc">Free of Charge?</label><br />
                             <select name="delivery-type" id="delivery-type">
@@ -1250,7 +1298,7 @@
                                 <option value="Overnight">Overnight</option>
                                 <option value="Ground">Ground</option>
                             </select><br />
-                            <button id="parts-order-proceed" onclick="manualOpenEmailTemplate('parts-order', true)">Continue</button>
+                            <button id="parts-order-proceed" onclick="return manualOpenEmailTemplate('parts-order', true)">Continue</button>
                         </div>
                     </div>
 
@@ -1260,7 +1308,7 @@
                             <span id="soa-contract-pm-close-overlay" class="close-overlay"><a href="#" onclick="manualCloseOverlay('soa-contract-pm')">&times;</a></span> <!-- X button to close -->
                             <h3>Enter Contract Number</h3>
                             <input type="text" id="contract-number" name="contract-number" placeholder="Enter Contract ID"><br>
-                            <button id="soa-contract-pm-proceed" onclick="manualOpenEmailTemplate('soa-contract-pm', true)">Continue</button>
+                            <button id="soa-contract-pm-proceed" onclick="return manualOpenEmailTemplate('soa-contract-pm', true)">Continue</button>
                         </div>
                     </div>
 
@@ -1285,7 +1333,7 @@
                             <textarea rows="5" id="gl2-troubleshooting" name="gl2-troubleshooting" placeholder="What have you tried so far? What was the result? Has the reported problem changed or have remediation steps caused new issues? Be as detailed as possible."></textarea>
                             <label for="gl2-troubleshooting">Detailed Troubleshooting Steps</label>
                             <br />
-                            <button id="gl2-escalation-proceed" onclick="manualOpenEmailTemplate('gl2-escalation', true)">Continue</button>
+                            <button id="gl2-escalation-proceed" onclick="return manualOpenEmailTemplate('gl2-escalation', true)">Continue</button>
                         </div>
                     </div>
 
@@ -1410,19 +1458,19 @@
                         </header>
                         <ul>
                             <li><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SitePages/Zeiss-Technical-Support-Processes.aspx" target="_blank">Technical Support Process Docs</a></li>
-                            <li><a href="#" onclick="manualOverlay('address-change')" id="address-change">Address Change</a></li>
+                            <li><a href="#" onclick="return manualOverlay('address-change')" id="address-change">Address Change</a></li>
                             <li>
                                 <span class="opener">End of Support</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('end-of-support')" id="eos">EoS Explanation</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('end-of-support')" id="eos">EoS Explanation</a></li>
                                     <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://www.zeiss.com/meditec/us/z/teamwork_bonus_form.html" target="_blank">Teamwork Bonus Lead Form</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="opener">Field Service Interactions</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('fse-billing-request')" id="fse-billing-request">PO Authorization</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('fse-update')" id="fse-update">FSE Status Inquiry</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('fse-billing-request')" id="fse-billing-request">PO Authorization</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOverlay('fse-update')" id="fse-update">FSE Status Inquiry</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -1435,58 +1483,60 @@
                             <li>
                                 <span class="opener">Preventative Maintenance</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('pm-billing-request')" id="pm-billing-request">PO Authorization</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="service-admin-contract-pm-request" onclick="manualOverlay('soa-contract-pm')">Service Admin PM Request</a>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('pm-billing-request')" id="pm-billing-request">PO Authorization</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="service-admin-contract-pm-request" onclick="return manualOverlay('soa-contract-pm')">Service Admin PM Request</a>
                                     <li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="pm-proaim-pm-request" onclick="manualOpenEmailTemplate('proaim-pm-request')">PROAIM PM Request</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="pm-proaim-pm-request" onclick="return manualOpenEmailTemplate('proaim-pm-request')">PROAIM PM Request</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="opener">PROAIM</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="proaim-service-request" onclick="manualOpenEmailTemplate('proaim-service-request')">Service Call</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="proaim-proaim-pm-request" onclick="manualOpenEmailTemplate('proaim-pm-request')">Preventative Maintenance</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="proaim-service-request" onclick="return manualOpenEmailTemplate('proaim-service-request')">Service Call</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="proaim-proaim-pm-request" onclick="return manualOpenEmailTemplate('proaim-pm-request')">Preventative Maintenance</a></li>
                                 </ul>
                             </li>
+                            <!--
                             <li>
                                 <span class="opener">Recertification</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="recertification" onclick="manualOpenEmailTemplate('recertification')">Recertification Email</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" id="recertification" onclick="return manualOpenEmailTemplate('recertification')">Recertification Email</a></li>
                                     <li><span class="fa-li"><i class="fa-regular fa-file"></i></span><a href="https://zeiss.sharepoint.com/Sites/201368/MEDTS/SiteAssets/Forms/AllItems.aspx?id=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses%2FRecertification%2DForm%2D%2D%2D022924%2Epdf&parent=%2FSites%2F201368%2FMEDTS%2FSiteAssets%2FSitePages%2FZeiss%2DTechnical%2DSupport%2DProcesses" target="_blank">Form Attachment Download</a></li>
                                 </ul>
                             </li>
+                            //-->
                             <li>
                                 <span class="opener">Smart Services</span>
                                 <ul class="fa-ul">
                                     <li><span class="fa-li"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><a href="https://forms.office.com/e/DppCjfLcad" target="_blank">Deployment Request Form</a>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('smart-services-confirmation')" id="smart-services-confirmation">Smart Services Confirmation</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('smart-services-confirmation')" id="smart-services-confirmation">Smart Services Confirmation</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="opener">SMILE Devices</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('mel-80-90')" id="mel-80-90">MEL 80/90 Service Request</a>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('mel-80-90')" id="mel-80-90">MEL 80/90 Service Request</a>
                                     <li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('visumax')" id="visumax">VISUMAX Service Request</a>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('visumax')" id="visumax">VISUMAX Service Request</a>
                                     <li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="opener">Spare Parts</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('parts-order')" id="parts-order">Parts Order</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('po-policy-parts')" id="po-policy-parts">Parts PO Policy</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOverlay('parts-order')" id="parts-order">Parts Order</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('po-policy-parts')" id="po-policy-parts">Parts PO Policy</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="opener">Misc. Email Templates</span>
                                 <ul class="fa-ul">
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('canada-service-request')" id="canada-service-request">Canada Service Request</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOverlay('compliance-check')" id="compliance-check">Compliance Check Alert</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('generic')" id="generic">Generic Email</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('po-info')" id="po-info">Purchase Order Information</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('tv-request')" id="tv-request">TeamViewer Request</a></li>
-                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="manualOpenEmailTemplate('win-support')" id="win-support">Windows 10/11 Support Information</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('canada-service-request')" id="canada-service-request">Canada Service Request</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOverlay('compliance-check')" id="compliance-check">Compliance Check Alert</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('generic')" id="generic">Generic Email</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('po-info')" id="po-info">Purchase Order Information</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('tv-request')" id="tv-request">TeamViewer Request</a></li>
+                                    <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="#" onclick="return manualOpenEmailTemplate('win-support')" id="win-support">Windows 10/11 Support Information</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -1527,7 +1577,7 @@
                             <li>
                                 <a href="https://zeiss-my.sharepoint.com/personal/don_renfrow_zeiss_com/_layouts/OneNote.aspx?id=%2Fpersonal%2Fdon_renfrow_zeiss_com%2FDocuments%2FTech%20Support%20OneNote&wd=target%28Device%20Serial%20Number%20%20Locations.one%7C5CAE9BFB-29CB-4DD1-9786-4DBB233BE86F%2FDevice%20Serial%20Number%20location%20and%20format%7C1C933BA9-67D4-4D52-B498-FA98B2B222C9%2F%29" target="_blank">Serial Number Locations</a>
                             </li>
-                            <li><a href="https://militaryalphabet.net/#google_vignette" target="_blank">Military Phonetic Alphabet</a></li>
+                            <li><a href="https://militarytimecharts.com/military-alphabet/" target="_blank">Military Phonetic Alphabet</a></li>
                             <li>
                                 <span class="opener">Additional Support</span>
                                 <ul class="fa-ul">
@@ -1543,7 +1593,7 @@
                                     <li><span class="opener">Level 2 Support</span>
                                         <ul class="fa-ul">
                                             <li><strong>Phone Number: 1-925-307-1600</strong></li>
-                                            <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a onclick="manualOverlay('gl2-escalation')">Global L2 Escalation Template</a></li>
+                                            <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a onclick="return manualOverlay('gl2-escalation')">Global L2 Escalation Template</a></li>
                                             <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="mailto:support.ophthalmology@zeiss.com">Ophthalmic Diagnostics (Phone Option 1)</a></li>
                                             <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="mailto:support.surgicalophthalmology@zeiss.com">Surgical Ophthalmology (Phone Option 2)</a></li>
                                             <li><span class="fa-li"><i class="fa-regular fa-envelope"></i></span><a href="mailto:support.microsurgery@zeiss.com">Microsurgery (Phone Option 3)</a></li>
@@ -1561,7 +1611,7 @@
                     <footer id="footer">
                         <p class="settings"><i class="fa-solid fa-gear" style="color: #778592"></i> <a id="settings" href="#">Settings</a> | <i class="fa-solid fa-folder-open" style="color: #778592"></i> <label class="settings-label"><input type="file" id="upload">Load Saved XML</label></p>
                         <p class="settings"><i class="fa-solid fa-clipboard-check" style="color: #778592"></i> <a href="audit.html">Audit Data Source(s)</a></p>
-                        <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span>.</p>
+                        <p class="copyright"><a id="project-link" href="./">SNAP</a> (v<span id="current-version">3.0</span>) &copy; <a href="https://www.zeiss.com/meditec/us/home.html">Zeiss Meditec</a> <span id="copyright-year"></span><a href="#" onclick="return manualOverlay('hidden')" style="border-bottom: 0px;">.</a></p>
                         <div id="zeiss-logo"><img src="images/zeiss-logo-rgb.png" /></div>
                     </footer>
 

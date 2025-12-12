@@ -19,6 +19,7 @@ function accountOverlay(event) {
     document.getElementById('custom-scripts-toggle').checked = so.Settings.user.use_custom_scripts.value;
 
     document.getElementById('account-overlay').style.display = 'flex';
+    return false;
 }
 
 function processAccount(event) {

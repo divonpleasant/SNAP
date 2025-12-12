@@ -733,6 +733,7 @@ function toggleFieldMenu(menu) {
     var current_display = document.getElementById(menu).style.display;
     console.debug({current_display});
     document.getElementById(menu).style.display = (current_display === 'none' || current_display === '') ? 'flex' : 'none';
+    return false;
 }
 
 function commonActionToField(a_id, fields) {
@@ -750,6 +751,18 @@ function commonActionToField(a_id, fields) {
                 document.getElementById(fields[f]).value += action_data + line_break;
                 break;
         }
+    }
+}
+
+function commonPartToField(a_id, fields, formatted_input = '') {
+    console.debug("Executing commonPartToField ...\na_id: " + a_id + "\nfields: " + fields + "\nformatted_input: " + formatted_input);
+    var line_break = "\n";
+    for (var f = 0; f < fields.length; f++) {
+        if (formatted_input !== '') {
+            const parts_re = /\^/g;
+            formatted_input = formatted_input.replace(parts_re, "\n");
+        }
+        document.getElementById(fields[f]).value += (formatted_input === '') ? document.getElementById(a_id).innerHTML + line_break : formatted_input + line_break;
     }
 }
 

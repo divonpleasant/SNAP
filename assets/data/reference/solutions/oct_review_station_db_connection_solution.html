@@ -1,0 +1,31 @@
+<p>If the database start-up check appears to hang at the 20% mark or there are errors related to connection to database, failure to locate host machine, or an undefined service ("czm_db"), most likely the issue is the review station cannot connect to the instrument's database instance.</p>
+<p>To resolve the issue:</p>
+<ul>
+    <li>Note the IP address and host name of the target Cirrus HD-OCT system</li>
+    <li>Verify (using UNC or ping) that the review station can connect to the instrument, specifically the path <code>E:\SDOCT\DataBase\</code></li>
+    <li>Make note if the customer has created a network share for the database location; often you will see a mapped drive letter (e.g. <code>F:\</code> or <code>Z:\</code>) which points to a share named "Database Instrument"</li>
+    <li>Ensure the review station software is configured to run in "Native" or archive mode (check in <code>C:\Program Files\CZM\Cirrus HD-OCT\Bin\SdoctApp.exe.config</code> and check the line <code>&gt;add key="ArchiveMode" value="Native"&lt;</code>; if the value is <code>DICOM</code>, edit the file with Administrator permissions and restart the application)</li>
+    <li>When the review station application starts, it should pause when the database start-up check is at 20% and open a Finder window requesting a path to the database index file, which is always located on the instrument itself unless in a Forum environment (i.e. running in mode <code>DICOM</code>)
+        <ul>
+            <li>Use either the network share path if configured (e.g. <code>F:\Database Instrument\ZDB.ib</code>) or a UNC path (e.g. <code>\\192.168.1.10\SDOCT\DataBase\ZDB.ib</code>) to locate the index file</li>
+            <li><strong>NOTE:</strong> there are pros and cons to using an IP address vs a hostname in a UNC address:
+                <ul>
+                    <li>IP addresses are prone to issues in DHCP environments in the case of IP reassignment</li>
+                    <li>Hostnames are prone to DNS-related issues</li>
+                    <li>If static IP assignment is possible, encourage customers to configure their instruments with a static IP and use IP address UNCs for review station configs</li>
+                    <li>Otherwise, use whichever option is easiest for the local IT group to troubleshoot</li>
+                </ul>
+            </li>
+            <li>If credentials are required to access the remote index file, be sure to check the "Remember Credentials" box to avoid having to re-login</li>
+            <li>In some cases there may be more complex communication issues between the review station and the instrument
+                <ul>
+                    <li>Sometimes these can be resolved by enabling Network Discovery on the OCT instrument</li>
+                    <li>Turning on (enabling and ensuring the status <code>RUNNING</code>) the service(s) "Function Discovery Resource Publication" and/or "Function Discovery Provider Host" on the OCT instrument can also help</li>
+                    <li>Verify the network permissions are configured for authenticated Zeiss users on the folders <code>SDOCT</code> and <code>DataBase</code> on the OCT instrument</li>
+                    <li>Ensure the environment does not use Forum (if so, the software mode should not be <code>Native</code>, rather it should be <code>Dicom</code> and the database instance would be local to the Review Station)</li>
+                    <li>Ultimately this communication is the responsibility of the customer's IT group</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

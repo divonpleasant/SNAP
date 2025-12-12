@@ -130,4 +130,5 @@ function copyCrmData (data_subset) {
             console.warn('Did not find an export type in ' + data_subset + ', no action taken');
             break;
     }
+    return false;
 }

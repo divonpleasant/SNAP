@@ -8,24 +8,630 @@
     </div>
     <a name="software-overview"></a>
     <h2>Software Overview</h2>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
+    <p>The Cirrus Photo is a non-contact, non-mydriatic retinal fundus camera combined with a Cirrus OCT. It supports capture modes color, G (green), R (red), B (blue) and AutoFluo (autofluorescence) as well as anterior and posterior OCT scanning capability. Cirrus Photo 800 additionally supports capture mode FA (fluorescein angiography) and optionally ICGA (indocyanine green angiography).</p>
+    <p>Images are captured at the field angles of 45 and 30 degrees.</p>
+    <a name="dicom-conformance"></a>
+    <h3>DICOM Conformance</h3>
+    <p>For currently available DICOM Conformance Statements, visit the <a href="https://www.zeiss.com/meditec/en/myzeiss/conformance-and-interoperability.html">Conformance and Interoperability</a> page on <a href="https://www.zeiss.com/">Zeiss.com</a>. Or, the <a href="https://asset-downloads.zeiss.com/catalogs/download/med2/e31d6c98-6142-456d-9735-63e7fb8cbc52/dicom_conformance_statement_cirrusphoto_2.0.pdf">version 2.0 document for the Cirrus Photo is available here</a>.</p>
+    <a name="patient-window"></a>
+    <h3>Cirrus Photo Patient Window</h3>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-patient_window_diagram.png" />
+        <span class="caption">Fig 1. Cirrus Photo Patient window with sections labeled 1-12 for reference</span>
+        <br />
+        <img src="images/reference/cirrus-photo/cirrus-photo-advanced_search_dialog.png" />
+        <span class="caption">Fig 2. Advanced search dialog provides more search options</span>
+    </div>
+    <ol>
+        <li>Patient list
+            <ul>
+                <li>Displays a list of existing patients and relevant demographic information</li>
+            </ul>
+        </li>
+        <li>Quick search field
+            <ul>
+                <li>Allows quick search by name or ID</li>
+            </ul>
+        </li>
+        <li>Today's patients, Find patient, Add patient tabs
+            <ul>
+                <li>Add a patient</li>
+                <li>Display <a href="#todays-patients-tab">Today's patients</a></li>
+                <li>Display patient list</li>
+            </ul>
+        </li>
+        <li>Navigation bar for changing to other windows
+            <ul>
+                <li>Patient</li>
+                <li>Acquire Data</li>
+                <li>Review Image</li>
+                <li>Analyze</li>
+            </ul>
+        </li>
+        <li>Program menu
+            <ul>
+                <li>File</li>
+                <li>Tools</li>
+                <li>Help</li>
+            </ul>
+        </li>
+        <li>Advanced search
+            <ul>
+                <li>Displays advanced search options (see Fig 2)</li>
+            </ul>
+        </li>
+        <li>Reset
+            <ul>
+                <li>Clears the search field</li>
+            </ul>
+        </li>
+        <li>Edit, Delete, Show details
+            <ul>
+                <li>Buttons for manipulating patient data</li>
+                <li>Works with data <em>created</em> on the Cirrus Photo</li>
+            </ul>
+        </li>
+        <li>Shutdown
+            <ul>
+                <li>Exits the program and shuts down the device</li>
+            </ul>
+        </li>
+        <li>Error Message list
+            <ul>
+                <li>Click button to view the current error list</li>
+            </ul>
+        </li>
+        <li>Existing visits
+            <ul>
+                <li>Historical list of exams by date</li>
+            </ul>
+        </li>
+        <li>Thumbnails of existing images
+            <ul>
+                <li>Corresponding thumbnail images for historical visits</li>
+            </ul>
+        </li>
+    </ol>
+    <a name="required-patient-data"></a>
+    <h4>Required Patient Data</h4>
+    <p>The following patient data is required:</p>
+    <ul>
+        <li>First and Last name</li>
+        <li>Date of Birth (DOB)</li>
+        <li>Gender</li>
+        <li>ID</li>
+    </ul>
+    <a name="#thumbnails"></a>
+    <h4>Thumbnails</h4>
+    <p>Double-clicking on a fundus thumbnail opens the image in the Review Image window.</p>
+    <ul>
+        <li>Right-click on a thumbnail to see Properties</li>
+        <li>Properties shows additional information for the image</li>
+        <li>Enter comments if required</li>
+    </ul>
+    <a name="todays-patients-tab"></a>
+    <h4>Today's Patients Tab</h4>
+    <p>Only shows the patients who are scheduled for treatment that day. Worklist and patients added on the current day will be shown.</p>
+    <ul>
+        <li>Show Worklist Details &mdash; Detailed view of the worklist</li>
+        <li>Refresh &mdash; Refreshes the worklist</li>
+        <li>Search in Worklist &mdash; Advanced worklist search</li>
+    </ul>
+
+    <a name="acquire-data-window"></a>
+    <h3>Cirrus Photo Acquire Data Window</h3>
+    <p>The Acquire Data window allows image acquisition in three (3) modes:</p>
+    <ul>
+        <li><a href="#cirrus-photo-setup">Cirrus Photo</a> &mdash; Fundus photo + OCT scan</li>
+        <li><a href="#photo-setup">Photo</a> &mdash; Fundus photo/FA only</li>
+        <li><a href="#oct-setup">Cirrus</a> &mdash; OCT scan only</li>
+    </ul>
+    <a name="photo-setup"></a>
+    <h4>Photo Setup</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_photo_setup_diagram.png" />
+        <span class="caption">Fig 3. Cirrus Photo Acquire Data window, photo setup, with sections labeled 1-12 for reference</span>
+        <br />
+    </div>
+    <ol>
+        <li>Focusing aid prism activation</li>
+        <li>Capture modes</li>
+        <li>User-defined workflow</li>
+        <li>Status/Information bar</li>
+        <li>Navigation bar</li>
+        <li>Program menus</li>
+        <li>Shutdown</li>
+        <li>Closed thumbnail bar
+            <ul>
+                <li>Mouse over to view</li>
+            </ul>
+        </li>
+        <li>Brightness display</li>
+        <li>Current focus positioning</li>
+        <li>Automatic imaging focusing</li>
+        <li>Fundus live image (IR/FI)</li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="oct-setup"></a>
+    <h4>OCT Setup</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_oct_setup_diagram.png" />
+        <span class="caption">Fig 4. Cirrus Photo Acquire Data window, OCT setup, with sections labeled 1-10 for reference</span>
+    </div>
+    <ol>
+        <li>Start OCT scan</li>
+        <li>Optimize</li>
+        <li>Toggle IR/FI and OCT</li>
+        <li>Fixation settings</li>
+        <li>Fundus image settings</li>
+        <li>OCT scan settings</li>
+        <li>OCT live image</li>
+        <li>Settings for OCT fundus image (mouse over)
+            <ul>
+                <li>Brightness and contrast</li>
+                <li>Automatic brightness and contrast</li>
+                <li>Reset to default</li>
+            </ul>
+        </li>
+        <li>Settings for B-scans (mouse over)
+            <ul>
+                <li>Change color mode</li>
+                <li>Brightness and contrast</li>
+                <li>Magnification setting</li>
+                <li>Reset to default</li>
+            </ul>
+        </li>
+        <li>Live scan image</li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="cirrus-photo-setup"></a>
+    <h4>Cirrus Photo Setup</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_cirrus_photo_setup_diagram.png" />
+        <span class="caption">Fig 5. Cirrus Photo Acquire Data window, Cirrus photo setup, with sections labeled 1-5 for reference</span>
+    </div>
+    <ol>
+        <li>Buttons for starting/stopping the angiography timer</li>
+        <li>Button for starting the fundus image capture</li>
+        <li>Fundus live image</li>
+        <li>Fixation settings (drop-down menu)</li>
+        <li>Fundus image settings (drop-down menu)</li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="program-settings-oct"></a>
+    <h4>Program Settings for OCT Scans (Cirrus)</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_program_settings_oct_diagram.png" />
+        <span class="caption">Fig 6. Cirrus Photo Acquire Data window, program settings for Cirrus OCT scans, with sections labeled 1-10 for reference</span>
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_program_settings_oct_diagram_02.png" />
+        <span class="caption">Fig 7. Cirrus Photo Acquire Data window, program settings for Cirrus OCT scans, with sections labeled 11-17 for reference</span>
+    </div>
+    <ol>
+        <li>OCT scan modes:
+            <ul>
+                <li>Macula (Cube): 512x128</li>
+                <li>Macula (Cube): 200x200</li>
+                <li>Macula (HD 5): HD Raster</li>
+                <li>Optic Disc (Cube): 200x200</li>
+                <li>Anterior Segment (HD 5): Raster</li>
+                <li>Anterior Segment (Cube): 512x128</li>
+            </ul>
+        </li>
+        <li>Repeat scan</li>
+        <li>Alignment tool
+            <ul>
+                <li>(Shows position of optic disc and macula)</li>
+            </ul>
+        </li>
+        <li>Enhanced Depth Imaging (EDI) mode &ndash; Activate</li>
+        <li>Fixation &mdash; Internal vs external</li>
+        <li>Internal fixation target size</li>
+        <li>Internal fixation target positioning</li>
+        <li>Default internal fixation position</li>
+        <li>Flash internal fixation target</li>
+        <li>Refresh rate for low-res OCT fundus image</li>
+        <li>Start OCT scan</li>
+        <li>Optimize OCT Scan
+            <ul>
+                <li>Centers and enhances scan simultaneously</li>
+            </ul>
+        </li>
+        <li>Enhance/center OCT Scan
+            <ul>
+                <li>Individual control for each</li>
+                <li>Single steps</li>
+            </ul>
+        </li>
+        <li>Automatic scan enhance</li>
+        <li>Automatic scan centering</li>
+        <li>IR/FI to OCT</li>
+        <li><code>TBD</code></li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="program-settings-fundus"></a>
+    <h4>Program Settings for Fundus Photos</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_program_settings_fundus_photos_diagram.png" />
+        <span class="caption">Fig 8. Cirrus Photo Acquire Data window, program settings for fundus photo scans, with sections labeled 1-9 for reference</span>
+        <img src="images/reference/cirrus-photo/cirrus-photo-acquire_data_window_program_settings_fundus_photos_diagram_02.png" />
+        <span class="caption">Fig 9. Cirrus Photo Acquire Data window, program settings for fundus photo scans, with sections labeled 10-17 for reference</span>
+    </div>
+    <ol>
+        <li>Capture mode:
+            <ul>
+                <li>Color</li>
+                <li>ICGA (model 800 only; optional)</li>
+                <li>FA (model 800 only)</li>
+                <li>FAF (optional)</li>
+                <li>RGB</li>
+            </ul>
+        </li>
+        <li>Field angle 45&deg;, 30&deg;, or 30&deg; SP (Small Pupil)</li>
+        <li>Boost 1/Boost 2 mode (model 800 only)</li>
+        <li>Automatic flash</li>
+        <li>Internal vs external fixation</li>
+        <li>Internal fixation target size</li>
+        <li>Internal fixation target positioning</li>
+        <li>Default internal fixation target position</li>
+        <li>Flash internal fixation target</li>
+        <li>Capture fundus image</li>
+        <li>Focus aid</li>
+        <li>Auto focus</li>
+        <li>Focus range display</li>
+        <li>ICGA timer start/stop/reset</li>
+        <li>ICGA timer</li>
+        <li>FA timer start/stop/reset</li>
+        <li>FA timer</li>
+    </ol>
+    <div style="clear: both;"></div>
+
+    <a name="scan-quality-check-screen"></a>
+    <h3>Scan Quality Check Screen</h3>
+    <p>This screen is displayed prior to saving the image.</p>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-scan_quality_check_screen.png" />
+        <span class="caption">Fig 10. Cirrus Photo Scan Quality Check Screen with sections labeled 1-9 for reference</span>
+    </div>
+    <ol>
+        <li>Fundus image</li>
+        <li>View settings
+            <ul>
+                <li><img style="vertical-align: top" src="images/reference/cirrus-photo/cirrus-photo-overlayed_fundus_images.png" /> Fundus images: Overlayed</li>
+                <li><img style="vertical-align: top" src="images/reference/cirrus-photo/cirrus-photo-side-by-side_fundus_images.png" /> Fundus images: Side by Side</li>
+            </ul>
+        </li>
+        <li>Image control buttons (visible with a mouseover)
+            <ul>
+                <li>Contrst and brightness (C/B)</li>
+                <li>Transparency controls</li>
+                <li>Reset C/B to normal levels</li>
+            </ul>
+        </li>
+        <li>Signal strength indicator</li>
+        <li>B-scan image control buttons (visible with a mouseover)
+            <ul>
+                <li>Change to color mode</li>
+                <li>C/B setting</li>
+                <li>Magnification setting</li>
+                <li>Starts the movie for B-scan viewing</li>
+                <li>Saves the currently displayed B-scan</li>
+                <li>Reset all settings</li>
+            </ul>
+        </li>
+        <li>Scan display</li>
+        <li>Save button for saving the scan</li>
+        <li>Try again button to discard the scan</li>
+        <li>Transparent scan raster for a cube scan with color-coded scan lines</li>
+        <li>Reset scan lines</li>
+    </ol>
+
+    <a name="user-defined-workflow"></a>
+    <h3>User-Defined Workflow</h3>
+    <p><strong>NOTE</strong> This optional feature must be licensed and "Use Workflows" must be activated under <code>Tools/Settings &gt; Acquisition Workflows</code></p>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-user-defined_workflow.png" />
+        <span class="caption">Fig 11. Cirrus Photo User-defined workflow controls with sections labeled 1-10 for reference</span>
+    </div>
+    <ol>
+        <li>Operating modes:
+            <ul>
+                <li>CIRRUS &mdash; OCT only</li>
+                <li>CIRRUS Photo &mdash; Combo</li>
+                <li>Photo &mdash; Picture only</li>
+            </ul>
+        </li>
+        <li>Create &ndash; Create a new workflow</li>
+        <li>Workflow name</li>
+        <li>Existing workflows/Create workflow</li>
+        <li>Workflow steps</li>
+        <li>On/Off &ndash; Activate or deactivate a workflow</li>
+        <li>Change the workflow sequence</li>
+        <li>Delete a workflow step</li>
+        <li>Replace &ndash; Replace a workflow step</li>
+        <li>Add &ndash; Add a workflow step</li>
+    </ol>
+    <h4>Creating User-Defined Workflows</h4>
+    <p>Create Workflow &mdash; Drop-down Menu</p>
+    <ul>
+        <li>Enter the name of the new workflow</li>
+        <li>Click Create to save the workflow name</li>
+        <li>Select the saved workflow from the drop-down</li>
+        <li>Click each setting used for the first workflow step</li>
+        <li>Clicking Add saves selections as workflow steps</li>
+        <li>Repeat to add steps. Example:
+            <ul>
+                <li>Macular Cube + Color, Optic Disc Cube, 2x Color (stereo image), FAF</li>
+            </ul>
+        </li>
+        <li>Click Add to save this as the next step</li>
+        <li>Selected steps can be moved up or down using the arrow buttons</li>
+        <li>Delete a step with the trash can button</li>
+        <li>Click On or Off to activate/deactivate a workflow</li>
+    </ul>
+    <p><strong>NOTE</strong> editing a workflow will deactivate it.</p>
+    <div style="clear: both;"></div>
+
+    <a name="coaxial-overlap-check"></a>
+    <h3>Coaxial Overlap Check</h3>
+    <p>Using the <a href="#coalignment-test-tool">coalignment test tool</a>, check whether the center of the fundus and the center of the OCT scan image overlap properly. This means checking that the scan, based on the fundus image, is actually positioned where it should be. Repeat the test if the system does not pass. If a test has been failed, the data recorded since the last successful test may be unreliable.</p>
+    <a name="coalignment-test-tool"></a>
+    <h4>Test Tool</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-coalignment_tool_diagram.png" />
+        <span class="caption">Fig 12. Coalignment tool diagram, with sections labeled 1-5 for reference</span>
+    </div>
+    <ol>
+        <li>Plastic pins</li>
+        <li>Knurled screws</li>
+        <li>Adjusting pins</li>
+        <li>Protective funnel</li>
+        <li>Test tool</li>
+    </ol>
+    <p>The coalignment test tool is used for the coaxial overlap test. To install, verify the test tool's orientation by checking that the word "TOP" is printed on the tool, and align the plastic pins then tighten the thumb screws.</p>
+    <div style="clear: both;"></div>
+
+    <a name="performing-overlap-check"></a>
+    <h4>Performing the Overlap Check</h4>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-performance_verification_patient_screen.png" />
+        <span class="caption">Fig 13. Performance Verification patient screen and enhancement</span>
+        <a name="quality-check-screen"></a>
+        <img src="images/reference/cirrus-photo/cirrus-photo-quality_check_screen_full_screen_mode.png" />
+        <span class="caption">Fig 14. Quality Check screen, in full screen mode</span>
+    </div>
+    <ul>
+        <li>Install test tool</li>
+        <li>Search for and select patient: <code>Performance Verification</code></li>
+        <li>Select Acquire</li>
+        <li>Select scan: Macular Cube 200x200</li>
+        <li>Select angle: 45 Degree</li>
+        <li>Image mode: Green</li>
+        <li>Flash: Auto</li>
+        <li>Autofocus should have adjusted the focus as needed, correct if necessary</li>
+        <li>Select OCT button, click Enhance</li>
+        <li>Select Acquire</li>
+        <li>The quality check screen (<a href="#quality-check-screen">Fig. 14</a>) is then automatically shown
+            <ul>
+                <li>Image appearance and signal strength are not important for this overlap test</li>
+                <li>
+                    <strong>Image Adjustment:</strong><br />
+                    Right-click on the checkerboard to access a list of image display options<br />
+                    Left-click for brightness/contrast:
+                    <ul>
+                        <li>Mouse left/right &mdash; Contrast</li>
+                        <li>Mouse up/down &mdash; Brightness</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Overlay the OCT en face image with the fundus image by clicking the corresponding button</li>
+        <li>Set the Transparency Control slider to OCT Onl (top position); then double-click on any position within the fundus image to display it full screen</li>
+        <li>Inspect the black square in the center of the checkerboard pattern; the white cross in the middle of the central square is the orientation target</li>
+        <li>Set the Transparency to zero (0, opaque)</li>
+        <li>Drag the horizontal and vertical scan line indicators until they are centered on the black square</li>
+        <li>Double-click the image to close full screen mode</li>
+        <li>Move the slider to set the transparency to 100% (transparent); the test can now be evaluated</li>
+    </ul>
+    <p>Move the slider between 0% and 100% &ndash; Evaluate the positions of the scan indicator lines at 100%</p>
+    <div class="img-l">
+        <img src="images/reference/cirrus-photo/cirrus-photo-overlap_check_pass.png" />
+        <span class="caption">Fig 15. Overlap check PASS: transparency set to 100%; both scan indicator lines are on top of the center square/cross</span>
+        <img src="images/reference/cirrus-photo/cirrus-photo-overlap_check_fail.png" />
+        <span class="caption">Fig 16. Overlap check FAIL: transparency set to 100%; both scan indicator lines are NOT on top of the center square/cross</span>
+    </div>
+    <div style="clear: both;"></div>
+
+    <a name="remote-connectivity"></a>
+    <h3>Remote Connectivity</h3>
+    <a name="teleservice"></a>
+    <h4>Teleservice/TeamViewer</h4>
+    <h5>Online</h5>
+    <p>Teleservice Online is used for remote connectivity to the VisuCam system. Provide the customer the session number from the local Teleservice installation and instruct customer to approve displaying the screen and giving remote control to the Support Engineer (you).</p>
+    <p><strong>NOTE:</strong> there is a known issue with Teleservice running on Windows 10 systems, where screen refreshes are delayed anywhere from 15-60 seconds. For Windows 10, <a href="#teamviewer"></a>TeamViewer</a> is strongly recommended.</p>
+    <h5>Offline</h5>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-teleservice_offline.png" />
+        <span class="caption">Fig 17. Teleservice Offline capture menu</span>
+    </div>
+    <p>Teleservice Offline allows the user to save a service package file which can be emailed to Tech Support. The service package contains system information and all available log files.</p>
+    <p><strong>NOTE: </strong> the <a href="assets/tools/service_package_analyzer.exe">Package Analyzer</a> program is required to view the service package.</p>
+    <a name="teamviewer"></a>
+    <h5>TeamViewer</h5>
+    <p>TeamViewer is a preferred third-party remote connection application. It should be installed and licensed to each TSE on your work system.</p>
+    <p>To quickly allow remote access, guide the customer to the desktop on their instrument and have them find a browser (any browser will work though there are fewer issues with the download on <a href="https://www.google.com/chrome/index.html" target="_blank">Google Chrome</a>, <a href="https://www.firefox.com/en-US/browsers/desktop/" target="_blank">Mozilla Firefox</a>, or similar.</p>
+    <p>Once in a browser, have the customer type in the following address (into the address bar, not the search box): <a href="https://tiny.cc/zeissqs" target="_blank">https://tiny.cc/zeissqs</a>. Note that the document ID ("zeissqs") is case-sensitive.</p>
+    <p>If entered correctly, this address will not necessarily load a new page, but it should trigger an automatic download of TeamViewerQS.exe, an executable quick-service client that should allow customers to provide a TeamViewer ID and a password which can be entered into the full client on the TSE's system to access the instrument.</p>
+    <div style="clear: both;"></div>
+
+    <a name="licensing"></a>
+    <h3>Licensing</h3>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-licensing_screen.png" />
+        <span class="caption">Fig 18. License Overview window</span>
+    </div>
+    <h4>Tools/Settings/Licenses Tab</h4>
+    <ul>
+        <li>Click "Generate key file"</li>
+        <li>Save bin file locally or to a USB drive</li>
+        <li>Transfer or have customer email bin file</li>
+        <li>Use program <a href="assets/tools/decrypt_mac_address.exe"></a>DecryptMacAddress</a> to decrypt the MAC address contained in the bin file</li>
+        <li>Activate optional features using this MAC address</li>
+        <li>Save license file and return to customer/VisuCam</li>
+        <li>Use "Load license file" button to install the feature(s)</li>
+        <li>Restart the instrument</li>
+        <li>Verify the feature is functional</li>
+    </ul>
+    
+    <a name="service-access"></a>
+    <h3>Service Access</h3>
+    <div class="img-c">
+        <img src="images/reference/cirrus-photo/cirrus-photo-service_access.png" width="85%" />
+        <span class="caption">Fig 19. Service Access Menu</span>
+    </div>
+    <p>Service Access (also called Service Mode or just Service) is a set of utilities which can be used by Zeiss-trained technical support technicians to access Windows components and other useful tools.</p>
+    <p>To access Service Mode, select Tools &gt; Service Access and at the password prompt, enter the password <code>Meditec</code> (case-sensitive).</p>
+    <p><strong>NOTE!</strong> Do <strong>NOT</strong> provide this password to customers. If a customer requires access to a limited subset of Windows, they can use the access provided by selecting File &gt; System and logging on as the Administrator account with the password <code>0000</code> (this password can be provided to customers). From the System menu, choose Network Connections which will open a shortcut to the Network Connections control panel but will use a Windows/File Explorer window to do so. From the Explorer window, type <code>C:\</code> into the address field and navigate the file system from there as normal.</p>
+    <p>System menu access to the file system does not by default allow access to the hidden partitions. You can work around this by navigating to My Computer, right-clicking the icon and choosing Manage. This will open Computer Management, where you can select Disk Management, then right-click and choose Explore on the drive you wish to access.</p>
+    <a name="service-access-functions"></a>
+    <h4>Service Access Functions</h4>
+    <h5>Create New Customer/User Management Database</h5>
+    <p>Click the Create New Customer Database button, then choose to keep or delete the existing database.</p>
+    <ul>
+        <li>Keeping a database will make it available to recall by clicking the "Recall Customer Database" button</li>
+        <li>Keeping a database when one is already available for recall will overwrite the existing kept database</li>
+    </ul>
+    <p>Create new User Management Database will attempt to create a new User Management database.</p>
+    <ul>
+        <li>User Management database contains all operators that have been entered into the UMDB</li>
+        <li>Users will be unable to access the application if there is a failure</li>
+    </ul>
+
+    <a name="test-tool"></a>
+    <h5>Test Tool for Troubleshooting</h5>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-test_tool_main_screen.png" />
+        <span class="caption">Fig 20. TestTool main window showing various tabs and features available</span>
+    </div>
+    <p>For in-application help, press ALT + T. For complete documentation, see Section 4 (Adjustment and Calibration) of the Service Manual. An incomplete overview of commonly used features follows:</p>
+    <h6>Basic Functions</h6>
+    <ul>
+        <li>Allows movement of individual hardware components by clicking the associated radio button or adjusting the slider</li>
+        <li>The message pane at the bottom of the tool window displays test/system progress, errors, and motor positions</li>
+    </ul>
+    <h6>Control Base Check Tab</h6>
+    <ul>
+        <li>Provides functional information about the system:
+            <ul>
+                <li>MAC address</li>
+                <li>Serial communication</li>
+                <li>Motherboard 5V and 12V reading</li>
+                <li>High voltage check</li>
+                <li>Fan states</li>
+            </ul>
+        </li>
+    </ul>
+    <h6>Motor Test Tab</h6>
+    <ul>
+        <li>Allows the testing of individual motors</li>
+        <li>When Motor Test tab is selected, a series of additional tabs are displayed</li>
+        <li>The number of test cycles is adjustable</li>
+        <li>Errors and messages are displayed in the message pane at the bottom of the tool</li>
+    </ul>
+    <h6>Stress Test Tab</h6>
+    <ul>
+        <li>Allows testing of the complete image capture system</li>
+        <li>The number of test cycles is adjustable</li>
+        <li>Tests of individual motors can be performed on the Motor Test tab if an error is found via the Stress Test</li>
+        <li>Flash is also ignited (3x per cycle) as part of the Stress Test</li>
+    </ul>
+    <h6>OCT Tab</h6>
+    <p>Contains buttons to load default settings for specific calibration applications:</p>
+    <ul>
+        <li>OCT standard</li>
+        <li>OCT doppler</li>
+        <li>OCT SNR</li>
+        <li>OCT spectrometer</li>
+        <li>Green image acquisition for co-alignment image</li>
+    </ul>
+    <h6>EEPROM Tab</h6>
+    <div class="img-r">
+        <img src="images/reference/cirrus-photo/cirrus-photo-test_tool_eeprom_tab.png" />
+        <span class="caption">Fig 21. EEPROM Tab of the TestTool, highlighting the Read Parameters From buttons</span>
+    </div>
+    <p>Read Parameters From EEPROM</p>
+    <ul>
+        <li>Displays current EEPROM values</li>
+        <li>Values can be entered manually</li>
+        <li>Values <em>should not</em> be "?" after reading from EEPROM</li>
+    </ul>
+    <p>Read Parameters from File</p>
+    <ul>
+        <li>Reads values from file located on the HDD</li>
+        <li>Can be loaded onto the EEPROM</li>
+    </ul>
+    <p>Write Parameters to File</p>
+    <ul>
+        <li>Writes current EEPROM values to file on the HDD</li>
+    </ul>
+    <p>Write Parameters to EEPROM</p>
+    <ul>
+        <li>Writes newly read or manually entered values to EERPOM</li>
+    </ul>
+    <p>To verify EEPROM/Control Board functionality, try the following:</p>
+    <ol>
+        <li>Read parameters from EEPROM &ndash; verify that the values populate</li>
+        <li>Write parameters to file &ndash; save file to desktop during this process</li>
+        <li>Read parameters from file &ndash; use the parameters file you just saved</li>
+        <li>Write parameters to EEPROM &ndash; verify no error in read or write</li>
+    </ol>
+    <p>If an error shows in the information window or a read/write message is displayed during any of the steps above, suspect a bad control board. If normal function is returned during this process, there may have been a bad value stored in the EEPROM.</p>
+
+    <a name="dicom-gateway"></a>
+    <h3>DICOM Gateway</h3>
+    <p>Similarly to a <a href="#" onclick="updateReferenceBoxContents('direct', 'assets/data/reference/products/cirrus-oct/index')">Cirrus HD-OCT</a>, the Cirrus Photo uses the DICOM Gateway application to configure communication with Forum or other DICOM-based systems or records software. This configuration utility allows local and remote Application Entity Titles (AETs), hostnames/IPs, and port values.</p>
+    <h4>Troubleshooting</h4>
+    <h5>DICOM Gateway Service</h5>
+    <p>DICOM Gateway is an application/utility for configuration as well as a Service running to manage DICOM communication requests. If the Service fails, DICOM connections cannot be established and errors are likely.</p>
+    <p>In the case of DICOM-related log messages or errors, check the status of the Service by accessing the Services system tool and locate the service named <code>DICOM Gateway 2.4</code> (service name may be different if the operating system is earlier than Windows 7, for example Windows XP). The status should be "Running". If the status is blank or any other value, try restarting the service to restore functionality.</p>
+    <h5>DICOM Gateway Failing to Launch from Cirrus Photo Application</h5>
+    <p>To access the DICOM Gateway, typically use <code>Tools &gt; Settings &gt; Network Tab &gt; Select DICOM network &gt; Click Configure DICOM gateway button</code></p>
+    <p>If the DICOM Gateway utility fails to launch from within the Cirrus Photo application, and the service is Running, you can attempt to launch the Gateway Configuration utility from Windows/File Explorer directly:</p>
+    <ul>
+        <li><strong>Windows 7/10</strong> &mdash; <code>C:\Program Files (x86)\CZM\DICOM Gateway\2.4\CZM.Networking.GatewayConfigurator.exe</code></li>
+        <li><strong>Windows XP</strong> &mdash; <code>C:\Program Files\CZM\DICOM Gateway\2.3\CZM.Networking.GatewayConfigurator.exe</code></li>
+    </ul>
+    <p>If launched from the Explorer path, configure DICOM as you would normally and run the test. Once the tests pass, launch the Cirrus Photo application and click the Configure DICOM gateway button to verify the program starts and the tests still pass.</p>
+    <h5>DICOM Gateway Files</h5>
+    <p>If the DICOM Gateway Configuration utility or service are having issues, check the files in the following folders for potential issues:</p>
+    <ul>
+        <li><strong>Windows 7/10:</strong> <code>%AppData%</code></li>
+        <li><strong>Windows XP:</strong> <code>C:\Documents and Settings\All Users\Application Data\Carl Zeiss Meditec\DICOM Gateway Service 2.3\</code></li>
+    </ul>
+    <p>Of particular note in either location are the files <code>GatewayRepository.xml</code> and <code>NIMConfig.xml</code>.</p>
+
+    <a name="common-issues"></a>
+    <h2>Common Issues</h2>
+    <a name="backup-of-system-files"></a>
+    <h3>"Backup of System Files Failed" Error</h3>
+    <p>Verify there is enough free space on the <code>E:\</code> and <code>Z:\</code> partitions to rewrite the folders named <code>SystemFilesBackup</code>. Rename the folders in both locations (e.g. <code>SystemFilesBackup.1</code>).</p>
+    <p>If there is <em>not</em> enough disk space, delete the existing <code>SystemFilesBackup</code> folders.</p>
+    <p>In either case, the folders will be rewritten on the next application restart. This will also work if a specific file fails during a backup (e.g. a license file fails to backup during device start-up check).</p>
+    <a name="backup-loop"></a>
+    <h3>Backup Loop Issues</h3>
+    <p>If experiencing issues with a backup loop, navigate to <code>C:\Program Files (x86)\CZM\Cirrus photo\Configuration\userconfig.xml</code> and right-click, then choose Edit. The file will open in Notepad.</p>
+    <p>CTRL + F (or <code>Edit &gt; Find</code>) to access the search box and type in "BackupRestore" (you can check the Match Case box as well).</p>
+    <p>The BackupRestore block should look something like this:</p>
+    <pre>
+&lt;add Key="BackupRestore" Value="" Type="System.String" Description="" Permission="0"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SubList&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add Key="LastUsedBackupFolder" Value="E:\test" Type="System.String" Description="" Permission="0" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add Key="DatabaseFileToBeRestored" Value="" Type="System.String" Description="" Permission="0" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add Key="IncludeExternalFilesInRestore" Value="false" Type="System.Boolean" Permission="0" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/SubList&gt;
+&lt;/add&gt;</pre>
+    <p>Remove anything entered between the quotation marks for the <code>Value</code> of key <code>DatabaseFileToBeRestored</code> then save the file and restart the application.</p>
 </div>
